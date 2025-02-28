@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Partners</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto Mono', monospace;
+    }
+
+    body {
+      background-color: #000000;
+      color: white;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header Styles */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 3rem;
+      padding: 1rem 0;
+    }
+
+    .logo {
+      height: 50px;
+    }
+
+    /* Partners Section */
+    .partners-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin: 1rem auto;
+      max-width: 1100px;
+      animation: fadeIn 1.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .partners-title {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      font-weight: 700;
+    }
+
+    /* Filter controls */
+    .filter-controls {
+      margin-bottom: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.8rem;
+    }
+
+    .filter-btn {
+      padding: 0.5rem 1rem;
+      background-color: transparent;
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 4px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .filter-btn:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .filter-btn.active {
+      background-color: rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.8);
+    }
+
+    /* Partners grid */
+    .partners-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      width: 100%;
+    }
+
+    .partner-card {
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    .partner-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .partner-logo {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      background-color: rgba(255, 255, 255, 0.03);
+      padding: 1rem;
+    }
+
+    .partner-name {
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin-bottom: 0.8rem;
+    }
+
+    .partner-tag {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    /* Category tag colors - dynamically generated in JS */
+
+    .partner-description {
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .visit-btn {
+      padding: 0.6rem 1.2rem;
+      background-color: transparent;
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 4px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .visit-btn:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.5);
+      transform: translateY(-2px);
+    }
+
+    /* No results message */
+    .no-results {
+      padding: 2rem;
+      text-align: center;
+      font-size: 1.2rem;
+      width: 100%;
+      display: none;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 1024px) {
+      .partners-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .partners-title {
+        font-size: 2rem;
+      }
+      
+      .partners-grid {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+      
+      .filter-controls {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .filter-btn {
+        margin: 0.3rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .partners-title {
+        font-size: 1.8rem;
+      }
+      
+      .partner-logo {
+        width: 90px;
+        height: 90px;
+      }
+      
+      .partner-name {
+        font-size: 1.1rem;
+      }
+      
+      .partner-description {
+        font-size: 0.8rem;
+      }
+      
+      .logo {
+        height: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <a href="/">
+        <img src="get/images/logo.svg" alt="Company Logo" class="logo">
+      </a>
+    </header>
+
+    <div class="partners-section">
+      <h1 class="partners-title">Our Partners</h1>
+      
+      <div class="filter-controls">
+        <!-- Filter buttons will be dynamically generated -->
+      </div>
+      
+      <div class="partners-grid">
+        <!-- Partners will be populated via JavaScript -->
+      </div>
+      
+      <div class="no-results">
+        No partners match the selected filter.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Category colors configuration
+    const categoryColors = {
+      education: { bg: "rgba(64, 115, 255, 0.2)", text: "rgb(110, 165, 255)" },
+      technology: { bg: "rgba(99, 102, 241, 0.2)", text: "rgb(165, 180, 252)" },
+      finance: { bg: "rgba(0, 179, 126, 0.2)", text: "rgb(52, 211, 153)" },
+      healthcare: { bg: "rgba(248, 113, 113, 0.2)", text: "rgb(252, 165, 165)" },
+      media: { bg: "rgba(245, 158, 11, 0.2)", text: "rgb(252, 211, 77)" },
+      retail: { bg: "rgba(236, 72, 153, 0.2)", text: "rgb(249, 168, 212)" },
+      nonprofit: { bg: "rgba(139, 92, 246, 0.2)", text: "rgb(196, 181, 253)" },
+      gaming: { bg: "rgba(16, 185, 129, 0.2)", text: "rgb(110, 231, 183)" }
+      // Add more categories and colors as needed
+    };
+
+    // Partner data
+    // =========================================================================
+    // TEMPLATE TO ADD MORE PARTNERS:
+    // {
+    //   name: "Partner Name",
+    //   logo: "get/images/partners/logo.jpg",
+    //   category: "category", // must match one of the categories in categoryColors
+    //   description: "Description of partner and their services.",
+    //   website: "https://example.com/partner"
+    // },
+    // =========================================================================
+    const partners = [
+      {
+        name: "Sovereigns",
+        logo: "get/images/sovereigns-logo.png",
+        category: "education",
+        description: "master building advanced systems to free up your time and scale your earnings",
+        website: "https://sovereigns.co"
+      },
+      {
+        name: "lulo Panamá",
+        logo: "get/images/lulo-logo.png",
+        category: "finance",
+        description: "revolutionizing personal loan advisory in Panamá for a fast, dynamic and secure proccess",
+        website: "https://lulopanama.com"
+      }
+    ];
+
+    // DOM elements
+    const partnersGrid = document.querySelector('.partners-grid');
+    const filterControls = document.querySelector('.filter-controls');
+    const noResultsMessage = document.querySelector('.no-results');
+
+    // Function to generate dynamic category styles
+    function generateCategoryStyles() {
+      let styleSheet = document.createElement("style");
+      let styleRules = "";
+      
+      Object.entries(categoryColors).forEach(([category, colors]) => {
+        styleRules += `
+          .tag-${category} {
+            background-color: ${colors.bg};
+            color: ${colors.text};
+          }
+        `;
+      });
+      
+      styleSheet.textContent = styleRules;
+      document.head.appendChild(styleSheet);
+    }
+
+    // Function to generate filter buttons based on available categories
+    function generateFilterButtons() {
+      // Get unique categories from partners
+      const categories = [...new Set(partners.map(partner => partner.category))];
+      
+      // Create "All" button
+      const allButton = document.createElement('button');
+      allButton.className = 'filter-btn active';
+      allButton.setAttribute('data-filter', 'all');
+      allButton.textContent = 'All Partners';
+      filterControls.appendChild(allButton);
+      
+      // Create category buttons
+      categories.forEach(category => {
+        const button = document.createElement('button');
+        button.className = 'filter-btn';
+        button.setAttribute('data-filter', category);
+        button.textContent = category.charAt(0).toUpperCase() + category.slice(1);
+        filterControls.appendChild(button);
+      });
+      
+      // Add event listeners to filter buttons
+      document.querySelectorAll('.filter-btn').forEach(button => {
+        button.addEventListener('click', () => {
+          // Remove active class from all buttons
+          document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+          
+          // Add active class to clicked button
+          button.classList.add('active');
+          
+          // Get filter value and render partners
+          const filter = button.getAttribute('data-filter');
+          renderPartners(filter);
+        });
+      });
+    }
+
+    // Function to render partners
+    function renderPartners(filter = 'all') {
+      // Clear the grid
+      partnersGrid.innerHTML = '';
+      
+      // Filter partners based on selected category
+      const filteredPartners = filter === 'all' 
+        ? partners 
+        : partners.filter(partner => partner.category === filter);
+      
+      // Show/hide no results message
+      if (filteredPartners.length === 0) {
+        noResultsMessage.style.display = 'block';
+      } else {
+        noResultsMessage.style.display = 'none';
+      }
+      
+      // Render each partner card
+      filteredPartners.forEach(partner => {
+        const partnerCard = document.createElement('div');
+        partnerCard.className = 'partner-card';
+        
+        // Check if the category exists in our color config
+        const categoryClass = categoryColors[partner.category] ? `tag-${partner.category}` : '';
+        
+        partnerCard.innerHTML = `
+          <img src="${partner.logo}" alt="${partner.name} Logo" class="partner-logo">
+          <h3 class="partner-name">${partner.name}</h3>
+          <span class="partner-tag ${categoryClass}">${partner.category.charAt(0).toUpperCase() + partner.category.slice(1)}</span>
+          <p class="partner-description">${partner.description}</p>
+          <a href="${partner.website}" target="_blank" class="visit-btn">Visit Partner</a>
+        `;
+        
+        partnersGrid.appendChild(partnerCard);
+      });
+    }
+
+    // Initialize the page
+    document.addEventListener('DOMContentLoaded', () => {
+      generateCategoryStyles();
+      generateFilterButtons();
+      renderPartners();
+    });
+  </script>
+</body>
+</html>
