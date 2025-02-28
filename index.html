@@ -1,1 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VQZ & Partners</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="get/images/favicon.png">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto Mono', monospace;
+    }
 
+    body {
+      background-color: #000000;
+      color: white;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative; /* Added to allow absolute positioning of .presentation */
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      width: 100%;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header Styles */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 3rem;
+      padding: 1rem 0;
+      position: relative; /* Ensure header stays in flow but doesn’t affect presentation positioning */
+    }
+
+    .logo {
+      height: 50px;
+    }
+
+    /* Presentation Styles */
+    .presentation {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* Center content vertically */
+      align-items: center; /* Center content horizontally */
+      max-width: 1200px;
+      margin: 0 auto;
+      height: 70vh; /* Fixed height to center content */
+      position: absolute; /* Position absolutely to ignore header */
+      top: 50%; /* Center vertically in viewport */
+      left: 50%; /* Center horizontally in viewport */
+      transform: translate(-50%, -50%); /* Center precisely */
+      width: 100%; /* Ensure it spans the container width */
+    }
+
+    .presentation-line {
+      font-size: 1.5rem;
+      line-height: 1.4;
+      margin-bottom: 1rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease, color 0.8s ease;
+      max-width: 800px;
+      text-align: center;
+    }
+
+    .presentation-line.visible {
+      opacity: 1;
+      transform: translateY(0);
+      color: white;
+    }
+
+    .presentation-line.dim {
+      color: #666666;
+    }
+
+    .presentation-line.hidden {
+      display: none; /* Keeps the lines from taking up space when hidden */
+    }
+
+    /* Action Buttons */
+    .action-container {
+      text-align: center;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      margin-top: 0; /* Remove margin to help with centering */
+    }
+
+    .action-container.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .action-title {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+
+    .btn {
+      padding: 0.8rem 1.5rem;
+      background-color: transparent;
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.5);
+      transform: translateY(-2px);
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .presentation-line {
+        font-size: 1.8rem;
+      }
+      
+      .action-buttons {
+        flex-direction: column;
+        width: 100%;
+      }
+      
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+      
+      .presentation {
+        height: 60vh;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .presentation-line {
+        font-size: 1.5rem;
+      }
+      
+      .logo {
+        height: 40px;
+      }
+      
+      header {
+        margin-bottom: 2rem;
+      }
+      
+      .action-title {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img src="get/images/white-web-logo.svg" alt="VQZ & Partners Logo" class="logo">
+    </header>
+
+    <div class="presentation">
+      <div class="presentation-line" id="line1">we build, accelerate and educate</div>
+      <div class="presentation-line" id="line2">from intelligence to automations.</div>
+      <div class="presentation-line" id="line3">we foster great innovation,</div>
+      <div class="presentation-line" id="line4">all while remaining unbound by politics.</div>
+      <div class="presentation-line" id="line5">for us, freedom is everything.</div>
+      
+      <div class="action-container" id="action-container">
+        <div class="action-title">choose an option</div>
+        <div class="action-buttons">
+          <a href="/founder" class="btn">Know the founder</a>
+          <a href="/business" class="btn">Know our partners</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const lines = document.querySelectorAll('.presentation-line');
+      const actionContainer = document.getElementById('action-container');
+      
+      // Animation timing (slower)
+      const initialDelay = 1000;
+      const lineDelay = 2500;
+      const finalDelay = 1500;
+      
+      // Function to animate each line
+      const animateLines = async () => {
+        // Wait for initial delay
+        await new Promise(resolve => setTimeout(resolve, initialDelay));
+        
+        // Animate each line one by one
+        for (let i = 0; i < lines.length; i++) {
+          lines[i].classList.remove('hidden'); // Ensure line is visible
+          lines[i].classList.add('visible');
+          
+          // Dim previous lines (except for the first iteration)
+          if (i > 0) {
+            lines[i-1].classList.add('dim');
+          }
+          
+          // Wait before showing next line
+          await new Promise(resolve => setTimeout(resolve, lineDelay));
+        }
+        
+        // Wait a moment before hiding all lines
+        await new Promise(resolve => setTimeout(resolve, finalDelay));
+        
+        // Hide all lines
+        for (let i = 0; i < lines.length; i++) {
+          lines[i].classList.remove('visible', 'dim');
+          lines[i].classList.add('hidden');
+        }
+        
+        // Wait for the hiding animation (though display: none is instant, we can keep the delay for consistency)
+        await new Promise(resolve => setTimeout(resolve, 800));
+        
+        // Show action container
+        actionContainer.classList.add('visible');
+      };
+      
+      // Start animation
+      animateLines();
+    });
+  </script>
+</body>
+</html>
