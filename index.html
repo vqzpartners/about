@@ -138,7 +138,7 @@
     /* Responsive Styles */
     @media (max-width: 768px) {
       .presentation-line {
-        font-size: 1.8rem;
+        font-size: 1.2rem; /* Reduced font size for tablets/mobile */
       }
       
       .action-buttons {
@@ -153,12 +153,14 @@
       
       .presentation {
         height: 60vh;
+        top: 60%; /* Adjusted to add space at the top for mobile */
+        transform: translate(-50%, -60%); /* Adjust vertical centering to account for top space */
       }
     }
 
     @media (max-width: 480px) {
       .presentation-line {
-        font-size: 1.5rem;
+        font-size: 1rem; /* Further reduced font size for smaller mobile screens */
       }
       
       .logo {
@@ -171,6 +173,12 @@
       
       .action-title {
         font-size: 1.3rem;
+      }
+      
+      .presentation {
+        height: 60vh;
+        top: 65%; /* More space at the top for very small screens */
+        transform: translate(-50%, -65%); /* Adjust vertical centering */
       }
     }
   </style>
