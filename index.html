@@ -20,7 +20,6 @@
   <meta name="twitter:description" content="we build, accelerate and educate">
   <meta name="twitter:image" content="https://vqzpartners.com/get/images/social-banner.jpg">
   
-</head>
   <style>
     * {
       margin: 0;
@@ -55,7 +54,7 @@
       align-items: center;
       margin-bottom: 3rem;
       padding: 1rem 0;
-      position: relative; /* Ensure header stays in flow but doesn’t affect presentation positioning */
+      position: relative; /* Ensure header stays in flow but doesn't affect presentation positioning */
     }
 
     .logo {
@@ -225,6 +224,9 @@
       const lines = document.querySelectorAll('.presentation-line');
       const actionContainer = document.getElementById('action-container');
       
+      // Check if user has visited before
+      const hasVisitedBefore = localStorage.getItem('vqzVisited') === 'true';
+      
       // Animation timing (slower)
       const initialDelay = 1000;
       const lineDelay = 2500;
@@ -263,14 +265,31 @@
         
         // Show action container
         actionContainer.classList.add('visible');
+        
+        // Set the flag in localStorage to remember the visit
+        localStorage.setItem('vqzVisited', 'true');
       };
       
-      // Start animation
-      animateLines();
+      // Function to skip animation and go directly to action buttons
+      const skipToActions = () => {
+        // Hide all lines immediately
+        for (let i = 0; i < lines.length; i++) {
+          lines[i].classList.add('hidden');
+        }
+        
+        // Show action container immediately
+        actionContainer.classList.add('visible');
+      };
+      
+      // Decide whether to show animation or skip directly to actions
+      if (hasVisitedBefore) {
+        skipToActions();
+      } else {
+        animateLines();
+      }
     });
   </script>
   <!-- 100% privacy-first analytics -->
-<script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
-
+  <script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
 </body>
 </html>
