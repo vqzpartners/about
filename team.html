@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Team</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="get/images/favicon.png">
+  <link rel="stylesheet" href="menu.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto Mono', monospace;
+    }
+
+    body {
+      background-color: #000000;
+      color: white;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header Styles */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 3rem;
+      padding: 1rem 0;
+    }
+
+    .logo {
+      height: 50px;
+    }
+
+    /* Team Section */
+    .team-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin: 1rem auto;
+      max-width: 1100px;
+      animation: fadeIn 1.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .team-title {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      font-weight: 700;
+    }
+
+    /* Members grid */
+    .members-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      width: 100%;
+    }
+
+    .member-card {
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    .member-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .member-photo {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      margin-bottom: 1rem;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.03);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .member-name {
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin-bottom: 0.8rem;
+    }
+
+    .member-position {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      margin-bottom: 1rem;
+      font-weight: 500;
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .member-bio {
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin-bottom: 1rem;
+      flex-grow: 1;
+    }
+
+    /* Make sure the body has enough padding at the bottom */
+    body {
+      padding-bottom: 80px; /* Adjust based on your navigation height */
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 1024px) {
+      .members-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .team-title {
+        font-size: 2rem;
+      }
+      
+      .members-grid {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .team-title {
+        font-size: 1.8rem;
+      }
+      
+      .member-photo {
+        width: 120px;
+        height: 120px;
+      }
+      
+      .member-name {
+        font-size: 1.1rem;
+      }
+      
+      .member-bio {
+        font-size: 0.8rem;
+      }
+      
+      .logo {
+        height: 40px;
+      }
+    }
+
+    .position-ceo {
+      background-color: rgba(64, 115, 255, 0.2);
+      color: rgb(110, 165, 255);
+    }
+
+    .position-vp {
+      background-color: rgba(99, 102, 241, 0.2);
+      color: rgb(165, 180, 252);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <a href="/">
+        <img src="get/images/white-web-logo.svg" alt="VQZ & Partners Logo" class="logo">
+      </a>
+    </header>
+
+    <div class="team-section">
+      <h1 class="team-title">Our Team</h1>
+      
+      <div class="members-grid">
+        <!-- Members will be populated via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <nav class="bottom-nav">
+    <a href="/" class="nav-item">
+      <span class="nav-icon">⌂</span>
+      <span class="nav-text">Home</span>
+    </a>
+    <a href="/founder" class="nav-item">
+      <span class="nav-icon">👤</span>
+      <span class="nav-text">Founder</span>
+    </a>
+    <a href="/business" class="nav-item">
+      <span class="nav-icon">🤝</span>
+      <span class="nav-text">Partners</span>
+    </a>
+    <a href="/team" class="nav-item">
+      <span class="nav-icon">👥</span>
+      <span class="nav-text">Team</span>
+    </a>
+  </nav>
+
+  <script>
+    // Team members data
+    const members = [
+      {
+        name: "Brandon Vásquez",
+        photo: "get/images/members/profile.jpg",
+        position: "Founder",
+        positionClass: "position-ceo",
+        bio: "Founder of VQZ & Partners."
+      },
+      {
+        name: "S***a Vásquez",
+        photo: "get/images/members/anon.jpg",
+        position: "VP of Operations",
+        positionClass: "position-vp",
+        bio: "Oversees day-to-day operations and ensures smooth functioning across all departments and projects."
+      },
+      {
+        name: "C***os Vásquez",
+        photo: "get/images/members/anon.jpg",
+        position: "VP of Finance",
+        positionClass: "position-vp",
+        bio: "Manages financial strategy and planning, ensuring sustainable growth and profitability for VQZ & Partners."
+      },
+      {
+        name: "E***a Vásquez",
+        photo: "get/images/members/anon.jpg",
+        position: "VP of Technology",
+        positionClass: "position-vp",
+        bio: "Leads technological innovation and digital transformation initiatives across all company projects."
+      },
+      {
+        name: "Luis Vásquez",
+        photo: "get/images/members/anon.jpg",
+        position: "VP of Business Development",
+        positionClass: "position-vp",
+        bio: "Spearheads growth strategies and builds valuable partnerships to expand VQZ's market presence."
+      },
+      {
+        name: "M***a Vásquez",
+        photo: "get/images/members/anon.jpg",
+        position: "VP of Marketing",
+        positionClass: "position-vp",
+        bio: "Directs brand strategy and marketing initiatives to strengthen VQZ's position in the global marketplace."
+      }
+    ];
+
+    // DOM elements
+    const membersGrid = document.querySelector('.members-grid');
+
+    // Function to render team members
+    function renderMembers() {
+      // Clear the grid
+      membersGrid.innerHTML = '';
+      
+      // Render each member card
+      members.forEach(member => {
+        const memberCard = document.createElement('div');
+        memberCard.className = 'member-card';
+        
+        memberCard.innerHTML = `
+          <img src="${member.photo}" alt="${member.name}" class="member-photo">
+          <h3 class="member-name">${member.name}</h3>
+          <span class="member-position ${member.positionClass}">${member.position}</span>
+          <p class="member-bio">${member.bio}</p>
+        `;
+        
+        membersGrid.appendChild(memberCard);
+      });
+    }
+
+    // Initialize the page
+    document.addEventListener('DOMContentLoaded', () => {
+      renderMembers();
+    });
+  </script>
+  <script src="menu.js"></script>
+</body>
+</html>
