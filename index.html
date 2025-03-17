@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VQZ & Partners</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Roboto+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="icon" href="https://vqzpartners.com/get/images/favicon.png">
 
   <meta name="description" content="Learn more about VQZ and our verified business partnerships.">
@@ -66,6 +66,7 @@
       flex: 1;
       gap: 4rem;
       margin-top: 2rem;
+      align-items: center; /* Add this to vertically center the grid */
     }
 
     /* Left Column - Text Content */
@@ -81,6 +82,7 @@
       font-weight: 700;
       margin-bottom: 2rem;
       line-height: 1.2;
+      font-family: 'Montserrat', sans-serif; /* Changed to Montserrat */
     }
 
     .description {
@@ -191,18 +193,19 @@
       transform: translateY(0);
     }
 
-    /* Glow effect on hover */
+    /* Glow effect on hover - Fixed to not show gaps */
     .market-card::after {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      border-radius: 8px;
+      top: -5px;
+      left: -5px;
+      right: -5px;
+      bottom: -5px;
+      border-radius: 12px; /* Slightly larger than the card's border-radius */
       box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
       opacity: 0;
       transition: opacity 0.5s ease;
+      z-index: -1;
     }
 
     .market-card:hover::after {
@@ -314,6 +317,12 @@
         width: 100%;
         text-align: center;
       }
+      
+      .image-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 90%; /* Make grid smaller on mobile */
+        margin: 0 auto;
+      }
     }
 
     @media (max-width: 480px) {
@@ -322,7 +331,9 @@
       }
       
       .image-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr); /* Keep 2 columns on small mobile */
+        max-width: 100%;
+        grid-gap: 1rem; /* Smaller gap on mobile */
       }
       
       .logo {
@@ -330,7 +341,11 @@
       }
       
       header {
-        margin-bottom: 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      body {
+        padding: 15px; /* Reduce padding on very small screens */
       }
 
       .market-card:nth-child(odd), 
@@ -433,7 +448,6 @@
       }
     });
   </script>
-  <!-- 100% privacy-first analytics -->
   <script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
 </body>
 </html>
