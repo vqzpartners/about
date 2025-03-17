@@ -38,36 +38,44 @@
       overflow-x: hidden;
     }
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      width: 100%;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative; /* Add this */
+}
 
     /* Header Styles */
     header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 0;
-      margin-bottom: 2rem;
-    }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  margin-bottom: 0; /* Remove margin */
+  position: absolute; /* Position absolutely */
+  top: 1rem; /* Add some space from top */
+  left: 0;
+  right: 0;
+  z-index: 10; /* Keep above other content */
+}
 
     .logo {
       height: 50px;
     }
 
     /* Main Content Layout */
-    .main-content {
-      display: flex;
-      flex: 1;
-      gap: 4rem;
-      margin-top: 2rem;
-      align-items: center; /* Add this to vertically center the grid */
-    }
+.main-content {
+  display: flex;
+  flex: 1;
+  gap: 4rem;
+  margin-top: 0; /* Remove margin-top */
+  height: 100vh; /* Full viewport height */
+  align-items: center;
+  padding-top: 80px; /* Add padding to account for header height */
+}
 
     /* Left Column - Text Content */
     .text-content {
