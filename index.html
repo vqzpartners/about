@@ -35,11 +35,11 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      position: relative; /* Added to allow absolute positioning of .presentation */
+      overflow-x: hidden;
     }
 
     .container {
-      max-width: 1000px;
+      max-width: 1200px;
       margin: 0 auto;
       width: 100%;
       flex: 1;
@@ -52,81 +52,167 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 3rem;
       padding: 1rem 0;
-      position: relative; /* Ensure header stays in flow but doesn't affect presentation positioning */
+      margin-bottom: 2rem;
     }
 
     .logo {
       height: 50px;
     }
 
-    /* Presentation Styles */
-    .presentation {
+    /* Main Content Layout */
+    .main-content {
+      display: flex;
+      flex: 1;
+      gap: 4rem;
+      margin-top: 2rem;
+    }
+
+    /* Left Column - Text Content */
+    .text-content {
       flex: 1;
       display: flex;
       flex-direction: column;
-      justify-content: center; /* Center content vertically */
-      align-items: center; /* Center content horizontally */
-      max-width: 1200px;
-      margin: 0 auto;
-      height: 70vh; /* Fixed height to center content */
-      position: absolute; /* Position absolutely to ignore header */
-      top: 50%; /* Center vertically in viewport */
-      left: 50%; /* Center horizontally in viewport */
-      transform: translate(-50%, -50%); /* Center precisely */
-      width: 100%; /* Ensure it spans the container width */
+      justify-content: center;
     }
 
-    .presentation-line {
-      font-size: 1.5rem;
-      line-height: 1.4;
-      margin-bottom: 1rem;
+    .tagline {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      line-height: 1.2;
+    }
+
+    .description {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 2.5rem;
+      max-width: 480px;
+    }
+
+    /* Right Column - Image Grid */
+    .image-grid-container {
+      flex: 1;
+      position: relative;
+      perspective: 1000px;
+    }
+
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 1.5rem;
+      align-content: center;
+      transform-style: preserve-3d;
+      transition: transform 1s ease;
+    }
+
+    .market-card {
+      aspect-ratio: 1/1;
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transform: translateZ(0);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .market-card:nth-child(odd) {
+      animation: floatAnimation 6s infinite ease-in-out;
+    }
+
+    .market-card:nth-child(even) {
+      animation: floatAnimation 8s infinite ease-in-out reverse;
+    }
+
+    .market-card:hover {
+      transform: translateY(-10px) scale(1.05);
+      border-color: rgba(255, 255, 255, 0.5);
+      box-shadow: 0 15px 30px rgba(255, 255, 255, 0.1);
+      z-index: 10;
+    }
+
+    @keyframes floatAnimation {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(1deg); }
+    }
+
+    .market-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.7;
+      transition: all 0.5s ease;
+      filter: grayscale(20%);
+    }
+
+    .market-card:hover img {
+      opacity: 1;
+      filter: grayscale(0%);
+      transform: scale(1.05);
+    }
+
+    .market-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1.2rem 1rem;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0));
+      font-size: 1rem;
+      font-weight: 500;
+      transform: translateY(0);
+      transition: transform 0.3s ease;
+    }
+
+    .market-card:hover .market-label {
+      transform: translateY(-5px);
+    }
+
+    .market-icon {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 32px;
+      height: 32px;
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.8s ease, transform 0.8s ease, color 0.8s ease;
-      max-width: 800px;
-      text-align: center;
+      transform: translateY(-10px);
+      transition: all 0.3s ease;
     }
 
-    .presentation-line.visible {
+    .market-card:hover .market-icon {
       opacity: 1;
       transform: translateY(0);
-      color: white;
     }
 
-    .presentation-line.dim {
-      color: #666666;
+    /* Glow effect on hover */
+    .market-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+      opacity: 0;
+      transition: opacity 0.5s ease;
     }
 
-    .presentation-line.hidden {
-      display: none; /* Keeps the lines from taking up space when hidden */
+    .market-card:hover::after {
+      opacity: 1;
     }
 
     /* Action Buttons */
-    .action-container {
-      text-align: center;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-      margin-top: 0; /* Remove margin to help with centering */
-    }
-
-    .action-container.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .action-title {
-      font-size: 1.5rem;
-      margin-bottom: 2rem;
-      text-align: center;
-    }
-
-    .action-buttons {
+    .cta-buttons {
       display: flex;
       gap: 1.5rem;
-      justify-content: center;
     }
 
     .btn {
@@ -140,6 +226,23 @@
       transition: all 0.3s ease;
       text-decoration: none;
       display: inline-block;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .btn:hover::after {
+      left: 100%;
     }
 
     .btn:hover {
@@ -148,32 +251,78 @@
       transform: translateY(-2px);
     }
 
+    .btn-primary {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    /* Text animation */
+    .animated-text {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .animated-text.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     /* Responsive Styles */
-    @media (max-width: 768px) {
-      .presentation-line {
-        font-size: 1.2rem; /* Reduced font size for tablets/mobile */
+    @media (max-width: 992px) {
+      .main-content {
+        flex-direction: column;
+        gap: 3rem;
       }
       
-      .action-buttons {
+      .image-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .text-content {
+        align-items: center;
+        text-align: center;
+      }
+      
+      .description {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .market-card:nth-child(odd), 
+      .market-card:nth-child(even) {
+        animation: floatAnimation 10s infinite ease-in-out;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .tagline {
+        font-size: 2rem;
+      }
+      
+      .description {
+        font-size: 1rem;
+      }
+      
+      .cta-buttons {
         flex-direction: column;
         width: 100%;
+        max-width: 320px;
       }
       
       .btn {
         width: 100%;
         text-align: center;
       }
-      
-      .presentation {
-        height: 60vh;
-        top: 55%; /* Adjusted to add space at the top for mobile */
-        transform: translate(-50%, -60%); /* Adjust vertical centering to account for top space */
-      }
     }
 
     @media (max-width: 480px) {
-      .presentation-line {
-        font-size: 1rem; /* Further reduced font size for smaller mobile screens */
+      .tagline {
+        font-size: 1.7rem;
+      }
+      
+      .image-grid {
+        grid-template-columns: 1fr;
       }
       
       .logo {
@@ -181,17 +330,12 @@
       }
       
       header {
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
       }
-      
-      .action-title {
-        font-size: 1.3rem;
-      }
-      
-      .presentation {
-        height: 60vh;
-        top: 55%; /* More space at the top for very small screens */
-        transform: translate(-50%, -65%); /* Adjust vertical centering */
+
+      .market-card:nth-child(odd), 
+      .market-card:nth-child(even) {
+        animation: floatAnimation 8s infinite ease-in-out;
       }
     }
   </style>
@@ -200,92 +344,92 @@
   <div class="container">
     <header>
       <img src="get/images/white-web-logo.svg" alt="VQZ & Partners Logo" class="logo">
+      <!-- Menu will be injected by menu.js -->
     </header>
 
-    <div class="presentation">
-      <div class="presentation-line" id="line1">we build, accelerate and educate.</div>
-      <div class="presentation-line" id="line2">from intelligence to automations.</div>
-      <div class="presentation-line" id="line3">we foster great innovation,</div>
-      <div class="presentation-line" id="line4">while remaining unbound by politics.</div>
-      <div class="presentation-line" id="line5">for us, freedom is everything.</div>
-      
-      <div class="action-container" id="action-container">
-        <div class="action-title">choose an option</div>
-        <div class="action-buttons">
-          <a href="/founder" class="btn">know the founder</a>
+    <div class="main-content">
+      <div class="text-content">
+        <h1 class="tagline animated-text">we build, accelerate and educate.</h1>
+        <p class="description animated-text">
+          From intelligence to automations, we foster great innovation while remaining unbound by politics. For us, freedom is everything. 
+          We partner with forward-thinking businesses to create impactful solutions across diverse markets.
+        </p>
+        <div class="cta-buttons animated-text">
+          <a href="/founder" class="btn btn-primary">know the founder</a>
           <a href="/business" class="btn">know our partners</a>
+        </div>
+      </div>
+      
+      <div class="image-grid-container animated-text">
+        <div class="image-grid">
+          <div class="market-card">
+            <img src="get/images/robot.jpg" alt="AI & Automation">
+            <div class="market-label">AI & Automation</div>
+            <div class="market-icon">⚡</div>
+          </div>
+          <div class="market-card">
+            <img src="get/images/finance.jpg" alt="Fintech">
+            <div class="market-label">Finance</div>
+            <div class="market-icon">💰</div>
+          </div>
+          <div class="market-card">
+            <img src="get/images/veritas.jpg" alt="Education">
+            <div class="market-label">Education</div>
+            <div class="market-icon">🎓</div>
+          </div>
+          <div class="market-card">
+            <img src="get/images/intelligence.jpg" alt="Innovation">
+            <div class="market-label">Intelligence</div>
+            <div class="market-icon">💡</div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const lines = document.querySelectorAll('.presentation-line');
-      const actionContainer = document.getElementById('action-container');
+      const animatedElements = document.querySelectorAll('.animated-text');
       
-      // Check if user has visited before
-      const hasVisitedBefore = localStorage.getItem('vqzVisited') === 'true';
+      // Animation timing
+      const initialDelay = 800;
+      const staggerDelay = 300;
       
-      // Animation timing (slower)
-      const initialDelay = 1000;
-      const lineDelay = 2500;
-      const finalDelay = 1500;
-      
-      // Function to animate each line
-      const animateLines = async () => {
+      // Function to animate elements with staggered timing
+      const animateElements = async () => {
         // Wait for initial delay
         await new Promise(resolve => setTimeout(resolve, initialDelay));
         
-        // Animate each line one by one
-        for (let i = 0; i < lines.length; i++) {
-          lines[i].classList.remove('hidden'); // Ensure line is visible
-          lines[i].classList.add('visible');
+        // Animate each element one by one
+        for (let i = 0; i < animatedElements.length; i++) {
+          animatedElements[i].classList.add('visible');
           
-          // Dim previous lines (except for the first iteration)
-          if (i > 0) {
-            lines[i-1].classList.add('dim');
-          }
-          
-          // Wait before showing next line
-          await new Promise(resolve => setTimeout(resolve, lineDelay));
+          // Wait before showing next element
+          await new Promise(resolve => setTimeout(resolve, staggerDelay));
         }
-        
-        // Wait a moment before hiding all lines
-        await new Promise(resolve => setTimeout(resolve, finalDelay));
-        
-        // Hide all lines
-        for (let i = 0; i < lines.length; i++) {
-          lines[i].classList.remove('visible', 'dim');
-          lines[i].classList.add('hidden');
-        }
-        
-        // Wait for the hiding animation (though display: none is instant, we can keep the delay for consistency)
-        await new Promise(resolve => setTimeout(resolve, 800));
-        
-        // Show action container
-        actionContainer.classList.add('visible');
-        
-        // Set the flag in localStorage to remember the visit
-        localStorage.setItem('vqzVisited', 'true');
       };
       
-      // Function to skip animation and go directly to action buttons
-      const skipToActions = () => {
-        // Hide all lines immediately
-        for (let i = 0; i < lines.length; i++) {
-          lines[i].classList.add('hidden');
-        }
-        
-        // Show action container immediately
-        actionContainer.classList.add('visible');
-      };
+      // Show animation on every visit
+      animateElements();
       
-      // Decide whether to show animation or skip directly to actions
-      if (hasVisitedBefore) {
-        skipToActions();
-      } else {
-        animateLines();
+      // 3D tilt effect for image grid
+      const imageGrid = document.querySelector('.image-grid');
+      const imageGridContainer = document.querySelector('.image-grid-container');
+      
+      if (window.innerWidth > 768) {
+        imageGridContainer.addEventListener('mousemove', (e) => {
+          const rect = imageGridContainer.getBoundingClientRect();
+          const x = e.clientX - rect.left; 
+          const y = e.clientY - rect.top;
+          
+          const xRot = ((y / rect.height) - 0.5) * 10; // -5 to 5 degrees
+          const yRot = ((x / rect.width) - 0.5) * -10; // -5 to 5 degrees
+          
+          imageGrid.style.transform = `rotateX(${xRot}deg) rotateY(${yRot}deg)`;
+        });
+        
+        imageGridContainer.addEventListener('mouseleave', () => {
+          imageGrid.style.transform = 'rotateX(0) rotateY(0)';
+        });
       }
     });
   </script>
