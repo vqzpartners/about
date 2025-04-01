@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About VQZ Partners</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="get/images/favicon.png">
+  <link rel="stylesheet" href="css/menu.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto Mono', monospace;
+    }
+
+    body {
+      background-color: #000000;
+      color: white;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      width: 100%;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 3rem;
+      padding: 1rem 0;
+      position: relative;
+    }
+
+    .logo {
+      height: 50px;
+    }
+
+    .company-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin: 2rem auto;
+      max-width: 800px;
+      animation: fadeIn 1.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .company-title {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      font-weight: 700;
+    }
+
+    .company-description {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 3rem;
+      max-width: 700px;
+      text-align: left;
+    }
+
+    .mission-statement {
+      font-size: 1.3rem;
+      line-height: 1.5;
+      text-align: center;
+      margin: 2rem 0;
+      max-width: 800px;
+    }
+
+    .btn {
+      padding: 0.8rem 1.5rem;
+      background-color: transparent;
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 2rem;
+    }
+
+    .btn:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.5);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+      .company-title {
+        font-size: 2rem;
+      }
+      
+      .company-description {
+        font-size: 1rem;
+        padding: 0 1rem;
+      }
+      
+      .mission-statement {
+        font-size: 1.1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .company-title {
+        font-size: 1.8rem;
+      }
+      
+      .company-description {
+        font-size: 0.9rem;
+      }
+      
+      .mission-statement {
+        font-size: 1rem;
+      }
+      
+      .logo {
+        height: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <a href="/">
+        <img src="get/images/white-web-logo.svg" alt="VQZ & Partners Logo" class="logo">
+      </a>
+    </header>
+
+    <div class="company-section">
+      <h1 class="company-title">About VQZ Partners</h1>
+      
+      <div class="company-description">
+        VQZ Partners works as a strategic ally for visionary businesses. From intelligence to automation, we drive innovation freely, partnering with companies to create impactful solutions that solve complex problems and shape the future.
+        <br><br>
+        Founded with a purpose to challenge inefficiency and uncover truth, we specialize in transforming ideas into actionable results. Our approach combines cutting-edge technology with human insight, delivering solutions that are both innovative and practical.
+        <br><br>
+        We believe in building partnerships based on loyalty, respect, and transparency. Whether it's improving operational efficiency, advancing education, or developing intelligent automation, VQZ Partners is committed to creating meaningful impact.
+      </div>
+      
+      <div class="mission-statement">
+        "Driving innovation through partnership, we turn vision into value."
+      </div>
+      
+      <a href="mailto:hello@vqzpartners.com?subject=Partnership Inquiry&body=please, only business inquires. otherwise this email would be filtered" class="btn">Partner With Us</a>
+    </div>
+  </div>
+  <script src="js/menu.js"></script>
+</body>
+</html>
