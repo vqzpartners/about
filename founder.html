@@ -6,7 +6,7 @@
   <title>About the Founder</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="icon" href="get/images/favicon.png">
-  <!-- Original page styles -->
+  <!-- Original page styles with updates -->
   <style>
     * {
       margin: 0;
@@ -53,7 +53,6 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      text-align: center;
       margin: 2rem auto;
       max-width: 800px;
       animation: fadeIn 1.2s ease-in-out;
@@ -74,6 +73,12 @@
       font-size: 2.5rem;
       margin-bottom: 2rem;
       font-weight: 700;
+      text-align: center;
+    }
+
+    .profile-container {
+      position: relative;
+      margin-bottom: 2rem;
     }
 
     .founder-image {
@@ -81,8 +86,42 @@
       height: 200px;
       border-radius: 12%;
       object-fit: cover;
-      margin-bottom: 2rem;
       border: 2px solid rgba(255, 255, 255, 0.3);
+      position: relative;
+      z-index: 1;
+    }
+
+    .image-border {
+      position: absolute;
+      width: calc(100% + 8px);
+      height: calc(100% + 8px);
+      top: -4px;
+      left: -4px;
+      border-radius: 12%;
+      border: 2px solid rgba(255, 255, 255, 0.7);
+      animation: borderAnimation 4s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes borderAnimation {
+      0% {
+        transform: rotate(0deg);
+        border-color: rgba(255, 255, 255, 0.5);
+      }
+      25% {
+        border-color: rgba(255, 255, 255, 0.8);
+      }
+      50% {
+        transform: rotate(180deg);
+        border-color: rgba(255, 255, 255, 1);
+      }
+      75% {
+        border-color: rgba(255, 255, 255, 0.8);
+      }
+      100% {
+        transform: rotate(360deg);
+        border-color: rgba(255, 255, 255, 0.5);
+      }
     }
 
     .founder-message {
@@ -93,9 +132,14 @@
       text-align: left;
     }
 
+    strong {
+      font-weight: 700;
+    }
+
     .quote-container {
       margin: 2rem 0;
       max-width: 800px;
+      text-align: center;
     }
 
     .founder-quote {
@@ -180,18 +224,21 @@
       </a>
     </header>
 
-    <div class="founder-section">      
-      <img src="get/images/members/brandon-profile.png" alt="Founder Profile" class="founder-image">
-      <h1 class="founder-title">about the founder</h1>
+    <div class="founder-section">  
+      <div class="profile-container">
+        <img src="get/images/brandon.jpg" alt="Founder Profile" class="founder-image">
+        <div class="image-border"></div>
+      </div>
+      <h1 class="founder-title">about brandon</h1>
       
       <div class="founder-message">
-        Brandon is a Panamanian entrepreneur seeking connection with people who share his values. VQZ was founded out of necessity after his father passed away, but it was fueled by his ambition to create something meaningful.
+        Brandon is a Panamanian entrepreneur seeking connection with people who share his values of <strong>integrity and providing practical tools for decentralized freedom</strong>. VQZ was founded out of necessity after his father passed away, but it was fueled by his ambition to create something meaningful <strong>and break free from past constraints, building a legacy of stability and positive impact.</strong>
         <br><br>
-        Driven yet never consumed by greed, Brandon is an INFJ—deeply intuitive, intelligent and always retaining his human touch. He sees patterns others miss and is committed to solving complex problems through VQZ, tackling inefficiency, improving education, and uncovering truth to challenge manipulation.
+        Driven yet never consumed by greed, Brandon is committed to solving complex problems through VQZ's <strong>ventures focused on enabling independent action and informed choices</strong>. He concentrates on tackling systemic inefficiency, exemplified by his FinTech platform <strong>Lulo</strong>, which <strong>equips people with clarity</strong> for personal loan advice in Panama. He champions <strong>practical, accessible education</strong> over outdated models, <strong>such as through his program 'Sovereigns,' which equips individuals to build advanced, efficient systems using low-code technology so they can achieve more by working smarter in a couple of weeks.</strong>
         <br><br>
-        Beyond his work, he finds clarity in solitude and writing his thoughts in his black notebooks. While he values time alone to stay connected to himself, he easily adapts and thrives in social settings.
+        Beyond his work, Brandon finds clarity and refuels his vision through <strong>solitude</strong>, often writing his thoughts in his black notebooks. This personal time is crucial for pursuing his goal of <strong>strategic freedom</strong>—operating globally, building independence, and curating a life of purpose and tranquility. <strong>Yet, this need for introspection doesn't isolate him;</strong> he readily adapts and connects effectively in social settings when needed, navigating diverse environments with ease.
         <br><br>
-        Loyalty, respect and transparency are at his core. If you ever need help, don't hesitate to reach out.
+        <strong>Strategic Freedom</strong>, Loyalty, respect, and <strong>unwavering transparency</strong> are at his core, guiding his personal relationships and business ethics. If you ever need help from someone committed to <strong>integrity-based impact</strong>, don't hesitate to reach out.
       </div>
       
       <div class="quote-container">
