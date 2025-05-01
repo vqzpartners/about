@@ -98,29 +98,19 @@
       top: -4px;
       left: -4px;
       border-radius: 12%;
-      border: 2px solid rgba(255, 255, 255, 0.7);
-      animation: borderAnimation 4s linear infinite;
+      border: 2px solid transparent;
+      background: linear-gradient(90deg, transparent 50%, rgba(255, 255, 255, 0.8) 50%);
+      background-size: 200% 100%;
+      animation: lightAnimation 3s linear infinite;
       z-index: 0;
     }
 
-    @keyframes borderAnimation {
+    @keyframes lightAnimation {
       0% {
-        transform: rotate(0deg);
-        border-color: rgba(255, 255, 255, 0.5);
-      }
-      25% {
-        border-color: rgba(255, 255, 255, 0.8);
-      }
-      50% {
-        transform: rotate(180deg);
-        border-color: rgba(255, 255, 255, 1);
-      }
-      75% {
-        border-color: rgba(255, 255, 255, 0.8);
+        background-position: 200% 0;
       }
       100% {
-        transform: rotate(360deg);
-        border-color: rgba(255, 255, 255, 0.5);
+        background-position: 0 0;
       }
     }
 
@@ -229,7 +219,7 @@
         <img src="get/images/brandon.jpg" alt="Founder Profile" class="founder-image">
         <div class="image-border"></div>
       </div>
-      <h1 class="founder-title">about brandon</h1>
+      <h1 class="founder-title">about the founder</h1>
       
       <div class="founder-message">
         Brandon is a Panamanian entrepreneur seeking connection with people who share his values of <strong>integrity and providing practical tools for decentralized freedom</strong>. VQZ was founded out of necessity after his father passed away, but it was fueled by his ambition to create something meaningful <strong>and break free from past constraints, building a legacy of stability and positive impact.</strong>
