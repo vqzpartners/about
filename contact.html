@@ -386,6 +386,7 @@
     </div>
 
     <script>
+<script>
 // Bot configuration
 const femaleBotNames = [
     "Aria", "Zoe", "Maya", "Sophia", "Emma", 
@@ -603,18 +604,18 @@ function createPhoneInput() {
     
     // Apply additional styles for the country selector
     countrySelect.style.paddingLeft = '5px';
-    countrySelect.style.width = '150px'; // Wider to accommodate country names
+    countrySelect.style.width = '90px'; // Width for just the code when closed
     
-    // Add country options - Now with flags and names
+    // Add country options with custom data attributes
     countries.forEach(country => {
         const option = document.createElement('option');
         option.value = country.code;
+        option.textContent = country.code; // Display just the code as text content
         
-        // Create option content with flag and name
-        const flagImg = country.flag ? `<img src="${country.flag}" style="width: 20px; margin-right: 5px; vertical-align: middle;">` : '';
-        option.innerHTML = `${flagImg}${country.name} ${country.code}`;
+        // Store full data as attributes for display in dropdown
         option.setAttribute('data-country', country.name);
         option.setAttribute('data-flag', country.flag || '');
+        option.setAttribute('data-content', `${country.name} ${country.code}`);
         
         countrySelect.appendChild(option);
     });
@@ -639,37 +640,48 @@ function createPhoneInput() {
     button.appendChild(icon);
     inputContainer.appendChild(button);
     
-    // Apply custom styling for the select to show flags properly
+    // Apply custom styling to show different content when open vs closed
     const style = document.createElement('style');
     style.textContent = `
+        /* Style for dropdown options - show full country name and code */
         #countryCode option {
-            display: flex;
-            align-items: center;
+            font-family: 'Roboto Mono', monospace;
             padding: 5px;
         }
         
-        .selected-country {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            padding-left: 5px;
-        }
-        
-        .selected-country img {
-            width: 20px;
-            height: auto;
+        /* This makes sure the dropdown shows full content */
+        select#countryCode option {
+            content: attr(data-content);
         }
     `;
     document.head.appendChild(style);
     
-    // Create a custom selected display to show selected country with flag
+    // Apply the full content to options in the dropdown only
+    countrySelect.addEventListener('mousedown', function() {
+        // Before the dropdown opens, set the full content
+        Array.from(this.options).forEach(option => {
+            const country = option.getAttribute('data-country');
+            const code = option.value;
+            option.textContent = `${country} ${code}`;
+        });
+    });
+    
+    // After selection, revert to showing only the code
     countrySelect.addEventListener('change', function() {
-        const selectedOption = this.options[this.selectedIndex];
-        const countryName = selectedOption.getAttribute('data-country');
-        const countryFlag = selectedOption.getAttribute('data-flag');
-        
-        // Update visual display if needed
-        console.log(`Selected: ${countryName} ${this.value} with flag ${countryFlag}`);
+        setTimeout(() => {
+            Array.from(this.options).forEach(option => {
+                option.textContent = option.value; // Show only code
+            });
+        }, 100);
+    });
+    
+    // If dropdown closes without a selection, revert to codes
+    countrySelect.addEventListener('blur', function() {
+        setTimeout(() => {
+            Array.from(this.options).forEach(option => {
+                option.textContent = option.value; // Show only code
+            });
+        }, 150);
     });
     
     // Focus the input
@@ -831,6 +843,7 @@ userInput.addEventListener('keypress', (e) => {
 // Initialize chat
 detectKeyboard();
 fetchCountries();
+    </script>
     </script>
 </body>
 </html>
