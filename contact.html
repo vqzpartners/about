@@ -424,89 +424,20 @@ const WEBHOOK_URL = "https://hook.us2.make.com/mk93wvy95531qvenm77ppy12is06rppu"
 const chatbotMessages = document.getElementById('chatbotMessages');
 const userInput = document.getElementById('userInput');
 const sendButton = document.getElementById('sendButton');
-const chatbotContainer = document.querySelector('.chatbot-container');
 
-// Improved keyboard detection
+// Detect mobile keyboard open/close
 function detectKeyboard() {
-    // Variables to track viewport height
-    const originalHeight = window.innerHeight;
-    let currentHeight = window.innerHeight;
-    let isKeyboardOpen = false;
+    const initialWindowHeight = window.innerHeight;
     
-    // Function to handle visibility change
-    function visibilityCheck() {
-        const visibilityState = document.visibilityState;
-        if (visibilityState === 'hidden') {
-            // Page is hidden, possibly because of virtual keyboard on some browsers
-            document.body.classList.add('keyboard-open');
-            isKeyboardOpen = true;
-        }
-    }
-    
-    // Set up event listeners
     window.addEventListener('resize', function() {
-        currentHeight = window.innerHeight;
-        
-        // If height reduces significantly, keyboard is likely open
-        if (currentHeight < originalHeight * 0.75) {
+        // If window height becomes significantly smaller, keyboard is likely open
+        if (window.innerHeight < initialWindowHeight * 0.75) {
             document.body.classList.add('keyboard-open');
-            isKeyboardOpen = true;
-            
-            // Scroll to ensure input is visible after small delay
-            setTimeout(() => {
-                userInput.scrollIntoView({ behavior: 'smooth' });
-            }, 300);
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
         } else {
             document.body.classList.remove('keyboard-open');
-            isKeyboardOpen = false;
         }
     });
-    
-    // Focus events for input fields
-    document.addEventListener('focusin', function(e) {
-        if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || e.target.tagName === 'TEXTAREA') {
-            // Input field is focused, likely keyboard is about to open
-            document.body.classList.add('keyboard-open');
-            // Scroll to bottom with delay to ensure proper positioning
-            setTimeout(() => {
-                window.scrollTo(0, document.body.scrollHeight);
-                chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-                e.target.scrollIntoView({ behavior: 'smooth' });
-            }, 300);
-        }
-    });
-    
-    // Visibility change can help detect keyboard on some devices
-    document.addEventListener('visibilitychange', visibilityCheck);
-    
-    // Touch events for better mobile support
-    document.addEventListener('touchstart', function(e) {
-        if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || e.target.tagName === 'TEXTAREA') {
-            setTimeout(() => {
-                window.scrollTo(0, document.body.scrollHeight);
-                chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-                e.target.scrollIntoView({ behavior: 'smooth' });
-            }, 300);
-        }
-    });
-    
-    // Special iOS handlers
-    if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
-        window.addEventListener('focusin', function(e) {
-            if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || e.target.tagName === 'TEXTAREA') {
-                document.body.classList.add('keyboard-open');
-                setTimeout(() => {
-                    window.scrollTo(0, document.body.scrollHeight);
-                }, 300);
-            }
-        });
-        
-        window.addEventListener('focusout', function(e) {
-            if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || e.target.tagName === 'TEXTAREA') {
-                document.body.classList.remove('keyboard-open');
-            }
-        });
-    }
 }
 
 // Fetch countries data for phone codes from API
@@ -765,11 +696,6 @@ function createPhoneInput() {
     
     // Focus the input
     phoneInput.focus();
-    
-    // Scroll to make input visible
-    setTimeout(() => {
-        phoneInput.scrollIntoView({ behavior: 'smooth' });
-    }, 300);
 }
 
 // Submit phone number
@@ -807,17 +733,6 @@ function resetInputField() {
             <i class="fas fa-paper-plane"></i>
         </button>
     `;
-    
-    // Re-acquire references
-    userInput = document.getElementById('userInput');
-    sendButton = document.getElementById('sendButton');
-    
-    // Add event listener for enter key
-    userInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            sendMessage();
-        }
-    });
 }
 
 // Process user input based on current step
@@ -839,7 +754,7 @@ function handleUserInput(message) {
             }, 1000);
             break;
             
-         case 3: // Email
+        case 3: // Email
             // Simple email validation
             if (!validateEmail(message)) {
                 setTimeout(() => {
