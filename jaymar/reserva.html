@@ -16,16 +16,15 @@
 html, body {
     height: 100%;
     font-family: 'Roboto', 'Arial', sans-serif;
-    background-color: #e8f4f5; /* Lighter version of main color */
+    background-color: #e8f4f5;
 }
 
 body {
     display: flex;
     flex-direction: column;
     height: 100%;
-    position: fixed;
     width: 100%;
-    overflow: hidden;
+    overflow: auto;
 }
 
 a {
@@ -40,16 +39,15 @@ a {
     padding: 10px;
     overflow: hidden;
     position: relative;
-    /* Modificado: Espacio para separar del inicio y del footer */
     margin: 20px auto 70px;
-    height: calc(100% - 90px); /* Ajustado para mantener espacio con el footer */
+    height: calc(100% - 90px);
 }
 
 .chatbot-container {
     width: 100%;
     max-width: 900px;
     height: 100%;
-    background: #99c8cc; /* New main color */
+    background: #005D63; /* Más oscuro para mejor contraste */
     border-radius: 15px;
     padding: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -66,8 +64,7 @@ a {
     flex-direction: column;
     margin-bottom: 15px;
     -webkit-overflow-scrolling: touch;
-    /* Nuevo: reducir el espacio entre mensajes */
-    gap: 8px;
+    gap: 12px; /* Aumentado el espacio entre mensajes para mejor legibilidad */
 }
 
 .chatbot-messages::-webkit-scrollbar {
@@ -83,8 +80,7 @@ a {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    /* Reducido: espacio entre mensajes */
-    margin-bottom: 6px;
+    margin-bottom: 10px; /* Aumentado para más espacio entre mensajes */
 }
 
 .bot-container {
@@ -96,10 +92,11 @@ a {
 }
 
 .bot-name {
-    font-size: 12px;
+    font-size: 14px; /* Aumentado para mejor legibilidad */
     margin-left: 52px;
     margin-bottom: 2px;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.9); /* Más brillante para mejor legibilidad */
+    font-weight: 500; /* Añadido para mejor legibilidad */
 }
 
 .message-bubble {
@@ -113,22 +110,23 @@ a {
     border-radius: 50%;
     margin: 0 8px;
     object-fit: cover;
-    background-color: #eee; /* Placeholder background */
+    background-color: #eee;
 }
 
 .message {
-    padding: 10px 14px;
+    padding: 14px 18px; /* Aumentado el padding para dar más espacio al texto */
     border-radius: 18px;
     max-width: 80%;
-    line-height: 1.5;
+    line-height: 1.6; /* Aumentado el interlineado */
     word-wrap: break-word;
-    font-size: 17px;
+    font-size: 18px; /* Aumentado tamaño de fuente para mejor legibilidad */
 }
 
 .bot-message {
-    background: rgb(0 0 0 / 10%);
+    background: rgba(255, 255, 255, 0.2); /* Más brillante para mejor contraste */
     color: #fff;
     border-top-left-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1); /* Sombra sutil para más profundidad */
 }
 
 .user-message {
@@ -136,49 +134,58 @@ a {
     color: #333;
     text-align: left;
     border-top-right-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
 .sector-options {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin-top: 10px;
+    margin-top: 14px; /* Aumentado */
 }
 
 .sector-option {
-    background: rgba(255, 255, 255, 0.2);
-    padding: 10px 14px;
+    background: rgba(255, 255, 255, 0.3); /* Más brillante para mejor contraste */
+    padding: 12px 16px; /* Aumentado el padding */
     border-radius: 20px;
     cursor: pointer;
     transition: background 0.3s;
     display: inline-block;
     font-size: 17px;
+    font-weight: 500; /* Semibold para mejor legibilidad */
 }
 
 .sector-option:hover {
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.5); /* Más brillante al hover */
 }
 
-/* Nuevos estilos para el botón de calendario personalizado */
+/* Mejoras para el selector de fecha */
 .date-option {
-    background: rgba(255, 255, 255, 0.2);
-    padding: 10px 14px;
+    background: rgba(255, 255, 255, 0.3);
+    padding: 12px 16px;
     border-radius: 20px;
     cursor: pointer;
     transition: background 0.3s;
     display: inline-block;
     font-size: 17px;
-    margin-top: 10px;
+    margin-top: 14px;
+    font-weight: 500;
+    position: relative;
 }
 
 .date-option:hover {
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.5);
 }
 
 .hidden-date-input {
     position: absolute;
+    width: 100%;
+    height: 100%;
     opacity: 0;
-    pointer-events: none;
+    cursor: pointer;
+    left: 0;
+    top: 0;
+    z-index: 10;
 }
 
 .chatbot-input {
@@ -193,18 +200,18 @@ a {
 
 .chatbot-input input {
     flex: 1;
-    padding: 12px 15px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 14px 18px; /* Aumentado */
+    border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 20px;
     outline: none;
     font-size: 17px;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.4);
     color: #fff;
     font-family: 'Roboto', sans-serif;
 }
 
 .chatbot-input input::placeholder {
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.8);
 }
 
 .chatbot-input input:disabled {
@@ -213,7 +220,7 @@ a {
 }
 
 .chatbot-input button {
-    background: #bfe0e3; /* Lighter version of main color */
+    background: #bfe0e3;
     border: none;
     color: #333;
     font-size: 20px;
@@ -245,7 +252,7 @@ a {
 }
 
 .app-footer {
-    background-color: #99c8cc; /* New main color */
+    background-color: #005D63; /* Cambiado para coincidir con chatbot */
     color: white;
     padding: 20px;
     text-align: center;
@@ -279,7 +286,21 @@ a {
     text-decoration: underline;
 }
 
+@media (min-width: 1024px) {
+    .page-container {
+        margin: 30px auto 80px;
+    }
+    
+    .chatbot-container {
+        max-width: 900px;
+    }
+}
+
 @media (max-width: 768px) {
+    body {
+        overflow: auto;
+    }
+    
     .page-container {
         margin: 15px auto 70px;
         padding: 10px 5px;
@@ -294,7 +315,7 @@ a {
 
     .message {
         font-size: 16px;
-        padding: 9px 12px;
+        padding: 12px 16px; /* Mantenido más espacio para el texto */
         max-width: 85%;
     }
 
@@ -306,17 +327,17 @@ a {
     
     .bot-name {
         margin-left: 48px;
-        font-size: 11px;
+        font-size: 13px; /* Aumentado */
     }
 
     .sector-option, .date-option {
         font-size: 16px;
-        padding: 8px 12px;
+        padding: 10px 14px; /* Mantenido más espacio */
     }
 
     .chatbot-input input {
         font-size: 16px;
-        padding: 10px 14px;
+        padding: 12px 16px; /* Mantenido más espacio */
     }
 
     .chatbot-input button {
@@ -333,9 +354,7 @@ a {
 
 @media (max-width: 480px) {
     body {
-        position: fixed;
-        width: 100%;
-        height: 100%;
+        overflow: auto;
     }
     
     .page-container {
@@ -352,8 +371,8 @@ a {
     
     .message {
         font-size: 16px;
-        padding: 8px 12px;
-        line-height: 1.4;
+        padding: 12px 16px; /* Mantenido más espacio */
+        line-height: 1.5;
     }
     
     .message-avatar {
@@ -364,12 +383,12 @@ a {
     
     .bot-name {
         margin-left: 42px;
-        font-size: 10px;
+        font-size: 12px; /* Aumentado */
     }
     
     .sector-option, .date-option {
         font-size: 15px;
-        padding: 8px 10px;
+        padding: 10px 14px; /* Mantenido más espacio */
     }
     
     .chatbot-input {
@@ -378,7 +397,7 @@ a {
     
     .chatbot-input input {
         font-size: 16px;
-        padding: 10px 12px;
+        padding: 12px 14px; /* Mantenido más espacio */
     }
     
     .chatbot-input button {
@@ -410,7 +429,7 @@ a {
     
     .message {
         font-size: 15px;
-        padding: 6px 10px;
+        padding: 10px 14px; /* Mantenido más espacio */
     }
     
     .message-avatar {
@@ -419,7 +438,7 @@ a {
     }
     
     .chatbot-input input {
-        padding: 8px 12px;
+        padding: 10px 14px; /* Mantenido más espacio */
     }
     
     .chatbot-input button {
@@ -445,7 +464,7 @@ a {
         </div>
     </div>
 
-    <!-- Input de fecha oculto que se activará desde el chat -->
+    <!-- Input de fecha visible para mejor funcionamiento -->
     <input type="date" id="hiddenDateInput" class="hidden-date-input" />
 
     <footer class="app-footer">
@@ -546,9 +565,39 @@ document.addEventListener("DOMContentLoaded", function() {
             const datePickerDiv = document.createElement('div');
             datePickerDiv.className = 'date-option';
             datePickerDiv.textContent = "Seleccionar fecha";
-            datePickerDiv.onclick = () => {
-                hiddenDateInput.click();
+            
+            // Mejora del selector de fecha
+            const dateInput = document.createElement('input');
+            dateInput.type = 'date';
+            dateInput.className = 'hidden-date-input';
+            dateInput.onchange = function() {
+                const selectedDate = this.value;
+                if (selectedDate) {
+                    // Format the date to a more readable format
+                    const dateObj = new Date(selectedDate);
+                    const formattedDate = dateObj.toLocaleDateString('es-ES', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+                    
+                    addUserMessage(formattedDate);
+                    weddingData.fechaBoda = formattedDate;
+                    
+                    userInput.disabled = false;
+                    sendButton.disabled = false;
+                    
+                    setTimeout(() => {
+                        addBotMessage("¿Qué tipo de ceremonia estás planeando?", ["Civil", "Religiosa", "Destino", "Íntima", "Otro"]);
+                    }, 500);
+                }
             };
+            
+            datePickerDiv.appendChild(dateInput);
+            datePickerDiv.onclick = function() {
+                this.querySelector('input[type="date"]').showPicker();
+            };
+            
             messageDiv.appendChild(datePickerDiv);
             
             userInput.disabled = true;
@@ -638,29 +687,7 @@ document.addEventListener("DOMContentLoaded", function() {
         window.location.href = whatsappLink;
     }
 
-    // Handle the hidden date input changes
-    hiddenDateInput.addEventListener('change', function() {
-        const selectedDate = this.value;
-        if (selectedDate) {
-            // Format the date to a more readable format
-            const dateObj = new Date(selectedDate);
-            const formattedDate = dateObj.toLocaleDateString('es-ES', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            });
-            
-            addUserMessage(formattedDate);
-            weddingData.fechaBoda = formattedDate;
-            
-            userInput.disabled = false;
-            sendButton.disabled = false;
-            
-            setTimeout(() => {
-                addBotMessage("¿Qué tipo de ceremonia estás planeando?", ["Civil", "Religiosa", "Destino", "Íntima", "Otro"]);
-            }, 500);
-        }
-    });
+    // Ya no se usa el evento del hiddenDateInput porque ahora se maneja directamente dentro de la burbuja de chat
 
     // Handle Enter key press in input
     userInput.addEventListener('keypress', function(e) {
