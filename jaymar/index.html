@@ -1,1 +1,615 @@
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Jaymar Pinzon - Experta en Bodas</title>
+    <link rel="icon" href="/api/placeholder/32/32" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <meta name="title" content="Jaymar Pinzon - Experta en Bodas">
+    <meta name="description" content="Wedding planner profesional especializada en crear bodas y eventos inolvidables">
+    <meta name="keywords" content="bodas, wedding planner, eventos, celebraciones, matrimonio">
+    <meta name="robots" content="index, follow">
+    
+    <meta property="og:type" content="profile">
+    <meta property="og:title" content="Jaymar Pinzon - Wedding Planner">
+    <meta property="og:description" content="Experta en crear bodas y eventos inolvidables. ¡Hagamos realidad tu sueño!">
+    <meta property="og:image" content="/api/placeholder/1200/630">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: #fff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 3px solid #99c8cc;
+            margin-bottom: 1.5rem;
+            object-fit: cover;
+            box-shadow: 0 5px 15px rgba(153, 200, 204, 0.3);
+        }
+
+        .hero-text {
+            margin-bottom: 1rem;
+        }
+
+        .main-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.5rem;
+            color: #99c8cc;
+            margin-bottom: 1rem;
+        }
+
+        .divider {
+            width: 80px;
+            height: 3px;
+            background-color: #99c8cc;
+            margin: 1rem auto;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+            justify-content: center;
+        }
+
+        .social-link {
+            color: #99c8cc;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .social-link:hover {
+            color: #76a5a9;
+            transform: translateY(-3px);
+        }
+
+        .icon-circle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgba(153, 200, 204, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover .icon-circle {
+            background-color: rgba(153, 200, 204, 0.2);
+            transform: scale(1.05);
+        }
+
+        .icon-circle i {
+            font-size: 22px;
+        }
+
+        .section-header {
+            font-family: 'Playfair Display', serif;
+            color: #99c8cc;
+            font-size: 1.3rem;
+            margin: 2.5rem 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 500;
+        }
+
+        .section-header::after {
+            content: "";
+            height: 1px;
+            background: rgba(153, 200, 204, 0.3);
+            flex-grow: 1;
+        }
+
+        .card {
+            margin-bottom: 2rem;
+            border: 1px solid rgba(153, 200, 204, 0.3);
+            border-radius: 12px;
+            background-color: #fff;
+            transition: all 0.3s ease;
+            animation: fadeIn 0.8s ease forwards;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(153, 200, 204, 0.2);
+        }
+
+        .about-card {
+            padding: 2rem;
+        }
+
+        .about-content {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #555;
+        }
+
+        .about-card .highlight {
+            color: #99c8cc;
+            font-weight: 500;
+        }
+
+        .about-card .experience-list {
+            margin-top: 1rem;
+            padding-left: 1.2rem;
+        }
+
+        .about-card .experience-list li {
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+
+        .about-card .experience-list li::before {
+            content: "•";
+            color: #99c8cc;
+            font-weight: bold;
+            position: absolute;
+            left: -1.2rem;
+        }
+
+        .service-card {
+            display: flex;
+            background: linear-gradient(to right, #fff, rgba(153, 200, 204, 0.1));
+        }
+
+        .service-image {
+            width: 40%;
+            overflow: hidden;
+        }
+
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .service-card:hover .service-image img {
+            transform: scale(1.05);
+        }
+
+        .service-content {
+            padding: 2rem;
+            width: 60%;
+        }
+
+        .service-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .service-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: #99c8cc;
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-button:hover {
+            background-color: #76a5a9;
+            transform: translateY(-2px);
+        }
+
+        .cta-button i {
+            transition: transform 0.3s ease;
+        }
+
+        .cta-button:hover i {
+            transform: translateX(3px);
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 2rem;
+        }
+
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+            height: 180px;
+            position: relative;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .testimonial-card {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .testimonial-text {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .testimonial-text::before {
+            content: '"';
+            font-size: 3rem;
+            color: rgba(153, 200, 204, 0.2);
+            position: absolute;
+            top: -20px;
+            left: -10px;
+        }
+
+        .testimonial-text::after {
+            content: '"';
+            font-size: 3rem;
+            color: rgba(153, 200, 204, 0.2);
+            position: absolute;
+            bottom: -40px;
+            right: -10px;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: #99c8cc;
+            margin-top: 2rem;
+        }
+
+        .chatbot-cta {
+            background: linear-gradient(to right, #99c8cc, #76a5a9);
+            border-radius: 12px;
+            padding: 2.5rem;
+            text-align: center;
+            color: white;
+        }
+
+        .chatbot-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .chatbot-description {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .chatbot-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: white;
+            color: #76a5a9;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatbot-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .service-card {
+                flex-direction: column;
+            }
+
+            .service-image, .service-content {
+                width: 100%;
+            }
+
+            .service-image {
+                height: 200px;
+            }
+
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .main-title {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header img {
+                width: 140px;
+                height: 140px;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .social-links {
+                gap: 1rem;
+            }
+
+            .icon-circle {
+                width: 45px;
+                height: 45px;
+            }
+
+            .icon-circle i {
+                font-size: 20px;
+            }
+            .username {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #99c8cc;
+    text-transform: lowercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+            .username::before {
+    content: "";
+    display: inline-block;
+    width: 25px;
+    height: 1px;
+    background-color: #99c8cc;
+    margin-right: 5px;
+}
+
+            .username::after {
+    content: "";
+    display: inline-block;
+    width: 25px;
+    height: 1px;
+    background-color: #99c8cc;
+    margin-left: 5px;
+}
+        }
+    </style>
+</head>   
+<body>
+    <div class="container">
+        <header>
+            <img src="https://vqzpartners.com/jaymar/cdn/jay.webp" alt="Jaymar Pinzon">
+            <div class="hero-text">
+                <p class="username">@granevento</p>
+                <h1 class="main-title">Has llegado al lugar perfecto</h1>
+                <h2 class="subtitle">Tu sueño... Nuestra misión!</h2>
+            </div>
+            <div class="divider"></div>
+            <div class="social-links">
+                <a href="https://www.facebook.com/granevento.jaymar/" class="social-link" target="_blank" rel="noopener noreferrer">
+                    <div class="icon-circle">
+                        <i class="fab fa-facebook-f"></i>
+                    </div>
+                </a>
+                <a href="https://www.instagram.com/granevento" class="social-link" target="_blank" rel="noopener noreferrer">
+                    <div class="icon-circle">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                </a>
+                <a href="https://www.tiktok.com/@granevento" class="social-link" target="_blank" rel="noopener noreferrer">
+                    <div class="icon-circle">
+                        <i class="fab fa-tiktok"></i>
+                    </div>
+                </a>
+            </div>
+        </header>
+
+        <!-- About Section -->
+        <p class="section-header">Sobre Mí</p>
+        <div class="card about-card">
+            <div class="about-content">
+                <p>Soy <span class="highlight">Jaymar Pinzon</span>, una apasionada Wedding & Event Planner con más de 10 años de experiencia transformando sueños en experiencias inolvidables. Mi trayectoria profesional está marcada por la dedicación, creatividad y compromiso con cada detalle que hace único tu día especial.</p>
+                <br>
+                <p>Lo que me distingue es mi capacidad para escuchar y entender exactamente lo que estás buscando. Creo firmemente que cada boda debe reflejar la personalidad y la historia de amor de la pareja, convirtiendo ese momento en una experiencia personalizada e irrepetible.</p>
+                <br>
+                <p>Mi misión es eliminar el estrés de la planificación para que puedas disfrutar de cada momento del proceso, desde la concepción inicial hasta el gran día. Con un equipo de colaboradores expertos y proveedores de confianza, garantizo que cada detalle sea perfecto.</p>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Services Section -->
+        <p class="section-header">Servicios</p>
+        <div class="card service-card">
+            <div class="service-image">
+                <img src="https://vqzpartners.com/jaymar/cdn/salon-de-bodas.jpeg" alt="Consultoría para Novias">
+            </div>
+            <div class="service-content">
+                <h3 class="service-title">Consultoría 1-1 para Novias</h3>
+                <p class="service-description">Tu boda ideal, sin estrés. Consultoría personalizada y herramientas exclusivas para novias como tú. ¡Empieza la aventura!</p>
+                <a href="/consultoria" class="cta-button">
+                    <span>Agendar consulta</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="card service-card">
+            <div class="service-image">
+                <img src="https://vqzpartners.com/jaymar/cdn/boda-exterior.jpeg" alt="Planificación Completa">
+            </div>
+            <div class="service-content">
+                <h3 class="service-title">Planificación Completa</h3>
+                <p class="service-description">Desde la concepción hasta el gran día, me encargo de cada detalle para que tú solo tengas que disfrutar.</p>
+                <a href="/consultoria" class="cta-button">
+                    <span>Conocer más</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="card service-card">
+            <div class="service-image">
+                <img src="https://vqzpartners.com/jaymar/cdn/10b98357ec20039eb316d30eeab65c76.jpg" alt="Coordinación del Día">
+            </div>
+            <div class="service-content">
+                <h3 class="service-title">Consultoría para Planners</h3>
+                <p class="service-description">¿Quieres ser planner y no tienes idea por dónde empezar? ¡Tranquila, todos hemos estado ahí. En nuestras sesiones de consultoría, revelaremos los secretos que nadie más cuenta. </p>
+                <a href="/consultoria" class="cta-button">
+                    <span>Ver detalles</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Gallery Section -->
+        <p class="section-header">Galería de Momentos</p>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="https://vqzpartners.com/jaymar/cdn/f194b001e7e334bbca5aecbf0dfa7f9d.jpg" alt="Boda 1">
+            </div>
+            <div class="gallery-item">
+                <img src="https://vqzpartners.com/jaymar/cdn/4dc75e8896d95bee108864a6bd83d86a.jpg" alt="Boda 2">
+            </div>
+            <div class="gallery-item">
+                <img src="https://vqzpartners.com/jaymar/cdn/24fafb917ec573c5d579548e4023a5e3.jpg" alt="Boda 3">
+            </div>
+            <div class="gallery-item">
+                <img src="https://vqzpartners.com/jaymar/cdn/9e3bbf16e948dbf77f4a30e5b1ec7991.jpg" alt="Boda 4">
+            </div>
+        </div>
+
+        <!-- Testimonial Section -->
+        <p class="section-header">Lo que dicen mis novias</p>
+        <div class="card testimonial-card">
+            <p class="testimonial-text">Jaymar hizo que nuestro día fuera perfecto. Su atención al detalle y su capacidad para resolver problemas hicieron que pudiéramos disfrutar del día sin preocupaciones. ¡La mejor decisión que tomamos!</p>
+            <p class="testimonial-author">— Carolina & Miguel</p>
+        </div>
+
+        <!-- Contact Section / CTA for Chatbot -->
+        <p class="section-header">¿Lista para crear tu evento perfecto?</p>
+        <div class="card chatbot-cta">
+            <h3 class="chatbot-title">Consulta personalizada</h3>
+            <p class="chatbot-description">Chatea conmigo ahora y responderé a todas tus preguntas sobre tu evento soñado. Un primer paso para hacer realidad tu visión.</p>
+            <a href="/consultoria" class="chatbot-button">
+                <span>Iniciar consulta</span>
+                <i class="fas fa-comments"></i>
+            </a>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2025 Jaymar Pinzon - Wedding & Event Planner</p>
+        </footer>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animation for cards
+            const cards = document.querySelectorAll('.card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.2}s`;
+            });
+            
+            // Add current date
+            const currentDate = new Date();
+            const formattedDate = currentDate.toLocaleDateString('es-ES', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        });
+    </script>
+</body>
+</html>
