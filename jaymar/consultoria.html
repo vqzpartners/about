@@ -447,13 +447,6 @@ a {
         </div>
     </div>
 
-    <footer class="app-footer">
-        <p>&copy; <span id="currentYear"></span> Wedding Planner. Todos los derechos reservados.</p>
-        <div class="footer-links">
-            <a href="#" rel="nofollow">Términos y Condiciones</a>
-            <a href="#" rel="nofollow">Política de Privacidad</a>
-        </div>
-    </footer>
 
     <script>
 document.addEventListener("DOMContentLoaded", function() {
@@ -520,7 +513,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if (showTip) {
             // Normal message instead of wedding highlight special format
-            messageDiv.innerHTML = '¡Hola! Bienvenido/a a nuestro planificador de bodas';
+            messageDiv.innerHTML = '¡Hola! te doy la bienvenida a nuestro planificador de bodas';
         }
 
         if (options) {
@@ -608,7 +601,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const phoneNumber = "50766170620"; // Replace with your actual WhatsApp number
         
         // Prepare the message with the collected data
-        let message = `¡Hola! Me gustaría información sobre servicios de planificación de bodas.\n\n`;
+        let message = `¡Hola! Me gustaría más información sobre sus servicios de planificación de bodas.\n\n`;
         message += `Nombre: ${weddingData.nombre}\n`;
         message += `Fecha de Boda: ${weddingData.fechaBoda}\n`;
         message += `Tipo de Ceremonia: ${weddingData.tipoCeremonia}\n`;
@@ -711,11 +704,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Initialize chat - start directly with first question
     setTimeout(() => {
-        addBotMessage("¡Hola! Bienvenido/a a nuestro planificador de bodas", null, true);
+        addBotMessage("¡Hola! te damos la bienvenida a nuestro planificador de bodas", null, true);
         
         // Start directly with first question
         setTimeout(() => {
-            addBotMessage("Felicidades por tu compromiso! Estamos aquí para ayudarte a planificar el día de tu boda y hacer que sea inolvidable.");
+            addBotMessage("Felicidades por tu compromiso! Estoy aquí para ayudarte a planificar el día de tu boda y hacer que sea inolvidable.");
             
             setTimeout(() => {
                 addBotMessage("¿Cuál es tu nombre completo?");
