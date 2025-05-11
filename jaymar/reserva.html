@@ -32,33 +32,6 @@ a {
     color: white;
 }
 
-.app-header {
-    background-color: #99c8cc; /* New main color */
-    color: white;
-    padding: 12px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 95%;
-    max-width: 1200px;
-    margin: 15px auto;
-    border-radius: 50px; /* Pill shape */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    position: sticky;
-    top: 10px;
-    z-index: 1000;
-}
-
-.app-header h1 {
-    font-size: 24px;
-    text-align: center;
-}
-
-.app-header img.logo {
-    height: 80px;
-    margin-right: 15px;
-}
-
 .page-container {
     flex-grow: 1;
     display: flex;
@@ -66,10 +39,10 @@ a {
     align-items: center;
     padding: 10px;
     overflow: hidden;
-    margin-top: 10px;
-    margin-bottom: 70px; /* Increased for footer */
     position: relative;
-    height: calc(100% - 140px); /* Subtract header and footer heights */
+    /* Modificado: Espacio para separar del inicio y del footer */
+    margin: 20px auto 70px;
+    height: calc(100% - 90px); /* Ajustado para mantener espacio con el footer */
 }
 
 .chatbot-container {
@@ -93,6 +66,8 @@ a {
     flex-direction: column;
     margin-bottom: 15px;
     -webkit-overflow-scrolling: touch;
+    /* Nuevo: reducir el espacio entre mensajes */
+    gap: 8px;
 }
 
 .chatbot-messages::-webkit-scrollbar {
@@ -108,7 +83,8 @@ a {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-bottom: 12px;
+    /* Reducido: espacio entre mensajes */
+    margin-bottom: 6px;
 }
 
 .bot-container {
@@ -183,6 +159,28 @@ a {
     background: rgba(255, 255, 255, 0.3);
 }
 
+/* Nuevos estilos para el botón de calendario personalizado */
+.date-option {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 10px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.3s;
+    display: inline-block;
+    font-size: 17px;
+    margin-top: 10px;
+}
+
+.date-option:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.hidden-date-input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
 .chatbot-input {
     display: flex;
     align-items: center;
@@ -203,18 +201,6 @@ a {
     background: rgba(0, 0, 0, 0.5);
     color: #fff;
     font-family: 'Roboto', sans-serif;
-}
-
-/* Date input styling to make it look like regular input */
-.chatbot-input input[type="date"] {
-    color: #fff;
-    font-family: 'Roboto', sans-serif;
-}
-
-.chatbot-input input[type="date"]::-webkit-calendar-picker-indicator {
-    filter: invert(1);
-    cursor: pointer;
-    opacity: 0.7;
 }
 
 .chatbot-input input::placeholder {
@@ -258,15 +244,6 @@ a {
     color: rgba(255, 255, 255, 0.7);
 }
 
-.wedding-highlight {
-    background: #e8f4f5;
-    border-left: 3px solid #bfe0e3;
-    padding: 10px 14px;
-    margin-top: 10px;
-    border-radius: 4px;
-    color: #336669; /* Darker version of main color */
-}
-
 .app-footer {
     background-color: #99c8cc; /* New main color */
     color: white;
@@ -302,50 +279,11 @@ a {
     text-decoration: underline;
 }
 
-.whatsapp-button {
-    position: fixed;
-    bottom: 90px;
-    right: 20px;
-    background-color: #25D366;
-    color: white;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    opacity: 0;
-    transform: scale(0);
-    transition: all 0.3s ease;
-    cursor: pointer;
-    z-index: 1000;
-}
-
-.whatsapp-button.visible {
-    opacity: 1;
-    transform: scale(1);
-}
-
-.whatsapp-button i {
-    font-size: 28px;
-}
-
 @media (max-width: 768px) {
-    .app-header {
-        width: 90%;
-        padding: 10px 15px;
-        top: 5px;
-    }
-    
-    .app-header h1 {
-        font-size: 20px;
-    }
-
     .page-container {
-        margin-top: 5px;
+        margin: 15px auto 70px;
         padding: 10px 5px;
-        height: calc(100% - 130px);
+        height: calc(100% - 85px);
     }
 
     .chatbot-container {
@@ -371,7 +309,7 @@ a {
         font-size: 11px;
     }
 
-    .sector-option {
+    .sector-option, .date-option {
         font-size: 16px;
         padding: 8px 12px;
     }
@@ -391,16 +329,6 @@ a {
         font-size: 14px;
         padding: 15px;
     }
-    
-    .whatsapp-button {
-        width: 50px;
-        height: 50px;
-        bottom: 80px;
-    }
-    
-    .whatsapp-button i {
-        font-size: 24px;
-    }
 }
 
 @media (max-width: 480px) {
@@ -410,21 +338,10 @@ a {
         height: 100%;
     }
     
-    .app-header {
-        width: 95%;
-        padding: 8px 10px;
-        top: 5px;
-        margin: 10px auto;
-    }
-    
-    .app-header h1 {
-        font-size: 18px;
-    }
-    
     .page-container {
-        margin-top: 0;
+        margin: 10px auto 60px;
         padding: 5px;
-        height: calc(100% - 120px);
+        height: calc(100% - 70px);
     }
     
     .chatbot-container {
@@ -450,7 +367,7 @@ a {
         font-size: 10px;
     }
     
-    .sector-option {
+    .sector-option, .date-option {
         font-size: 15px;
         padding: 8px 10px;
     }
@@ -484,25 +401,11 @@ a {
     .app-footer a {
         margin: 0;
     }
-    
-    .whatsapp-button {
-        bottom: 70px;
-        right: 15px;
-    }
 }
 
 @media screen and (max-height: 450px) {
-    .app-header {
-        padding: 5px 10px;
-    }
-    
-    .app-header h1 {
-        font-size: 16px;
-    }
-    
     .page-container {
-        margin-top: 0;
-        margin-bottom: 45px;
+        margin: 5px auto 45px;
     }
     
     .message {
@@ -532,23 +435,18 @@ a {
     </style>
 </head>
 <body>
-    <header class="app-header">
-        <h1>Planificador de Bodas</h1>
-    </header>
-
     <div class="page-container">
         <div class="chatbot-container">
             <div class="chatbot-messages" id="chatbotMessages"></div>
             <div class="chatbot-input">
                 <input type="text" id="userInput" placeholder="Escribe aquí..." />
-                <button id="sendButton" onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+                <button id="sendButton"><i class="fas fa-paper-plane"></i></button>
             </div>
         </div>
     </div>
 
-    <div class="whatsapp-button" id="whatsappButton">
-        <i class="fab fa-whatsapp"></i>
-    </div>
+    <!-- Input de fecha oculto que se activará desde el chat -->
+    <input type="date" id="hiddenDateInput" class="hidden-date-input" />
 
     <footer class="app-footer">
         <p>&copy; <span id="currentYear"></span> Wedding Planner. Todos los derechos reservados.</p>
@@ -567,7 +465,6 @@ document.addEventListener("DOMContentLoaded", function() {
     let currentStep = 1;
     let weddingData = {
         'nombre': '',
-        'email': '',
         'fechaBoda': '',
         'tipoCeremonia': '',
         'edad': '',
@@ -576,7 +473,7 @@ document.addEventListener("DOMContentLoaded", function() {
     };
 
     // Bot and user avatar images - Using placeholder for bot image
-    const botAvatarSrc = "https://vqzpartners.com/jaymar/cdn/gran.jpg";
+    const botAvatarSrc = "https://vqzpartners.com/jaymar/cdn/jay.webp";
     const userAvatarSrc = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23808080'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E";
 
     // Track the last message sender to handle consecutive bot messages
@@ -586,7 +483,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const chatbotMessages = document.getElementById('chatbotMessages');
     const userInput = document.getElementById('userInput');
     const sendButton = document.getElementById('sendButton');
-    const whatsappButton = document.getElementById('whatsappButton');
+    const hiddenDateInput = document.getElementById('hiddenDateInput');
 
     // Scroll to bottom of chat
     function scrollToBottom() {
@@ -596,7 +493,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // Function to add bot message to chat
-    function addBotMessage(message, options = null, showTip = false) {
+    function addBotMessage(message, options = null, showTip = false, isDatePicker = false) {
         const messageContainer = document.createElement('div');
         messageContainer.className = 'message-container bot-container';
         
@@ -620,7 +517,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const messageDiv = document.createElement('div');
         messageDiv.className = 'message bot-message';
         
-        const messageText = document.createTextNode(message + (options || showTip ? ' ' : ''));
+        const messageText = document.createTextNode(message + (options || showTip || isDatePicker ? ' ' : ''));
         messageDiv.appendChild(messageText);
 
         if (showTip) {
@@ -641,6 +538,19 @@ document.addEventListener("DOMContentLoaded", function() {
             });
             
             messageDiv.appendChild(optionsDiv);
+            userInput.disabled = true;
+            sendButton.disabled = true;
+        }
+
+        if (isDatePicker) {
+            const datePickerDiv = document.createElement('div');
+            datePickerDiv.className = 'date-option';
+            datePickerDiv.textContent = "Seleccionar fecha";
+            datePickerDiv.onclick = () => {
+                hiddenDateInput.click();
+            };
+            messageDiv.appendChild(datePickerDiv);
+            
             userInput.disabled = true;
             sendButton.disabled = true;
         }
@@ -690,13 +600,13 @@ document.addEventListener("DOMContentLoaded", function() {
         userInput.disabled = false;
         sendButton.disabled = false;
 
-        if (currentStep === 3) {
+        if (currentStep === 2) {
             weddingData.tipoCeremonia = option;
             currentStep++;
             setTimeout(() => {
                 addBotMessage("¿En qué rango de edad te encuentras?", ["18-24", "25-30", "31-35", "36-40", "+40"]);
             }, 500);
-        } else if (currentStep === 4) {
+        } else if (currentStep === 3) {
             weddingData.edad = option;
             currentStep++;
             setTimeout(() => {
@@ -707,22 +617,11 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    // Show WhatsApp button when all data is collected
-    function showWhatsAppButton() {
-        const whatsappBtn = document.getElementById('whatsappButton');
-        whatsappBtn.classList.add('visible');
-        whatsappBtn.addEventListener('click', generateWhatsAppLink);
-    }
-
-    // Generate WhatsApp link and open it
-    function generateWhatsAppLink() {
-        // Phone number to send the message to (format: country code + number)
-        const phoneNumber = "50769701776"; // Replace with your actual WhatsApp number
+    function redirectToWhatsApp() {
+        const phoneNumber = "50769701776"; 
         
-        // Prepare the message with the collected data
         let message = `¡Hola! Me gustaría información sobre servicios de planificación de bodas.\n\n`;
         message += `Nombre: ${weddingData.nombre}\n`;
-        message += `Email: ${weddingData.email}\n`;
         message += `Fecha de Boda: ${weddingData.fechaBoda}\n`;
         message += `Tipo de Ceremonia: ${weddingData.tipoCeremonia}\n`;
         message += `Edad: ${weddingData.edad}\n`;
@@ -735,34 +634,33 @@ document.addEventListener("DOMContentLoaded", function() {
         // Create the WhatsApp link
         const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
         
-        // Open the link in a new tab
-        window.open(whatsappLink, '_blank');
+        // Redirect to WhatsApp
+        window.location.href = whatsappLink;
     }
 
-    // Add completion message and show WhatsApp button
-    function completeForm() {
-        addBotMessage("¡Gracias por completar el formulario! Haz clic en el botón de WhatsApp para enviarnos tus datos y comenzar a planificar tu boda perfecta.");
-        
-        // Add reload suggestion
-        const reloadSuggestion = document.createElement('div');
-        reloadSuggestion.className = 'reload-suggestion';
-        reloadSuggestion.textContent = 'Recarga la página para comenzar de nuevo';
-        chatbotMessages.appendChild(reloadSuggestion);
-        scrollToBottom();
-        
-        // Disable input
-        userInput.disabled = true;
-        sendButton.disabled = true;
-        
-        // Show WhatsApp button
-        showWhatsAppButton();
-    }
-
-    // Validate email format
-    function validateEmail(email) {
-        const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return regex.test(String(email).toLowerCase());
-    }
+    // Handle the hidden date input changes
+    hiddenDateInput.addEventListener('change', function() {
+        const selectedDate = this.value;
+        if (selectedDate) {
+            // Format the date to a more readable format
+            const dateObj = new Date(selectedDate);
+            const formattedDate = dateObj.toLocaleDateString('es-ES', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            
+            addUserMessage(formattedDate);
+            weddingData.fechaBoda = formattedDate;
+            
+            userInput.disabled = false;
+            sendButton.disabled = false;
+            
+            setTimeout(() => {
+                addBotMessage("¿Qué tipo de ceremonia estás planeando?", ["Civil", "Religiosa", "Destino", "Íntima", "Otro"]);
+            }, 500);
+        }
+    });
 
     // Handle Enter key press in input
     userInput.addEventListener('keypress', function(e) {
@@ -789,44 +687,32 @@ document.addEventListener("DOMContentLoaded", function() {
             weddingData.nombre = input;
             currentStep = 2;
             setTimeout(() => {
-                addBotMessage("¿Cuál es tu correo electrónico?");
-                userInput.type = "email";
-                userInput.placeholder = "ejemplo@correo.com";
-                userInput.focus();
+                addBotMessage("Por favor, selecciona la fecha de tu boda.", null, false, true);
             }, 500);
-        } else if (currentStep === 2) {
-            if (!validateEmail(input)) {
-                addBotMessage("Por favor, ingresa un correo electrónico válido.");
-                userInput.focus();
-                return;
-            }
-            weddingData.email = input;
-            currentStep = 3;
-            setTimeout(() => {
-                addBotMessage("Por favor, selecciona la fecha de tu boda.");
-                userInput.type = "date";
-                userInput.placeholder = "";
-                userInput.focus();
-            }, 500);
-        } else if (currentStep === 3) {
-            // Handle wedding date
-            weddingData.fechaBoda = input;
-            userInput.type = "text";
-            userInput.placeholder = "Escribe aquí...";
-            setTimeout(() => {
-                addBotMessage("¿Qué tipo de ceremonia estás planeando?", ["Civil", "Religiosa", "Destino", "Íntima", "Otro"]);
-            }, 500);
-        } else if (currentStep === 5) {
-            // Handle aspectoImportante (now a text input)
+        } else if (currentStep === 4) {
+            // Handle aspectoImportante (text input)
             weddingData.aspectoImportante = input;
             currentStep++;
             setTimeout(() => {
                 addBotMessage("¿Cuál es tu mayor preocupación en este momento?");
                 userInput.focus();
             }, 500);
-        } else if (currentStep === 6) {
+        } else if (currentStep === 5) {
             weddingData.mayorPreocupacion = input;
-            completeForm();
+            
+            // Mensaje de finalización
+            setTimeout(() => {
+                addBotMessage("¡Gracias por completar el formulario! Te estamos redireccionando a WhatsApp para continuar la planificación de tu boda perfecta.");
+                
+                // Deshabilitar entrada
+                userInput.disabled = true;
+                sendButton.disabled = true;
+                
+                // Redireccionar a WhatsApp después de un breve retraso
+                setTimeout(() => {
+                    redirectToWhatsApp();
+                }, 2000);
+            }, 500);
         }
     }
 
@@ -834,7 +720,6 @@ document.addEventListener("DOMContentLoaded", function() {
     setTimeout(() => {
         addBotMessage("¡Hola! Bienvenido/a a nuestro planificador de bodas", null, true);
         
-        // The special message with highlight has been removed
         // Start directly with first question
         setTimeout(() => {
             addBotMessage("Felicidades por tu compromiso! Estamos aquí para ayudarte a planificar el día de tu boda y hacer que sea inolvidable.");
