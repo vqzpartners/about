@@ -14,19 +14,21 @@
     padding: 0;
 }
 
-html, body {
+html {
     height: 100%;
     font-family: 'Roboto', 'Arial', sans-serif;
     background-color: #e8f4f5; /* Lighter version of main color */
 }
 
 body {
+    min-height: 100%;
     display: flex;
     flex-direction: column;
-    height: 100%;
     width: 100%;
-    position: relative; /* Changed from fixed to relative */
-    overflow-y: auto; /* Allow vertical scrolling */
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-bottom: 70px; /* Space for footer */
 }
 
 a {
@@ -34,21 +36,20 @@ a {
 }
 
 .page-container {
-    flex-grow: 1;
+    flex: 1;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start; /* Change from center to flex-start */
     padding: 20px;
     margin-top: 20px;
-    margin-bottom: 70px; /* Space for footer */
+    margin-bottom: 20px;
     position: relative;
-    min-height: calc(100% - 70px); /* Minimum height */
+    min-height: calc(100vh - 110px); /* Use vh instead of % */
 }
 
 .chatbot-container {
     width: 100%;
     max-width: 900px;
-    height: 100%;
     background: #99c8cc; /* Main color */
     border-radius: 15px;
     padding: 20px;
@@ -56,15 +57,18 @@ a {
     color: #fff;
     display: flex;
     flex-direction: column;
+    margin-bottom: 80px; /* Extra space at bottom */
 }
 
 .chatbot-messages {
-    flex-grow: 1;
+    flex: 1;
     overflow-y: auto;
     padding-right: 8px;
     display: flex;
     flex-direction: column;
     margin-bottom: 15px;
+    min-height: 50vh; /* Minimum height for messages */
+    max-height: 65vh; /* Maximum height for messages */
     -webkit-overflow-scrolling: touch;
 }
 
@@ -165,11 +169,12 @@ a {
     display: flex;
     align-items: center;
     gap: 10px;
-    flex-shrink: 0;
-    margin-top: auto;
-    position: relative;
     padding: 5px 0;
-    z-index: 10; /* Ensure it's above other elements */
+    position: sticky; /* Change from relative to sticky */
+    bottom: 0;
+    background: #99c8cc; /* Match container background */
+    border-radius: 0 0 15px 15px;
+    z-index: 100; /* Ensure it's above other elements */
 }
 
 .chatbot-input input {
@@ -257,7 +262,7 @@ a {
     font-size: 16px;
     width: 100%;
     box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
-    position: absolute;
+    position: fixed; /* Change from absolute to fixed */
     bottom: 0;
     left: 0;
     z-index: 900;  
@@ -284,44 +289,51 @@ a {
     text-decoration: underline;
 }
 
-/* Specific mobile keyboard fix */
-.keyboard-open body {
-    height: auto !important;
-    overflow: visible;
+/* In-app browser optimizations */
+.in-app .page-container {
+    min-height: 100vh;
+    padding-bottom: 90px;
 }
 
-.keyboard-open .page-container {
-    height: auto;
-    margin-bottom: 120px; /* Extra space when keyboard is open */
-    padding-bottom: 70px;
+.in-app.keyboard-open .page-container {
+    padding-bottom: 200px; /* Extra padding when keyboard is open */
 }
 
-.keyboard-open .chatbot-container {
-    flex: 1;
-}
-
-.keyboard-open .app-footer {
-    display: none; /* Hide footer when keyboard is open */
+.in-app.keyboard-open .app-footer {
+    position: absolute;
+    bottom: 0;
 }
 
 /* iOS specific fixes */
 @supports (-webkit-touch-callout: none) {
-    .keyboard-open .page-container {
-        margin-bottom: 170px; /* Extra space for iOS */
+    body {
+        /* Disable overscroll/bounce in iOS */
+        position: fixed;
+        width: 100%;
+        overflow: hidden;
+    }
+    
+    .page-container {
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        height: 100%;
+    }
+    
+    .in-app.keyboard-open .page-container {
+        padding-bottom: 250px; /* Extra space for iOS */
     }
 }
 
+/* Enhanced mobile keyboard handling */
 @media (max-width: 768px) {
     .page-container {
         padding: 15px;
-        height: auto;
-        min-height: calc(100% - 65px);
+        padding-bottom: 80px;
     }
 
     .chatbot-container {
         max-width: 100%;
         padding: 15px;
-        height: 100%;
     }
 
     .message {
@@ -364,22 +376,14 @@ a {
 }
 
 @media (max-width: 480px) {
-    body {
-        position: relative; /* Changed from fixed */
-        width: 100%;
-        height: 100%;
-    }
-    
     .page-container {
         padding: 10px;
-        height: auto;
-        min-height: calc(100% - 60px);
+        padding-bottom: 70px;
     }
     
     .chatbot-container {
         padding: 12px;
         border-radius: 12px;
-        max-height: none;
     }
     
     .message {
@@ -405,7 +409,7 @@ a {
     }
     
     .chatbot-input {
-        padding-bottom: 5px;
+        padding: 8px 12px;
     }
     
     .chatbot-input input {
@@ -429,17 +433,9 @@ a {
         justify-content: center;
         gap: 15px;
     }
-    
-    .app-footer a {
-        margin: 0;
-    }
 }
 
 @media screen and (max-height: 450px) {
-    .page-container {
-        margin-bottom: 40px;
-    }
-    
     .message {
         font-size: 15px;
         padding: 6px 10px;
@@ -477,9 +473,36 @@ a {
         </div>
     </div>
 
-
     <script>
 document.addEventListener("DOMContentLoaded", function() {
+    // Detect in-app browsers
+    function detectInAppBrowser() {
+        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+        
+        // Check for common in-app browser strings
+        if (userAgent.includes('Instagram') || 
+            userAgent.includes('FBAV') || 
+            userAgent.includes('Twitter') || 
+            userAgent.includes('FBAN') || 
+            userAgent.includes('Line') ||
+            userAgent.includes('Pinterest') ||
+            (userAgent.includes('Android') && userAgent.includes('wv'))) {
+            document.body.classList.add('in-app');
+            return true;
+        }
+        return false;
+    }
+    
+    const isInAppBrowser = detectInAppBrowser();
+    
+    // Force body to take full height
+    document.body.style.minHeight = window.innerHeight + 'px';
+    
+    // Update body height on resize
+    window.addEventListener('resize', function() {
+        document.body.style.minHeight = window.innerHeight + 'px';
+    });
+
     // Set current year in footer
     document.getElementById('currentYear') && (document.getElementById('currentYear').textContent = new Date().getFullYear());
 
@@ -505,28 +528,45 @@ document.addEventListener("DOMContentLoaded", function() {
     const chatbotMessages = document.getElementById('chatbotMessages');
     const userInput = document.getElementById('userInput');
     const sendButton = document.getElementById('sendButton');
-
-    // Mobile keyboard detection
+    
+    // Enhanced keyboard detection for in-app browsers
     function detectKeyboard() {
-        // Visual Viewport API - modern solution for keyboard detection
-        if (window.visualViewport) {
+        // For iOS in-app browsers
+        if (isInAppBrowser) {
+            // Focus/blur events work better for in-app browsers
+            userInput.addEventListener('focus', function() {
+                document.body.classList.add('keyboard-open');
+                setTimeout(scrollToInput, 300); // Delay to account for keyboard animation
+            });
+            
+            userInput.addEventListener('blur', function() {
+                document.body.classList.remove('keyboard-open');
+                setTimeout(scrollToBottom, 100);
+            });
+        } 
+        else if (window.visualViewport) {
+            // Visual Viewport API for modern browsers
+            let lastHeight = window.visualViewport.height;
+            
             window.visualViewport.addEventListener('resize', function() {
-                // Check if the height of the visual viewport is significantly less than the window inner height
-                const heightDiff = window.innerHeight - window.visualViewport.height;
-                if (heightDiff > 150) { // Keyboard is likely open
+                const newHeight = window.visualViewport.height;
+                const heightDiff = window.innerHeight - newHeight;
+                
+                if (heightDiff > 150 && newHeight < lastHeight) {
+                    // Keyboard is likely open
                     document.body.classList.add('keyboard-open');
-                    // Scroll to input field
                     scrollToInput();
-                } else {
+                } else if (newHeight > lastHeight) {
+                    // Keyboard is likely closed
                     document.body.classList.remove('keyboard-open');
                     scrollToBottom();
                 }
+                
+                lastHeight = newHeight;
             });
         } else {
             // Fallback for browsers without Visual Viewport API
-            // We'll use focus/blur events on the input field
             userInput.addEventListener('focus', function() {
-                // Use timeout to ensure this runs after the keyboard appears
                 setTimeout(function() {
                     document.body.classList.add('keyboard-open');
                     scrollToInput();
@@ -543,19 +583,42 @@ document.addEventListener("DOMContentLoaded", function() {
     // Call keyboard detection setup
     detectKeyboard();
 
-    // Scroll to bottom of chat
+    // Improved scrolling functions
     function scrollToBottom() {
+        // For in-app browsers, use body scrolling
+        if (isInAppBrowser) {
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: 'smooth'
+            });
+        }
+        
+        // Always scroll the chat container
         setTimeout(() => {
             chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
         }, 50);
     }
 
-    // Scroll to keep input in view
+    // Better scroll to input handling
     function scrollToInput() {
-        setTimeout(() => {
-            window.scrollTo(0, document.body.scrollHeight);
-            userInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }, 300);
+        if (isInAppBrowser) {
+            // For in-app browsers, use body scrolling with a delay
+            setTimeout(() => {
+                // Get position of input relative to viewport
+                const rect = userInput.getBoundingClientRect();
+                const targetY = window.pageYOffset + rect.top - (window.innerHeight / 2);
+                
+                window.scrollTo({
+                    top: targetY,
+                    behavior: 'smooth'
+                });
+            }, 300);
+        } else {
+            // For regular browsers
+            setTimeout(() => {
+                userInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 100);
+        }
     }
 
     // Function to add bot message to chat
@@ -784,15 +847,31 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     };
 
-    // Add resize event listener to handle orientation changes
+    // Add more robust resize handling
+    let resizeTimeout;
     window.addEventListener('resize', function() {
-        // Small delay to allow UI to settle
-        setTimeout(() => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(function() {
+            // Update body height
+            document.body.style.minHeight = window.innerHeight + 'px';
+            
+            // Check if keyboard likely opened/closed
             if (document.activeElement === userInput) {
+                document.body.classList.add('keyboard-open');
                 scrollToInput();
             } else {
+                document.body.classList.remove('keyboard-open');
                 scrollToBottom();
             }
+        }, 200);
+    });
+
+    // Handle orientation changes specifically
+    window.addEventListener('orientationchange', function() {
+        setTimeout(function() {
+            // Update body height
+            document.body.style.minHeight = window.innerHeight + 'px';
+            scrollToBottom();
         }, 300);
     });
 
