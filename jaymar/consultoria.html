@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Planificador de Bodas - Información</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="icon" href="https://vqzpartners.com/jaymar/cdn/favicon.png" type="image/x-icon">
@@ -24,9 +24,9 @@ body {
     display: flex;
     flex-direction: column;
     height: 100%;
-    position: fixed;
     width: 100%;
-    overflow: hidden;
+    position: relative; /* Changed from fixed to relative */
+    overflow-y: auto; /* Allow vertical scrolling */
 }
 
 a {
@@ -39,11 +39,10 @@ a {
     justify-content: center;
     align-items: center;
     padding: 20px;
-    overflow: hidden;
     margin-top: 20px;
-    margin-bottom: 70px; /* Increased for footer */
+    margin-bottom: 70px; /* Space for footer */
     position: relative;
-    height: calc(100% - 70px); /* Only subtract footer height */
+    min-height: calc(100% - 70px); /* Minimum height */
 }
 
 .chatbot-container {
@@ -170,6 +169,7 @@ a {
     margin-top: auto;
     position: relative;
     padding: 5px 0;
+    z-index: 10; /* Ensure it's above other elements */
 }
 
 .chatbot-input input {
@@ -284,10 +284,38 @@ a {
     text-decoration: underline;
 }
 
+/* Specific mobile keyboard fix */
+.keyboard-open body {
+    height: auto !important;
+    overflow: visible;
+}
+
+.keyboard-open .page-container {
+    height: auto;
+    margin-bottom: 120px; /* Extra space when keyboard is open */
+    padding-bottom: 70px;
+}
+
+.keyboard-open .chatbot-container {
+    flex: 1;
+}
+
+.keyboard-open .app-footer {
+    display: none; /* Hide footer when keyboard is open */
+}
+
+/* iOS specific fixes */
+@supports (-webkit-touch-callout: none) {
+    .keyboard-open .page-container {
+        margin-bottom: 170px; /* Extra space for iOS */
+    }
+}
+
 @media (max-width: 768px) {
     .page-container {
         padding: 15px;
-        height: calc(100% - 65px);
+        height: auto;
+        min-height: calc(100% - 65px);
     }
 
     .chatbot-container {
@@ -337,14 +365,15 @@ a {
 
 @media (max-width: 480px) {
     body {
-        position: fixed;
+        position: relative; /* Changed from fixed */
         width: 100%;
         height: 100%;
     }
     
     .page-container {
         padding: 10px;
-        height: calc(100% - 60px);
+        height: auto;
+        min-height: calc(100% - 60px);
     }
     
     .chatbot-container {
@@ -477,11 +506,56 @@ document.addEventListener("DOMContentLoaded", function() {
     const userInput = document.getElementById('userInput');
     const sendButton = document.getElementById('sendButton');
 
+    // Mobile keyboard detection
+    function detectKeyboard() {
+        // Visual Viewport API - modern solution for keyboard detection
+        if (window.visualViewport) {
+            window.visualViewport.addEventListener('resize', function() {
+                // Check if the height of the visual viewport is significantly less than the window inner height
+                const heightDiff = window.innerHeight - window.visualViewport.height;
+                if (heightDiff > 150) { // Keyboard is likely open
+                    document.body.classList.add('keyboard-open');
+                    // Scroll to input field
+                    scrollToInput();
+                } else {
+                    document.body.classList.remove('keyboard-open');
+                    scrollToBottom();
+                }
+            });
+        } else {
+            // Fallback for browsers without Visual Viewport API
+            // We'll use focus/blur events on the input field
+            userInput.addEventListener('focus', function() {
+                // Use timeout to ensure this runs after the keyboard appears
+                setTimeout(function() {
+                    document.body.classList.add('keyboard-open');
+                    scrollToInput();
+                }, 300);
+            });
+            
+            userInput.addEventListener('blur', function() {
+                document.body.classList.remove('keyboard-open');
+                scrollToBottom();
+            });
+        }
+    }
+
+    // Call keyboard detection setup
+    detectKeyboard();
+
     // Scroll to bottom of chat
     function scrollToBottom() {
         setTimeout(() => {
             chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
         }, 50);
+    }
+
+    // Scroll to keep input in view
+    function scrollToInput() {
+        setTimeout(() => {
+            window.scrollTo(0, document.body.scrollHeight);
+            userInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 300);
     }
 
     // Function to add bot message to chat
@@ -702,6 +776,25 @@ document.addEventListener("DOMContentLoaded", function() {
             }, 500);
         }
     }
+
+    // Function to send message (for onclick attribute)
+    window.sendMessage = function() {
+        if (!sendButton.disabled) {
+            handleUserInput();
+        }
+    };
+
+    // Add resize event listener to handle orientation changes
+    window.addEventListener('resize', function() {
+        // Small delay to allow UI to settle
+        setTimeout(() => {
+            if (document.activeElement === userInput) {
+                scrollToInput();
+            } else {
+                scrollToBottom();
+            }
+        }, 300);
+    });
 
     // Initialize chat - start directly with first question
     setTimeout(() => {
