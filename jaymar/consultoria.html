@@ -161,6 +161,16 @@ a {
     background: #88b7bb; /* Slightly darker than container background */
     border-radius: 0; /* Remove border radius for fullscreen */
     z-index: 100;
+    position: relative; /* Added for better positioning */
+}
+
+/* Add special class for when keyboard is open */
+.keyboard-open .chatbot-input {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
 }
 
 .chatbot-input input {
@@ -231,6 +241,16 @@ a {
     font-weight: 500; /* Slightly bolder text */
 }
 
+/* Added padding to allow for keyboard display */
+.keyboard-spacer {
+    height: 0;
+    transition: height 0.3s ease;
+}
+
+.keyboard-open .keyboard-spacer {
+    height: 270px; /* Approximate height of mobile keyboards */
+}
+
 /* Media queries for responsive design */
 @media (max-width: 768px) {
     .message {
@@ -264,6 +284,10 @@ a {
         font-size: 18px;
         width: 44px;
         height: 44px;
+    }
+    
+    .keyboard-open .keyboard-spacer {
+        height: 240px;
     }
 }
 
@@ -308,6 +332,10 @@ a {
         width: 42px;
         height: 42px;
     }
+    
+    .keyboard-open .keyboard-spacer {
+        height: 220px;
+    }
 }
 
 @media screen and (max-height: 450px) {
@@ -328,6 +356,10 @@ a {
     .chatbot-input button {
         width: 36px;
         height: 36px;
+    }
+    
+    .keyboard-open .keyboard-spacer {
+        height: 180px;
     }
 }
 
@@ -353,17 +385,37 @@ a {
 .fullscreen-button:hover {
     background: rgba(0, 0, 0, 0.5);
 }
+
+/* Added for iOS Safari fixing */
+body.is-ios {
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+body.is-ios .chatbot-input {
+    padding-bottom: calc(12px + env(safe-area-inset-bottom));
+}
+
+/* Added for in-app browser specific fixes */
+body.in-app-browser .chatbot-input {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+}
     </style>
 </head>
 <body>
     <div class="page-container">
         <div class="chatbot-container">
             <div class="chatbot-messages" id="chatbotMessages"></div>
-            <div class="chatbot-input">
-                <input type="text" id="userInput" placeholder="Escribe aquí..." />
-                <button id="sendButton" onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
-            </div>
+            <div class="keyboard-spacer" id="keyboardSpacer"></div>
         </div>
+    </div>
+    
+    <div class="chatbot-input" id="chatbotInput">
+        <input type="text" id="userInput" placeholder="Escribe aquí..." />
+        <button id="sendButton" onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
     </div>
 
     <button id="fullscreenToggle" class="fullscreen-button" title="Toggle Fullscreen">
@@ -372,6 +424,147 @@ a {
 
     <script>
 document.addEventListener("DOMContentLoaded", function() {
+    // Check for iOS
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    if (isIOS) {
+        document.body.classList.add('is-ios');
+    }
+    
+    // Detect in-app browsers more comprehensively
+    const detectInAppBrowser = () => {
+        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+        
+        // Check for common in-app browser strings
+        const inAppBrowserIndicators = [
+            'Instagram', 'FBAV', 'Twitter', 'FBAN', 'Line', 'Pinterest',
+            'FBiOS', 'FBIOS', 'TikTok', 'WhatsApp', 'WeChat', 'Snapchat',
+            'LinkedIn', 'Slack', 'Discord'
+        ];
+        
+        const isInApp = inAppBrowserIndicators.some(indicator => 
+            userAgent.includes(indicator)) || 
+            (userAgent.includes('Android') && userAgent.includes('wv'));
+        
+        if (isInApp) {
+            document.body.classList.add('in-app-browser');
+            return true;
+        }
+        return false;
+    };
+    
+    const isInAppBrowser = detectInAppBrowser();
+    
+    // Elements
+    const chatbotMessages = document.getElementById('chatbotMessages');
+    const userInput = document.getElementById('userInput');
+    const sendButton = document.getElementById('sendButton');
+    const chatbotInput = document.getElementById('chatbotInput');
+    const keyboardSpacer = document.getElementById('keyboardSpacer');
+    
+    // Enhanced Keyboard Detection & Handling
+    function setupKeyboardHandling() {
+        // Use a variable to track keyboard state
+        let isKeyboardOpen = false;
+        
+        // Function to handle keyboard opening
+        function handleKeyboardOpen() {
+            if (!isKeyboardOpen) {
+                isKeyboardOpen = true;
+                document.body.classList.add('keyboard-open');
+                
+                // On keyboard open, ensure the input is visible
+                setTimeout(() => {
+                    // Calculate how much we need to scroll
+                    const windowHeight = window.innerHeight;
+                    const keyboardHeight = isIOS ? 300 : 270; // Approximate heights
+                    
+                    // Scroll to position input at good viewing height
+                    window.scrollTo({
+                        top: document.body.scrollHeight,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Ensure last message is visible above the keyboard
+                    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+                }, 300);
+            }
+        }
+        
+        // Function to handle keyboard closing
+        function handleKeyboardClose() {
+            if (isKeyboardOpen) {
+                isKeyboardOpen = false;
+                document.body.classList.remove('keyboard-open');
+                
+                // On keyboard close, scroll to the bottom of conversation
+                setTimeout(() => {
+                    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+                    window.scrollTo(0, 0);
+                }, 100);
+            }
+        }
+        
+        // Detect if using iOS or Android
+        if (isIOS || isInAppBrowser) {
+            // iOS and in-app browsers handle focus/blur events well
+            userInput.addEventListener('focus', handleKeyboardOpen);
+            userInput.addEventListener('blur', handleKeyboardClose);
+            
+            // Add additional orientation change handling for iOS
+            window.addEventListener('orientationchange', () => {
+                setTimeout(() => {
+                    if (document.activeElement === userInput) {
+                        handleKeyboardOpen();
+                    } else {
+                        handleKeyboardClose();
+                    }
+                }, 500);
+            });
+        } 
+        
+        // Visual Viewport API for modern browsers
+        if (window.visualViewport) {
+            let lastHeight = window.visualViewport.height;
+            
+            window.visualViewport.addEventListener('resize', () => {
+                const newHeight = window.visualViewport.height;
+                const heightDiff = window.innerHeight - newHeight;
+                
+                // Check if keyboard might be opening
+                if (heightDiff > 150 && newHeight < lastHeight) {
+                    handleKeyboardOpen();
+                } 
+                // Check if keyboard might be closing
+                else if (newHeight > lastHeight && heightDiff < 50) {
+                    handleKeyboardClose();
+                }
+                
+                lastHeight = newHeight;
+            });
+        }
+        
+        // Fallback for older browsers
+        window.addEventListener('resize', () => {
+            const heightDiff = window.innerHeight - window.visualViewport?.height || 0;
+            
+            if (heightDiff > 150) {
+                handleKeyboardOpen();
+            } else {
+                handleKeyboardClose();
+            }
+        });
+    }
+    
+    // Call keyboard setup
+    setupKeyboardHandling();
+    
+    // Improved scrolling function
+    function scrollToBottom() {
+        setTimeout(() => {
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }, 50);
+    }
+    
     // Fullscreen toggle functionality
     const fullscreenButton = document.getElementById('fullscreenToggle');
     
@@ -416,26 +609,6 @@ document.addEventListener("DOMContentLoaded", function() {
             fullscreenButton.innerHTML = '<i class="fas fa-expand"></i>';
         }
     }
-    
-    // Detect in-app browsers
-    function detectInAppBrowser() {
-        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-        
-        // Check for common in-app browser strings
-        if (userAgent.includes('Instagram') || 
-            userAgent.includes('FBAV') || 
-            userAgent.includes('Twitter') || 
-            userAgent.includes('FBAN') || 
-            userAgent.includes('Line') ||
-            userAgent.includes('Pinterest') ||
-            (userAgent.includes('Android') && userAgent.includes('wv'))) {
-            document.body.classList.add('in-app');
-            return true;
-        }
-        return false;
-    }
-    
-    const isInAppBrowser = detectInAppBrowser();
 
     // Step counter and data collection object
     let currentStep = 1;
@@ -454,80 +627,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Track the last message sender to handle consecutive bot messages
     let lastMessageSender = null;
-
-    // DOM elements
-    const chatbotMessages = document.getElementById('chatbotMessages');
-    const userInput = document.getElementById('userInput');
-    const sendButton = document.getElementById('sendButton');
-    
-    // Enhanced keyboard detection for in-app browsers
-    function detectKeyboard() {
-        // For iOS in-app browsers
-        if (isInAppBrowser) {
-            // Focus/blur events work better for in-app browsers
-            userInput.addEventListener('focus', function() {
-                document.body.classList.add('keyboard-open');
-                setTimeout(scrollToInput, 300); // Delay to account for keyboard animation
-            });
-            
-            userInput.addEventListener('blur', function() {
-                document.body.classList.remove('keyboard-open');
-                setTimeout(scrollToBottom, 100);
-            });
-        } 
-        else if (window.visualViewport) {
-            // Visual Viewport API for modern browsers
-            let lastHeight = window.visualViewport.height;
-            
-            window.visualViewport.addEventListener('resize', function() {
-                const newHeight = window.visualViewport.height;
-                const heightDiff = window.innerHeight - newHeight;
-                
-                if (heightDiff > 150 && newHeight < lastHeight) {
-                    // Keyboard is likely open
-                    document.body.classList.add('keyboard-open');
-                    scrollToInput();
-                } else if (newHeight > lastHeight) {
-                    // Keyboard is likely closed
-                    document.body.classList.remove('keyboard-open');
-                    scrollToBottom();
-                }
-                
-                lastHeight = newHeight;
-            });
-        } else {
-            // Fallback for browsers without Visual Viewport API
-            userInput.addEventListener('focus', function() {
-                setTimeout(function() {
-                    document.body.classList.add('keyboard-open');
-                    scrollToInput();
-                }, 300);
-            });
-            
-            userInput.addEventListener('blur', function() {
-                document.body.classList.remove('keyboard-open');
-                scrollToBottom();
-            });
-        }
-    }
-
-    // Call keyboard detection setup
-    detectKeyboard();
-
-    // Improved scrolling functions
-    function scrollToBottom() {
-        // Always scroll the chat container
-        setTimeout(() => {
-            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-        }, 50);
-    }
-
-    // Better scroll to input handling
-    function scrollToInput() {
-        setTimeout(() => {
-            userInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }, 100);
-    }
 
     // Function to add bot message to chat
     function addBotMessage(message, options = null, showTip = false) {
@@ -755,25 +854,17 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     };
 
-    // Add more robust resize handling
-    let resizeTimeout;
-    window.addEventListener('resize', function() {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(function() {
-            // Check if keyboard likely opened/closed
+    // Handle orientation changes specifically
+    window.addEventListener('orientationchange', function() {
+        // Reset any keyboard adjustments
+        setTimeout(() => {
             if (document.activeElement === userInput) {
                 document.body.classList.add('keyboard-open');
-                scrollToInput();
             } else {
                 document.body.classList.remove('keyboard-open');
                 scrollToBottom();
             }
-        }, 200);
-    });
-
-    // Handle orientation changes specifically
-    window.addEventListener('orientationchange', function() {
-        setTimeout(scrollToBottom, 300);
+        }, 500);
     });
 
     // Initialize chat - start directly with first question
