@@ -14,21 +14,13 @@
     padding: 0;
 }
 
-html {
+html, body {
     height: 100%;
-    font-family: 'Roboto', 'Arial', sans-serif;
-    background-color: #e8f4f5; /* Lighter version of main color */
-}
-
-body {
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
     width: 100%;
-    position: relative;
-    overflow-x: hidden;
-    overflow-y: auto;
-    padding-bottom: 70px; /* Space for footer */
+    overflow: hidden;
+    font-family: 'Roboto', 'Arial', sans-serif;
+    background-color: #99c8cc; /* Using main color for entire background */
+    position: fixed; /* Prevent scrolling of the body */
 }
 
 a {
@@ -36,28 +28,26 @@ a {
 }
 
 .page-container {
-    flex: 1;
+    height: 100%;
+    width: 100%;
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Change from center to flex-start */
-    padding: 20px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    align-items: center;
+    padding: 0;
     position: relative;
-    min-height: calc(100vh - 110px); /* Use vh instead of % */
 }
 
 .chatbot-container {
     width: 100%;
-    max-width: 900px;
+    height: 100%;
+    max-width: 100%;
     background: #99c8cc; /* Main color */
-    border-radius: 15px;
+    border-radius: 0; /* Remove border radius for fullscreen */
     padding: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     color: #fff;
     display: flex;
     flex-direction: column;
-    margin-bottom: 80px; /* Extra space at bottom */
+    box-shadow: none;
 }
 
 .chatbot-messages {
@@ -67,8 +57,6 @@ a {
     display: flex;
     flex-direction: column;
     margin-bottom: 15px;
-    min-height: 50vh; /* Minimum height for messages */
-    max-height: 65vh; /* Maximum height for messages */
     -webkit-overflow-scrolling: touch;
 }
 
@@ -169,12 +157,10 @@ a {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 5px 0;
-    position: sticky; /* Change from relative to sticky */
-    bottom: 0;
-    background: #99c8cc; /* Match container background */
-    border-radius: 0 0 15px 15px;
-    z-index: 100; /* Ensure it's above other elements */
+    padding: 12px 15px;
+    background: #88b7bb; /* Slightly darker than container background */
+    border-radius: 0; /* Remove border radius for fullscreen */
+    z-index: 100;
 }
 
 .chatbot-input input {
@@ -245,97 +231,8 @@ a {
     font-weight: 500; /* Slightly bolder text */
 }
 
-.wedding-highlight {
-    background: #e8f4f5;
-    border-left: 3px solid #bfe0e3;
-    padding: 10px 14px;
-    margin-top: 10px;
-    border-radius: 4px;
-    color: #336669; /* Darker version of main color */
-}
-
-.app-footer {
-    background-color: #99c8cc; /* Main color */
-    color: white;
-    padding: 15px;
-    text-align: center;
-    font-size: 16px;
-    width: 100%;
-    box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
-    position: fixed; /* Change from absolute to fixed */
-    bottom: 0;
-    left: 0;
-    z-index: 900;  
-}
-
-.app-footer p {
-    margin-bottom: 12px;
-}
-
-.app-footer .footer-links {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.app-footer a {
-    color: #f0f0f0;
-    text-decoration: none;
-}
-
-.app-footer a:hover {
-    text-decoration: underline;
-}
-
-/* In-app browser optimizations */
-.in-app .page-container {
-    min-height: 100vh;
-    padding-bottom: 90px;
-}
-
-.in-app.keyboard-open .page-container {
-    padding-bottom: 200px; /* Extra padding when keyboard is open */
-}
-
-.in-app.keyboard-open .app-footer {
-    position: absolute;
-    bottom: 0;
-}
-
-/* iOS specific fixes */
-@supports (-webkit-touch-callout: none) {
-    body {
-        /* Disable overscroll/bounce in iOS */
-        position: fixed;
-        width: 100%;
-        overflow: hidden;
-    }
-    
-    .page-container {
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
-        height: 100%;
-    }
-    
-    .in-app.keyboard-open .page-container {
-        padding-bottom: 250px; /* Extra space for iOS */
-    }
-}
-
-/* Enhanced mobile keyboard handling */
+/* Media queries for responsive design */
 @media (max-width: 768px) {
-    .page-container {
-        padding: 15px;
-        padding-bottom: 80px;
-    }
-
-    .chatbot-container {
-        max-width: 100%;
-        padding: 15px;
-    }
-
     .message {
         font-size: 16px;
         padding: 9px 12px;
@@ -368,22 +265,11 @@ a {
         width: 44px;
         height: 44px;
     }
-    
-    .app-footer {
-        font-size: 14px;
-        padding: 12px;
-    }
 }
 
 @media (max-width: 480px) {
-    .page-container {
-        padding: 10px;
-        padding-bottom: 70px;
-    }
-    
     .chatbot-container {
         padding: 12px;
-        border-radius: 12px;
     }
     
     .message {
@@ -422,17 +308,6 @@ a {
         width: 42px;
         height: 42px;
     }
-    
-    .app-footer {
-        font-size: 14px;
-        padding: 10px;
-    }
-    
-    .app-footer .footer-links {
-        flex-direction: row;
-        justify-content: center;
-        gap: 15px;
-    }
 }
 
 @media screen and (max-height: 450px) {
@@ -454,11 +329,29 @@ a {
         width: 36px;
         height: 36px;
     }
-    
-    .app-footer {
-        padding: 8px;
-        font-size: 13px;
-    }
+}
+
+/* Fullscreen specific styles */
+.fullscreen-button {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.3);
+    border: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+    transition: background 0.3s;
+}
+
+.fullscreen-button:hover {
+    background: rgba(0, 0, 0, 0.5);
 }
     </style>
 </head>
@@ -473,8 +366,57 @@ a {
         </div>
     </div>
 
+    <button id="fullscreenToggle" class="fullscreen-button" title="Toggle Fullscreen">
+        <i class="fas fa-expand"></i>
+    </button>
+
     <script>
 document.addEventListener("DOMContentLoaded", function() {
+    // Fullscreen toggle functionality
+    const fullscreenButton = document.getElementById('fullscreenToggle');
+    
+    fullscreenButton.addEventListener('click', function() {
+        if (!document.fullscreenElement) {
+            // Enter fullscreen
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            } else if (document.documentElement.mozRequestFullScreen) { // Firefox
+                document.documentElement.mozRequestFullScreen();
+            } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari, Opera
+                document.documentElement.webkitRequestFullscreen();
+            } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
+                document.documentElement.msRequestFullscreen();
+            }
+            fullscreenButton.innerHTML = '<i class="fas fa-compress"></i>';
+        } else {
+            // Exit fullscreen
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.mozCancelFullScreen) { // Firefox
+                document.mozCancelFullScreen();
+            } else if (document.webkitExitFullscreen) { // Chrome, Safari, Opera
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) { // IE/Edge
+                document.msExitFullscreen();
+            }
+            fullscreenButton.innerHTML = '<i class="fas fa-expand"></i>';
+        }
+    });
+    
+    // Handle fullscreen change event
+    document.addEventListener('fullscreenchange', updateFullscreenButton);
+    document.addEventListener('webkitfullscreenchange', updateFullscreenButton);
+    document.addEventListener('mozfullscreenchange', updateFullscreenButton);
+    document.addEventListener('MSFullscreenChange', updateFullscreenButton);
+    
+    function updateFullscreenButton() {
+        if (document.fullscreenElement) {
+            fullscreenButton.innerHTML = '<i class="fas fa-compress"></i>';
+        } else {
+            fullscreenButton.innerHTML = '<i class="fas fa-expand"></i>';
+        }
+    }
+    
     // Detect in-app browsers
     function detectInAppBrowser() {
         const userAgent = navigator.userAgent || navigator.vendor || window.opera;
@@ -494,17 +436,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     
     const isInAppBrowser = detectInAppBrowser();
-    
-    // Force body to take full height
-    document.body.style.minHeight = window.innerHeight + 'px';
-    
-    // Update body height on resize
-    window.addEventListener('resize', function() {
-        document.body.style.minHeight = window.innerHeight + 'px';
-    });
-
-    // Set current year in footer
-    document.getElementById('currentYear') && (document.getElementById('currentYear').textContent = new Date().getFullYear());
 
     // Step counter and data collection object
     let currentStep = 1;
@@ -585,14 +516,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Improved scrolling functions
     function scrollToBottom() {
-        // For in-app browsers, use body scrolling
-        if (isInAppBrowser) {
-            window.scrollTo({
-                top: document.body.scrollHeight,
-                behavior: 'smooth'
-            });
-        }
-        
         // Always scroll the chat container
         setTimeout(() => {
             chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
@@ -601,24 +524,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Better scroll to input handling
     function scrollToInput() {
-        if (isInAppBrowser) {
-            // For in-app browsers, use body scrolling with a delay
-            setTimeout(() => {
-                // Get position of input relative to viewport
-                const rect = userInput.getBoundingClientRect();
-                const targetY = window.pageYOffset + rect.top - (window.innerHeight / 2);
-                
-                window.scrollTo({
-                    top: targetY,
-                    behavior: 'smooth'
-                });
-            }, 300);
-        } else {
-            // For regular browsers
-            setTimeout(() => {
-                userInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }, 100);
-        }
+        setTimeout(() => {
+            userInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
     }
 
     // Function to add bot message to chat
@@ -852,9 +760,6 @@ document.addEventListener("DOMContentLoaded", function() {
     window.addEventListener('resize', function() {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(function() {
-            // Update body height
-            document.body.style.minHeight = window.innerHeight + 'px';
-            
             // Check if keyboard likely opened/closed
             if (document.activeElement === userInput) {
                 document.body.classList.add('keyboard-open');
@@ -868,11 +773,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Handle orientation changes specifically
     window.addEventListener('orientationchange', function() {
-        setTimeout(function() {
-            // Update body height
-            document.body.style.minHeight = window.innerHeight + 'px';
-            scrollToBottom();
-        }, 300);
+        setTimeout(scrollToBottom, 300);
     });
 
     // Initialize chat - start directly with first question
