@@ -50,6 +50,27 @@ a {
     box-shadow: none;
 }
 
+/* Added max-width for desktop to prevent excessive stretching */
+@media (min-width: 769px) {
+    .chatbot-container {
+        max-width: 800px;
+        margin: 0 auto;
+        height: 90%;
+        border-radius: 15px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .page-container {
+        padding: 20px;
+    }
+    
+    .chatbot-input {
+        max-width: 800px;
+        margin: 0 auto;
+        border-radius: 0 0 15px 15px;
+    }
+}
+
 .chatbot-messages {
     flex: 1;
     overflow-y: auto;
@@ -58,6 +79,7 @@ a {
     flex-direction: column;
     margin-bottom: 15px;
     -webkit-overflow-scrolling: touch;
+    position: relative; /* Added for absolute positioning of content */
 }
 
 .chatbot-messages::-webkit-scrollbar {
@@ -103,6 +125,12 @@ a {
     margin: 0 8px;
     object-fit: cover;
     background-color: #eee; /* Placeholder background */
+}
+
+/* Added border around bot avatar */
+.bot-container .message-avatar {
+    border: 2px solid white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .message {
@@ -159,9 +187,12 @@ a {
     gap: 10px;
     padding: 12px 15px;
     background: #88b7bb; /* Slightly darker than container background */
-    border-radius: 0; /* Remove border radius for fullscreen */
     z-index: 100;
-    position: relative; /* Added for better positioning */
+    position: fixed; /* Changed to fixed positioning */
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
 }
 
 /* Add special class for when keyboard is open */
@@ -241,14 +272,10 @@ a {
     font-weight: 500; /* Slightly bolder text */
 }
 
-/* Added padding to allow for keyboard display */
-.keyboard-spacer {
-    height: 0;
-    transition: height 0.3s ease;
-}
-
-.keyboard-open .keyboard-spacer {
-    height: 270px; /* Approximate height of mobile keyboards */
+/* Fixed padding to account for fixed input bar */
+.chat-bottom-padding {
+    height: 80px; /* Height of the input bar + some padding */
+    flex-shrink: 0;
 }
 
 /* Media queries for responsive design */
@@ -286,8 +313,8 @@ a {
         height: 44px;
     }
     
-    .keyboard-open .keyboard-spacer {
-        height: 240px;
+    .chat-bottom-padding {
+        height: 70px;
     }
 }
 
@@ -333,8 +360,8 @@ a {
         height: 42px;
     }
     
-    .keyboard-open .keyboard-spacer {
-        height: 220px;
+    .chat-bottom-padding {
+        height: 65px;
     }
 }
 
@@ -358,8 +385,8 @@ a {
         height: 36px;
     }
     
-    .keyboard-open .keyboard-spacer {
-        height: 180px;
+    .chat-bottom-padding {
+        height: 60px;
     }
 }
 
@@ -385,8 +412,10 @@ body.in-app-browser .chatbot-input {
 <body>
     <div class="page-container">
         <div class="chatbot-container">
-            <div class="chatbot-messages" id="chatbotMessages"></div>
-            <div class="keyboard-spacer" id="keyboardSpacer"></div>
+            <div class="chatbot-messages" id="chatbotMessages">
+                <!-- Messages will appear here -->
+            </div>
+            <div class="chat-bottom-padding"></div>
         </div>
     </div>
     
@@ -432,7 +461,9 @@ document.addEventListener("DOMContentLoaded", function() {
     const userInput = document.getElementById('userInput');
     const sendButton = document.getElementById('sendButton');
     const chatbotInput = document.getElementById('chatbotInput');
-    const keyboardSpacer = document.getElementById('keyboardSpacer');
+    
+    // Make sure chatbot input is visible from the start
+    chatbotInput.style.display = 'flex';
     
     // Enhanced Keyboard Detection & Handling
     function setupKeyboardHandling() {
@@ -447,10 +478,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 
                 // On keyboard open, ensure the input is visible
                 setTimeout(() => {
-                    // Calculate how much we need to scroll
-                    const windowHeight = window.innerHeight;
-                    const keyboardHeight = isIOS ? 300 : 270; // Approximate heights
-                    
                     // Scroll to position input at good viewing height
                     window.scrollTo({
                         top: document.body.scrollHeight,
