@@ -47,25 +47,26 @@ a {
     color: #fff;
     display: flex;
     flex-direction: column;
-    box-shadow: none;
+    box-shadow: none; /* Removed box shadow */
 }
 
-/* Added max-width for desktop to prevent excessive stretching */
+/* Modified desktop styles to make it fullscreen */
 @media (min-width: 769px) {
     .chatbot-container {
-        max-width: 800px;
-        margin: 0 auto;
-        height: 90%;
-        border-radius: 15px;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        max-width: 100%; /* Make container fullscreen */
+        width: 100%;
+        margin: 0;
+        height: 100%; /* Full height */
+        border-radius: 0; /* No border radius */
+        box-shadow: none; /* No box shadow */
     }
     
     .page-container {
-        padding: 20px;
+        padding: 0; /* Remove padding */
     }
     
     .chatbot-input {
-        max-width: 600px; /* Reduced width for pill effect */
+        max-width: 600px; /* Kept width for pill effect */
         margin: 0 auto;
         border-radius: 30px !important; /* Ensure pill shape even on desktop */
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
