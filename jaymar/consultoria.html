@@ -65,9 +65,10 @@ a {
     }
     
     .chatbot-input {
-        max-width: 800px;
+        max-width: 600px; /* Reduced width for pill effect */
         margin: 0 auto;
-        border-radius: 0 0 15px 15px;
+        border-radius: 30px !important; /* Ensure pill shape even on desktop */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
 }
 
@@ -181,49 +182,50 @@ a {
     background: rgba(255, 255, 255, 0.4);
 }
 
+/* Modified chatbot input to be a floating pill */
 .chatbot-input {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 12px 15px;
-    background: #88b7bb; /* Slightly darker than container background */
+    padding: 8px 10px; /* Reduced padding */
+    background: rgba(255, 255, 255, 0.95); /* Light background */
     z-index: 100;
-    position: fixed; /* Changed to fixed positioning */
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
+    position: fixed; /* Fixed positioning */
+    bottom: 15px; /* Space from bottom */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Center properly */
+    width: 90%; /* Width as percentage of viewport */
+    max-width: 500px; /* Maximum width */
+    border-radius: 30px; /* Rounded corners for pill shape */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Shadow for floating effect */
+    border: 1px solid rgba(0, 0, 0, 0.1); /* Subtle border */
 }
 
 /* Add special class for when keyboard is open */
 .keyboard-open .chatbot-input {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
+    bottom: 5px; /* Less space from bottom when keyboard is open */
 }
 
 .chatbot-input input {
     flex: 1;
     padding: 12px 15px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: none; /* Remove border */
     border-radius: 20px;
     outline: none;
     font-size: 17px;
-    background: rgba(0, 0, 0, 0.5);
-    color: #fff;
+    background: transparent; /* Transparent background */
+    color: #333; /* Dark text for contrast */
     font-family: 'Roboto', sans-serif;
 }
 
 /* Date input styling to make it look like regular input */
 .chatbot-input input[type="date"] {
-    color: #fff;
+    color: #333;
     font-family: 'Roboto', sans-serif;
 }
 
 .chatbot-input input[type="date"]::-webkit-calendar-picker-indicator {
-    filter: invert(1);
+    filter: invert(0.5); /* Darker color for the calendar icon */
     cursor: pointer;
     opacity: 0.9;
     width: 20px;
@@ -231,36 +233,37 @@ a {
 }
 
 .chatbot-input input::placeholder {
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(0, 0, 0, 0.5); /* Darker placeholder text */
 }
 
 .chatbot-input input:disabled {
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.05);
     cursor: not-allowed;
 }
 
 .chatbot-input button {
-    background: #bfe0e3; /* Lighter version of main color */
+    background: #88b7bb; /* Use main theme color */
     border: none;
-    color: #333;
-    font-size: 20px;
+    color: white; /* White icon */
+    font-size: 18px;
     cursor: pointer;
     border-radius: 50%;
-    width: 48px;
-    height: 48px;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: background 0.3s;
     flex-shrink: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
 .chatbot-input button:hover {
-    background: #a6d3d7;
+    background: #75a4a8; /* Darker on hover */
 }
 
 .chatbot-input button:disabled {
-    background: rgba(191, 224, 227, 0.5);
+    background: rgba(136, 183, 187, 0.5);
     cursor: not-allowed;
 }
 
@@ -274,7 +277,7 @@ a {
 
 /* Fixed padding to account for fixed input bar */
 .chat-bottom-padding {
-    height: 80px; /* Height of the input bar + some padding */
+    height: 90px; /* Height of the input bar + padding */
     flex-shrink: 0;
 }
 
@@ -304,17 +307,17 @@ a {
 
     .chatbot-input input {
         font-size: 16px;
-        padding: 10px 14px;
+        padding: 10px 12px;
     }
 
     .chatbot-input button {
         font-size: 18px;
-        width: 44px;
-        height: 44px;
+        width: 38px;
+        height: 38px;
     }
     
     .chat-bottom-padding {
-        height: 70px;
+        height: 80px;
     }
 }
 
@@ -346,22 +349,23 @@ a {
     }
     
     .chatbot-input {
-        padding: 8px 12px;
+        padding: 6px 8px;
+        width: 92%; /* Slightly wider on small screens */
     }
     
     .chatbot-input input {
         font-size: 16px;
-        padding: 10px 12px;
+        padding: 8px 10px;
     }
     
     .chatbot-input button {
         font-size: 16px;
-        width: 42px;
-        height: 42px;
+        width: 36px;
+        height: 36px;
     }
     
     .chat-bottom-padding {
-        height: 65px;
+        height: 75px;
     }
 }
 
@@ -377,16 +381,20 @@ a {
     }
     
     .chatbot-input input {
-        padding: 8px 12px;
+        padding: 6px 10px;
     }
     
     .chatbot-input button {
-        width: 36px;
-        height: 36px;
+        width: 32px;
+        height: 32px;
     }
     
     .chat-bottom-padding {
-        height: 60px;
+        height: 65px;
+    }
+    
+    .chatbot-input {
+        bottom: 10px;
     }
 }
 
@@ -396,16 +404,14 @@ body.is-ios {
 }
 
 body.is-ios .chatbot-input {
-    padding-bottom: calc(12px + env(safe-area-inset-bottom));
+    padding-bottom: calc(8px + env(safe-area-inset-bottom));
+    bottom: calc(15px + env(safe-area-inset-bottom));
 }
 
 /* Added for in-app browser specific fixes */
 body.in-app-browser .chatbot-input {
     position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
+    bottom: 15px;
 }
     </style>
 </head>
