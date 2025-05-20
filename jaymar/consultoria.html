@@ -363,29 +363,6 @@ a {
     }
 }
 
-/* Fullscreen specific styles */
-.fullscreen-button {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    background: rgba(0, 0, 0, 0.3);
-    border: none;
-    color: white;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 1000;
-    transition: background 0.3s;
-}
-
-.fullscreen-button:hover {
-    background: rgba(0, 0, 0, 0.5);
-}
-
 /* Added for iOS Safari fixing */
 body.is-ios {
     padding-bottom: env(safe-area-inset-bottom);
@@ -417,10 +394,6 @@ body.in-app-browser .chatbot-input {
         <input type="text" id="userInput" placeholder="Escribe aquí..." />
         <button id="sendButton" onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
     </div>
-
-    <button id="fullscreenToggle" class="fullscreen-button" title="Toggle Fullscreen">
-        <i class="fas fa-expand"></i>
-    </button>
 
     <script>
 document.addEventListener("DOMContentLoaded", function() {
@@ -565,51 +538,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }, 50);
     }
     
-    // Fullscreen toggle functionality
-    const fullscreenButton = document.getElementById('fullscreenToggle');
-    
-    fullscreenButton.addEventListener('click', function() {
-        if (!document.fullscreenElement) {
-            // Enter fullscreen
-            if (document.documentElement.requestFullscreen) {
-                document.documentElement.requestFullscreen();
-            } else if (document.documentElement.mozRequestFullScreen) { // Firefox
-                document.documentElement.mozRequestFullScreen();
-            } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari, Opera
-                document.documentElement.webkitRequestFullscreen();
-            } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
-                document.documentElement.msRequestFullscreen();
-            }
-            fullscreenButton.innerHTML = '<i class="fas fa-compress"></i>';
-        } else {
-            // Exit fullscreen
-            if (document.exitFullscreen) {
-                document.exitFullscreen();
-            } else if (document.mozCancelFullScreen) { // Firefox
-                document.mozCancelFullScreen();
-            } else if (document.webkitExitFullscreen) { // Chrome, Safari, Opera
-                document.webkitExitFullscreen();
-            } else if (document.msExitFullscreen) { // IE/Edge
-                document.msExitFullscreen();
-            }
-            fullscreenButton.innerHTML = '<i class="fas fa-expand"></i>';
-        }
-    });
-    
-    // Handle fullscreen change event
-    document.addEventListener('fullscreenchange', updateFullscreenButton);
-    document.addEventListener('webkitfullscreenchange', updateFullscreenButton);
-    document.addEventListener('mozfullscreenchange', updateFullscreenButton);
-    document.addEventListener('MSFullscreenChange', updateFullscreenButton);
-    
-    function updateFullscreenButton() {
-        if (document.fullscreenElement) {
-            fullscreenButton.innerHTML = '<i class="fas fa-compress"></i>';
-        } else {
-            fullscreenButton.innerHTML = '<i class="fas fa-expand"></i>';
-        }
-    }
-
     // Step counter and data collection object
     let currentStep = 1;
     let weddingData = {
@@ -653,29 +581,28 @@ document.addEventListener("DOMContentLoaded", function() {
         const messageDiv = document.createElement('div');
         messageDiv.className = 'message bot-message';
         
-        const messageText = document.createTextNode(message + (options || showTip ? ' ' : ''));
-        messageDiv.appendChild(messageText);
-
         if (showTip) {
-            // Normal message instead of wedding highlight special format
-            messageDiv.innerHTML = '¡Hola! te doy la bienvenida a nuestro planificador de bodas';
-        }
-
-        if (options) {
-            const optionsDiv = document.createElement('div');
-            optionsDiv.className = 'sector-options';
+            // Set the welcome message directly
+            messageDiv.textContent = '¡Hola! te doy la bienvenida a nuestro planificador de bodas';
+        } else {
+            messageDiv.textContent = message;
             
-            options.forEach(option => {
-                const optionDiv = document.createElement('div');
-                optionDiv.className = 'sector-option';
-                optionDiv.textContent = option;
-                optionDiv.onclick = () => selectOption(option);
-                optionsDiv.appendChild(optionDiv);
-            });
-            
-            messageDiv.appendChild(optionsDiv);
-            userInput.disabled = true;
-            sendButton.disabled = true;
+            if (options) {
+                const optionsDiv = document.createElement('div');
+                optionsDiv.className = 'sector-options';
+                
+                options.forEach(option => {
+                    const optionDiv = document.createElement('div');
+                    optionDiv.className = 'sector-option';
+                    optionDiv.textContent = option;
+                    optionDiv.onclick = () => selectOption(option);
+                    optionsDiv.appendChild(optionDiv);
+                });
+                
+                messageDiv.appendChild(optionsDiv);
+                userInput.disabled = true;
+                sendButton.disabled = true;
+            }
         }
 
         messageBubble.appendChild(messageDiv);
@@ -869,7 +796,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Initialize chat - start directly with first question
     setTimeout(() => {
-        addBotMessage("¡Hola! te damos la bienvenida a nuestro planificador de bodas", null, true);
+        addBotMessage("", null, true);
         
         // Start directly with first question
         setTimeout(() => {
