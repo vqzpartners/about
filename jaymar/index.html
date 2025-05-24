@@ -58,6 +58,15 @@
             box-shadow: 0 5px 15px rgba(153, 200, 204, 0.3);
         }
 
+        .main-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
         .username {
             font-family: 'Montserrat', sans-serif;
             font-size: 1rem;
@@ -421,6 +430,26 @@
             font-size: 0.9rem;
         }
 
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            margin: 2rem 0 3rem 0;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(153, 200, 204, 0.2);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -456,6 +485,10 @@
             .subtitle {
                 font-size: 1.2rem;
             }
+
+            .main-name {
+                font-size: 1.7rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -480,6 +513,10 @@
             .icon-circle i {
                 font-size: 20px;
             }
+
+            .main-name {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>   
@@ -487,6 +524,7 @@
     <div class="container">
         <header>
             <img src="https://vqzpartners.com/jaymar/cdn/jay.webp" alt="Jaymar Pinzon">
+            <h1 class="main-name">Jaymar Pinzon</h1>
             <p class="username">@granevento</p>
             <div class="social-links">
                 <a href="https://www.facebook.com/granevento.jaymar/" class="social-link" target="_blank" rel="noopener noreferrer">
@@ -511,6 +549,12 @@
             </div>
             <div class="divider"></div>
         </header>
+
+        <!-- Video Section -->
+        <p class="section-header">Entrevista con Brian</p>
+        <div class="video-container">
+            <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/fC0Zhz8zcUs?si=WO_LWTXUxyaYi5EX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
 
         <!-- About Section -->
         <p class="section-header">Sobre Mí</p>
