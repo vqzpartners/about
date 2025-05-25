@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Catálogo de Arreglos - Creations by Andy</title>
+    <link rel="icon" href="img/favicon.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <meta name="title" content="Catálogo de Arreglos - Creations by Andy">
+    <meta name="description" content="Descubre nuestro catálogo completo de arreglos florales y decoraciones para eventos especiales.">
+    <meta name="keywords" content="catálogo, arreglos florales, rosas, bouquets, flower box, Panamá">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: #fff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Loader Styles */
+        .loader-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .loader-container.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-text {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .loader-main-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        .loader-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.5rem;
+            color: #a5655f;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.6s forwards;
+        }
+
+        .loader-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #a5655f;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            opacity: 0;
+            animation: spin 1s linear infinite, fadeIn 0.5s ease 0.9s forwards;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .main-content.show {
+            opacity: 1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        .catalog-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #a5655f;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            background-color: rgba(165, 101, 95, 0.1);
+        }
+
+        .back-button:hover {
+            background-color: rgba(165, 101, 95, 0.2);
+            transform: translateX(-3px);
+        }
+
+        .catalog-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .catalog-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.3rem;
+            color: #a5655f;
+            margin-bottom: 2rem;
+        }
+
+        .divider {
+            width: 80px;
+            height: 3px;
+            background-color: #a5655f;
+            margin: 1rem auto;
+        }
+
+        /* Filter Section */
+        .filter-section {
+            background: linear-gradient(135deg, rgba(165, 101, 95, 0.1), rgba(165, 101, 95, 0.05));
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .filter-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: #a5655f;
+            margin-bottom: 1.5rem;
+        }
+
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .filter-button {
+            padding: 0.7rem 1.5rem;
+            border: 2px solid #a5655f;
+            background-color: transparent;
+            color: #a5655f;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .filter-button:hover,
+        .filter-button.active {
+            background-color: #a5655f;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(165, 101, 95, 0.3);
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .product-card {
+            background: white;
+            border: 1px solid rgba(165, 101, 95, 0.3);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            animation: fadeInCard 0.6s ease forwards;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(165, 101, 95, 0.2);
+        }
+
+        .product-images {
+            position: relative;
+            height: 250px; /* Ajusta según el aspect ratio de tus imágenes */
+            overflow: hidden;
+            background-color: #f0f0f0; /* Color de fondo mientras carga la imagen */
+        }
+
+        .image-carousel {
+            display: flex;
+            height: 100%;
+            transition: transform 0.3s ease;
+        }
+
+        .product-image {
+            min-width: 100%;
+            height: 100%;
+            background-color: #f8f8f8; /* Fallback si la imagen no carga */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #a5655f; /* Color del texto placeholder si la imagen no carga */
+            font-size: 1rem; /* Tamaño del texto placeholder */
+            font-style: italic;
+            text-align: center;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #a5655f;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+
+        .product-card:hover .carousel-nav {
+            opacity: 1;
+        }
+
+        .carousel-nav:hover {
+            background-color: #a5655f;
+            color: white;
+        }
+
+        .carousel-prev {
+            left: 10px;
+        }
+
+        .carousel-next {
+            right: 10px;
+        }
+
+        .image-indicators {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 5px;
+        }
+
+        .indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator.active {
+            background-color: white;
+            transform: scale(1.2);
+        }
+
+        .product-content {
+            padding: 1.5rem;
+        }
+
+        .product-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: #333;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .price-options {
+            display: grid;
+            gap: 0.8rem;
+        }
+
+        .price-option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem;
+            background: linear-gradient(135deg, rgba(165, 101, 95, 0.05), rgba(165, 101, 95, 0.1));
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .price-option:hover {
+            background: linear-gradient(135deg, rgba(165, 101, 95, 0.1), rgba(165, 101, 95, 0.15));
+            transform: translateX(5px);
+        }
+
+        .size-name {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .price {
+            font-weight: 600;
+            color: #a5655f;
+            font-size: 1.1rem;
+        }
+
+        .order-button {
+            width: 100%;
+            margin-top: 1rem;
+            padding: 0.8rem;
+            background: linear-gradient(135deg, #a5655f, #8b534e);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .order-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(165, 101, 95, 0.3);
+        }
+
+        /* Contact CTA */
+        .contact-cta {
+            background: linear-gradient(135deg, #a5655f, #8b534e);
+            border-radius: 15px;
+            padding: 3rem;
+            text-align: center;
+            color: white;
+            margin-top: 4rem;
+        }
+
+        .contact-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-description {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .whatsapp-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: white;
+            color: #8b534e;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .whatsapp-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 2rem;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            position: relative;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #a5655f;
+        }
+
+        .modal h3 {
+            font-family: 'Playfair Display', serif;
+            color: #a5655f;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .modal-product-info {
+            background: rgba(165, 101, 95, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+        }
+
+        .modal input, .modal select {
+            width: 100%;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            border: 2px solid rgba(165, 101, 95, 0.3);
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .modal input:focus, .modal select:focus {
+            outline: none;
+            border-color: #a5655f;
+        }
+
+        .modal-cta {
+            background-color: #a5655f;
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            font-size: 1rem;
+        }
+
+        .modal-cta:hover {
+            background-color: #8b534e;
+        }
+
+        @keyframes fadeInCard {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .back-button {
+                position: relative;
+                margin-bottom: 1rem;
+            }
+
+            .catalog-title {
+                font-size: 2rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .filter-buttons {
+                gap: 0.5rem;
+            }
+
+            .filter-button {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .catalog-title {
+                font-size: 1.7rem;
+            }
+
+            .catalog-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .filter-section {
+                padding: 1.5rem;
+            }
+
+            .filter-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .filter-button {
+                width: 100%;
+                max-width: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loader -->
+    <div class="loader-container" id="loader">
+        <div class="loader-text">
+            <h1 class="loader-main-title">Catálogo de Arreglos</h1>
+            <h2 class="loader-subtitle">Descubre nuestras creaciones florales 💐</h2>
+        </div>
+        <div class="loader-spinner"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <a href="https://vqzpartners.com/andy" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            <span>Volver al inicio</span>
+        </a>
+
+        <div class="container">
+            <header class="catalog-header">
+                <h1 class="catalog-title">Catálogo de Arreglos</h1>
+                <p class="catalog-subtitle">Cada flor cuenta una historia única</p>
+                <div class="divider"></div>
+            </header>
+
+            <!-- Filter Section -->
+            <div class="filter-section">
+                <h3 class="filter-title">Filtrar por categoría</h3>
+                <div class="filter-buttons">
+                    <button class="filter-button active" data-category="all">Todos los productos</button>
+                    <button class="filter-button" data-category="rosas">Rosas</button>
+                    <button class="filter-button" data-category="bouquets">Bouquets</button>
+                    <button class="filter-button" data-category="boxes">Boxes</button>
+                    <button class="filter-button" data-category="mix">Mix & Especiales</button>
+                </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be generated by JavaScript -->
+            </div>
+
+            <!-- Contact CTA -->
+            <div class="contact-cta">
+                <h3 class="contact-title">¿Necesitas ayuda para elegir?</h3>
+                <p class="contact-description">Nuestro equipo está listo para asesorarte y crear el arreglo perfecto para tu ocasión especial. ¡Contáctanos ahora!</p>
+                <a href="https://wa.me/50762201338?text=Hola%20Andy,%20me%20interesa%20conocer%20más%20sobre%20sus%20arreglos%20florales." class="whatsapp-button">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>Consultar por WhatsApp</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Modal -->
+    <div id="orderModal" class="modal">
+        <div class="modal-content">
+            <span class="close">×</span>
+            <h3>Realizar Pedido</h3>
+            <div class="modal-product-info">
+                <p id="modalProductName"></p>
+            </div>
+            <input type="text" id="customerName" placeholder="Tu nombre completo" required>
+            <input type="tel" id="customerPhone" placeholder="Tu número de teléfono" required>
+            <select id="sizeSelection" required>
+                <!-- Options will be populated by JavaScript -->
+            </select>
+            <input type="date" id="deliveryDate" min="" required>
+            <input type="text" id="specialInstructions" placeholder="Instrucciones especiales (opcional)">
+            <button class="modal-cta" onclick="sendOrder()">Enviar Pedido por WhatsApp</button>
+        </div>
+    </div>
+
+    <script>
+        // Product data with specific image paths
+        const productsData = {
+            "Rosas con chocolate": {
+                "Pequeño": 40, "Mediano": 60, "Maxi": 150,
+                "imagePaths": [
+                    "img/catalogo/classic_peq.jpg",
+                    "img/catalogo/classic_med.jpg",
+                    "img/catalogo/classic_max.jpg"
+                ],
+                "category": "rosas"
+            },
+            "Flower Box": {
+                "6 rosas": 25, "12 rosas": 45, "24 rosas": 75, "50 rosas": 130,
+                "imagePaths": [ "img/catalogo/rbox.jpg" ],
+                "category": "boxes"
+            },
+            "Rosas con orquídeas": {
+                "12 rosas": 65, "24 rosas": 95, "50 rosas": 150,
+                "imagePaths": [ "img/catalogo/o_rosas_grandes.jpg" ],
+                "category": "rosas"
+            },
+            "Coquette Box": {
+                "Pequeño con globo": 45, "Mediano": 65, "Grande": 95,
+                "imagePaths": [
+                    "img/catalogo/cbox_peq.jpg",
+                    "img/catalogo/cbox_med.jpg",
+                    "img/catalogo/cbox_grande.jpg"
+                ],
+                "category": "boxes"
+            },
+            "Boquete Solo Rosas": {
+                "6 rosas": 25, "12 rosas": 45, "24 rosas": 75, "50 rosas": 130,
+                "imagePaths": [
+                    "img/catalogo/brosas.jpg",
+                    "img/catalogo/brosas2.jpg"
+                ],
+                "category": "rosas"
+            },
+            "Box Mix": {
+                "Pequeño": 40, "Mediano": 65, "Grande": 100,
+                "Champagne y Globo adicional": 8,
+                "imagePaths": [
+                    "img/catalogo/boxmix.jpg",
+                    "img/catalogo/boxmix2.jpg"
+                ],
+                "category": "mix"
+            },
+            "Andy Ballon Mix": {
+                "Pequeño": 50, "Mediano": 75, "Grande": 120,
+                "imagePaths": [
+                    "img/catalogo/andyballon.jpg",
+                    "img/catalogo/andyballon2.jpg"
+                ],
+                "category": "mix"
+            },
+            "Bouquets": {
+                "Pequeño": 40, "Mediano": 65,
+                "imagePaths": [
+                    "img/catalogo/bouquette_med.jpg",
+                    "img/catalogo/bouquette_peq.jpg"
+                ],
+                "category": "bouquets"
+            },
+            "Wet Bouquets": {
+                "Pequeño": 45, "Mediano": 65,
+                "imagePaths": [
+                    "img/catalogo/wetb.jpg",
+                    "img/catalogo/wetb_mediano.jpg"
+                ],
+                "category": "bouquets"
+            },
+            "Flores Deluxe": {
+                "Pequeño": 50, "Mediano": 75, "Grande": 85,
+                "imagePaths": [
+                    "img/catalogo/flores_d_peq.jpg",
+                    "img/catalogo/flores_d_med.jpg",
+                    "img/catalogo/flores_d_grande.jpg"
+                ],
+                "category": "mix"
+            }
+        };
+
+
+        let currentProduct = {};
+        let carouselStates = {};
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const loader = document.getElementById('loader');
+            const mainContent = document.getElementById('mainContent');
+            
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            document.getElementById('deliveryDate').min = tomorrow.toISOString().split('T')[0];
+            
+            setTimeout(function() {
+                loader.classList.add('hidden');
+                setTimeout(function() {
+                    mainContent.classList.add('show');
+                    generateProducts();
+                }, 300);
+            }, 1500);
+
+            const filterButtons = document.querySelectorAll('.filter-button');
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    filterProducts(this.dataset.category);
+                });
+            });
+
+            const modal = document.getElementById('orderModal');
+            const closeBtn = document.getElementsByClassName('close')[0];
+            closeBtn.onclick = function() { modal.style.display = 'none'; }
+            window.onclick = function(event) {
+                if (event.target == modal) { modal.style.display = 'none'; }
+            }
+        });
+
+        // --- MODIFICACIÓN PARA USAR imagePaths ---
+        function generateProducts() {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = '';
+
+            Object.entries(productsData).forEach(([productName, productInfo]) => {
+                // Extraer imagePaths en lugar de images
+                const { imagePaths, category, ...sizes } = productInfo; 
+                
+                const productCard = document.createElement('div');
+                productCard.className = `product-card`;
+                productCard.dataset.category = category;
+
+                const productNameSlug = getProductSlug(productName); // Para el ID del carrusel
+
+                let imageCarouselHTML = '';
+                let indicatorsHTML = '';
+                
+                // Iterar sobre el array imagePaths
+                if (imagePaths && imagePaths.length > 0) {
+                    imagePaths.forEach((imagePath, index) => {
+                        const placeholderText = `Imagen ${index + 1} de ${productName}`;
+                        imageCarouselHTML += `<div class="product-image" style="background-image: url('${imagePath}');">${placeholderText}</div>`;
+                        indicatorsHTML += `<div class="indicator ${index === 0 ? 'active' : ''}" onclick="goToSlide('${productName.replace(/'/g, "\\'")}', ${index})"></div>`;
+                    });
+                } else {
+                    // Fallback si no hay imagePaths definidos o está vacío
+                    imageCarouselHTML = `<div class="product-image">No hay imágenes disponibles</div>`;
+                }
+
+
+                let priceOptionsHTML = '';
+                Object.entries(sizes).forEach(([size, price]) => {
+                    priceOptionsHTML += `
+                        <div class="price-option">
+                            <span class="size-name">${size}</span>
+                            <span class="price">$${price}</span>
+                        </div>
+                    `;
+                });
+                
+                const carouselId = `carousel-${productNameSlug}`;
+                const numberOfImages = imagePaths ? imagePaths.length : 0;
+
+                productCard.innerHTML = `
+                    <div class="product-images">
+                        <div class="image-carousel" id="${carouselId}">
+                            ${imageCarouselHTML}
+                        </div>
+                        ${numberOfImages > 1 ? `
+                            <button class="carousel-nav carousel-prev" onclick="prevImage('${productName.replace(/'/g, "\\'")}')">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="carousel-nav carousel-next" onclick="nextImage('${productName.replace(/'/g, "\\'")}')">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                            <div class="image-indicators">
+                                ${indicatorsHTML}
+                            </div>
+                        ` : ''}
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">${productName}</h3>
+                        <div class="price-options">
+                            ${priceOptionsHTML}
+                        </div>
+                        <button class="order-button" onclick="openOrderModal('${productName.replace(/'/g, "\\'")}')">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>Ordenar por WhatsApp</span>
+                        </button>
+                    </div>
+                `;
+
+                grid.appendChild(productCard);
+                carouselStates[productName] = 0;
+            });
+        }
+        // --- FIN DE MODIFICACIÓN ---
+
+        function filterProducts(category) {
+            const products = document.querySelectorAll('.product-card');
+            products.forEach(product => {
+                if (category === 'all' || product.dataset.category === category) {
+                    product.style.display = 'block';
+                    product.style.animation = 'none';
+                    product.offsetHeight; 
+                    product.style.animation = ''; 
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        }
+        
+        function getProductSlug(productName) {
+             return productName
+                .toLowerCase()
+                .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+                .replace(/[^\w\s-]/g, '')
+                .replace(/\s+/g, '-')
+                .replace(/-+/g, '-');
+        }
+
+        function getCarouselId(productName) {
+            return `carousel-${getProductSlug(productName)}`;
+        }
+
+        function prevImage(productName) {
+            // Usar la longitud del array imagePaths
+            const totalImages = productsData[productName].imagePaths.length;
+            carouselStates[productName] = (carouselStates[productName] - 1 + totalImages) % totalImages;
+            updateCarousel(productName);
+        }
+
+        function nextImage(productName) {
+            // Usar la longitud del array imagePaths
+            const totalImages = productsData[productName].imagePaths.length;
+            carouselStates[productName] = (carouselStates[productName] + 1) % totalImages;
+            updateCarousel(productName);
+        }
+
+        function goToSlide(productName, index) {
+            carouselStates[productName] = index;
+            updateCarousel(productName);
+        }
+
+        function updateCarousel(productName) {
+            const carouselElement = document.getElementById(getCarouselId(productName));
+            if (!carouselElement) return; 
+            const indicators = carouselElement.parentNode.querySelectorAll('.indicator');
+            const currentIndex = carouselStates[productName];
+            
+            carouselElement.style.transform = `translateX(-${currentIndex * 100}%)`;
+            
+            indicators.forEach((indicator, idx) => {
+                indicator.classList.toggle('active', idx === currentIndex);
+            });
+        }
+
+        function openOrderModal(productName) {
+            currentProduct = {
+                name: productName,
+                sizes: { ...productsData[productName] }
+            };
+            // Eliminar imagePaths y category de currentProduct.sizes
+            delete currentProduct.sizes.imagePaths; 
+            delete currentProduct.sizes.category;
+
+            document.getElementById('modalProductName').textContent = `Producto: ${productName}`;
+            
+            const sizeSelect = document.getElementById('sizeSelection');
+            sizeSelect.innerHTML = '<option value="">Selecciona un tamaño/opción</option>';
+            
+            Object.entries(currentProduct.sizes).forEach(([size, price]) => {
+                const option = document.createElement('option');
+                option.value = `${size} - $${price}`;
+                option.textContent = `${size} - $${price}`;
+                sizeSelect.appendChild(option);
+            });
+
+            document.getElementById('customerName').value = '';
+            document.getElementById('customerPhone').value = '';
+            document.getElementById('deliveryDate').value = '';
+            document.getElementById('specialInstructions').value = '';
+            document.getElementById('orderModal').style.display = 'block';
+        }
+
+        function sendOrder() {
+            const customerName = document.getElementById('customerName').value.trim();
+            const customerPhone = document.getElementById('customerPhone').value.trim();
+            const sizeSelection = document.getElementById('sizeSelection').value;
+            const deliveryDate = document.getElementById('deliveryDate').value;
+            const specialInstructions = document.getElementById('specialInstructions').value.trim();
+
+            if (!customerName || !customerPhone || !sizeSelection || !deliveryDate) {
+                alert('Por favor, completa todos los campos obligatorios: Nombre, Teléfono, Tamaño/Opción y Fecha de Entrega.');
+                return;
+            }
+
+            const productName = currentProduct.name;
+
+            let message = `Hola Andy! 🌸\n\n`;
+            message += `*NUEVO PEDIDO*\n`;
+            message += `━━━━━━━━━━━━━━━━━━━━\n`;
+            message += `👤 *Cliente:* ${customerName}\n`;
+            message += `📞 *Teléfono:* ${customerPhone}\n`;
+            message += `💐 *Producto de Interés:* ${productName}\n`;
+            message += `📏 *Tamaño/Opción Seleccionada:* ${sizeSelection}\n`;
+            message += `📅 *Fecha de Entrega:* ${deliveryDate}\n`;
+
+            if (specialInstructions) {
+                message += `📝 *Instrucciones Especiales:* ${specialInstructions}\n`;
+            }
+            message += `\nEspero tu confirmación. ¡Gracias! 😊`;
+
+            const whatsappNumber = "50762201338";
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+            window.open(whatsappURL, '_blank');
+            document.getElementById('orderModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
