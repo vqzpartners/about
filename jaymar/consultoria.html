@@ -19,8 +19,8 @@ html, body {
     width: 100%;
     overflow: hidden;
     font-family: 'Roboto', 'Arial', sans-serif;
-    background-color: #99c8cc; /* Using main color for entire background */
-    position: fixed; /* Prevent scrolling of the body */
+    background-color: #99c8cc;
+    position: fixed;
 }
 
 a {
@@ -41,34 +41,33 @@ a {
     width: 100%;
     height: 100%;
     max-width: 100%;
-    background: #99c8cc; /* Main color */
-    border-radius: 0; /* Remove border radius for fullscreen */
+    background: #99c8cc;
+    border-radius: 0;
     padding: 20px;
     color: #fff;
     display: flex;
     flex-direction: column;
-    box-shadow: none; /* Removed box shadow */
+    box-shadow: none;
 }
 
-/* Modified desktop styles to make it fullscreen */
 @media (min-width: 769px) {
     .chatbot-container {
-        max-width: 100%; /* Make container fullscreen */
+        max-width: 100%;
         width: 100%;
         margin: 0;
-        height: 100%; /* Full height */
-        border-radius: 0; /* No border radius */
-        box-shadow: none; /* No box shadow */
+        height: 100%;
+        border-radius: 0;
+        box-shadow: none;
     }
     
     .page-container {
-        padding: 0; /* Remove padding */
+        padding: 0;
     }
     
     .chatbot-input {
-        max-width: 600px; /* Kept width for pill effect */
+        max-width: 600px;
         margin: 0 auto;
-        border-radius: 30px !important; /* Ensure pill shape even on desktop */
+        border-radius: 30px !important;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
 }
@@ -81,7 +80,7 @@ a {
     flex-direction: column;
     margin-bottom: 15px;
     -webkit-overflow-scrolling: touch;
-    position: relative; /* Added for absolute positioning of content */
+    position: relative;
 }
 
 .chatbot-messages::-webkit-scrollbar {
@@ -126,10 +125,9 @@ a {
     border-radius: 50%;
     margin: 0 8px;
     object-fit: cover;
-    background-color: #eee; /* Placeholder background */
+    background-color: #eee;
 }
 
-/* Added border around bot avatar */
 .bot-container .message-avatar {
     border: 2px solid white;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -145,11 +143,11 @@ a {
 }
 
 .bot-message {
-    background: rgba(0, 0, 0, 0.2); /* Darker for better contrast */
+    background: rgba(0, 0, 0, 0.2);
     color: #fff;
     border-top-left-radius: 4px;
-    font-weight: 500; /* Slightly bolder text */
-    text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.1); /* Subtle text shadow for better readability */
+    font-weight: 500;
+    text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.1);
 }
 
 .user-message {
@@ -157,7 +155,7 @@ a {
     color: #333;
     text-align: left;
     border-top-right-radius: 4px;
-    font-weight: 500; /* Slightly bolder text */
+    font-weight: 500;
 }
 
 .sector-options {
@@ -168,65 +166,62 @@ a {
 }
 
 .sector-option {
-    background: rgba(255, 255, 255, 0.3); /* Increased opacity for better visibility */
+    background: rgba(255, 255, 255, 0.3);
     padding: 10px 14px;
     border-radius: 20px;
     cursor: pointer;
     transition: background 0.3s;
     display: inline-block;
     font-size: 17px;
-    font-weight: 500; /* Slightly bolder text */
-    text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.1); /* Subtle text shadow for better readability */
+    font-weight: 500;
+    text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.1);
 }
 
 .sector-option:hover {
     background: rgba(255, 255, 255, 0.4);
 }
 
-/* Modified chatbot input to be a floating pill */
 .chatbot-input {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 8px 10px; /* Reduced padding */
-    background: rgba(255, 255, 255, 0.95); /* Light background */
+    padding: 8px 10px;
+    background: rgba(255, 255, 255, 0.95);
     z-index: 100;
-    position: fixed; /* Fixed positioning */
-    bottom: 15px; /* Space from bottom */
-    left: 50%; /* Center horizontally */
-    transform: translateX(-50%); /* Center properly */
-    width: 90%; /* Width as percentage of viewport */
-    max-width: 500px; /* Maximum width */
-    border-radius: 30px; /* Rounded corners for pill shape */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Shadow for floating effect */
-    border: 1px solid rgba(0, 0, 0, 0.1); /* Subtle border */
+    position: fixed;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 500px;
+    border-radius: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-/* Add special class for when keyboard is open */
 .keyboard-open .chatbot-input {
-    bottom: 5px; /* Less space from bottom when keyboard is open */
+    bottom: 5px;
 }
 
 .chatbot-input input {
     flex: 1;
     padding: 12px 15px;
-    border: none; /* Remove border */
+    border: none;
     border-radius: 20px;
     outline: none;
     font-size: 17px;
-    background: transparent; /* Transparent background */
-    color: #333; /* Dark text for contrast */
+    background: transparent;
+    color: #333;
     font-family: 'Roboto', sans-serif;
 }
 
-/* Date input styling to make it look like regular input */
 .chatbot-input input[type="date"] {
     color: #333;
     font-family: 'Roboto', sans-serif;
 }
 
 .chatbot-input input[type="date"]::-webkit-calendar-picker-indicator {
-    filter: invert(0.5); /* Darker color for the calendar icon */
+    filter: invert(0.5);
     cursor: pointer;
     opacity: 0.9;
     width: 20px;
@@ -234,7 +229,7 @@ a {
 }
 
 .chatbot-input input::placeholder {
-    color: rgba(0, 0, 0, 0.5); /* Darker placeholder text */
+    color: rgba(0, 0, 0, 0.5);
 }
 
 .chatbot-input input:disabled {
@@ -243,9 +238,9 @@ a {
 }
 
 .chatbot-input button {
-    background: #88b7bb; /* Use main theme color */
+    background: #88b7bb;
     border: none;
-    color: white; /* White icon */
+    color: white;
     font-size: 18px;
     cursor: pointer;
     border-radius: 50%;
@@ -256,11 +251,11 @@ a {
     justify-content: center;
     transition: background 0.3s;
     flex-shrink: 0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .chatbot-input button:hover {
-    background: #75a4a8; /* Darker on hover */
+    background: #75a4a8;
 }
 
 .chatbot-input button:disabled {
@@ -272,17 +267,15 @@ a {
     text-align: center;
     font-size: 16px;
     margin-top: 15px;
-    color: rgba(255, 255, 255, 0.9); /* Increased opacity for better visibility */
-    font-weight: 500; /* Slightly bolder text */
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
 }
 
-/* Fixed padding to account for fixed input bar */
 .chat-bottom-padding {
-    height: 90px; /* Height of the input bar + padding */
+    height: 90px;
     flex-shrink: 0;
 }
 
-/* Media queries for responsive design */
 @media (max-width: 768px) {
     .message {
         font-size: 16px;
@@ -351,7 +344,7 @@ a {
     
     .chatbot-input {
         padding: 6px 8px;
-        width: 92%; /* Slightly wider on small screens */
+        width: 92%;
     }
     
     .chatbot-input input {
@@ -399,7 +392,6 @@ a {
     }
 }
 
-/* Added for iOS Safari fixing */
 body.is-ios {
     padding-bottom: env(safe-area-inset-bottom);
 }
@@ -409,7 +401,6 @@ body.is-ios .chatbot-input {
     bottom: calc(15px + env(safe-area-inset-bottom));
 }
 
-/* Added for in-app browser specific fixes */
 body.in-app-browser .chatbot-input {
     position: fixed;
     bottom: 15px;
@@ -433,21 +424,22 @@ body.in-app-browser .chatbot-input {
 
     <script>
 document.addEventListener("DOMContentLoaded", function() {
-    // Check for iOS
+    // Enhanced iOS detection
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    
     if (isIOS) {
         document.body.classList.add('is-ios');
     }
     
-    // Detect in-app browsers more comprehensively
+    // Enhanced in-app browser detection
     const detectInAppBrowser = () => {
         const userAgent = navigator.userAgent || navigator.vendor || window.opera;
         
-        // Check for common in-app browser strings
         const inAppBrowserIndicators = [
             'Instagram', 'FBAV', 'Twitter', 'FBAN', 'Line', 'Pinterest',
             'FBiOS', 'FBIOS', 'TikTok', 'WhatsApp', 'WeChat', 'Snapchat',
-            'LinkedIn', 'Slack', 'Discord'
+            'LinkedIn', 'Slack', 'Discord', 'Messenger'
         ];
         
         const isInApp = inAppBrowserIndicators.some(indicator => 
@@ -469,41 +461,33 @@ document.addEventListener("DOMContentLoaded", function() {
     const sendButton = document.getElementById('sendButton');
     const chatbotInput = document.getElementById('chatbotInput');
     
-    // Make sure chatbot input is visible from the start
     chatbotInput.style.display = 'flex';
     
     // Enhanced Keyboard Detection & Handling
     function setupKeyboardHandling() {
-        // Use a variable to track keyboard state
         let isKeyboardOpen = false;
         
-        // Function to handle keyboard opening
         function handleKeyboardOpen() {
             if (!isKeyboardOpen) {
                 isKeyboardOpen = true;
                 document.body.classList.add('keyboard-open');
                 
-                // On keyboard open, ensure the input is visible
                 setTimeout(() => {
-                    // Scroll to position input at good viewing height
                     window.scrollTo({
                         top: document.body.scrollHeight,
                         behavior: 'smooth'
                     });
                     
-                    // Ensure last message is visible above the keyboard
                     chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
                 }, 300);
             }
         }
         
-        // Function to handle keyboard closing
         function handleKeyboardClose() {
             if (isKeyboardOpen) {
                 isKeyboardOpen = false;
                 document.body.classList.remove('keyboard-open');
                 
-                // On keyboard close, scroll to the bottom of conversation
                 setTimeout(() => {
                     chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
                     window.scrollTo(0, 0);
@@ -511,13 +495,10 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         }
         
-        // Detect if using iOS or Android
         if (isIOS || isInAppBrowser) {
-            // iOS and in-app browsers handle focus/blur events well
             userInput.addEventListener('focus', handleKeyboardOpen);
             userInput.addEventListener('blur', handleKeyboardClose);
             
-            // Add additional orientation change handling for iOS
             window.addEventListener('orientationchange', () => {
                 setTimeout(() => {
                     if (document.activeElement === userInput) {
@@ -529,7 +510,6 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         } 
         
-        // Visual Viewport API for modern browsers
         if (window.visualViewport) {
             let lastHeight = window.visualViewport.height;
             
@@ -537,11 +517,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 const newHeight = window.visualViewport.height;
                 const heightDiff = window.innerHeight - newHeight;
                 
-                // Check if keyboard might be opening
                 if (heightDiff > 150 && newHeight < lastHeight) {
                     handleKeyboardOpen();
                 } 
-                // Check if keyboard might be closing
                 else if (newHeight > lastHeight && heightDiff < 50) {
                     handleKeyboardClose();
                 }
@@ -550,9 +528,8 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         }
         
-        // Fallback for older browsers
         window.addEventListener('resize', () => {
-            const heightDiff = window.innerHeight - window.visualViewport?.height || 0;
+            const heightDiff = window.innerHeight - (window.visualViewport?.height || window.innerHeight);
             
             if (heightDiff > 150) {
                 handleKeyboardOpen();
@@ -562,17 +539,14 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
     
-    // Call keyboard setup
     setupKeyboardHandling();
     
-    // Improved scrolling function
     function scrollToBottom() {
         setTimeout(() => {
             chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
         }, 50);
     }
     
-    // Step counter and data collection object
     let currentStep = 1;
     let weddingData = {
         'nombre': '',
@@ -583,19 +557,15 @@ document.addEventListener("DOMContentLoaded", function() {
         'mayorPreocupacion': ''
     };
 
-    // Bot and user avatar images - Using placeholder for bot image
     const botAvatarSrc = "cdn/5acf7cd87d96402185db7e1bb684f382.jpg";
     const userAvatarSrc = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23808080'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E";
 
-    // Track the last message sender to handle consecutive bot messages
     let lastMessageSender = null;
 
-    // Function to add bot message to chat
     function addBotMessage(message, options = null, showTip = false) {
         const messageContainer = document.createElement('div');
         messageContainer.className = 'message-container bot-container';
         
-        // Add bot name only if the last message wasn't from the bot
         if (lastMessageSender !== 'bot') {
             const nameDiv = document.createElement('div');
             nameDiv.className = 'bot-name';
@@ -616,7 +586,6 @@ document.addEventListener("DOMContentLoaded", function() {
         messageDiv.className = 'message bot-message';
         
         if (showTip) {
-            // Set the welcome message directly
             messageDiv.textContent = '¡Hola! te doy la bienvenida a nuestro planificador de bodas';
         } else {
             messageDiv.textContent = message;
@@ -643,13 +612,10 @@ document.addEventListener("DOMContentLoaded", function() {
         messageContainer.appendChild(messageBubble);
         chatbotMessages.appendChild(messageContainer);
         
-        // Update last message sender
         lastMessageSender = 'bot';
-        
         scrollToBottom();
     }
 
-    // Function to add user message to chat
     function addUserMessage(message) {
         const messageContainer = document.createElement('div');
         messageContainer.className = 'message-container user-container';
@@ -672,13 +638,10 @@ document.addEventListener("DOMContentLoaded", function() {
         
         chatbotMessages.appendChild(messageContainer);
         
-        // Update last message sender
         lastMessageSender = 'user';
-        
         scrollToBottom();
     }
 
-    // Function to handle option selection
     function selectOption(option) {
         addUserMessage(option);
         userInput.disabled = false;
@@ -694,19 +657,16 @@ document.addEventListener("DOMContentLoaded", function() {
             weddingData.edad = option;
             currentStep++;
             setTimeout(() => {
-                // Changed to text input instead of options
                 addBotMessage("¿Cuál es el aspecto más importante para ti en la boda?");
                 userInput.focus();
             }, 500);
         }
     }
 
-    // Generate WhatsApp link and open it
+    // Enhanced WhatsApp redirect function with better iOS support
     function redirectToWhatsApp() {
-        // Phone number to send the message to (format: country code + number)
-        const phoneNumber = "50766170620"; // Replace with your actual WhatsApp number
+        const phoneNumber = "50766170620";
         
-        // Prepare the message with the collected data
         let message = `¡Hola! Me gustaría más información sobre sus servicios de planificación de bodas.\n\n`;
         message += `Nombre: ${weddingData.nombre}\n`;
         message += `Fecha de Boda: ${weddingData.fechaBoda}\n`;
@@ -715,27 +675,68 @@ document.addEventListener("DOMContentLoaded", function() {
         message += `Aspecto Importante: ${weddingData.aspectoImportante}\n`;
         message += `Mayor Preocupación: ${weddingData.mayorPreocupacion}\n`;
         
-        // Encode the message for URL
         const encodedMessage = encodeURIComponent(message);
         
-        // Create the WhatsApp link
+        // Multiple fallback methods for opening WhatsApp
         const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+        const whatsappDeepLink = `whatsapp://send?phone=${phoneNumber}&text=${encodedMessage}`;
         
-        // Open the link in a new tab
-        window.open(whatsappLink, '_blank');
+        // Enhanced opening logic
+        function openWhatsApp() {
+            if (isIOS || isSafari) {
+                // For iOS, try deep link first, then fallback to web
+                const link = document.createElement('a');
+                link.href = whatsappDeepLink;
+                link.target = '_blank';
+                link.rel = 'noopener noreferrer';
+                
+                // Add to DOM temporarily
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                // Fallback to web version after short delay
+                setTimeout(() => {
+                    const webLink = document.createElement('a');
+                    webLink.href = whatsappLink;
+                    webLink.target = '_blank';
+                    webLink.rel = 'noopener noreferrer';
+                    document.body.appendChild(webLink);
+                    webLink.click();
+                    document.body.removeChild(webLink);
+                }, 1000);
+                
+            } else if (isInAppBrowser) {
+                // For in-app browsers, try to break out to system browser
+                try {
+                    window.top.location.href = whatsappLink;
+                } catch (e) {
+                    window.open(whatsappLink, '_blank', 'noopener,noreferrer');
+                }
+            } else {
+                // Standard approach for other browsers
+                const link = document.createElement('a');
+                link.href = whatsappLink;
+                link.target = '_blank';
+                link.rel = 'noopener noreferrer';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+        }
+        
+        // Add user interaction to ensure popup blockers don't interfere
+        openWhatsApp();
     }
 
-    // Handle Enter key press in input
     userInput.addEventListener('keypress', function(e) {
         if (e.key === 'Enter' && !sendButton.disabled) {
             handleUserInput();
         }
     });
 
-    // Handle send button click
     sendButton.addEventListener('click', handleUserInput);
 
-    // Process user input based on current step
     function handleUserInput() {
         const input = userInput.value.trim();
         if (!input) return;
@@ -743,7 +744,6 @@ document.addEventListener("DOMContentLoaded", function() {
         addUserMessage(input);
         scrollToBottom();
         
-        // Clear input
         userInput.value = '';
         
         if (currentStep === 1) {
@@ -756,10 +756,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 userInput.focus();
             }, 500);
         } else if (currentStep === 2) {
-            // Handle wedding date
             weddingData.fechaBoda = input;
             
-            // Format the date to display it in a readable format (DD/MM/YYYY)
             let formattedDate = "";
             try {
                 const dateObj = new Date(input);
@@ -769,10 +767,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     year: 'numeric'
                 });
             } catch(e) {
-                formattedDate = input; // Fallback to input if date parsing fails
+                formattedDate = input;
             }
             
-            // Confirm the selected date
             addBotMessage(`Has seleccionado ${formattedDate} como la fecha de tu boda.`);
             
             userInput.type = "text";
@@ -781,7 +778,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 addBotMessage("¿Qué tipo de ceremonia estás planeando?", ["Civil", "Religiosa", "Destino", "Íntima", "Otro"]);
             }, 1000);
         } else if (currentStep === 4) {
-            // Handle aspectoImportante (text input)
             weddingData.aspectoImportante = input;
             currentStep++;
             setTimeout(() => {
@@ -789,18 +785,14 @@ document.addEventListener("DOMContentLoaded", function() {
                 userInput.focus();
             }, 500);
         } else if (currentStep === 5) {
-            // This is the last step
             weddingData.mayorPreocupacion = input;
             
-            // Add final message
             setTimeout(() => {
                 addBotMessage("¡Gracias por compartir tu información! Te estamos redirigiendo a WhatsApp para continuar la conversación...");
                 
-                // Disable input after final submission
                 userInput.disabled = true;
                 sendButton.disabled = true;
                 
-                // Redirect to WhatsApp after a brief delay
                 setTimeout(() => {
                     redirectToWhatsApp();
                 }, 1500);
@@ -808,16 +800,13 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    // Function to send message (for onclick attribute)
     window.sendMessage = function() {
         if (!sendButton.disabled) {
             handleUserInput();
         }
     };
 
-    // Handle orientation changes specifically
     window.addEventListener('orientationchange', function() {
-        // Reset any keyboard adjustments
         setTimeout(() => {
             if (document.activeElement === userInput) {
                 document.body.classList.add('keyboard-open');
@@ -828,11 +817,10 @@ document.addEventListener("DOMContentLoaded", function() {
         }, 500);
     });
 
-    // Initialize chat - start directly with first question
+    // Initialize chat
     setTimeout(() => {
         addBotMessage("", null, true);
         
-        // Start directly with first question
         setTimeout(() => {
             addBotMessage("Felicidades por tu compromiso! Estoy aquí para ayudarte a planificar el día de tu boda y hacer que sea inolvidable.");
             
