@@ -238,6 +238,39 @@
             font-size: 22px;
         }
 
+        /* Catalog Button Styles */
+        .catalog-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, #a5655f, #8b534e);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            margin: 1.5rem 0;
+            box-shadow: 0 5px 15px rgba(165, 101, 95, 0.3);
+            border: 2px solid transparent;
+        }
+
+        .catalog-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(165, 101, 95, 0.4);
+            background: linear-gradient(135deg, #8b534e, #a5655f);
+        }
+
+        .catalog-button i {
+            transition: transform 0.3s ease;
+        }
+
+        .catalog-button:hover i {
+            transform: rotate(15deg) scale(1.1);
+        }
+
         .divider {
             width: 80px;
             height: 3px;
@@ -607,6 +640,11 @@
             .main-name {
                 font-size: 1.7rem;
             }
+
+            .catalog-button {
+                padding: 0.7rem 1.5rem;
+                font-size: 0.95rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -643,6 +681,11 @@
             .main-name {
                 font-size: 1.5rem;
             }
+
+            .catalog-button {
+                padding: 0.6rem 1.3rem;
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>   
@@ -677,6 +720,13 @@
                         </div>
                     </a>
                 </div>
+                
+                <!-- Catalog Button -->
+                <a href="https://vqzpartners.com/andy/arreglos" class="catalog-button" target="_blank" rel="noopener noreferrer">
+                    <i class="fas fa-book-open"></i>
+                    <span>Catálogo de Arreglos</span>
+                </a>
+                
                 <div class="divider"></div>
             </header>
 
