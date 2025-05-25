@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <title>Catálogo de Arreglos - Creations by Andy</title>
     <link rel="icon" href="img/favicon.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
+
     <meta name="title" content="Catálogo de Arreglos - Creations by Andy">
     <meta name="description" content="Descubre nuestro catálogo completo de arreglos florales y decoraciones para eventos especiales.">
     <meta name="keywords" content="catálogo, arreglos florales, rosas, bouquets, flower box, Panamá">
-    
+
     <style>
         * {
             margin: 0;
@@ -243,9 +243,9 @@
 
         .product-images {
             position: relative;
-            height: 250px; /* Ajusta según el aspect ratio de tus imágenes */
+            height: 250px;
             overflow: hidden;
-            background-color: #f0f0f0; /* Color de fondo mientras carga la imagen */
+            background-color: #f0f0f0;
         }
 
         .image-carousel {
@@ -263,10 +263,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #a5655f; /* Color del texto placeholder si la imagen no carga */
-            font-size: 1rem; /* Tamaño del texto placeholder */
+            color: #a5655f;
+            font-size: 1rem;
             font-style: italic;
             text-align: center;
+            padding: 10px;
         }
 
         .carousel-nav {
@@ -439,7 +440,7 @@
 
         /* Modal Styles */
         .modal {
-            display: none;
+            display: none; /* Initially hidden, JS will change to 'flex' to show */
             position: fixed;
             z-index: 10000;
             left: 0;
@@ -447,11 +448,16 @@
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.5);
+            /* Added for centering */
+            align-items: center;
+            justify-content: center;
+            overflow-y: auto; /* For tall modals */
         }
 
         .modal-content {
             background-color: #fefefe;
-            margin: 10% auto;
+            /* margin: 10% auto; MODIFIED for flex centering */
+            margin: 20px; /* Provides some space from viewport edges */
             padding: 2rem;
             border-radius: 15px;
             width: 90%;
@@ -535,6 +541,11 @@
             .back-button {
                 position: relative;
                 margin-bottom: 1rem;
+                top: 10px;
+                left: 10px;
+            }
+            .catalog-header {
+                padding-top: 4rem;
             }
 
             .catalog-title {
@@ -643,11 +654,11 @@
                 <p id="modalProductName"></p>
             </div>
             <input type="text" id="customerName" placeholder="Tu nombre completo" required>
-            <input type="tel" id="customerPhone" placeholder="Tu número de teléfono" required>
+            <!-- Phone number field removed -->
             <select id="sizeSelection" required>
                 <!-- Options will be populated by JavaScript -->
             </select>
-            <input type="date" id="deliveryDate" min="" required>
+            <!-- Date picker field removed -->
             <input type="text" id="specialInstructions" placeholder="Instrucciones especiales (opcional)">
             <button class="modal-cta" onclick="sendOrder()">Enviar Pedido por WhatsApp</button>
         </div>
@@ -659,36 +670,36 @@
             "Rosas con chocolate": {
                 "Pequeño": 40, "Mediano": 60, "Maxi": 150,
                 "imagePaths": [
-                    "img/catalogo/classic_peq.jpg",
-                    "img/catalogo/classic_med.jpg",
-                    "img/catalogo/classic_max.jpg"
+                    "https://vqzpartners.com/andy/img/catalogo/classic_peq.JPG",
+                    "https://vqzpartners.com/andy/img/catalogo/classic_med.JPG",
+                    "https://vqzpartners.com/andy/img/catalogo/classic_max.JPG"
                 ],
                 "category": "rosas"
             },
             "Flower Box": {
                 "6 rosas": 25, "12 rosas": 45, "24 rosas": 75, "50 rosas": 130,
-                "imagePaths": [ "img/catalogo/rbox.jpg" ],
+                "imagePaths": [ "https://vqzpartners.com/andy/img/catalogo/rbox.JPG" ],
                 "category": "boxes"
             },
             "Rosas con orquídeas": {
                 "12 rosas": 65, "24 rosas": 95, "50 rosas": 150,
-                "imagePaths": [ "img/catalogo/o_rosas_grandes.jpg" ],
+                "imagePaths": [ "https://vqzpartners.com/andy/img/catalogo/o_rosas_grande.JPG" ],
                 "category": "rosas"
             },
             "Coquette Box": {
                 "Pequeño con globo": 45, "Mediano": 65, "Grande": 95,
                 "imagePaths": [
-                    "img/catalogo/cbox_peq.jpg",
-                    "img/catalogo/cbox_med.jpg",
-                    "img/catalogo/cbox_grande.jpg"
+                    "https://vqzpartners.com/andy/img/catalogo/cbox_peq.JPG",
+                    "https://vqzpartners.com/andy/img/catalogo/cbox_med.JPG",
+                    "https://vqzpartners.com/andy/img/catalogo/cbox_grande.JPG"
                 ],
                 "category": "boxes"
             },
             "Boquete Solo Rosas": {
                 "6 rosas": 25, "12 rosas": 45, "24 rosas": 75, "50 rosas": 130,
                 "imagePaths": [
-                    "img/catalogo/brosas.jpg",
-                    "img/catalogo/brosas2.jpg"
+                    "https://vqzpartners.com/andy/img/catalogo/brosas.JPG",
+                    "https://vqzpartners.com/andy/img/catalogo/brosas2.JPG"
                 ],
                 "category": "rosas"
             },
@@ -696,41 +707,41 @@
                 "Pequeño": 40, "Mediano": 65, "Grande": 100,
                 "Champagne y Globo adicional": 8,
                 "imagePaths": [
-                    "img/catalogo/boxmix.jpg",
-                    "img/catalogo/boxmix2.jpg"
+                    "https://vqzpartners.com/andy/img/catalogo/boxmix.JPG",
+                    "https://vqzpartners.com/andy/img/catalogo/boxmix2.JPG"
                 ],
                 "category": "mix"
             },
             "Andy Ballon Mix": {
                 "Pequeño": 50, "Mediano": 75, "Grande": 120,
                 "imagePaths": [
-                    "img/catalogo/andyballon.jpg",
-                    "img/catalogo/andyballon2.jpg"
+                    "https://vqzpartners.com/andy/img/catalogo/andyballon.JPG",
+                    "https://vqzpartners.com/andy/img/catalogo/andyballon2.JPG"
                 ],
                 "category": "mix"
             },
             "Bouquets": {
                 "Pequeño": 40, "Mediano": 65,
                 "imagePaths": [
-                    "img/catalogo/bouquette_med.jpg",
-                    "img/catalogo/bouquette_peq.jpg"
+                    "https://vqzpartners.com/andy/img/catalogo/boquette_med.JPG",
+                    "https://vqzpartners.com/andy/img/catalogo/boquette_peq.JPG"
                 ],
                 "category": "bouquets"
             },
             "Wet Bouquets": {
                 "Pequeño": 45, "Mediano": 65,
                 "imagePaths": [
-                    "img/catalogo/wetb.jpg",
-                    "img/catalogo/wetb_mediano.jpg"
+                    "https://vqzpartners.com/andy/img/catalogo/wetb.JPG",
+                    "https://vqzpartners.com/andy/img/catalogo/wetb_mediano.JPG"
                 ],
                 "category": "bouquets"
             },
             "Flores Deluxe": {
                 "Pequeño": 50, "Mediano": 75, "Grande": 85,
                 "imagePaths": [
-                    "img/catalogo/flores_d_peq.jpg",
-                    "img/catalogo/flores_d_med.jpg",
-                    "img/catalogo/flores_d_grande.jpg"
+                    "https://vqzpartners.com/andy/img/catalogo/flores_d_peq.JPG",
+                    "https://vqzpartners.com/andy/img/catalogo/flores_d_med.JPG",
+                    "https://vqzpartners.com/andy/img/catalogo/flores_d_grande.JPG"
                 ],
                 "category": "mix"
             }
@@ -743,11 +754,12 @@
         document.addEventListener('DOMContentLoaded', function() {
             const loader = document.getElementById('loader');
             const mainContent = document.getElementById('mainContent');
-            
-            const tomorrow = new Date();
-            tomorrow.setDate(tomorrow.getDate() + 1);
-            document.getElementById('deliveryDate').min = tomorrow.toISOString().split('T')[0];
-            
+
+            // Removed date picker min date setting
+            // const tomorrow = new Date();
+            // tomorrow.setDate(tomorrow.getDate() + 1);
+            // document.getElementById('deliveryDate').min = tomorrow.toISOString().split('T')[0]; // This ID no longer exists
+
             setTimeout(function() {
                 loader.classList.add('hidden');
                 setTimeout(function() {
@@ -773,33 +785,28 @@
             }
         });
 
-        // --- MODIFICACIÓN PARA USAR imagePaths ---
         function generateProducts() {
             const grid = document.getElementById('productsGrid');
             grid.innerHTML = '';
 
             Object.entries(productsData).forEach(([productName, productInfo]) => {
-                // Extraer imagePaths en lugar de images
-                const { imagePaths, category, ...sizes } = productInfo; 
-                
+                const { imagePaths, category, ...sizes } = productInfo;
+
                 const productCard = document.createElement('div');
                 productCard.className = `product-card`;
                 productCard.dataset.category = category;
 
-                const productNameSlug = getProductSlug(productName); // Para el ID del carrusel
+                const productNameSlug = getProductSlug(productName);
 
                 let imageCarouselHTML = '';
                 let indicatorsHTML = '';
-                
-                // Iterar sobre el array imagePaths
+
                 if (imagePaths && imagePaths.length > 0) {
                     imagePaths.forEach((imagePath, index) => {
-                        const placeholderText = `Imagen ${index + 1} de ${productName}`;
-                        imageCarouselHTML += `<div class="product-image" style="background-image: url('${imagePath}');">${placeholderText}</div>`;
+                        imageCarouselHTML += `<div class="product-image" style="background-image: url('${imagePath}');"></div>`;
                         indicatorsHTML += `<div class="indicator ${index === 0 ? 'active' : ''}" onclick="goToSlide('${productName.replace(/'/g, "\\'")}', ${index})"></div>`;
                     });
                 } else {
-                    // Fallback si no hay imagePaths definidos o está vacío
                     imageCarouselHTML = `<div class="product-image">No hay imágenes disponibles</div>`;
                 }
 
@@ -813,7 +820,7 @@
                         </div>
                     `;
                 });
-                
+
                 const carouselId = `carousel-${productNameSlug}`;
                 const numberOfImages = imagePaths ? imagePaths.length : 0;
 
@@ -850,22 +857,21 @@
                 carouselStates[productName] = 0;
             });
         }
-        // --- FIN DE MODIFICACIÓN ---
 
         function filterProducts(category) {
             const products = document.querySelectorAll('.product-card');
             products.forEach(product => {
+                product.style.animation = 'none';
                 if (category === 'all' || product.dataset.category === category) {
                     product.style.display = 'block';
-                    product.style.animation = 'none';
-                    product.offsetHeight; 
-                    product.style.animation = ''; 
+                    product.offsetHeight;
+                    product.style.animation = '';
                 } else {
                     product.style.display = 'none';
                 }
             });
         }
-        
+
         function getProductSlug(productName) {
              return productName
                 .toLowerCase()
@@ -880,14 +886,12 @@
         }
 
         function prevImage(productName) {
-            // Usar la longitud del array imagePaths
             const totalImages = productsData[productName].imagePaths.length;
             carouselStates[productName] = (carouselStates[productName] - 1 + totalImages) % totalImages;
             updateCarousel(productName);
         }
 
         function nextImage(productName) {
-            // Usar la longitud del array imagePaths
             const totalImages = productsData[productName].imagePaths.length;
             carouselStates[productName] = (carouselStates[productName] + 1) % totalImages;
             updateCarousel(productName);
@@ -900,12 +904,12 @@
 
         function updateCarousel(productName) {
             const carouselElement = document.getElementById(getCarouselId(productName));
-            if (!carouselElement) return; 
+            if (!carouselElement) return;
             const indicators = carouselElement.parentNode.querySelectorAll('.indicator');
             const currentIndex = carouselStates[productName];
-            
+
             carouselElement.style.transform = `translateX(-${currentIndex * 100}%)`;
-            
+
             indicators.forEach((indicator, idx) => {
                 indicator.classList.toggle('active', idx === currentIndex);
             });
@@ -916,15 +920,14 @@
                 name: productName,
                 sizes: { ...productsData[productName] }
             };
-            // Eliminar imagePaths y category de currentProduct.sizes
-            delete currentProduct.sizes.imagePaths; 
+            delete currentProduct.sizes.imagePaths;
             delete currentProduct.sizes.category;
 
             document.getElementById('modalProductName').textContent = `Producto: ${productName}`;
-            
+
             const sizeSelect = document.getElementById('sizeSelection');
             sizeSelect.innerHTML = '<option value="">Selecciona un tamaño/opción</option>';
-            
+
             Object.entries(currentProduct.sizes).forEach(([size, price]) => {
                 const option = document.createElement('option');
                 option.value = `${size} - $${price}`;
@@ -933,21 +936,22 @@
             });
 
             document.getElementById('customerName').value = '';
-            document.getElementById('customerPhone').value = '';
-            document.getElementById('deliveryDate').value = '';
+            // document.getElementById('customerPhone').value = ''; // Field removed
+            // document.getElementById('deliveryDate').value = ''; // Field removed
             document.getElementById('specialInstructions').value = '';
-            document.getElementById('orderModal').style.display = 'block';
+            document.getElementById('orderModal').style.display = 'flex'; // Changed from 'block' to 'flex'
         }
 
         function sendOrder() {
             const customerName = document.getElementById('customerName').value.trim();
-            const customerPhone = document.getElementById('customerPhone').value.trim();
+            // const customerPhone = document.getElementById('customerPhone').value.trim(); // Field removed
             const sizeSelection = document.getElementById('sizeSelection').value;
-            const deliveryDate = document.getElementById('deliveryDate').value;
+            // const deliveryDate = document.getElementById('deliveryDate').value; // Field removed
             const specialInstructions = document.getElementById('specialInstructions').value.trim();
 
-            if (!customerName || !customerPhone || !sizeSelection || !deliveryDate) {
-                alert('Por favor, completa todos los campos obligatorios: Nombre, Teléfono, Tamaño/Opción y Fecha de Entrega.');
+            // Updated validation
+            if (!customerName || !sizeSelection) {
+                alert('Por favor, completa todos los campos obligatorios: Nombre y Tamaño/Opción.');
                 return;
             }
 
@@ -957,10 +961,10 @@
             message += `*NUEVO PEDIDO*\n`;
             message += `━━━━━━━━━━━━━━━━━━━━\n`;
             message += `👤 *Cliente:* ${customerName}\n`;
-            message += `📞 *Teléfono:* ${customerPhone}\n`;
+            // message += `📞 *Teléfono:* ${customerPhone}\n`; // Line removed
             message += `💐 *Producto de Interés:* ${productName}\n`;
             message += `📏 *Tamaño/Opción Seleccionada:* ${sizeSelection}\n`;
-            message += `📅 *Fecha de Entrega:* ${deliveryDate}\n`;
+            // message += `📅 *Fecha de Entrega:* ${deliveryDate}\n`; // Line removed
 
             if (specialInstructions) {
                 message += `📝 *Instrucciones Especiales:* ${specialInstructions}\n`;
