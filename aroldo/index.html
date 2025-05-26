@@ -97,7 +97,7 @@
         /* Hero Section */
         .hero-section {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             padding: 2rem 0;
         }
 
@@ -145,7 +145,7 @@
             padding: 0.5rem 1rem;
             border-radius: 20px;
             display: inline-block;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
             border: 1px solid rgba(255, 0, 0, 0.2);
         }
 
@@ -383,13 +383,29 @@
                 font-size: 1rem;
             }
             
+            .license-info {
+                margin-bottom: 0.5rem;
+            }
+            
             .social-section {
-                gap: 1rem;
+                gap: 0.75rem;
+                flex-direction: row;
+                justify-content: space-around;
             }
             
             .social-link {
-                min-width: 100px;
-                padding: 0.75rem;
+                min-width: 90px;
+                padding: 0.75rem 0.5rem;
+                flex: 1;
+                max-width: 110px;
+            }
+            
+            .social-icon {
+                font-size: 1.75rem;
+            }
+            
+            .social-text {
+                font-size: 0.8rem;
             }
             
             .contact-section {
@@ -416,13 +432,20 @@
             }
             
             .social-section {
-                flex-direction: column;
-                align-items: center;
+                gap: 0.5rem;
             }
             
             .social-link {
-                width: 100%;
-                max-width: 200px;
+                min-width: 80px;
+                padding: 0.6rem 0.3rem;
+            }
+            
+            .social-icon {
+                font-size: 1.5rem;
+            }
+            
+            .social-text {
+                font-size: 0.75rem;
             }
         }
     </style>
@@ -491,7 +514,7 @@
                 <!-- Step 2: Reason -->
                 <div class="chat-step" id="step2">
                     <h4>Perfecto, <span id="nameDisplay"></span>! 🏡</h4>
-                    <p>¿En qué podemos ayudarte hoy?</p>
+                    <p>¿En qué puedo ayudarte hoy?</p>
                     <textarea class="chat-input" id="contactReason" placeholder="Ejemplo: Busco un apartamento de 2 habitaciones en Casco Viejo, presupuesto $150,000" rows="4"></textarea>
                     <button class="chat-button" onclick="nextStep(3)">Continuar</button>
                 </div>
@@ -499,7 +522,7 @@
                 <!-- Step 3: Contact Method -->
                 <div class="chat-step" id="step3">
                     <h4>¡Excelente! 📞</h4>
-                    <p>¿Cómo prefieres que contactarme?</p>
+                    <p>¿Como prefieres contactarme?</p>
                     <div class="contact-options">
                         <a href="#" class="contact-option" id="whatsappOption" onclick="contactViaWhatsApp()">
                             <i class="fab fa-whatsapp" style="color: #25D366;"></i>
@@ -518,8 +541,8 @@
 
                 <!-- Step 4: Thank you -->
                 <div class="chat-step" id="step4">
-                    <h4>¡Gracias por contactarnos! 🎉</h4>
-                    <p>Te estaremos contactando muy pronto para ayudarte a encontrar la propiedad perfecta.</p>
+                    <h4>¡Gracias por contactarme! 🎉</h4>
+                    <p>Te estaré contactando muy pronto para ayudarte a encontrar la propiedad perfecta.</p>
                     
                     <div class="additional-options">
                         <p>¿Prefieres llamarme directamente?</p>
@@ -563,7 +586,7 @@
             if (step === 3) {
                 contactReason = document.getElementById('contactReason').value.trim();
                 if (!contactReason) {
-                    alert('Por favor, cuéntanos cómo podemos ayudarte.');
+                    alert('Por favor, cuéntame cómo puedo ayudarte.');
                     return;
                 }
             }
