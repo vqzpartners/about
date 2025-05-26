@@ -20,7 +20,7 @@
             height: 100%;
             width: 100%;
             overflow: hidden;
-            position: relative;
+            position: relative; /* Changed from fixed to relative */
         }
 
         body {
@@ -34,7 +34,7 @@
             display: flex;
             flex-direction: column;
             background: #000000;
-            position: absolute;
+            position: absolute; /* Changed from relative to absolute */
             top: 0;
             left: 0;
             right: 0;
@@ -88,7 +88,7 @@
             flex-direction: column;
             gap: 15px;
             -webkit-overflow-scrolling: touch;
-            padding-bottom: 20px;
+            padding-bottom: 20px; /* Added extra padding at bottom */
         }
 
         .message-container {
@@ -190,13 +190,14 @@
             align-items: center;
             gap: 10px;
             box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
-            position: sticky;
+            position: sticky; /* Changed from relative to sticky */
             bottom: 0;
             flex-shrink: 0;
             z-index: 100;
             width: 100%;
         }
 
+        /* New class for when keyboard is open */
         .keyboard-open .chatbot-input {
             position: fixed;
             bottom: 0;
@@ -331,6 +332,7 @@
             }
         }
 
+        /* Media queries for responsive design */
         @media (max-width: 768px) {
             .message-container {
                 max-width: 90%;
@@ -354,6 +356,7 @@
             }
         }
 
+        /* Dark scrollbar */
         ::-webkit-scrollbar {
             width: 6px;
             height: 6px;
@@ -376,7 +379,7 @@
 <body>
     <div class="chatbot-container">
         <div class="chatbot-header">
-            <img src="https://vqzpartners.com/get/images/white-web-logo.svg" alt="Logo de VQZ & Partners" class="logo">
+            <img src="https://vqzpartners.com/get/images/white-web-logo.svg" alt="VQZ & Partners Logo" class="logo">
             <div class="bot-info">
                 <div class="bot-avatar">👩</div>
                 <div class="bot-name" id="botName">Aria</div>
@@ -394,14 +397,14 @@
     </div>
 
 <script>
-// Configuración del bot
+// Bot configuration
 const femaleBotNames = [
     "Aria", "Zoe", "Maya", "Sophia", "Emma", 
     "Lily", "Olivia", "Isabella", "Elena", "Nora", 
     "Aurora", "Stella", "Luna", "Ava", "Clara"
 ];
 
-// Seleccionar aleatoriamente un nombre de bot de la lista
+// Randomly select a bot name from the list
 const botName = femaleBotNames[Math.floor(Math.random() * femaleBotNames.length)];
 document.getElementById('botName').textContent = botName;
 
@@ -422,12 +425,12 @@ const chatbotMessages = document.getElementById('chatbotMessages');
 const userInput = document.getElementById('userInput');
 const sendButton = document.getElementById('sendButton');
 
-// Detectar teclado móvil abierto/cerrado
+// Detect mobile keyboard open/close
 function detectKeyboard() {
     const initialWindowHeight = window.innerHeight;
     
     window.addEventListener('resize', function() {
-        // Si la altura de la ventana se vuelve significativamente menor, probablemente el teclado esté abierto
+        // If window height becomes significantly smaller, keyboard is likely open
         if (window.innerHeight < initialWindowHeight * 0.75) {
             document.body.classList.add('keyboard-open');
             chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
@@ -437,13 +440,13 @@ function detectKeyboard() {
     });
 }
 
-// Obtener datos de países para códigos telefónicos de la API
+// Fetch countries data for phone codes from API
 async function fetchCountries() {
     try {
         const response = await fetch('https://restcountries.com/v3.1/all?fields=name,idd,flags');
         const data = await response.json();
         
-        // Procesar y ordenar países
+        // Process and sort countries
         const processedCountries = data
             .filter(country => country.idd && country.idd.root && country.idd.suffixes)
             .map(country => {
@@ -456,20 +459,20 @@ async function fetchCountries() {
             })
             .sort((a, b) => a.name.localeCompare(b.name));
         
-        // Agregar al array de países
+        // Add to countries array
         countries.push(...processedCountries);
         
-        // Iniciar la conversación después de cargar los datos
+        // Start the conversation after data is loaded
         setTimeout(startConversation, 500);
     } catch (error) {
-        console.error('Error al obtener países:', error);
-        // Fallback con algunos países comunes en caso de que la API falle
+        console.error('Error fetching countries:', error);
+        // Fallback with some common countries in case API fails
         fallbackCountries();
         setTimeout(startConversation, 500);
     }
 }
 
-// Países de respaldo en caso de que la API falle
+// Fallback countries in case API fails
 function fallbackCountries() {
     countries.push(
         { name: 'Estados Unidos', code: '+1', flag: 'https://flagcdn.com/w20/us.png' },
@@ -490,17 +493,17 @@ function fallbackCountries() {
     );
 }
 
-// Iniciar conversación con mensaje de bienvenida
+// Start conversation with welcome message
 function startConversation() {
-    addBotMessage(`¡Hola! Soy ${botName} de VQZ & Partners. ¿En qué puedo ayudarte hoy?`);
+    addBotMessage(`¡Hola! Soy ${botName} de VQZ & Partners. ¿Cómo puedo ayudarte hoy?`);
     setTimeout(() => {
         addBotMessage("Comencemos. ¿Cuál es tu nombre?");
     }, 1000);
 }
 
-// Agregar mensaje del bot al chat
+// Add bot message to chat
 function addBotMessage(message, options = null) {
-    // Mostrar indicador de escritura primero
+    // Show typing indicator first
     const typingContainer = document.createElement('div');
     typingContainer.className = 'typing-indicator';
     for (let i = 0; i < 3; i++) {
@@ -511,7 +514,7 @@ function addBotMessage(message, options = null) {
     chatbotMessages.appendChild(typingContainer);
     chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
     
-    // Eliminar indicador de escritura después del retraso y mostrar mensaje real
+    // Remove typing indicator after delay and show actual message
     setTimeout(() => {
         chatbotMessages.removeChild(typingContainer);
         
@@ -553,10 +556,10 @@ function addBotMessage(message, options = null) {
         containerDiv.appendChild(messageDiv);
         chatbotMessages.appendChild(containerDiv);
         chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-    }, 1500); // Simular tiempo de escritura
+    }, 1500); // Simulate typing time
 }
 
-// Agregar mensaje del usuario al chat
+// Add user message to chat
 function addUserMessage(message) {
     const containerDiv = document.createElement('div');
     containerDiv.className = 'message-container user-container';
@@ -575,7 +578,7 @@ function addUserMessage(message) {
     chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
 }
 
-// Manejar entrada del usuario
+// Handle user input
 function sendMessage() {
     const message = userInput.value.trim();
     if (!message) return;
@@ -583,43 +586,43 @@ function sendMessage() {
     addUserMessage(message);
     userInput.value = '';
     
-    // Procesar entrada del usuario según el paso actual
+    // Process user input based on current step
     handleUserInput(message);
 }
 
-// Manejar selección de opciones del usuario
+// Handle user options selection
 function handleOption(option) {
-    // Esto está reservado para uso futuro cuando se necesiten opciones
+    // This is reserved for future use when options are needed
     addUserMessage(option);
     userInput.disabled = false;
     sendButton.disabled = false;
 }
 
-// Crear elementos de entrada de teléfono
+// Create phone input elements
 function createPhoneInput() {
-    // Limpiar el campo de entrada existente
+    // Clear the existing input field
     const inputContainer = document.querySelector('.chatbot-input');
     inputContainer.innerHTML = '';
     
-    // Crear contenedor de entrada de teléfono
+    // Create phone input container
     const phoneContainer = document.createElement('div');
     phoneContainer.className = 'phone-input-container';
     
-    // Crear selector de código de país
+    // Create country code select
     const countrySelect = document.createElement('select');
     countrySelect.id = 'countryCode';
     
-    // Aplicar estilos adicionales para el selector de país
+    // Apply additional styles for the country selector
     countrySelect.style.paddingLeft = '5px';
-    countrySelect.style.width = '90px';
+    countrySelect.style.width = '90px'; // Width for just the code when closed
     
-    // Agregar opciones de países con atributos de datos personalizados
+    // Add country options with custom data attributes
     countries.forEach(country => {
         const option = document.createElement('option');
         option.value = country.code;
-        option.textContent = country.code;
+        option.textContent = country.code; // Display just the code as text content
         
-        // Almacenar datos completos como atributos para mostrar en el menú desplegable
+        // Store full data as attributes for display in dropdown
         option.setAttribute('data-country', country.name);
         option.setAttribute('data-flag', country.flag || '');
         option.setAttribute('data-content', `${country.name} ${country.code}`);
@@ -627,18 +630,18 @@ function createPhoneInput() {
         countrySelect.appendChild(option);
     });
     
-    // Crear entrada de número de teléfono
+    // Create phone number input
     const phoneInput = document.createElement('input');
     phoneInput.type = 'tel';
     phoneInput.id = 'phoneNumber';
     phoneInput.placeholder = 'Número de teléfono';
     
-    // Agregar elementos al contenedor
+    // Add elements to container
     phoneContainer.appendChild(countrySelect);
     phoneContainer.appendChild(phoneInput);
     inputContainer.appendChild(phoneContainer);
     
-    // Agregar botón de envío
+    // Add send button
     const button = document.createElement('button');
     button.id = 'sendButton';
     button.onclick = submitPhoneNumber;
@@ -647,25 +650,25 @@ function createPhoneInput() {
     button.appendChild(icon);
     inputContainer.appendChild(button);
     
-    // Aplicar estilos personalizados para mostrar contenido diferente cuando está abierto vs cerrado
+    // Apply custom styling to show different content when open vs closed
     const style = document.createElement('style');
     style.textContent = `
-        /* Estilo para opciones desplegables - mostrar nombre completo del país y código */
+        /* Style for dropdown options - show full country name and code */
         #countryCode option {
             font-family: 'Roboto Mono', monospace;
             padding: 5px;
         }
         
-        /* Esto asegura que el menú desplegable muestre el contenido completo */
+        /* This makes sure the dropdown shows full content */
         select#countryCode option {
             content: attr(data-content);
         }
     `;
     document.head.appendChild(style);
     
-    // Aplicar el contenido completo a las opciones solo en el menú desplegable
+    // Apply the full content to options in the dropdown only
     countrySelect.addEventListener('mousedown', function() {
-        // Antes de que se abra el menú desplegable, establecer el contenido completo
+        // Before the dropdown opens, set the full content
         Array.from(this.options).forEach(option => {
             const country = option.getAttribute('data-country');
             const code = option.value;
@@ -673,29 +676,29 @@ function createPhoneInput() {
         });
     });
     
-    // Después de la selección, volver a mostrar solo el código
+    // After selection, revert to showing only the code
     countrySelect.addEventListener('change', function() {
         setTimeout(() => {
             Array.from(this.options).forEach(option => {
-                option.textContent = option.value; // Mostrar solo el código
+                option.textContent = option.value; // Show only code
             });
         }, 100);
     });
     
-    // Si el menú desplegable se cierra sin una selección, volver a los códigos
+    // If dropdown closes without a selection, revert to codes
     countrySelect.addEventListener('blur', function() {
         setTimeout(() => {
             Array.from(this.options).forEach(option => {
-                option.textContent = option.value; // Mostrar solo el código
+                option.textContent = option.value; // Show only code
             });
         }, 150);
     });
     
-    // Enfocar la entrada
+    // Focus the input
     phoneInput.focus();
 }
 
-// Enviar número de teléfono
+// Submit phone number
 function submitPhoneNumber() {
     const countryCodeElement = document.getElementById('countryCode');
     const countryCode = countryCodeElement.value;
@@ -703,7 +706,7 @@ function submitPhoneNumber() {
     
     if (!phoneNumber) return;
     
-    // Obtener el nombre del país seleccionado para mostrar
+    // Get the selected country name for display
     const selectedIndex = countryCodeElement.selectedIndex;
     const selectedOption = countryCodeElement.options[selectedIndex];
     const countryName = selectedOption.getAttribute('data-country');
@@ -714,14 +717,14 @@ function submitPhoneNumber() {
     userData.phone = fullPhoneNumber;
     userData.country = countryName;
     
-    // Restaurar entrada normal
+    // Restore normal input
     resetInputField();
     
-    // Completar la conversación
+    // Complete the conversation
     showCompletionMessage();
 }
 
-// Restablecer campo de entrada a entrada de texto estándar
+// Reset input field to standard text input
 function resetInputField() {
     const inputContainer = document.querySelector('.chatbot-input');
     inputContainer.innerHTML = `
@@ -732,27 +735,27 @@ function resetInputField() {
     `;
 }
 
-// Procesar entrada del usuario según el paso actual
+// Process user input based on current step
 function handleUserInput(message) {
     switch(step) {
-        case 1: // Nombre
+        case 1: // Name
             userData.name = message;
             step++;
             setTimeout(() => {
-                addBotMessage(`Mucho gusto conocerte, ${userData.name}! ¿Cuál es el motivo por el que nos contactas hoy?`);
+                addBotMessage(`¡Un placer conocerte, ${userData.name}! ¿Cuál es el motivo por el que nos contactas hoy?`);
             }, 1000);
             break;
             
-        case 2: // Motivo del contacto
+        case 2: // Reason for contact
             userData.reason = message;
             step++;
             setTimeout(() => {
-                addBotMessage("Gracias por compartir esa información. ¿Podrías proporcionarme tu dirección de correo electrónico para que podamos responderte?");
+                addBotMessage("Gracias por compartir esa información. ¿Podrías proporcionarme tu dirección de correo electrónico para que podamos contactarte?");
             }, 1000);
             break;
             
         case 3: // Email
-            // Validación simple de email
+            // Simple email validation
             if (!validateEmail(message)) {
                 setTimeout(() => {
                     addBotMessage("Esa no parece ser una dirección de correo electrónico válida. ¿Podrías verificarla e intentar de nuevo?");
@@ -770,47 +773,86 @@ function handleUserInput(message) {
     }
 }
 
-// Validar formato de email
+// Validate email format
 function validateEmail(email) {
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
 }
 
-// Mostrar mensaje de finalización
+// Show completion message
 function showCompletionMessage() {
     setTimeout(() => {
-        addBotMessage(`Gracias por proporcionar tu información, ${userData.name}. Nuestro equipo revisará tu solicitud y te contactaremos pronto por correo electrónico o teléfono.`);
+        addBotMessage(`Gracias por proporcionar tu información, ${userData.name}. Nuestro equipo revisará tu solicitud y se pondrá en contacto contigo pronto por correo electrónico o teléfono.`);
         
         setTimeout(() => {
             addBotMessage("¡Que tengas un excelente día!");
             
-            // Deshabilitar chat después de completar
+            // Disable chat after completion
             disableChat();
             
-            // Enviar datos al webhook
+            // Send data to webhook
             sendDataToWebhook();
         }, 1500);
     }, 1000);
 }
 
-// Deshabilitar chat después de completar
+// Disable chat after completion
 function disableChat() {
     userInput.disabled = true;
     sendButton.disabled = true;
     
-    // Agregar sugerencia de recarga
+    // Add reload suggestion
     const reloadDiv = document.createElement('div');
     reloadDiv.className = 'reload-suggestion';
     reloadDiv.textContent = 'Actualiza la página para iniciar una nueva conversación';
     chatbotMessages.appendChild(reloadDiv);
 }
 
-// Enviar datos al webhook
+// Send data to webhook
 function sendDataToWebhook() {
-    // Agregar timestamp a los datos
+    // Add timestamp to data
     userData.timestamp = new Date().toISOString();
     
-    // Preparar datos para webhook
+    // Prepare data for webhook
     const webhookData = {
         ...userData,
         completedFlow: true,
+        source: window.location.href,
+        userAgent: navigator.userAgent
+    };
+    
+    // Send data to webhook
+    fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(webhookData)
+    })
+    .then(response => {
+        if (!response.ok) {
+            console.error('Error sending data to webhook:', response.statusText);
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Webhook response:', data);
+    })
+    .catch(error => {
+        console.error('Error sending data to webhook:', error);
+    });
+}
+
+// Event listener for enter key
+userInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        sendMessage();
+    }
+});
+
+// Initialize chat
+detectKeyboard();
+fetchCountries();
+    </script>
+    </body>
+    </html>
