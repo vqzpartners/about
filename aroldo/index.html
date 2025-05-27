@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Aroldo Blanco - Experto Asesor Inmobiliario en Panamá | Casas y Apartamentos</title>
+    <title>Aroldo Blanco - Asesoría Inmobiliaria en Panamá</title>
     <link rel="icon" href="img/favicon.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <!-- SEO Meta Tags for Panama Real Estate -->
-    <meta name="title" content="Aroldo Blanco - Experto Asesor Inmobiliario en Panamá | Casas y Apartamentos">
+    <meta name="title" content="Aroldo Blanco - Asesoría Inmobiliaria en Panamá">
     <meta name="description" content="Asesor inmobiliario profesional en Panamá con licencia PJ 1035-14/PN5664. Conectamos tus sueños con hogares en las mejores ubicaciones de Panamá. Casas, apartamentos, inversiones inmobiliarias.">
     <meta name="keywords" content="asesor inmobiliario panama, casas panama, apartamentos panama, bienes raices panama, propiedades panama, inversiones inmobiliarias panama, aroldo blanco, corretor panama, venta casas panama, alquiler apartamentos panama">
     <meta name="robots" content="index, follow">
@@ -25,7 +25,7 @@
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="business.business">
-    <meta property="og:title" content="Aroldo Blanco - Experto Asesor Inmobiliario en Panamá">
+    <meta property="og:title" content="Aroldo Blanco - Asesoría Inmobiliaria en Panamá">
     <meta property="og:description" content="Conectamos sueños con hogares en las mejores ubicaciones de Panamá. Asesoría inmobiliaria profesional con licencia PJ 1035-14/PN5664">
     <meta property="og:image" content="https://vqzpartners.com/aroldo/img/social-banner.jpg">
     <meta property="og:url" content="https://inmobiliario.com.pa">
@@ -38,7 +38,7 @@
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Aroldo Blanco - Experto Asesor Inmobiliario en Panamá">
+    <meta name="twitter:title" content="Aroldo Blanco - Asesoría Inmobiliaria en Panamá">
     <meta name="twitter:description" content="Conectamos sueños con hogares en las mejores ubicaciones de Panamá. Asesoría inmobiliaria profesional.">
     <meta name="twitter:image" content="https://vqzpartners.com/aroldo/img/social-banner.jpg">
     
@@ -230,6 +230,165 @@
             border-radius: 15px;
         }
 
+        /* Video Marquee Styles */
+        .videos-marquee-section {
+            margin-top: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .marquee-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-align: center;
+            color: #ff0000;
+        }
+
+        .marquee-container {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+}
+
+.marquee-container::before,
+.marquee-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100px;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.marquee-container::before {
+    left: 0;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.9), transparent);
+}
+
+.marquee-container::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0.9), transparent);
+}
+
+        .marquee-track {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .marquee-track:hover {
+            animation-play-state: paused;
+        }
+
+        .marquee-track-left {
+            animation: marqueeScrollLeft 120s linear infinite;
+        }
+
+        .marquee-track-right {
+            animation: marqueeScrollRight 120s linear infinite;
+        }
+
+        @keyframes marqueeScrollLeft {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        @keyframes marqueeScrollRight {
+            0% {
+                transform: translateX(-50%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        .video-card {
+            flex: 0 0 280px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            height: 157px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .video-info {
+            padding: 1rem;
+        }
+
+        .video-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .video-meta {
+            font-size: 0.8rem;
+            color: #666;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .video-duration {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            font-weight: 500;
+        }
+
+        .video-thumbnail-container {
+            position: relative;
+        }
+
+        .loading-message {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            padding: 2rem;
+        }
+
+        .error-message {
+            text-align: center;
+            color: #ff0000;
+            font-style: italic;
+            padding: 2rem;
+        }
+
         /* Contact Section */
         .contact-section {
             background: rgba(255, 255, 255, 0.8);
@@ -281,14 +440,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .chat-step {
-            display: none;
-        }
-
-        .chat-step.active {
-            display: block;
-        }
-
         .chat-input {
             width: 100%;
             padding: 0.75rem;
@@ -337,12 +488,24 @@
             color: #333;
             text-decoration: none;
             transition: all 0.3s ease;
+            cursor: pointer;
         }
 
-        .contact-option:hover {
+        .contact-option:hover:not(.disabled) {
             background: rgba(255, 255, 255, 1);
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-option.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background: rgba(200, 200, 200, 0.3);
+        }
+
+        .contact-option.disabled:hover {
+            transform: none;
+            box-shadow: none;
         }
 
         .contact-option i {
@@ -361,6 +524,37 @@
             margin-bottom: 1rem;
             color: #666;
             font-size: 0.9rem;
+        }
+
+        .form-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-row {
+            margin-bottom: 1rem;
+        }
+
+        .form-row label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .required {
+            color: #ff0000;
+        }
+
+        .validation-message {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 0.25rem;
+            font-style: italic;
         }
 
         /* Footer */
@@ -415,6 +609,10 @@
             .contact-options {
                 grid-template-columns: 1fr;
             }
+
+            .video-card {
+                flex: 0 0 240px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -446,6 +644,14 @@
             
             .social-text {
                 font-size: 0.75rem;
+            }
+
+            .video-card {
+                flex: 0 0 200px;
+            }
+
+            .video-title {
+                font-size: 0.85rem;
             }
         }
     </style>
@@ -493,6 +699,16 @@
                     </iframe>
                 </div>
             </div>
+
+            <!-- Video Marquee Section -->
+            <div class="videos-marquee-section">
+                <h4 class="marquee-title">📺 Últimos Videos</h4>
+                <div class="marquee-container">
+                    <div id="videosMarquee" class="loading-message">
+                        <i class="fas fa-spinner fa-spin"></i> Cargando videos...
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Contact Section -->
@@ -503,56 +719,51 @@
             </button>
 
             <div class="chatbot" id="chatbot">
-                <!-- Step 1: Name -->
-                <div class="chat-step active" id="step1">
+                <div class="form-section">
                     <h4>¡Hola! Soy Aroldo Blanco 👋</h4>
                     <p>Gracias por tu interés en mis servicios inmobiliarios. Para brindarte la mejor atención, necesito algunos datos:</p>
-                    <input type="text" class="chat-input" id="userName" placeholder="¿Cuál es tu nombre completo?">
-                    <button class="chat-button" onclick="nextStep(2)">Continuar</button>
+                    
+                    <div class="form-row">
+                        <label for="userName">Nombre completo <span class="required">*</span></label>
+                        <input type="text" class="chat-input" id="userName" placeholder="Ingresa tu nombre completo" oninput="validateForm()">
+                        <div class="validation-message">Este campo es obligatorio</div>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="contactReason">¿Cómo puedo ayudarte? <span class="required">*</span></label>
+                        <textarea class="chat-input" id="contactReason" placeholder="Ejemplo: Busco un apartamento de 2 habitaciones en Casco Viejo, presupuesto $150,000" rows="4" oninput="validateForm()"></textarea>
+                        <div class="validation-message">Cuéntame qué tipo de propiedad buscas</div>
+                    </div>
                 </div>
 
-                <!-- Step 2: Reason -->
-                <div class="chat-step" id="step2">
-                    <h4>Perfecto, <span id="nameDisplay"></span>! 🏡</h4>
-                    <p>¿En qué puedo ayudarte hoy?</p>
-                    <textarea class="chat-input" id="contactReason" placeholder="Ejemplo: Busco un apartamento de 2 habitaciones en Casco Viejo, presupuesto $150,000" rows="4"></textarea>
-                    <button class="chat-button" onclick="nextStep(3)">Continuar</button>
-                </div>
-
-                <!-- Step 3: Contact Method -->
-                <div class="chat-step" id="step3">
-                    <h4>¡Excelente! 📞</h4>
-                    <p>¿Como prefieres contactarme?</p>
+                <div class="form-section">
+                    <h4>Elige tu método de contacto preferido:</h4>
+                    <p id="contactInstructions">Complete los campos arriba para activar las opciones de contacto</p>
+                    
                     <div class="contact-options">
-                        <a href="#" class="contact-option" id="whatsappOption" onclick="contactViaWhatsApp()">
+                        <div class="contact-option disabled" id="whatsappOption" onclick="contactViaWhatsApp()">
                             <i class="fab fa-whatsapp" style="color: #25D366;"></i>
                             <span>WhatsApp</span>
-                        </a>
-                        <a href="#" class="contact-option" id="callOption" onclick="contactViaCall()">
+                        </div>
+                        <div class="contact-option disabled" id="callOption" onclick="contactViaCall()">
                             <i class="fas fa-phone" style="color: #4CAF50;"></i>
                             <span>Llamada</span>
-                        </a>
-                        <a href="#" class="contact-option" id="emailOption" onclick="contactViaEmail()">
+                        </div>
+                        <div class="contact-option disabled" id="emailOption" onclick="contactViaEmail()">
                             <i class="fas fa-envelope" style="color: #2196F3;"></i>
                             <span>Email</span>
-                        </a>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Step 4: Thank you -->
-                <div class="chat-step" id="step4">
-                    <h4>¡Gracias por contactarme! 🎉</h4>
-                    <p>Te estaré contactando muy pronto para ayudarte a encontrar la propiedad perfecta.</p>
-                    
-                    <div class="additional-options">
-                        <p>¿Prefieres llamarme directamente?</p>
-                        <button class="chat-button" onclick="contactViaCall()" style="background: #4CAF50;">
-                            <i class="fas fa-phone"></i> Llamar Ahora
-                        </button>
-                        <button class="chat-button" onclick="resetChatbot()">
-                            <i class="fas fa-redo"></i> Nueva Consulta
-                        </button>
-                    </div>
+                <div class="additional-options">
+                    <p>¿Prefieres llamarme directamente?</p>
+                    <button class="chat-button" onclick="window.open('tel:+50768598709', '_self')" style="background: #4CAF50;">
+                        <i class="fas fa-phone"></i> Llamar Ahora
+                    </button>
+                    <button class="chat-button" onclick="resetChatbot()">
+                        <i class="fas fa-redo"></i> Nueva Consulta
+                    </button>
                 </div>
             </div>
         </div>
@@ -563,44 +774,189 @@
         </div>
     </div>
 
+
     <script>
-        let currentStep = 1;
-        let userName = '';
-        let contactReason = '';
+let currentStep = 1;
+let userName = '';
+let contactReason = '';
 
-        function toggleChatbot() {
-            const chatbot = document.getElementById('chatbot');
-            chatbot.classList.toggle('active');
+// YouTube RSS Feed configuration
+const YOUTUBE_RSS_URL = 'https://www.youtube.com/feeds/videos.xml?channel_id=UC2dv425MwlOE-WTW5Gny5Zw';
+const CORS_PROXY = 'https://api.allorigins.win/raw?url=';
+
+// Function to format date from RSS
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    const now = new Date();
+    const diffTime = Math.abs(now - date);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    
+    if (diffDays === 1) {
+        return 'hace 1 día';
+    } else if (diffDays < 7) {
+        return `hace ${diffDays} días`;
+    } else if (diffDays < 30) {
+        const weeks = Math.floor(diffDays / 7);
+        return `hace ${weeks} semana${weeks > 1 ? 's' : ''}`;
+    } else {
+        const months = Math.floor(diffDays / 30);
+        return `hace ${months} mes${months > 1 ? 'es' : ''}`;
+    }
+}
+
+// Function to extract video ID from YouTube URL
+function extractVideoId(url) {
+    const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/);
+    return match ? match[1] : null;
+}
+
+// Function to create video card HTML
+function createVideoCard(video) {
+    return `
+        <div class="video-card" onclick="openVideo('${video.id}')">
+            <div class="video-thumbnail-container">
+                <img src="${video.thumbnail}" alt="${video.title}" class="video-thumbnail" loading="lazy">
+                <div class="video-duration">${video.duration || 'N/A'}</div>
+            </div>
+            <div class="video-info">
+                <h5 class="video-title">${video.title}</h5>
+                <div class="video-meta">
+                    <span>${video.publishDate}</span>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+// Function to open video in new tab
+function openVideo(videoId) {
+    window.open(`https://www.youtube.com/watch?v=${videoId}`, '_blank');
+}
+
+// Function to fetch and parse YouTube RSS feed
+async function fetchYouTubeVideos() {
+    const marqueeContainer = document.getElementById('videosMarquee');
+    
+    try {
+        marqueeContainer.innerHTML = '<div class="loading-message"><i class="fas fa-spinner fa-spin"></i> Cargando videos...</div>';
+        
+        // Fetch RSS feed through CORS proxy
+        const response = await fetch(CORS_PROXY + encodeURIComponent(YOUTUBE_RSS_URL));
+        const xmlText = await response.text();
+        
+        // Parse XML
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(xmlText, 'text/xml');
+        
+        // Check for parsing errors
+        const parserError = xmlDoc.querySelector('parsererror');
+        if (parserError) {
+            throw new Error('Error parsing XML');
         }
-
-        function nextStep(step) {
-            if (step === 2) {
-                userName = document.getElementById('userName').value.trim();
-                if (!userName) {
-                    alert('Por favor, ingresa tu nombre para continuar.');
-                    return;
+        
+        // Extract video entries
+        const entries = xmlDoc.querySelectorAll('entry');
+        const videos = [];
+        
+        entries.forEach((entry, index) => {
+            if (index < 12) { // Limit to 12 videos for performance
+                const title = entry.querySelector('title')?.textContent || 'Sin título';
+                const link = entry.querySelector('link')?.getAttribute('href') || '';
+                const publishedDate = entry.querySelector('published')?.textContent || '';
+                const videoId = extractVideoId(link);
+                
+                if (videoId) {
+                    // Get video statistics from media:group if available
+                    const mediaGroup = entry.querySelector('media\\:group, group');
+                    const description = mediaGroup?.querySelector('media\\:description, description')?.textContent || '';
+                    const thumbnail = `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
+                    
+                    videos.push({
+                        id: videoId,
+                        title: title.length > 60 ? title.substring(0, 60) + '...' : title,
+                        thumbnail: thumbnail,
+                        publishDate: formatDate(publishedDate),
+                        duration: 'Video', // RSS doesn't provide duration, so we use generic text
+                        url: link
+                    });
                 }
-                document.getElementById('nameDisplay').textContent = userName;
             }
-            
-            if (step === 3) {
-                contactReason = document.getElementById('contactReason').value.trim();
-                if (!contactReason) {
-                    alert('Por favor, cuéntame cómo puedo ayudarte.');
-                    return;
-                }
-            }
-
-            // Hide current step
-            document.getElementById(`step${currentStep}`).classList.remove('active');
-            
-            // Show next step
-            currentStep = step;
-            document.getElementById(`step${currentStep}`).classList.add('active');
+        });
+        
+        if (videos.length === 0) {
+            marqueeContainer.innerHTML = '<div class="error-message">No se pudieron cargar los videos en este momento.</div>';
+            return;
         }
+        
+        // Split videos into two groups for two marquee lines
+        const midPoint = Math.ceil(videos.length / 2);
+        const firstLineVideos = videos.slice(0, midPoint);
+        const secondLineVideos = videos.slice(midPoint);
+        
+        // Create marquee content for both lines (duplicate for seamless loop)
+        const firstLineCards = firstLineVideos.map(video => createVideoCard(video)).join('');
+        const secondLineCards = secondLineVideos.map(video => createVideoCard(video)).join('');
+        
+        const firstLineDuplicated = firstLineCards + firstLineCards; // Duplicate for seamless scrolling
+        const secondLineDuplicated = secondLineCards + secondLineCards; // Duplicate for seamless scrolling
+        
+        marqueeContainer.innerHTML = `
+            <div class="marquee-track marquee-track-left">
+                ${firstLineDuplicated}
+            </div>
+            <div class="marquee-track marquee-track-right">
+                ${secondLineDuplicated}
+            </div>
+        `;
+        
+        console.log(`Loaded ${videos.length} videos successfully`);
+        
+    } catch (error) {
+        console.error('Error fetching YouTube videos:', error);
+        marqueeContainer.innerHTML = `
+            <div class="error-message">
+                <i class="fas fa-exclamation-triangle"></i> 
+                No se pudieron cargar los videos en este momento.<br>
+                <small>Intenta recargar la página más tarde.</small>
+            </div>
+        `;
+    }
+}
 
-        function contactViaWhatsApp() {
-            const message = `¡Hola Aroldo! 👋
+// Chatbot functions
+function toggleChatbot() {
+    const chatbot = document.getElementById('chatbot');
+    chatbot.classList.toggle('active');
+}
+
+function nextStep(step) {
+    if (step === 2) {
+        userName = document.getElementById('userName').value.trim();
+        if (!userName) {
+            alert('Por favor, ingresa tu nombre para continuar.');
+            return;
+        }
+        document.getElementById('nameDisplay').textContent = userName;
+    }
+    
+    if (step === 3) {
+        contactReason = document.getElementById('contactReason').value.trim();
+        if (!contactReason) {
+            alert('Por favor, cuéntame cómo puedo ayudarte.');
+            return;
+        }
+    }
+
+    // Hide current step
+    document.getElementById(`step${currentStep}`).classList.remove('active');
+    
+    // Show next step
+    currentStep = step;
+    document.getElementById(`step${currentStep}`).classList.add('active');
+}
+
+function contactViaWhatsApp() {
+    const message = `¡Hola Aroldo! 👋
 
 Mi nombre es: ${userName}
 
@@ -608,20 +964,20 @@ Me interesa contactarte por lo siguiente:
 ${contactReason}
 
 Gracias por tu tiempo y espero tu respuesta. 🏠`;
-            
-            const whatsappUrl = `https://wa.me/50768598709?text=${encodeURIComponent(message)}`;
-            window.open(whatsappUrl, '_blank');
-            nextStep(4);
-        }
+    
+    const whatsappUrl = `https://wa.me/50768598709?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+    nextStep(4);
+}
 
-        function contactViaCall() {
-            window.open('tel:+50768598709', '_self');
-            nextStep(4);
-        }
+function contactViaCall() {
+    window.open('tel:+50768598709', '_self');
+    nextStep(4);
+}
 
-        function contactViaEmail() {
-            const subject = `Consulta Inmobiliaria - ${userName}`;
-            const body = `Estimado Aroldo Blanco,
+function contactViaEmail() {
+    const subject = `Consulta Inmobiliaria - ${userName}`;
+    const body = `Estimado Aroldo Blanco,
 
 Mi nombre es ${userName} y me dirijo a usted por lo siguiente:
 
@@ -635,35 +991,91 @@ ${userName}
 ---
 Enviado desde inmobiliario.com.pa`;
 
-            const emailUrl = `mailto:inmueblesamillon@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-            window.open(emailUrl, '_self');
-            nextStep(4);
-        }
+    const emailUrl = `mailto:inmueblesamillon@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.open(emailUrl, '_self');
+    nextStep(4);
+}
 
-        function resetChatbot() {
-            currentStep = 1;
-            userName = '';
-            contactReason = '';
-            
-            // Clear inputs
-            document.getElementById('userName').value = '';
-            document.getElementById('contactReason').value = '';
-            
-            // Reset to first step
-            document.querySelectorAll('.chat-step').forEach(step => {
-                step.classList.remove('active');
-            });
-            document.getElementById('step1').classList.add('active');
-        }
+function resetChatbot() {
+    currentStep = 1;
+    userName = '';
+    contactReason = '';
+    
+    // Clear inputs
+    document.getElementById('userName').value = '';
+    document.getElementById('contactReason').value = '';
+    
+    // Reset to first step
+    document.querySelectorAll('.chat-step').forEach(step => {
+        step.classList.remove('active');
+    });
+    document.getElementById('step1').classList.add('active');
+}
 
-        // Add smooth scroll behavior
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add animation delays for social links
-            const socialLinks = document.querySelectorAll('.social-link');
-            socialLinks.forEach((link, index) => {
-                link.style.animationDelay = `${index * 0.1}s`;
-            });
-        });
+// Form validation functions (for the first version compatibility)
+function validateForm() {
+    const userNameInput = document.getElementById('userName');
+    const contactReasonInput = document.getElementById('contactReason');
+    const whatsappOption = document.getElementById('whatsappOption');
+    const callOption = document.getElementById('callOption');
+    const emailOption = document.getElementById('emailOption');
+    const contactInstructions = document.getElementById('contactInstructions');
+    
+    if (!userNameInput || !contactReasonInput) return;
+    
+    const name = userNameInput.value.trim();
+    const reason = contactReasonInput.value.trim();
+    
+    if (name && reason) {
+        userName = name;
+        contactReason = reason;
+        
+        // Enable contact options
+        if (whatsappOption) whatsappOption.classList.remove('disabled');
+        if (callOption) callOption.classList.remove('disabled');
+        if (emailOption) emailOption.classList.remove('disabled');
+        
+        if (contactInstructions) {
+            contactInstructions.textContent = '¡Perfecto! Ahora elige tu método de contacto preferido:';
+        }
+    } else {
+        // Disable contact options
+        if (whatsappOption) whatsappOption.classList.add('disabled');
+        if (callOption) callOption.classList.add('disabled');
+        if (emailOption) emailOption.classList.add('disabled');
+        
+        if (contactInstructions) {
+            contactInstructions.textContent = 'Complete los campos arriba para activar las opciones de contacto';
+        }
+    }
+}
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Add animation delays for social links
+    const socialLinks = document.querySelectorAll('.social-link');
+    socialLinks.forEach((link, index) => {
+        link.style.animationDelay = `${index * 0.1}s`;
+    });
+    
+    // Load YouTube videos
+    fetchYouTubeVideos();
+    
+    // Set up form validation if elements exist (for first version compatibility)
+    const userNameInput = document.getElementById('userName');
+    const contactReasonInput = document.getElementById('contactReason');
+    
+    if (userNameInput && contactReasonInput) {
+        userNameInput.addEventListener('input', validateForm);
+        contactReasonInput.addEventListener('input', validateForm);
+    }
+});
+
+// Refresh videos every 10 minutes (optional)
+setInterval(() => {
+    console.log('Refreshing YouTube videos...');
+    fetchYouTubeVideos();
+}, 10 * 60 * 1000);
     </script>
 </body>
 </html>
