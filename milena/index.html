@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- PERSONALIZABLE: Información del profesional -->
+ 
     <title>Dra. Milena Gomez Cedeño - Rectora/Gerente Educativa del ITSE</title>
     <meta name="description" content="Dra. Milena Gomez Cedeño, Rectora/Gerente Educativa del ITSE (Instituto Técnico Superior Especializado). Liderazgo e innovación en educación técnica superior.">
     <meta name="keywords" content="ITSE, educación técnica superior, liderazgo educativo, Dra Milena Gomez Cedeño, Panamá, rectora, gerente educativa, innovación educativa, honores, premios">
@@ -177,7 +177,7 @@
         }
 
         .about-card {
-            background: var(--primary-color);
+            background: #10466a;
             border: 1px solid var(--border-color);
             border-radius: 16px;
             padding: 1.5rem;
@@ -193,7 +193,7 @@
         .about-text {
             font-size: 1rem;
             line-height: 1.7;
-            color: var(--text-primary);
+            color: white;
         }
 
         .video-container {
@@ -298,6 +298,10 @@
             line-height: 1.6;
             color: var(--text-primary);
             margin-bottom: 1rem;
+            display: none; /* Ocultar por defecto */
+        }
+        .award-description.visible { /* Clase para mostrar */
+            display: block;
         }
         .award-link {
             display: inline-block;
@@ -306,6 +310,7 @@
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s ease;
+            /* margin-top: 0.5rem; */ /* Ajustar si es necesario */
         }
         .award-link:hover {
             color: #c8a313;
@@ -315,6 +320,25 @@
             margin-left: 5px;
             font-size: 0.8em;
         }
+
+        /* Estilo para el botón "Ver más / Ver menos" */
+        .toggle-description-btn {
+            background: none;
+            border: none;
+            color: var(--highlight-color);
+            cursor: pointer;
+            font-weight: 500;
+            text-decoration: underline;
+            padding: 0.5rem 0;
+            margin-top: 0.25rem; /* Espacio sobre el botón */
+            margin-bottom: 0.75rem; /* Espacio debajo del botón antes de la descripción o el enlace externo */
+            font-size: 0.9rem;
+            display: inline-block;
+        }
+        .toggle-description-btn:hover {
+            color: #c8a313; /* Un poco más oscuro al pasar el mouse */
+        }
+
 
         .action-links-container {
             display: flex;
@@ -438,7 +462,7 @@
             <div class="hero-overlay"></div>
             <div class="hero-content">
                 <h1 class="profile-name">Dra. Milena Gomez</h1>
-                <p class="profile-title">Rectora/Gerente Educativa del ITSE<br>(Instituto Técnico Superior Especializado)</p>
+                <p class="profile-title">Rectora/Gerente Educativa del ITSE</p>
                 <div class="social-links">
                     <a href="https://www.instagram.com/milgomezce/" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Dra. Milena Gomez Cedeño">
                         <i class="fab fa-instagram"></i>
@@ -490,6 +514,7 @@
                         <strong>Otorgado por:</strong> Universitat de Barcelona<br>
                         <strong>Fecha:</strong> Julio 2016
                     </p>
+                    <button class="toggle-description-btn">Ver más</button>
                     <p class="award-description">
                         Milena Gómez Cedeño fue galardonada con un Premio Extraordinario de Doctorado de la UB por su tesis doctoral "Incidencia de los recursos humanos en la cadena de suministro", dirigida por la Dra. Laura Guitart Tarrés y el Dr. José María Castán Farrero. Su investigación demuestra que la gestión de la cadena de suministro ha emergido como un proceso organizacional estratégico impulsado por la interacción humana, llenando el vacío de investigación entre los campos de la cadena de suministro y los recursos humanos, con el objetivo de mejorar el rendimiento de las empresas.
                     </p>
@@ -508,9 +533,11 @@
                         <strong>Fecha:</strong> Agosto 2014<br>
                         <strong>Asociado con:</strong> Universitat de Barcelona
                     </p>
+                    <button class="toggle-description-btn">Ver más</button>
                     <p class="award-description">
                         Este premio fue otorgado a un reducido número de doctorandos con reconocimientos sobresalientes, que mostraron un interés académico activo en las conferencias, desempeñando un papel crítico en las mismas en las sesiones paralelas, participando en círculos de conversación, mediante discusiones rigurosas sobre sus trabajos de investigación allí presentados.
                     </p>
+                    <!-- No hay link externo aquí, así que no se añade -->
                 </div>
             </section>
 
@@ -528,7 +555,7 @@
 
         <!-- Footer -->
         <footer class="footer">
-            <p>© 2024 Dra. Milena Gomez Cedeño. Todos los derechos reservados.</p>
+            <p>© 2025 Dra. Milena Gomez Cedeño.</p>
         </footer>
     </div>
 
@@ -539,7 +566,8 @@
 
             elements.forEach(element => {
                 const elementTop = element.getBoundingClientRect().top;
-                if (elementTop < windowHeight - 50) {
+                if (elementTop < windowHeight - 50) { // Animar un poco antes de que esté completamente visible
+                    // Asegurarse de que la animación solo se ejecute una vez si no tiene la clase 'animated'
                     if (element.style.opacity !== '1') {
                         element.style.opacity = '1';
                         element.style.transform = 'translateY(0)';
@@ -548,16 +576,43 @@
             });
         }
         
+        // Ejecutar la animación para los elementos ya visibles al cargar
         function initialAnimate() {
             const elements = document.querySelectorAll('.animate-fade-in');
+            // Forzar reflow para que las animaciones CSS se apliquen correctamente en algunos navegadores al cargar
             elements.forEach(element => {
                 void element.offsetWidth; 
             });
-            animateOnScroll();
+            animateOnScroll(); // Llama para animar lo que ya esté en vista
         }
 
         window.addEventListener('scroll', animateOnScroll);
         window.addEventListener('load', initialAnimate);
+
+        // --- NUEVO SCRIPT PARA "VER MÁS / VER MENOS" ---
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleButtons = document.querySelectorAll('.toggle-description-btn');
+
+            toggleButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // El elemento .award-description es el siguiente hermano del botón
+                    const description = this.nextElementSibling; 
+                    // El enlace "Más Información" es el siguiente hermano de la descripción
+                    const externalLink = description ? description.nextElementSibling : null;
+
+
+                    if (description && description.classList.contains('award-description')) {
+                        description.classList.toggle('visible');
+                        
+                        if (description.classList.contains('visible')) {
+                            this.textContent = 'Ver menos';
+                        } else {
+                            this.textContent = 'Ver más';
+                        }
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>
