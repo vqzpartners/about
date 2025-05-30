@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Morci - Odontología Estética, Biomimética y Biológica en Panamá</title>
+    
+    <!-- SEO Meta Tags for Panama -->
+    <meta name="description" content="Transformando sonrisas con Odontología Estética, Biomimética y Biológica en Panamá. Conferencista Nacional e Internacional. Especialista en diseño de sonrisa y tratamientos dentales avanzados.">
+    <meta name="keywords" content="odontología estética panamá, dentista panamá, biomimética dental, odontología biológica, diseño de sonrisa, carillas dentales, blanqueamiento dental, implantes dentales panamá, dentista ciudad de panamá">
+    <meta name="author" content="Dr. Morci">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Spanish">
+    <meta name="geo.region" content="PA">
+    <meta name="geo.country" content="Panama">
+    <meta name="geo.placename" content="Ciudad de Panamá">
+    
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Dr. Morci - Odontología Estética en Panamá">
+    <meta property="og:description" content="Transformando sonrisas con Odontología Estética, Biomimética y Biológica. Conferencista Nacional e Internacional.">
+    <meta property="og:image" content="https://vqzpartners.com/morci/img/social-banner.jpg">
+    <meta property="og:url" content="">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_PA">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Dr. Morci - Odontología Estética en Panamá">
+    <meta name="twitter:description" content="Transformando sonrisas con Odontología Estética, Biomimética y Biológica">
+    <meta name="twitter:image" content="https://vqzpartners.com/morci/img/social-banner.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://vqzpartners.com/morci/img/favicon.png">
+    <link rel="apple-touch-icon" href="https://vqzpartners.com/morci/img/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Dentist",
+        "name": "Dr. Morci",
+        "description": "Especialista en Odontología Estética, Biomimética y Biológica",
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "PA",
+            "addressLocality": "Ciudad de Panamá"
+        },
+        "specialty": ["Odontología Estética", "Biomimética Dental", "Odontología Biológica"],
+        "image": "https://vqzpartners.com/morci/img/profile.jpg"
+    }
+    </script>
+    
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #000000;
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Newsletter Bubble Notification */
+        .newsletter-bubble {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #ffc107, #ffb300);
+            color: #000;
+            padding: 1rem 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(255, 193, 7, 0.4);
+            z-index: 3000;
+            max-width: 350px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            line-height: 1.4;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: slideInUp 0.5s ease forwards;
+            text-align: center;
+        }
+
+        .newsletter-bubble:hover {
+            transform: translateX(-50%) translateY(-2px);
+            box-shadow: 0 15px 40px rgba(255, 193, 7, 0.6);
+        }
+
+        .newsletter-bubble .close-bubble {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: #000;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 2px;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOutRight {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+
+        /* Newsletter Modal */
+        .newsletter-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 4000;
+            backdrop-filter: blur(5px);
+        }
+
+        .newsletter-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 193, 7, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 2.5rem;
+            width: 90%;
+            max-width: 500px;
+            border: 1px solid rgba(255, 193, 7, 0.3);
+            box-shadow: 0 20px 40px rgba(255, 193, 7, 0.3);
+        }
+
+        .newsletter-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .newsletter-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 0.5rem;
+        }
+
+        .newsletter-subtitle {
+            color: #333;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .newsletter-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #000;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-close:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        /* Newsletter Form Styles */
+        .newsletter-form-container {
+            width: 100%;
+        }
+
+        .newsletter-form {
+            width: 100%;
+        }
+
+        .newsletter-form-input {
+            width: 100% !important;
+            padding: 14px !important;
+            background-color: #FFFFFF !important;
+            border: 2px solid rgba(0, 0, 0, 0.1) !important;
+            border-radius: 12px !important;
+            color: #333333 !important;
+            font-family: 'Inter', sans-serif !important;
+            font-size: 16px !important;
+            margin-bottom: 15px !important;
+            min-height: 50px !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+            transition: border-color 0.3s ease !important;
+        }
+
+        .newsletter-form-input:focus {
+            outline: none !important;
+            border-color: #000 !important;
+        }
+
+        .newsletter-form-input::placeholder {
+            color: #6b7280 !important;
+            opacity: 1 !important;
+        }
+
+        .newsletter-form-button, 
+        .newsletter-loading-button {
+            width: 100% !important;
+            padding: 16px !important;
+            background-color: #000000 !important;
+            color: #ffc107 !important;
+            border: none !important;
+            border-radius: 12px !important;
+            cursor: pointer !important;
+            font-family: 'Inter', sans-serif !important;
+            font-weight: 600 !important;
+            font-size: 16px !important;
+            min-height: 50px !important;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .newsletter-form-button:hover {
+            background-color: #333333 !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
+        }
+
+        /* Success and error message styles */
+        .newsletter-success,
+        .newsletter-error {
+            text-align: center !important;
+            width: 100% !important;
+            padding: 20px !important;
+            border-radius: 12px !important;
+            margin-top: 15px !important;
+            display: none;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+
+        .newsletter-success {
+            background-color: rgba(0, 0, 0, 0.1) !important;
+        }
+
+        .newsletter-error {
+            background-color: rgba(220, 38, 38, 0.1) !important;
+        }
+
+        .newsletter-success h3,
+        .newsletter-error h3 {
+            font-family: 'Inter', sans-serif !important;
+            margin-bottom: 8px !important;
+            color: #000000 !important;
+            font-size: 18px !important;
+            font-weight: 600 !important;
+        }
+
+        .newsletter-success-message,
+        .newsletter-error-message {
+            font-family: 'Inter', sans-serif !important;
+            color: #333333 !important;
+            font-size: 16px !important;
+            text-align: center !important;
+            line-height: 1.5 !important;
+        }
+
+        .newsletter-error h3 {
+            color: #dc2626 !important;
+        }
+
+        .newsletter-error-message {
+            color: #dc2626 !important;
+        }
+
+        .newsletter-back-button {
+            color: #666666 !important;
+            font-family: 'Inter', sans-serif !important;
+            font-size: 14px !important;
+            margin: 15px auto !important;
+            text-align: center !important;
+            display: none;
+            background: transparent !important;
+            border: none !important;
+            cursor: pointer !important;
+            padding: 8px 15px !important;
+            border-radius: 8px !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .newsletter-back-button:hover {
+            background-color: rgba(0, 0, 0, 0.1) !important;
+            color: #000 !important;
+        }
+
+        /* Header Styles */
+        .header {
+            background: rgba(255, 193, 7, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(255, 193, 7, 0.3);
+            border: 1px solid rgba(255, 193, 7, 0.2);
+        }
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: block;
+            border: 6px solid #000;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .doctor-name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 0.5rem;
+        }
+
+        .specialty {
+            font-size: 1.2rem;
+            color: #000;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .tagline {
+            font-size: 1rem;
+            color: #333;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Section Headers */
+        .section-title {
+            color: #ffc107;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 2.5rem 0 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-title::after {
+            content: "";
+            height: 2px;
+            background: linear-gradient(90deg, #ffc107, transparent);
+            flex-grow: 1;
+        }
+
+        /* Card Styles */
+        .card {
+            background: rgba(255, 193, 7, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 15px 35px rgba(255, 193, 7, 0.1);
+            border: 1px solid rgba(255, 193, 7, 0.3);
+            transition: all 0.3s ease;
+            transform: translateY(10px);
+            opacity: 0;
+            animation: slideUp 0.6s ease forwards;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 45px rgba(255, 193, 7, 0.2);
+            border-color: rgba(255, 193, 7, 0.5);
+        }
+
+        @keyframes slideUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .service-card {
+            background: rgba(255, 193, 7, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 18px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid rgba(255, 193, 7, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 193, 7, 0.2);
+            border-color: rgba(255, 193, 7, 0.5);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #ffc107, #ffb300);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: #000;
+            font-size: 24px;
+        }
+
+        .service-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #ffc107;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-desc {
+            font-size: 0.9rem;
+            color: #ccc;
+            line-height: 1.5;
+        }
+
+        /* Contact Section */
+        .contact-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .contact-card {
+            background: rgba(255, 193, 7, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 15px;
+            padding: 1.2rem;
+            text-align: center;
+            border: 1px solid rgba(255, 193, 7, 0.3);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 193, 7, 0.2);
+            text-decoration: none;
+            color: #fff;
+            border-color: rgba(255, 193, 7, 0.5);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #ffc107, #ffb300);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.8rem;
+            color: #000;
+            font-size: 20px;
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: #ffc107;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-size: 28px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(255, 193, 7, 0.6);
+            color: #000;
+            text-decoration: none;
+        }
+
+        /* Chatbot Modal */
+        .chatbot-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 2000;
+            backdrop-filter: blur(5px);
+        }
+
+        .chatbot-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .chatbot-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #ffc107;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #718096;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: #f1f5f9;
+            color: #2d3748;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #2d3748;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #ffc107;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #ffc107, #ffb300);
+            color: #000;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 193, 7, 0.3);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @keyframes slideInUp {
+            from {
+                transform: translateX(-50%) translateY(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOutDown {
+            from {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(-50%) translateY(100%);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .doctor-name {
+                font-size: 2rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .chatbot-content {
+                width: 95%;
+                padding: 1.5rem;
+            }
+            
+            .header {
+                padding: 1.5rem;
+            }
+
+            .newsletter-bubble {
+                bottom: 10px;
+                left: 50%;
+                transform: translateX(-50%);
+                max-width: 280px;
+                font-size: 0.8rem;
+                padding: 0.8rem 1.2rem;
+            }
+
+            .newsletter-content {
+                padding: 2rem 1.5rem;
+            }
+
+            .newsletter-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Newsletter Bubble Notification -->
+    <div id="newsletterBubble" class="newsletter-bubble">
+        <button class="close-bubble" onclick="closeBubble()">&times;</button>
+        Suscríbete a mi Newsletter para no perderte los lanzamientos de mis cursos, sesiones académicas y promos
+    </div>
+
+    <!-- Newsletter Modal -->
+    <div id="newsletterModal" class="newsletter-modal">
+        <div class="newsletter-content">
+            <button class="newsletter-close" onclick="closeNewsletterModal()">&times;</button>
+            <div class="newsletter-header">
+                <h2 class="newsletter-title">Newsletter Dr. Morci</h2>
+                <p class="newsletter-subtitle">Mantente al día con los últimos avances en odontología, cursos exclusivos y promociones especiales.</p>
+            </div>
+            
+            <div class="newsletter-form-container">
+                <!-- 
+                API VARIABLES TO CHANGE:
+                - action: "https://app.loops.so/api/newsletter-form/YOUR_FORM_ID_HERE"
+                - userGroup: "organic" (can be changed to segment users)
+                - mailingLists: "YOUR_MAILING_LIST_ID_HERE"
+                -->
+                <form class="newsletter-form" action="https://app.loops.so/api/newsletter-form/YOUR_FORM_ID_HERE" method="POST">
+                    <input class="newsletter-form-input" name="firstName" type="text" placeholder="Tu nombre" required>
+                    
+                    <input class="newsletter-form-input" name="email" type="email" placeholder="Tu email" required>
+                    
+                    <button type="submit" class="newsletter-form-button">Suscribirme Ahora</button>
+                    
+                    <button type="button" class="newsletter-loading-button" style="display: none;">Enviando...</button>
+                </form>
+                
+                <div class="newsletter-success">
+                    <h3>¡Gracias!</h3>
+                    <p class="newsletter-success-message">Revisa tu bandeja de entrada para confirmar tu suscripción.</p>
+                </div>
+                
+                <div class="newsletter-error">
+                    <h3>¡Oops!</h3>
+                    <p class="newsletter-error-message">Algo salió mal, por favor intenta de nuevo</p>
+                </div>
+                
+                <button class="newsletter-back-button" type="button">intentar de nuevo</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <img src="https://vqzpartners.com/morci/img/profile.jpg" alt="Dr. Morci" class="profile-img">
+            <h1 class="doctor-name">Dr. Morci</h1>
+            <p class="specialty">Odontología Estética • Biomimética • Biológica</p>
+            <p class="tagline">Transformando sonrisas con técnicas de vanguardia.</p>
+        </div>
+
+        <!-- Services Section -->
+        <h2 class="section-title">
+            <i class="fas fa-tooth"></i>
+            Nuestros Servicios
+        </h2>
+        
+        <div class="services-grid">
+            <div class="service-card" onclick="openChatbot('Odontología Estética')">
+                <div class="service-icon">
+                    <i class="fas fa-smile"></i>
+                </div>
+                <h3 class="service-title">Odontología Estética</h3>
+                <p class="service-desc">Diseño de sonrisa, carillas y blanqueamientos para una sonrisa perfecta</p>
+            </div>
+            
+            <div class="service-card" onclick="openChatbot('Odontología Biomimética')">
+                <div class="service-icon">
+                    <i class="fas fa-microscope"></i>
+                </div>
+                <h3 class="service-title">Biomimética</h3>
+                <p class="service-desc">Restauraciones que imitan la naturaleza del diente original</p>
+            </div>
+            
+            <div class="service-card" onclick="openChatbot('Odontología Biológica')">
+                <div class="service-icon">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <h3 class="service-title">Odontología Biológica</h3>
+                <p class="service-desc">Tratamientos holísticos respetando la salud integral del paciente</p>
+            </div>
+            
+            <div class="service-card" onclick="openChatbot('Implantes Dentales')">
+                <div class="service-icon">
+                    <i class="fas fa-cog"></i>
+                </div>
+                <h3 class="service-title">Implantes Dentales</h3>
+                <p class="service-desc">Reemplazo de dientes perdidos con tecnología de última generación</p>
+            </div>
+            
+            <div class="service-card" onclick="openChatbot('Ortodoncia')">
+                <div class="service-icon">
+                    <i class="fas fa-align-center"></i>
+                </div>
+                <h3 class="service-title">Ortodoncia</h3>
+                <p class="service-desc">Alineación dental invisible y tradicional para todas las edades</p>
+            </div>
+            
+            <div class="service-card" onclick="openChatbot('Endodoncia')">
+                <div class="service-icon">
+                    <i class="fas fa-stethoscope"></i>
+                </div>
+                <h3 class="service-title">Endodoncia</h3>
+                <p class="service-desc">Tratamientos de conducto con técnicas modernas y sin dolor</p>
+            </div>
+        </div>
+
+        <!-- About Section -->
+        <h2 class="section-title">
+            <i class="fas fa-user-md"></i>
+            Acerca del Dr.
+        </h2>
+        
+        <div class="card">
+            <p style="line-height: 1.8; color: #ffffff;">
+                Con años de experiencia en odontología de vanguardia, el Dr. Morci se especializa en técnicas estéticas, biomiméticas y biológicas que transforman no solo sonrisas, sino vidas completas. Como conferencista reconocido a nivel nacional e internacional, combina la excelencia clínica con la innovación constante para ofrecer los mejores resultados a sus pacientes.
+            </p>
+        </div>
+
+        <!-- Contact Section -->
+        <h2 class="section-title">
+            <i class="fas fa-calendar-check"></i>
+            Agenda tu Cita
+        </h2>
+        
+        <div class="contact-options">
+            <a href="#" class="contact-card" onclick="openChatbot('Consulta General')">
+                <div class="contact-icon">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+                <h3>WhatsApp</h3>
+                <p>Agenda por chat</p>
+            </a>
+            
+            <a href="tel:+507-XXXX-XXXX" class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-phone"></i>
+                </div>
+                <h3>Teléfono</h3>
+                <p>+507-XXXX-XXXX</p>
+            </a>
+            
+            <a href="#" class="contact-card" onclick="sendEmail()">
+                <div class="contact-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h3>Email</h3>
+                <p>Contacto directo</p>
+            </a>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>© 2025 Dr. Morci - Odontología de Excelencia en Panamá</p>
+        </div>
+    </div>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="#" class="whatsapp-btn" onclick="openChatbot('Consulta General')">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Chatbot Modal -->
+    <div id="chatbotModal" class="chatbot-modal">
+        <div class="chatbot-content">
+            <div class="chatbot-header">
+                <div>
+                    <h3 style="color: #2d3748; margin-bottom: 0.5rem;">Agenda tu Cita</h3>
+                    <p style="color: #718096; font-size: 0.9rem;">Completa el formulario y te contactaremos</p>
+                </div>
+                <button class="close-btn" onclick="closeChatbot()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <form id="appointmentForm">
+                <div class="form-group">
+                    <label for="name">Nombre Completo *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Teléfono *</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email">
+                </div>
+                
+                <div class="form-group">
+                    <label for="service">Servicio de Interés *</label>
+                    <select id="service" name="service" required>
+                        <option value="">Selecciona un servicio</option>
+                        <option value="Odontología Estética">Odontología Estética</option>
+                        <option value="Odontología Biomimética">Odontología Biomimética</option>
+                        <option value="Odontología Biológica">Odontología Biológica</option>
+                        <option value="Implantes Dentales">Implantes Dentales</option>
+                        <option value="Ortodoncia">Ortodoncia</option>
+                        <option value="Endodoncia">Endodoncia</option>
+                        <option value="Consulta General">Consulta General</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Mensaje Adicional</label>
+                    <textarea id="message" name="message" rows="3" placeholder="Describe tu consulta o síntomas..."></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">
+                    <i class="fab fa-whatsapp" style="margin-right: 0.5rem;"></i>
+                    Enviar por WhatsApp
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Newsletter Bubble Auto-show and Auto-hide
+        document.addEventListener('DOMContentLoaded', function() {
+            const bubble = document.getElementById('newsletterBubble');
+            
+            // Show bubble for 5 seconds, then hide
+            setTimeout(() => {
+                if (bubble && bubble.style.display !== 'none') {
+                    bubble.style.animation = 'slideOutDown 0.5s ease forwards';
+                    setTimeout(() => {
+                        bubble.style.display = 'none';
+                    }, 500);
+                }
+            }, 5000);
+
+            // Animation delays for cards
+            const cards = document.querySelectorAll('.card, .service-card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+
+        // Newsletter Bubble Functions
+        function closeBubble() {
+            const bubble = document.getElementById('newsletterBubble');
+            bubble.style.animation = 'slideOutDown 0.5s ease forwards';
+            setTimeout(() => {
+                bubble.style.display = 'none';
+            }, 500);
+        }
+
+        function openNewsletterModal() {
+            document.getElementById('newsletterModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeNewsletterModal() {
+            document.getElementById('newsletterModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Open newsletter when clicking bubble
+        document.getElementById('newsletterBubble').addEventListener('click', function(e) {
+            if (e.target.classList.contains('close-bubble')) return;
+            closeBubble();
+            openNewsletterModal();
+        });
+
+        // Close newsletter modal when clicking outside
+        document.getElementById('newsletterModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeNewsletterModal();
+            }
+        });
+
+        // Newsletter Form Submission Handler
+        function submitHandler(event) {
+            event.preventDefault();
+            var container = event.target.parentNode;
+            var form = container.querySelector(".newsletter-form");
+            var nameInput = form.querySelector("input[name='firstName']");
+            var emailInput = form.querySelector("input[name='email']");
+            var success = container.querySelector(".newsletter-success");
+            var errorContainer = container.querySelector(".newsletter-error");
+            var errorMessage = container.querySelector(".newsletter-error-message");
+            var backButton = container.querySelector(".newsletter-back-button");
+            var submitButton = container.querySelector(".newsletter-form-button");
+            var loadingButton = container.querySelector(".newsletter-loading-button");
+            
+            const rateLimit = () => {
+                errorContainer.style.display = "flex";
+                errorMessage.innerText = "Demasiados registros, por favor intenta en un momento";
+                submitButton.style.display = "none";
+                nameInput.style.display = "none";
+                emailInput.style.display = "none";
+                backButton.style.display = "block";
+            }
+        
+            // Compare current time with time of previous sign up
+            var time = new Date();
+            var timestamp = time.valueOf();
+            var previousTimestamp = localStorage.getItem("loops-form-timestamp");
+        
+            // If last sign up was less than a minute ago, display error
+            if (previousTimestamp && Number(previousTimestamp) + 60000 > timestamp) {
+                rateLimit();
+                return;
+            }
+            localStorage.setItem("loops-form-timestamp", timestamp);
+        
+            submitButton.style.display = "none";
+            loadingButton.style.display = "flex";
+        
+            // CHANGE THESE API VARIABLES:
+            // - userGroup: User segment (organic, paid, etc.)
+            // - mailingLists: Your mailing list ID from Loops.so
+            var formBody = "userGroup=organic&mailingLists=YOUR_MAILING_LIST_ID_HERE&email=" 
+                + encodeURIComponent(emailInput.value)
+                + "&firstName=" + encodeURIComponent(nameInput.value);
+        
+            fetch(event.target.action, {
+                method: "POST",
+                body: formBody,
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+            })
+            .then((res) => [res.ok, res.json(), res])
+            .then(([ok, dataPromise, res]) => {
+                if (ok) {
+                    // If response successful, display success
+                    success.style.display = "flex";
+                    form.reset();
+                } else {
+                    // If response unsuccessful, display error message
+                    dataPromise.then(data => {
+                        errorContainer.style.display = "flex";
+                        errorMessage.innerText = data.message
+                            ? data.message
+                            : res.statusText;
+                    });
+                }
+            })
+            .catch(error => {
+                // Check for cloudflare error
+                if (error.message === "Failed to fetch") {
+                    rateLimit();
+                    return;
+                }
+                // If error caught, display error message
+                errorContainer.style.display = "flex";
+                if (error.message) errorMessage.innerText = error.message;
+                localStorage.setItem("loops-form-timestamp", '');
+            })
+            .finally(() => {
+                nameInput.style.display = "none";
+                emailInput.style.display = "none";
+                loadingButton.style.display = "none";
+                backButton.style.display = "block";
+            });
+        }
+        
+        function resetFormHandler(event) {
+            var container = event.target.parentNode;
+            var form = container.querySelector(".newsletter-form");
+            var nameInput = form.querySelector("input[name='firstName']");
+            var emailInput = form.querySelector("input[name='email']");
+            var success = container.querySelector(".newsletter-success");
+            var errorContainer = container.querySelector(".newsletter-error");
+            var errorMessage = container.querySelector(".newsletter-error-message");
+            var backButton = container.querySelector(".newsletter-back-button");
+            var submitButton = container.querySelector(".newsletter-form-button");
+        
+            success.style.display = "none";
+            errorContainer.style.display = "none";
+            errorMessage.innerText = "Algo salió mal, por favor intenta de nuevo";
+            backButton.style.display = "none";
+            nameInput.style.display = "flex";
+            emailInput.style.display = "flex";
+            submitButton.style.display = "flex";
+        }
+        
+        // Add event listeners for newsletter form
+        var formContainers = document.getElementsByClassName("newsletter-form-container");
+        
+        for (var i = 0; i < formContainers.length; i++) {
+            var formContainer = formContainers[i]
+            var handlersAdded = formContainer.classList.contains('newsletter-handlers-added')
+            if (handlersAdded) continue;
+            formContainer
+                .querySelector(".newsletter-form")
+                .addEventListener("submit", submitHandler);
+            formContainer
+                .querySelector(".newsletter-back-button")
+                .addEventListener("click", resetFormHandler);
+            formContainer.classList.add("newsletter-handlers-added");
+        }
+
+        // Chatbot functionality
+        let selectedService = '';
+
+        function openChatbot(service = '') {
+            selectedService = service;
+            document.getElementById('chatbotModal').style.display = 'block';
+            if (service) {
+                document.getElementById('service').value = service;
+            }
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeChatbot() {
+            document.getElementById('chatbotModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('chatbotModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeChatbot();
+            }
+        });
+
+        // Email function with prefilled data
+        function sendEmail() {
+            const subject = encodeURIComponent('Consulta - Dr. Morci');
+            const body = encodeURIComponent(`Estimado Dr. Morci,
+
+Espero que se encuentre bien. Me dirijo a usted para solicitar información sobre sus servicios odontológicos.
+
+Estoy interesado/a en conocer más sobre:
+- Odontología Estética
+- Biomimética
+- Odontología Biológica
+
+Me gustaría agendar una consulta para evaluar mi caso particular.
+
+Quedo atento/a a su respuesta.
+
+Saludos cordiales.`);
+            
+            const mailtoLink = `mailto:doctor@drmorci.com?subject=${subject}&body=${body}`;
+            window.location.href = mailtoLink;
+        }
+
+        // Form submission
+        document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Validate required fields
+            if (!data.name || !data.phone || !data.service) {
+                alert('Por favor completa todos los campos obligatorios');
+                return;
+            }
+            
+            // Send all data to webhook
+            sendToWebhook(data);
+            
+            // Create WhatsApp message with only specific fields
+            let whatsappMessage = `*Nueva Consulta - Dr. Morci*\n\n`;
+            whatsappMessage += `*Nombre Completo:* ${data.name}\n`;
+            whatsappMessage += `*Servicio de Interés:* ${data.service}\n`;
+            if (data.message) whatsappMessage += `*Mensaje Adicional:* ${data.message}\n`;
+            whatsappMessage += `\n_Enviado desde drmorci.com_`;
+            
+            // WhatsApp phone number (replace with actual number)
+            const whatsappNumber = '50712345678'; // Replace with actual WhatsApp number
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+            
+            // Open WhatsApp
+            window.open(whatsappUrl, '_blank');
+            
+            // Close modal and reset form
+            closeChatbot();
+            this.reset();
+            
+            // Show success message
+            setTimeout(() => {
+                alert('¡Perfecto! Te estamos redirigiendo a WhatsApp para completar tu cita.');
+            }, 500);
+        });
+
+        // Function to send data to webhook
+        async function sendToWebhook(data) {
+            const webhookUrl = 'YOUR_WEBHOOK_URL_HERE'; // Replace with your actual webhook URL
+            
+            try {
+                const response = await fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name: data.name,
+                        phone: data.phone,
+                        email: data.email,
+                        service: data.service,
+                        message: data.message,
+                        timestamp: new Date().toISOString(),
+                        source: 'drmorci.com'
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                
+                console.log('Data sent to webhook successfully');
+            } catch (error) {
+                console.error('Error sending data to webhook:', error);
+            }
+        }
+
+        // Smooth scrolling for any internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
