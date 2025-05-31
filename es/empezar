@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VQZ & Partners - Elige tu camino</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Roboto+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="https://vqzpartners.com/get/images/favicon.png">
+
+  <meta name="description" content="Elige cómo quieres implementar IA en tu negocio con VQZ Partners.">
+  <meta name="keywords" content="VQZ Partners, IA, inteligencia artificial, agentes IA, automatización">
+  <meta name="robots" content="index, follow">
+
+  <meta property="og:title" content="VQZ & Partners - Elige tu camino">
+  <meta property="og:description" content="Aprende o deja que nosotros implementemos IA en tu negocio">
+  <meta property="og:image" content="https://vqzpartners.com/get/images/social-banner.jpg">
+
+  <meta name="twitter:title" content="VQZ & Partners - Elige tu camino">
+  <meta name="twitter:description" content="Aprende o deja que nosotros implementemos IA en tu negocio">
+  <meta name="twitter:image" content="https://vqzpartners.com/get/images/social-banner.jpg">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto Mono', monospace;
+    }
+
+    body {
+      background-color: #000000;
+      color: white;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      width: 100%;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* Header Styles */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      margin-bottom: 0;
+      position: absolute;
+      top: 1rem;
+      left: 0;
+      right: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      height: 50px;
+    }
+
+    /* Main Content Layout */
+    .main-content {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: center;
+      align-items: center;
+      padding-top: 100px;
+      text-align: center;
+    }
+
+    .form-container {
+      max-width: 800px;
+      width: 100%;
+      padding: 3rem;
+      background-color: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .form-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    }
+
+    .form-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #ffffff, #cccccc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .form-subtitle {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      margin-bottom: 3rem;
+      opacity: 0.8;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .options-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .option-card {
+      padding: 2.5rem 2rem;
+      background-color: rgba(255, 255, 255, 0.03);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .option-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .option-card:hover::before {
+      left: 100%;
+    }
+
+    .option-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      border-color: rgba(255, 255, 255, 0.4);
+      box-shadow: 0 20px 40px rgba(255, 255, 255, 0.1);
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .option-card.selected {
+      border-color: rgba(255, 255, 255, 0.6);
+      background-color: rgba(255, 255, 255, 0.08);
+      transform: translateY(-4px);
+    }
+
+    .option-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      opacity: 0.8;
+      transition: all 0.3s ease;
+    }
+
+    .option-card:hover .option-icon {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+
+    .option-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .option-description {
+      font-size: 0.95rem;
+      opacity: 0.7;
+      line-height: 1.5;
+    }
+
+    .submit-btn {
+      padding: 1rem 3rem;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+      color: white;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      text-decoration: none;
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .submit-btn.enabled {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .submit-btn::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .submit-btn.enabled:hover::after {
+      left: 100%;
+    }
+
+    .submit-btn.enabled:hover {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
+      border-color: rgba(255, 255, 255, 0.5);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(255, 255, 255, 0.1);
+    }
+
+    /* Animation classes */
+    .animated-element {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .animated-element.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .form-container {
+        padding: 2rem 1.5rem;
+      }
+
+      .form-title {
+        font-size: 2rem;
+      }
+
+      .form-subtitle {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      .options-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .option-card {
+        padding: 2rem 1.5rem;
+        min-height: 160px;
+      }
+
+      .option-icon {
+        font-size: 2.5rem;
+      }
+
+      .option-title {
+        font-size: 1.2rem;
+      }
+
+      .submit-btn {
+        width: 100%;
+        padding: 1.2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 10px;
+      }
+
+      .form-container {
+        padding: 1.5rem 1rem;
+      }
+
+      .form-title {
+        font-size: 1.8rem;
+      }
+
+      .logo {
+        height: 40px;
+      }
+
+      .main-content {
+        padding-top: 80px;
+      }
+    }
+
+    /* Glow effect */
+    .option-card::after {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      border-radius: 14px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: -1;
+    }
+
+    .option-card:hover::after {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img src="https://vqzpartners.com/get/images/white-web-logo.svg" alt="VQZ & Partners Logo" class="logo">
+    </header>
+
+    <div class="main-content">
+      <div class="form-container">
+        <h1 class="form-title animated-element">Elige tu camino hacia la IA</h1>
+        <p class="form-subtitle animated-element">
+          Decide cómo quieres implementar inteligencia artificial en tu vida o negocio
+        </p>
+        
+        <div class="options-container animated-element">
+          <div class="option-card" data-option="learn">
+            <div class="option-icon">🎓</div>
+            <h3 class="option-title">Aprender</h3>
+            <p class="option-description">
+              Aprende cómo aplicar un agente IA por ti mismo con nuestro curso completo
+            </p>
+          </div>
+          
+          <div class="option-card" data-option="implement">
+            <div class="option-icon">🚀</div>
+            <h3 class="option-title">Implementar</h3>
+            <p class="option-description">
+              Deja que nosotros lo apliquemos directamente en tu negocio
+            </p>
+          </div>
+        </div>
+        
+        <button class="submit-btn animated-element" id="submitBtn">
+          Continuar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      let selectedOption = null;
+      const optionCards = document.querySelectorAll('.option-card');
+      const submitBtn = document.getElementById('submitBtn');
+
+      // Animation
+      const animatedElements = document.querySelectorAll('.animated-element');
+      const initialDelay = 400;
+      const staggerDelay = 200;
+      
+      const animateElements = async () => {
+        await new Promise(resolve => setTimeout(resolve, initialDelay));
+        
+        for (let i = 0; i < animatedElements.length; i++) {
+          animatedElements[i].classList.add('visible');
+          await new Promise(resolve => setTimeout(resolve, staggerDelay));
+        }
+      };
+      
+      animateElements();
+
+      // Option selection
+      optionCards.forEach(card => {
+        card.addEventListener('click', () => {
+          // Remove selection from all cards
+          optionCards.forEach(c => c.classList.remove('selected'));
+          
+          // Add selection to clicked card
+          card.classList.add('selected');
+          
+          // Store selected option
+          selectedOption = card.dataset.option;
+          
+          // Enable submit button
+          submitBtn.classList.add('enabled');
+          
+          // Add small animation feedback
+          card.style.transform = 'translateY(-8px) scale(1.02)';
+          setTimeout(() => {
+            card.style.transform = '';
+          }, 200);
+        });
+      });
+
+      // Submit button click
+      submitBtn.addEventListener('click', () => {
+        if (!selectedOption) return;
+        
+        if (selectedOption === 'learn') {
+          // Redirect to Whop course
+          window.open('https://whop.com/negocios', '_blank');
+        } else if (selectedOption === 'implement') {
+          // Create WhatsApp message
+          const message = encodeURIComponent('Hola! Estoy interesado en que implementen IA en mi negocio. ¿Podrían ayudarme?');
+          const whatsappUrl = `https://wa.me/50765702280?text=${message}`;
+          window.open(whatsappUrl, '_blank');
+        }
+      });
+
+      // Add hover sound effect (optional)
+      optionCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+          // You could add a subtle sound effect here if desired
+        });
+      });
+    });
+  </script>
+  <script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+</body>
+</html>
