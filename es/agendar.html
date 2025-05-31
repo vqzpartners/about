@@ -14,11 +14,11 @@
 
   <meta property="og:title" content="Reservar Reunión - VQZ & Partners">
   <meta property="og:description" content="Reserva tu reunión en menos de un minuto">
-  <meta property="og:image" content="https://vqzpartners.com/get/images/social-banner.jpg">
+  <meta property="og:image" content="https://vqzpartners.com/get/images/reserva-banner.jpg">
 
   <meta name="twitter:title" content="Reservar Reunión - VQZ & Partners">
   <meta name="twitter:description" content="Reserva tu reunión en menos de un minuto">
-  <meta name="twitter:image" content="https://vqzpartners.com/get/images/social-banner.jpg">
+  <meta name="twitter:image" content="https://vqzpartners.com/get/images/reserva-banner.jpg">
   
   <style>
     * {
@@ -39,72 +39,38 @@
     }
 
     .container {
-      max-width: 1200px;
+      max-width: 900px;
       margin: 0 auto;
       width: 100%;
       flex: 1;
       display: flex;
       flex-direction: column;
-      position: relative;
+      align-items: center;
     }
 
     /* Header Styles */
     header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 0;
-      margin-bottom: 2rem;
-      position: relative;
-      z-index: 10;
+      text-align: center;
+      margin-bottom: 3rem;
     }
 
     .logo {
-      height: 50px;
-    }
-
-    .back-btn {
-      padding: 0.6rem 1.2rem;
-      background-color: transparent;
-      color: white;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: 4px;
-      font-size: 0.9rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-decoration: none;
-      display: inline-block;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .back-btn:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.5);
-      transform: translateY(-2px);
+      height: 60px;
     }
 
     /* Main Content */
     .main-content {
-      display: flex;
-      gap: 4rem;
-      flex: 1;
-      align-items: flex-start;
-    }
-
-    /* Left Column - Text Content */
-    .text-content {
-      flex: 1;
+      width: 100%;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
-      padding-top: 2rem;
+      align-items: center;
+      gap: 2rem;
     }
 
     .page-title {
       font-size: 2.5rem;
       font-weight: 700;
-      margin-bottom: 1rem;
+      text-align: center;
       line-height: 1.2;
       font-family: 'Montserrat', sans-serif;
       background: linear-gradient(135deg, #ffffff, #cccccc);
@@ -114,17 +80,22 @@
     }
 
     .quick-time {
-      font-size: 1.1rem;
-      color: #00ff88;
+      font-size: 1.2rem;
+      color: white;
       font-weight: 500;
-      margin-bottom: 1.5rem;
+      text-align: center;
       display: flex;
       align-items: center;
       gap: 0.5rem;
+      justify-content: center;
+      background-color: #0047ff;
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      box-shadow: 0 4px 15px rgba(0, 71, 255, 0.3);
     }
 
     .time-icon {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       animation: pulse 2s infinite;
     }
 
@@ -133,38 +104,10 @@
       50% { opacity: 0.6; }
     }
 
-    .description {
-      font-size: 1.1rem;
-      line-height: 1.6;
-      margin-bottom: 2rem;
-      max-width: 480px;
-      color: rgba(255, 255, 255, 0.8);
-    }
-
-    .features-list {
-      list-style: none;
-      margin-bottom: 2rem;
-    }
-
-    .features-list li {
-      padding: 0.5rem 0;
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      font-size: 1rem;
-      color: rgba(255, 255, 255, 0.7);
-    }
-
-    .features-list li::before {
-      content: '✓';
-      color: #00ff88;
-      font-weight: bold;
-      font-size: 1.1rem;
-    }
-
-    /* Right Column - Calendly Widget */
+    /* Calendly Widget Container */
     .booking-container {
-      flex: 1;
+      width: 100%;
+      max-width: 800px;
       background-color: rgba(255, 255, 255, 0.02);
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 12px;
@@ -181,24 +124,7 @@
       left: 0;
       right: 0;
       height: 3px;
-      background: linear-gradient(90deg, #0047ff, #00ff88);
-    }
-
-    .booking-header {
-      text-align: center;
-      margin-bottom: 1.5rem;
-    }
-
-    .booking-title {
-      font-size: 1.3rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      font-family: 'Montserrat', sans-serif;
-    }
-
-    .booking-subtitle {
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.6);
+      background: #0047ff;
     }
 
     /* Calendly Widget Styling */
@@ -220,65 +146,10 @@
       transform: translateY(0);
     }
 
-    /* Floating elements */
-    .floating-element {
-      position: absolute;
-      width: 6px;
-      height: 6px;
-      background-color: rgba(255, 255, 255, 0.1);
-      border-radius: 50%;
-      animation: float 8s infinite ease-in-out;
-    }
-
-    .floating-element:nth-child(1) {
-      top: 20%;
-      left: 10%;
-      animation-delay: 0s;
-    }
-
-    .floating-element:nth-child(2) {
-      top: 60%;
-      left: 80%;
-      animation-delay: 2s;
-    }
-
-    .floating-element:nth-child(3) {
-      top: 80%;
-      left: 20%;
-      animation-delay: 4s;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.3; }
-      50% { transform: translateY(-20px) rotate(180deg); opacity: 0.8; }
-    }
-
     /* Responsive Styles */
-    @media (max-width: 992px) {
-      .main-content {
-        flex-direction: column;
-        gap: 2rem;
-      }
-      
-      .text-content {
-        align-items: center;
-        text-align: center;
-        padding-top: 1rem;
-      }
-      
-      .description, .features-list {
-        margin-left: auto;
-        margin-right: auto;
-      }
-    }
-
     @media (max-width: 768px) {
       .page-title {
         font-size: 2rem;
-      }
-      
-      .description {
-        font-size: 1rem;
       }
       
       .booking-container {
@@ -296,7 +167,7 @@
       }
       
       .logo {
-        height: 40px;
+        height: 50px;
       }
       
       body {
@@ -310,50 +181,30 @@
       .main-content {
         gap: 1.5rem;
       }
+
+      header {
+        margin-bottom: 2rem;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- Floating background elements -->
-  <div class="floating-element"></div>
-  <div class="floating-element"></div>
-  <div class="floating-element"></div>
-
   <div class="container">
     <header>
       <img src="https://vqzpartners.com/get/images/white-web-logo.svg" alt="VQZ & Partners Logo" class="logo">
-      <a href="/" class="back-btn">← Volver al inicio</a>
     </header>
 
     <div class="main-content">
-      <div class="text-content">
-        <h1 class="page-title animated-text">Reserva tu reunión</h1>
-        
-        <div class="quick-time animated-text">
-          <span class="time-icon">⚡</span>
-          <span>Toma menos de un minuto</span>
-        </div>
-        
-        <p class="description animated-text">
-          Agenda una conversación con nuestro equipo para explorar cómo podemos acelerar tu proyecto con soluciones de IA, automatización e innovación.
-        </p>
-        
-        <ul class="features-list animated-text">
-          <li>Consulta gratuita de 30 minutos</li>
-          <li>Análisis personalizado de tu proyecto</li>
-          <li>Estrategias de implementación</li>
-          <li>Próximos pasos claros y actionables</li>
-        </ul>
+      <h1 class="page-title animated-text">Reserva tu reunión</h1>
+      
+      <div class="quick-time animated-text">
+        <span class="time-icon">⚡</span>
+        <span>Toma menos de un minuto</span>
       </div>
       
       <div class="booking-container animated-text">
-        <div class="booking-header">
-          <h2 class="booking-title">Selecciona tu horario preferido</h2>
-          <p class="booking-subtitle">Elige la fecha y hora que mejor se adapte a ti</p>
-        </div>
-        
         <!-- Principio del widget integrado de Calendly -->
-        <div class="calendly-inline-widget" data-url="https://calendly.com/brandonvqz/30min?hide_gdpr_banner=1&background_color=131313&primary_color=0047ff" style="min-width:320px;height:700px;"></div>
+        <div class="calendly-inline-widget" data-url="https://calendly.com/brandonvqz/30min?hide_gdpr_banner=1&primary_color=0047ff" style="min-width:320px;height:700px;"></div>
         <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
         <!-- Final del widget integrado de Calendly -->
       </div>
