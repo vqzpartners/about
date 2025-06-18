@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- No Index Meta Tags -->
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="googlebot" content="noindex, nofollow">
+    
+    <!-- SEO Meta Tags -->
+    <title>VQZ & Partners - Formulario de Contacto</title>
+    <meta name="description" content="Cuéntanos sobre tu proyecto para poder ayudarte con nuestro expertise en desarrollo web, SEO, publicidad y más servicios digitales.">
+    <meta name="keywords" content="desarrollo web, SEO, publicidad digital, gestión de citas, dominios, AI agents">
+    <meta name="author" content="VQZ & Partners">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="VQZ & Partners - Formulario de Contacto">
+    <meta property="og:description" content="Cuéntanos sobre tu proyecto para poder ayudarte con nuestro expertise en desarrollo web, SEO, publicidad y más servicios digitales.">
+    <meta property="og:image" content="https://vqzpartners.com/get/images/social-banner.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://vqzpartners.com">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="VQZ & Partners">
+    <meta property="og:locale" content="es_ES">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="VQZ & Partners - Formulario de Contacto">
+    <meta name="twitter:description" content="Cuéntanos sobre tu proyecto para poder ayudarte con nuestro expertise en desarrollo web, SEO, publicidad y más servicios digitales.">
+    <meta name="twitter:image" content="https://vqzpartners.com/get/images/social-banner.jpg">
+    
+    <!-- Additional Meta Tags -->
+    <meta name="theme-color" content="#000000">
+    <meta name="msapplication-TileColor" content="#000000">
+    <link rel="canonical" href="https://vqzpartners.com">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Roboto+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://vqzpartners.com/get/images/favicon.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        body {
+            background-color: #000000;
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .logo {
+            height: 60px;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero-section {
+            margin-bottom: 3rem;
+            max-width: 800px;
+        }
+
+        .description {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 3rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.4));
+            border-radius: 2px;
+            transition: width 0.5s ease;
+            width: 0%;
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            align-items: center;
+        }
+
+        .step-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            margin-bottom: 0.5rem;
+        }
+
+        .step-item.active .step-dot {
+            background: white;
+            border-color: white;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .step-item.completed .step-dot {
+            background: rgba(255, 255, 255, 0.8);
+            border-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .step-text {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            transition: color 0.3s ease;
+        }
+
+        .step-item.active .step-text {
+            color: white;
+            font-weight: 500;
+        }
+
+        .step-item.completed .step-text {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Connecting line between dots */
+        .step-indicator::before {
+            content: '';
+            position: absolute;
+            top: 6px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 1;
+        }
+
+        /* Form Steps */
+        .form-step {
+            display: none;
+            width: 100%;
+            max-width: 800px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .form-step.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .step-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: white;
+        }
+
+        /* Service Cards */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+        }
+
+        .service-card.selected {
+            border-color: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .service-card:hover::after {
+            left: 100%;
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .service-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-description {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.4;
+        }
+
+        .selected-indicator {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 24px;
+            height: 24px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.3s ease;
+        }
+
+        .service-card.selected .selected-indicator {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Form Fields */
+        .form-fields {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .field-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .field-label {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .field-input {
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .field-input:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+        }
+
+        .field-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Textarea */
+        .field-textarea {
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            resize: vertical;
+            min-height: 100px;
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        .field-textarea:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+        }
+
+        .field-textarea::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Phone Input */
+        .phone-container {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .country-select {
+            width: 160px;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .country-select option {
+            background: #1a1a1a;
+            color: white;
+        }
+
+        .loading-text {
+            color: rgba(255, 255, 255, 0.6);
+            font-style: italic;
+        }
+
+        /* Radio Buttons */
+        .radio-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-start;
+            margin-top: 1rem;
+            width: 100%;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            padding: 1rem 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .radio-option:hover {
+            border-color: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .radio-option.selected {
+            border-color: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .radio-input {
+            display: none;
+        }
+
+        .radio-custom {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .radio-option.selected .radio-custom {
+            border-color: white;
+        }
+
+        .radio-option.selected .radio-custom::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        /* Buttons */
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            min-width: 120px;
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-primary {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .btn-primary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn.loading {
+            pointer-events: none;
+        }
+
+        .btn.loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top: 2px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* Success Screen */
+        .success-screen {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            color: #4ade80;
+            margin-bottom: 2rem;
+        }
+
+        .success-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .success-message {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .ai-agent-notice {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .ai-agent-icon {
+            font-size: 2rem;
+            color: #60a5fa;
+        }
+
+        .ai-agent-text {
+            flex: 1;
+            text-align: left;
+        }
+
+        .ai-agent-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .ai-agent-description {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-fields {
+                max-width: 100%;
+            }
+
+            .radio-group {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 1rem;
+            }
+
+            .radio-option {
+                justify-content: flex-start;
+            }
+
+            .phone-container {
+                flex-direction: column;
+            }
+
+            .country-select {
+                width: 100%;
+            }
+
+            .step-indicator {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .step-text {
+                font-size: 0.8rem;
+            }
+
+            /* Keep buttons horizontal on mobile */
+            .button-group {
+                flex-direction: row;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .btn {
+                flex: 1;
+                min-width: 100px;
+                max-width: 150px;
+            }
+
+            .ai-agent-notice {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .ai-agent-text {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+
+            .step-title {
+                font-size: 1.5rem;
+            }
+
+            .service-card {
+                padding: 1.5rem;
+            }
+
+            .step-indicator::before {
+                display: none;
+            }
+
+            .btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="https://vqzpartners.com/get/images/white-web-logo.svg" alt="VQZ & Partners Logo" class="logo">
+        </header>
+
+        <main class="main-content">
+            <div class="hero-section">
+                <p class="description" data-text="description">Cuéntanos sobre tu proyecto para poder ayudarte con nuestro expertise</p>
+            </div>
+
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="step-indicator">
+                    <div class="step-item active">
+                        <div class="step-dot"></div>
+                        <span class="step-text" data-text="step1">Servicios</span>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-dot"></div>
+                        <span class="step-text" data-text="step2">Discovery</span>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-dot"></div>
+                        <span class="step-text" data-text="step3">Información</span>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-dot"></div>
+                        <span class="step-text" data-text="step4">Confirmación</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 1: Services -->
+            <div class="form-step active" id="step1">
+                <h2 class="step-title" data-text="servicesTitle">¿Qué servicios necesitas?</h2>
+                <div class="services-grid">
+                    <div class="service-card" data-service="web-development">
+                        <span class="service-icon">⚡</span>
+                        <h3 class="service-name" data-text="webDev">Desarrollo web</h3>
+                        <p class="service-description" data-text="webDevDesc">Sitios web modernos y aplicaciones</p>
+                        <div class="selected-indicator">✓</div>
+                    </div>
+                    <div class="service-card" data-service="seo">
+                        <span class="service-icon">🏢</span>
+                        <h3 class="service-name" data-text="seo">Posicionamiento</h3>
+                        <p class="service-description" data-text="seoDesc">SEO y marketing digital</p>
+                        <div class="selected-indicator">✓</div>
+                    </div>
+                    <div class="service-card" data-service="advertising">
+                        <span class="service-icon">💰</span>
+                        <h3 class="service-name" data-text="advertising">Publicidad</h3>
+                        <p class="service-description" data-text="advertisingDesc">Campañas publicitarias efectivas</p>
+                        <div class="selected-indicator">✓</div>
+                    </div>
+                    <div class="service-card" data-service="appointment-system">
+                        <span class="service-icon">🎓</span>
+                        <h3 class="service-name" data-text="appointments">Gestión de citas</h3>
+                        <p class="service-description" data-text="appointmentsDesc">Automatización de citas</p>
+                        <div class="selected-indicator">✓</div>
+                    </div>
+                    <div class="service-card" data-service="domain-management">
+                        <span class="service-icon">💡</span>
+                        <h3 class="service-name" data-text="domains">Domain Management</h3>
+                        <p class="service-description" data-text="domainsDesc">Registro y gestión de dominios</p>
+                        <div class="selected-indicator">✓</div>
+                    </div>
+                    <div class="service-card" data-service="ai-agents">
+                        <span class="service-icon">🤖</span>
+                        <h3 class="service-name" data-text="aiAgents">AI agents</h3>
+                        <p class="service-description" data-text="aiAgentsDesc">Obtén agentes de IA para que atiendan tus llamadas</p>
+                        <div class="selected-indicator">✓</div>
+                    </div>
+                </div>
+                <div class="button-group">
+                    <button class="btn btn-primary" id="nextStep1" disabled data-text="continue">Continuar</button>
+                </div>
+            </div>
+
+            <!-- Step 2: Discovery -->
+            <div class="form-step" id="step2">
+                <h2 class="step-title" data-text="discoveryTitle">Discovery</h2>
+                <div class="form-fields">
+                    <div class="field-group">
+                        <label class="field-label" data-text="painPoints">¿Cuáles son sus principales puntos de dolor actualmente?</label>
+                        <textarea class="field-textarea" id="painPoints" data-placeholder="painPointsPlaceholder" placeholder="Describe los principales desafíos que enfrenta tu negocio..." required></textarea>
+                    </div>
+                    
+                    <div class="field-group">
+                        <label class="field-label" data-text="cashFlow">¿Cuál es su flujo de caja mensual promedio?</label>
+                        <input type="number" class="field-input" id="cashFlow" data-placeholder="cashFlowPlaceholder" placeholder="0" min="0" required>
+                    </div>
+                    
+                    <div class="field-group">
+                        <label class="field-label" data-text="successDefinition">¿Qué haría que usted considere nuestro servicio un éxito?</label>
+                        <textarea class="field-textarea" id="successDefinition" data-placeholder="successDefinitionPlaceholder" placeholder="Describe qué resultados esperarías para considerar exitosa nuestra colaboración..." required></textarea>
+                    </div>
+                    
+                    <div class="field-group">
+                        <label class="field-label" data-text="monthlyCapital">¿Cuánto capital piensa dedicar mensualmente?</label>
+                        <input type="number" class="field-input" id="monthlyCapital" data-placeholder="monthlyCapitalPlaceholder" placeholder="0" min="0" required>
+                    </div>
+                </div>
+                <div class="button-group">
+                    <button class="btn" id="prevStep2" data-text="previous">Anterior</button>
+                    <button class="btn btn-primary" id="nextStep2" disabled data-text="continue">Continuar</button>
+                </div>
+            </div>
+
+            <!-- Step 3: Contact Info -->
+            <div class="form-step" id="step3">
+                <h2 class="step-title" data-text="contactTitle">Información de contacto</h2>
+                <div class="form-fields">
+                    <div class="field-group">
+                        <label class="field-label">
+                            👤 <span data-text="fullName">Nombre completo</span>
+                        </label>
+                        <input type="text" class="field-input" id="name" data-placeholder="fullNamePlaceholder" placeholder="Tu nombre completo" required>
+                    </div>
+                    
+                    <div class="field-group">
+                        <label class="field-label">
+                            📧 <span data-text="email">Correo electrónico</span>
+                        </label>
+                        <input type="email" class="field-input" id="email" data-placeholder="emailPlaceholder" placeholder="tu@email.com" required>
+                    </div>
+                    
+                    <div class="field-group">
+                        <label class="field-label">
+                            📞 <span data-text="phone">Teléfono</span>
+                        </label>
+                        <div class="phone-container">
+                            <select class="country-select" id="countryCode" required>
+                                <option value="" class="loading-text" data-text="loadingCountries">Cargando países...</option>
+                            </select>
+                            <input type="tel" class="field-input" id="phone" data-placeholder="phonePlaceholder" placeholder="Número de teléfono" required>
+                        </div>
+                    </div>
+                    
+                    <div class="field-group">
+                        <label class="field-label" data-text="decisionMaker">¿Eres el único responsable de la toma de decisiones?</label>
+                        <div class="radio-group">
+                            <label class="radio-option" for="decision-yes">
+                                <input type="radio" class="radio-input" id="decision-yes" name="decisionMaker" value="yes">
+                                <div class="radio-custom"></div>
+                                <span data-text="yes">Sí</span>
+                            </label>
+                            <label class="radio-option" for="decision-no">
+                                <input type="radio" class="radio-input" id="decision-no" name="decisionMaker" value="no">
+                                <div class="radio-custom"></div>
+                                <span data-text="no">No</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="button-group">
+                    <button class="btn" id="prevStep3" data-text="previous">Anterior</button>
+                    <button class="btn btn-primary" id="nextStep3" disabled data-text="continue">Continuar</button>
+                </div>
+            </div>
+
+            <!-- Step 4: Success -->
+            <div class="form-step" id="step4">
+                <div class="success-screen">
+                    <div class="success-icon">✅</div>
+                    <h2 class="success-title" data-text="thankYou">¡Gracias por tu interés!</h2>
+                    <p class="success-message" data-text="successMessage">
+                        Hemos recibido tu información correctamente. Nuestro equipo revisará tu consulta y se pondrá en contacto contigo en las próximas 24 horas.
+                    </p>
+                    
+                    <div class="ai-agent-notice">
+                        <div class="ai-agent-icon">🤖</div>
+                        <div class="ai-agent-text">
+                            <div class="ai-agent-title" data-text="aiCallTitle">Llamada de nuestro AI Agent</div>
+                            <div class="ai-agent-description" data-text="aiCallMessage">
+                                Recibirás una llamada de nuestro agente de IA en breve para hacer un seguimiento personalizado de tu consulta.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary" onclick="location.reload()" data-text="newConsultation">Nueva consulta</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+const _0x5f0a80=_0x3961;(function(_0x557e7e,_0xdfb5ab){const _0x1d5eb3=_0x3961,_0x12497b=_0x557e7e();while(!![]){try{const _0x5462e1=-parseInt(_0x1d5eb3(0xba))/0x1*(parseInt(_0x1d5eb3(0xd5))/0x2)+parseInt(_0x1d5eb3(0xc2))/0x3+-parseInt(_0x1d5eb3(0x113))/0x4*(parseInt(_0x1d5eb3(0xec))/0x5)+-parseInt(_0x1d5eb3(0xe2))/0x6+-parseInt(_0x1d5eb3(0x102))/0x7*(-parseInt(_0x1d5eb3(0xf3))/0x8)+-parseInt(_0x1d5eb3(0xea))/0x9*(-parseInt(_0x1d5eb3(0xc4))/0xa)+-parseInt(_0x1d5eb3(0x14e))/0xb*(-parseInt(_0x1d5eb3(0x13f))/0xc);if(_0x5462e1===_0xdfb5ab)break;else _0x12497b['push'](_0x12497b['shift']());}catch(_0x1bde15){_0x12497b['push'](_0x12497b['shift']());}}}(_0x1e2c,0x56985));function _0x3961(_0x1802cb,_0x4e6bb0){const _0x1e2cdf=_0x1e2c();return _0x3961=function(_0x3961b0,_0x5214fa){_0x3961b0=_0x3961b0-0xb2;let _0x1e4705=_0x1e2cdf[_0x3961b0];return _0x1e4705;},_0x3961(_0x1802cb,_0x4e6bb0);}const translations={'es':{'description':_0x5f0a80(0xfb),'step1':_0x5f0a80(0xb8),'step2':'Discovery','step3':_0x5f0a80(0xd7),'step4':_0x5f0a80(0x13d),'servicesTitle':_0x5f0a80(0xb2),'webDev':_0x5f0a80(0xe6),'webDevDesc':'Sitios\x20web\x20modernos\x20y\x20aplicaciones','seo':_0x5f0a80(0xf5),'seoDesc':_0x5f0a80(0x119),'advertising':_0x5f0a80(0x110),'advertisingDesc':_0x5f0a80(0xbb),'appointments':_0x5f0a80(0xf8),'appointmentsDesc':_0x5f0a80(0x100),'domains':_0x5f0a80(0x108),'domainsDesc':_0x5f0a80(0x122),'aiAgents':_0x5f0a80(0xf4),'aiAgentsDesc':_0x5f0a80(0xc6),'discoveryTitle':'Discovery','painPoints':'¿Cuáles\x20son\x20sus\x20principales\x20puntos\x20de\x20dolor\x20actualmente?','painPointsPlaceholder':_0x5f0a80(0xc7),'cashFlow':_0x5f0a80(0x132),'cashFlowPlaceholder':'0','successDefinition':_0x5f0a80(0xf1),'successDefinitionPlaceholder':'Describe\x20qué\x20resultados\x20esperarías\x20para\x20considerar\x20exitosa\x20nuestra\x20colaboración...','monthlyCapital':_0x5f0a80(0x10f),'monthlyCapitalPlaceholder':'0','contactTitle':_0x5f0a80(0x106),'fullName':'Nombre\x20completo','fullNamePlaceholder':_0x5f0a80(0x128),'email':_0x5f0a80(0x14d),'emailPlaceholder':_0x5f0a80(0x103),'phone':_0x5f0a80(0x123),'phonePlaceholder':_0x5f0a80(0xee),'decisionMaker':_0x5f0a80(0x12b),'yes':'Sí','no':'No','continue':_0x5f0a80(0xc9),'previous':_0x5f0a80(0x154),'thankYou':'¡Gracias\x20por\x20tu\x20interés!','successMessage':'Hemos\x20recibido\x20tu\x20información\x20correctamente.\x20Nuestro\x20equipo\x20revisará\x20tu\x20consulta\x20y\x20se\x20pondrá\x20en\x20contacto\x20contigo\x20en\x20las\x20próximas\x2024\x20horas.','aiCallTitle':_0x5f0a80(0x12a),'aiCallMessage':_0x5f0a80(0xf9),'newConsultation':'Nueva\x20consulta','loadingCountries':_0x5f0a80(0x13e),'selectCountry':_0x5f0a80(0x11c),'submitting':'Enviando...'},'en':{'description':_0x5f0a80(0xd8),'step1':'Services','step2':_0x5f0a80(0x121),'step3':_0x5f0a80(0xf7),'step4':_0x5f0a80(0xc8),'servicesTitle':_0x5f0a80(0xcf),'webDev':'Web\x20Development','webDevDesc':_0x5f0a80(0x14b),'seo':'SEO','seoDesc':_0x5f0a80(0x10b),'advertising':'Advertising','advertisingDesc':'Effective\x20advertising\x20campaigns','appointments':_0x5f0a80(0xe9),'appointmentsDesc':_0x5f0a80(0x10c),'domains':'Domain\x20Management','domainsDesc':_0x5f0a80(0x14c),'aiAgents':_0x5f0a80(0xf4),'aiAgentsDesc':_0x5f0a80(0x111),'discoveryTitle':_0x5f0a80(0x121),'painPoints':_0x5f0a80(0x120),'painPointsPlaceholder':_0x5f0a80(0x14f),'cashFlow':_0x5f0a80(0x12e),'cashFlowPlaceholder':'0','successDefinition':'What\x20would\x20make\x20you\x20consider\x20our\x20service\x20a\x20success?','successDefinitionPlaceholder':_0x5f0a80(0x134),'monthlyCapital':_0x5f0a80(0xbd),'monthlyCapitalPlaceholder':'0','contactTitle':_0x5f0a80(0x13b),'fullName':_0x5f0a80(0x105),'fullNamePlaceholder':'Your\x20full\x20name','email':_0x5f0a80(0x141),'emailPlaceholder':_0x5f0a80(0xd3),'phone':'Phone\x20number','phonePlaceholder':_0x5f0a80(0xdb),'decisionMaker':_0x5f0a80(0x137),'yes':_0x5f0a80(0xb6),'no':'No','continue':_0x5f0a80(0xe7),'previous':_0x5f0a80(0x127),'thankYou':'Thank\x20you\x20for\x20your\x20interest!','successMessage':_0x5f0a80(0x125),'aiCallTitle':_0x5f0a80(0xf0),'aiCallMessage':'You\x20will\x20receive\x20a\x20call\x20from\x20our\x20AI\x20agent\x20shortly\x20for\x20personalized\x20follow-up\x20on\x20your\x20inquiry.','newConsultation':_0x5f0a80(0xe1),'loadingCountries':_0x5f0a80(0xb9),'selectCountry':_0x5f0a80(0x146),'submitting':_0x5f0a80(0x11f)}};let currentStep=0x1;function _0x1e2c(){const _0x522f9d=['Hubo\x20un\x20error\x20al\x20enviar\x20el\x20formulario.\x20Por\x20favor,\x20inténtalo\x20de\x20nuevo.','width','Selecciona\x20país','cashFlow','sort','Submitting...','What\x20are\x20your\x20main\x20pain\x20points\x20currently?','Discovery','Registro\x20y\x20gestión\x20de\x20dominios','Teléfono','suffixes','We\x20have\x20received\x20your\x20information\x20correctly.\x20Our\x20team\x20will\x20review\x20your\x20inquiry\x20and\x20contact\x20you\x20within\x20the\x20next\x2024\x20hours.','nextStep1','Previous','Tu\x20nombre\x20completo','value','Llamada\x20de\x20nuestro\x20AI\x20Agent','¿Eres\x20el\x20único\x20responsable\x20de\x20la\x20toma\x20de\x20decisiones?','documentElement','prevStep2','What\x20is\x20your\x20average\x20monthly\x20cash\x20flow?','createElement','completed','Submitting\x20form\x20data:','¿Cuál\x20es\x20su\x20flujo\x20de\x20caja\x20mensual\x20promedio?','push','Describe\x20what\x20results\x20you\x20would\x20expect\x20to\x20consider\x20our\x20collaboration\x20successful...','data-text','querySelectorAll','Are\x20you\x20the\x20sole\x20decision\x20maker?','painPoints','common','log','Contact\x20Information','option','Confirmación','Cargando\x20países...','12RXuWgU','userLanguage','Email','appendChild','active','selected','length','Select\x20country','.radio-option','nextStep3','lang','nextStep2','Modern\x20websites\x20and\x20applications','Domain\x20registration\x20and\x20management','Correo\x20electrónico','16063234gpclBp','Describe\x20the\x20main\x20challenges\x20your\x20business\x20is\x20facing...','test','idd','prevStep3','selectCountry','Anterior','¿Qué\x20servicios\x20necesitas?','step','application/json','input','Yes','querySelector','Servicios','Loading\x20countries...','619JStgdO','Campañas\x20publicitarias\x20efectivas','remove','How\x20much\x20capital\x20do\x20you\x20plan\x20to\x20dedicate\x20monthly?','error','decisionMaker','POST','status','184032OAjXGI','getElementById','500BjytNp','[data-placeholder]','Obtén\x20agentes\x20de\x20IA\x20para\x20que\x20atiendan\x20tus\x20llamadas','Describe\x20los\x20principales\x20desafíos\x20que\x20enfrenta\x20tu\x20negocio...','Confirmation','Continuar','filter','add','VQZ\x20Contact\x20Form','includes','loading','What\x20services\x20do\x20you\x20need?','userAgent','addEventListener','successDefinition','your@email.com','scrollTo','586tZMeRS','referrer','Información','Tell\x20us\x20about\x20your\x20project\x20so\x20we\x20can\x20help\x20you\x20with\x20our\x20expertise','click','name','Phone\x20number','</option>','DOMContentLoaded','localeCompare','root','map','New\x20consultation','3396108WNAHnQ','.service-card','countryCode','phone','Desarrollo\x20web','Continue','https://restcountries.com/v3.1/all?fields=name,idd,cca2','Appointment\x20Management','3834XbcaiS','monthlyCapital','57490NFBTti','Advertising','Número\x20de\x20teléfono','forEach','AI\x20Agent\x20Call','¿Qué\x20haría\x20que\x20usted\x20considere\x20nuestro\x20servicio\x20un\x20éxito?','<option\x20value=\x22\x22>','376xqnsxF','AI\x20agents','Posicionamiento','json','Information','Gestión\x20de\x20citas','Recibirás\x20una\x20llamada\x20de\x20nuestro\x20agente\x20de\x20IA\x20en\x20breve\x20para\x20hacer\x20un\x20seguimiento\x20personalizado\x20de\x20tu\x20consulta.','classList','Cuéntanos\x20sobre\x20tu\x20proyecto\x20para\x20poder\x20ayudarte\x20con\x20nuestro\x20expertise','email','SEO','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20value=\x22\x22>','services','Automatización\x20de\x20citas','disabled','14826QvhdSq','tu@email.com','startsWith','Full\x20Name','Información\x20de\x20contacto','join','Domain\x20Management','trim','.step-item:nth-child(','SEO\x20and\x20digital\x20marketing','Appointment\x20automation','toISOString','code','¿Cuánto\x20capital\x20piensa\x20dedicar\x20mensualmente?','Publicidad','Get\x20AI\x20agents\x20to\x20take\x20calls\x20for\x20you','getAttribute','188aaRPEP','textContent','change','yes','innerHTML','cca2','SEO\x20y\x20marketing\x20digital'];_0x1e2c=function(){return _0x522f9d;};return _0x1e2c();}const totalSteps=0x4;let selectedServices=[],currentLanguage='es',formData={'services':[],'painPoints':'','cashFlow':'','successDefinition':'','monthlyCapital':'','name':'','email':'','phone':'','countryCode':'','decisionMaker':''};document[_0x5f0a80(0xd1)](_0x5f0a80(0xdd),function(){detectLanguage(),updateProgress(),setupEventListeners(),loadCountries();});function detectLanguage(){const _0x5ca457=_0x5f0a80,_0x1d5627=navigator['language']||navigator[_0x5ca457(0x140)];_0x1d5627[_0x5ca457(0x104)]('en')&&(currentLanguage='en',updateLanguage());}function updateLanguage(){const _0x33ace8=_0x5f0a80,_0x51c3db=document[_0x33ace8(0x136)]('[data-text]');_0x51c3db[_0x33ace8(0xef)](_0x3b3164=>{const _0x509762=_0x33ace8,_0x397dd6=_0x3b3164[_0x509762(0x112)](_0x509762(0x135));translations[currentLanguage][_0x397dd6]&&(_0x3b3164['textContent']=translations[currentLanguage][_0x397dd6]);});const _0x52a9d0=document['querySelectorAll'](_0x33ace8(0xc5));_0x52a9d0[_0x33ace8(0xef)](_0x3b22a2=>{const _0x142d14=_0x33ace8,_0x553037=_0x3b22a2[_0x142d14(0x112)]('data-placeholder');translations[currentLanguage][_0x553037]&&(_0x3b22a2['placeholder']=translations[currentLanguage][_0x553037]);}),document[_0x33ace8(0x12c)][_0x33ace8(0x149)]=currentLanguage;}async function loadCountries(){const _0x42eff5=_0x5f0a80;try{const _0x3a2086=await fetch(_0x42eff5(0xe8)),_0xff83e8=await _0x3a2086[_0x42eff5(0xf6)](),_0x49e038=document['getElementById'](_0x42eff5(0xe4));_0x49e038[_0x42eff5(0x117)]=_0x42eff5(0xf2)+translations[currentLanguage][_0x42eff5(0x153)]+_0x42eff5(0xdc);const _0x380f64=_0xff83e8[_0x42eff5(0xca)](_0x5ceb2d=>_0x5ceb2d[_0x42eff5(0x151)]&&_0x5ceb2d['idd'][_0x42eff5(0xdf)]&&_0x5ceb2d[_0x42eff5(0xda)]&&_0x5ceb2d[_0x42eff5(0xda)][_0x42eff5(0x139)])[_0x42eff5(0xe0)](_0x3ba399=>{const _0x58b03a=_0x42eff5,_0x1ad84e=_0x3ba399['idd']['suffixes']&&_0x3ba399[_0x58b03a(0x151)][_0x58b03a(0x124)]['length']>0x0?_0x3ba399['idd'][_0x58b03a(0x124)][0x0]:'',_0x584d44=''+_0x3ba399[_0x58b03a(0x151)]['root']+_0x1ad84e;return{'name':_0x3ba399[_0x58b03a(0xda)][_0x58b03a(0x139)],'code':_0x584d44,'cca2':_0x3ba399[_0x58b03a(0x118)]};})[_0x42eff5(0xca)](_0x32d93b=>_0x32d93b[_0x42eff5(0x10e)]&&_0x32d93b[_0x42eff5(0x10e)]!=='+')[_0x42eff5(0x11e)]((_0x529611,_0xf5402)=>_0x529611[_0x42eff5(0xda)][_0x42eff5(0xde)](_0xf5402[_0x42eff5(0xda)]));_0x380f64[_0x42eff5(0xef)](_0x1bdbbb=>{const _0x563265=_0x42eff5,_0x3535b4=document[_0x563265(0x12f)](_0x563265(0x13c));_0x3535b4[_0x563265(0x129)]=_0x1bdbbb[_0x563265(0x10e)],_0x3535b4[_0x563265(0x114)]=_0x1bdbbb[_0x563265(0xda)]+'\x20('+_0x1bdbbb[_0x563265(0x10e)]+')',_0x49e038[_0x563265(0x142)](_0x3535b4);});}catch(_0x3b1cec){console[_0x42eff5(0xbe)]('Error\x20loading\x20countries:',_0x3b1cec);const _0x3d3c84=document[_0x42eff5(0xc3)](_0x42eff5(0xe4));_0x3d3c84['innerHTML']=_0x42eff5(0xfe)+translations[currentLanguage][_0x42eff5(0x153)]+'</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20value=\x22+34\x22>España\x20(+34)</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20value=\x22+1\x22>United\x20States\x20(+1)</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20value=\x22+52\x22>México\x20(+52)</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20value=\x22+54\x22>Argentina\x20(+54)</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20value=\x22+56\x22>Chile\x20(+56)</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20value=\x22+57\x22>Colombia\x20(+57)</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20value=\x22+51\x22>Perú\x20(+51)</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20value=\x22+58\x22>Venezuela\x20(+58)</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20value=\x22+33\x22>France\x20(+33)</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20value=\x22+49\x22>Germany\x20(+49)</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20value=\x22+39\x22>Italy\x20(+39)</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20value=\x22+44\x22>United\x20Kingdom\x20(+44)</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20';}}function setupEventListeners(){const _0xf0d0b1=_0x5f0a80;document[_0xf0d0b1(0x136)](_0xf0d0b1(0xe3))[_0xf0d0b1(0xef)](_0xba2167=>{const _0x3a77ae=_0xf0d0b1;_0xba2167['addEventListener'](_0x3a77ae(0xd9),function(){const _0x557f99=this['dataset']['service'];toggleService(_0x557f99,this);});}),document[_0xf0d0b1(0xc3)]('painPoints')[_0xf0d0b1(0xd1)](_0xf0d0b1(0xb5),validateStep2),document['getElementById'](_0xf0d0b1(0x11d))[_0xf0d0b1(0xd1)](_0xf0d0b1(0xb5),validateStep2),document[_0xf0d0b1(0xc3)](_0xf0d0b1(0xd2))[_0xf0d0b1(0xd1)](_0xf0d0b1(0xb5),validateStep2),document[_0xf0d0b1(0xc3)]('monthlyCapital')[_0xf0d0b1(0xd1)](_0xf0d0b1(0xb5),validateStep2),document[_0xf0d0b1(0xc3)](_0xf0d0b1(0xda))[_0xf0d0b1(0xd1)](_0xf0d0b1(0xb5),validateStep3),document[_0xf0d0b1(0xc3)](_0xf0d0b1(0xfc))['addEventListener'](_0xf0d0b1(0xb5),validateStep3),document[_0xf0d0b1(0xc3)](_0xf0d0b1(0xe4))[_0xf0d0b1(0xd1)](_0xf0d0b1(0x115),validateStep3),document[_0xf0d0b1(0xc3)](_0xf0d0b1(0xe5))[_0xf0d0b1(0xd1)](_0xf0d0b1(0xb5),validateStep3),document[_0xf0d0b1(0x136)]('input[name=\x22decisionMaker\x22]')[_0xf0d0b1(0xef)](_0x51862e=>{const _0x2cb5a4=_0xf0d0b1;_0x51862e[_0x2cb5a4(0xd1)](_0x2cb5a4(0x115),function(){const _0x34289c=_0x2cb5a4;document['querySelectorAll'](_0x34289c(0x147))['forEach'](_0x1e1849=>{const _0x4e67ff=_0x34289c;_0x1e1849[_0x4e67ff(0xfa)][_0x4e67ff(0xbc)](_0x4e67ff(0x144));}),this['closest'](_0x34289c(0x147))[_0x34289c(0xfa)][_0x34289c(0xcb)](_0x34289c(0x144)),formData[_0x34289c(0xbf)]=this['value'],validateStep3();});}),document[_0xf0d0b1(0xc3)](_0xf0d0b1(0x126))['addEventListener'](_0xf0d0b1(0xd9),()=>nextStep()),document[_0xf0d0b1(0xc3)](_0xf0d0b1(0x14a))['addEventListener'](_0xf0d0b1(0xd9),()=>nextStep()),document[_0xf0d0b1(0xc3)](_0xf0d0b1(0x148))[_0xf0d0b1(0xd1)](_0xf0d0b1(0xd9),()=>submitForm()),document[_0xf0d0b1(0xc3)](_0xf0d0b1(0x12d))[_0xf0d0b1(0xd1)](_0xf0d0b1(0xd9),()=>prevStep()),document[_0xf0d0b1(0xc3)](_0xf0d0b1(0x152))[_0xf0d0b1(0xd1)](_0xf0d0b1(0xd9),()=>prevStep());}function toggleService(_0x368e7b,_0x4551f2){const _0x53e6d8=_0x5f0a80;selectedServices[_0x53e6d8(0xcd)](_0x368e7b)?(selectedServices=selectedServices[_0x53e6d8(0xca)](_0x3370a7=>_0x3370a7!==_0x368e7b),_0x4551f2[_0x53e6d8(0xfa)]['remove'](_0x53e6d8(0x144))):(selectedServices[_0x53e6d8(0x133)](_0x368e7b),_0x4551f2[_0x53e6d8(0xfa)][_0x53e6d8(0xcb)](_0x53e6d8(0x144))),formData[_0x53e6d8(0xff)]=selectedServices,document[_0x53e6d8(0xc3)]('nextStep1')[_0x53e6d8(0x101)]=selectedServices['length']===0x0;}function validateStep2(){const _0xfe7a66=_0x5f0a80,_0x632e29=document[_0xfe7a66(0xc3)](_0xfe7a66(0x138))[_0xfe7a66(0x129)][_0xfe7a66(0x109)](),_0x30e1e4=document[_0xfe7a66(0xc3)](_0xfe7a66(0x11d))[_0xfe7a66(0x129)],_0x528b91=document['getElementById'](_0xfe7a66(0xd2))[_0xfe7a66(0x129)][_0xfe7a66(0x109)](),_0x54ca81=document[_0xfe7a66(0xc3)](_0xfe7a66(0xeb))['value'],_0x470281=_0x632e29[_0xfe7a66(0x145)]>=0xa&&_0x30e1e4!==''&&parseFloat(_0x30e1e4)>=0x0&&_0x528b91['length']>=0xa&&_0x54ca81!==''&&parseFloat(_0x54ca81)>=0x0;document[_0xfe7a66(0xc3)](_0xfe7a66(0x14a))[_0xfe7a66(0x101)]=!_0x470281,_0x470281&&(formData[_0xfe7a66(0x138)]=_0x632e29,formData[_0xfe7a66(0x11d)]=_0x30e1e4,formData[_0xfe7a66(0xd2)]=_0x528b91,formData[_0xfe7a66(0xeb)]=_0x54ca81);}function validateStep3(){const _0x14c590=_0x5f0a80,_0x4c36d5=document[_0x14c590(0xc3)](_0x14c590(0xda))[_0x14c590(0x129)]['trim'](),_0x5d8103=document[_0x14c590(0xc3)](_0x14c590(0xfc))['value']['trim'](),_0x1a1940=document[_0x14c590(0xc3)](_0x14c590(0xe4))[_0x14c590(0x129)],_0x2424e1=document[_0x14c590(0xc3)]('phone')['value']['trim'](),_0x5c9ccd=formData['decisionMaker']!=='',_0xa3b25e=/^[^\s@]+@[^\s@]+\.[^\s@]+$/,_0x2b17a4=/^\d{7,}$/,_0x56c0b4=_0x4c36d5['length']>=0x2&&_0xa3b25e['test'](_0x5d8103)&&_0x1a1940&&_0x2b17a4[_0x14c590(0x150)](_0x2424e1)&&_0x5c9ccd;document['getElementById']('nextStep3')['disabled']=!_0x56c0b4,_0x56c0b4&&(formData[_0x14c590(0xda)]=_0x4c36d5,formData[_0x14c590(0xfc)]=_0x5d8103,formData[_0x14c590(0xe4)]=_0x1a1940,formData[_0x14c590(0xe5)]=_0x2424e1);}function nextStep(){const _0xd8e672=_0x5f0a80;if(currentStep<totalSteps){const _0x5f35ab=document[_0xd8e672(0xb7)](_0xd8e672(0x10a)+currentStep+')');_0x5f35ab[_0xd8e672(0xfa)][_0xd8e672(0xcb)](_0xd8e672(0x130)),_0x5f35ab[_0xd8e672(0xfa)]['remove'](_0xd8e672(0x143)),document['getElementById'](_0xd8e672(0xb3)+currentStep)[_0xd8e672(0xfa)][_0xd8e672(0xbc)]('active'),currentStep++,document[_0xd8e672(0xc3)]('step'+currentStep)[_0xd8e672(0xfa)][_0xd8e672(0xcb)](_0xd8e672(0x143));const _0x196b81=document[_0xd8e672(0xb7)](_0xd8e672(0x10a)+currentStep+')');_0x196b81[_0xd8e672(0xfa)]['add']('active'),updateProgress(),window[_0xd8e672(0xd4)](0x0,0x0);}}function prevStep(){const _0xbc6d27=_0x5f0a80;if(currentStep>0x1){const _0x3ddcb3=document['querySelector'](_0xbc6d27(0x10a)+currentStep+')');_0x3ddcb3[_0xbc6d27(0xfa)]['remove']('active'),document[_0xbc6d27(0xc3)](_0xbc6d27(0xb3)+currentStep)[_0xbc6d27(0xfa)]['remove']('active'),currentStep--,document[_0xbc6d27(0xc3)]('step'+currentStep)[_0xbc6d27(0xfa)][_0xbc6d27(0xcb)](_0xbc6d27(0x143));const _0x29ff51=document['querySelector'](_0xbc6d27(0x10a)+currentStep+')');_0x29ff51[_0xbc6d27(0xfa)][_0xbc6d27(0xcb)](_0xbc6d27(0x143)),_0x29ff51['classList'][_0xbc6d27(0xbc)](_0xbc6d27(0x130)),updateProgress(),window[_0xbc6d27(0xd4)](0x0,0x0);}}function updateProgress(){const _0x404c4a=_0x5f0a80,_0x1280bf=(currentStep-0x1)/(totalSteps-0x1)*0x64;document[_0x404c4a(0xc3)]('progressFill')['style'][_0x404c4a(0x11b)]=_0x1280bf+'%';}async function submitForm(){const _0x1ed999=_0x5f0a80,_0x29c257=document[_0x1ed999(0xc3)]('nextStep3'),_0x770f4a=_0x29c257[_0x1ed999(0x114)];try{_0x29c257[_0x1ed999(0xfa)][_0x1ed999(0xcb)]('loading'),_0x29c257[_0x1ed999(0x114)]=translations[currentLanguage]['submitting'],_0x29c257[_0x1ed999(0x101)]=!![];const _0x55d3c6={'services':selectedServices[_0x1ed999(0xe0)](_0x1154fe=>{const _0x492238=_0x1ed999,_0x2e6492={'web-development':currentLanguage==='es'?_0x492238(0xe6):'Web\x20Development','seo':currentLanguage==='es'?_0x492238(0xf5):_0x492238(0xfd),'advertising':currentLanguage==='es'?'Publicidad':_0x492238(0xed),'appointment-system':currentLanguage==='es'?_0x492238(0xf8):'Appointment\x20Management','domain-management':_0x492238(0x108),'ai-agents':'AI\x20agents'};return _0x2e6492[_0x1154fe]||_0x1154fe;})[_0x1ed999(0x107)](',\x20'),'painPoints':formData[_0x1ed999(0x138)],'cashFlow':parseFloat(formData[_0x1ed999(0x11d)]),'successDefinition':formData[_0x1ed999(0xd2)],'monthlyCapital':parseFloat(formData[_0x1ed999(0xeb)]),'name':formData[_0x1ed999(0xda)],'email':formData['email'],'phone':formData[_0x1ed999(0xe4)]+formData[_0x1ed999(0xe5)],'countryCode':formData['countryCode'],'phoneNumber':formData[_0x1ed999(0xe5)],'decisionMaker':formData[_0x1ed999(0xbf)]===_0x1ed999(0x116)?currentLanguage==='es'?'Sí':_0x1ed999(0xb6):currentLanguage==='es'?'No':'No','timestamp':new Date()[_0x1ed999(0x10d)](),'language':currentLanguage,'source':_0x1ed999(0xcc),'userAgent':navigator[_0x1ed999(0xd0)],'referrer':document[_0x1ed999(0xd6)]||'Direct'};console['log'](_0x1ed999(0x131),_0x55d3c6);const _0x589596='https://hook.us2.make.com/ojrlnr2xhz5cilkcxhgk8ehbcmv1l2pk',_0x28faa0=await fetch(_0x589596,{'method':_0x1ed999(0xc0),'headers':{'Content-Type':_0x1ed999(0xb4),'Accept':_0x1ed999(0xb4)},'body':JSON['stringify'](_0x55d3c6)});if(!_0x28faa0['ok'])throw new Error('HTTP\x20error!\x20status:\x20'+_0x28faa0[_0x1ed999(0xc1)]);const _0x5327b9=await _0x28faa0['json']();console['log']('Form\x20submitted\x20successfully:',_0x5327b9),await new Promise(_0x413635=>setTimeout(_0x413635,0x3e8)),nextStep();}catch(_0x5c1f48){console[_0x1ed999(0xbe)]('Error\x20submitting\x20form:',_0x5c1f48),_0x29c257[_0x1ed999(0xfa)][_0x1ed999(0xbc)](_0x1ed999(0xce)),_0x29c257[_0x1ed999(0x114)]=_0x770f4a,_0x29c257[_0x1ed999(0x101)]=![];const _0x58f969=currentLanguage==='es'?_0x1ed999(0x11a):'There\x20was\x20an\x20error\x20submitting\x20the\x20form.\x20Please\x20try\x20again.';alert(_0x58f969),console[_0x1ed999(0x13a)]('Development\x20mode:\x20proceeding\x20to\x20success\x20screen\x20despite\x20error'),await new Promise(_0x119a55=>setTimeout(_0x119a55,0x3e8)),nextStep();}}
+    </script>
+</body>
+</html>
