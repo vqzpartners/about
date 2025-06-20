@@ -458,46 +458,78 @@
             margin-bottom: 2rem;
         }
 
+        /* NEW Service Card Styles with Background Image */
         .service-card {
-            background: rgba(255, 193, 7, 0.1);
-            backdrop-filter: blur(15px);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             border-radius: 20px;
-            padding: 2rem;
-            text-align: center;
+            height: 280px;
+            position: relative;
             border: 1px solid rgba(255, 193, 7, 0.3);
             transition: all 0.3s ease;
             cursor: pointer;
+            overflow: hidden;
+        }
+
+        /* Overlay for better text readability */
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0.1) 0%,
+                rgba(0, 0, 0, 0.3) 50%,
+                rgba(0, 0, 0, 0.8) 100%
+            );
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover::before {
+            background: linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0.2) 0%,
+                rgba(0, 0, 0, 0.4) 50%,
+                rgba(0, 0, 0, 0.9) 100%
+            );
         }
 
         .service-card:hover {
             transform: translateY(-5px);
-            background: rgba(255, 193, 7, 0.2);
             border-color: rgba(255, 193, 7, 0.5);
             box-shadow: 0 20px 40px rgba(255, 193, 7, 0.2);
         }
 
-        .service-image {
-            width: 120px;
-            height: 120px;
-            border-radius: 20px;
-            margin: 0 auto 1.5rem;
-            display: block;
-            object-fit: cover;
-            border: 3px solid rgba(255, 193, 7, 0.4);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        /* Content container positioned at bottom */
+        .service-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            z-index: 2;
         }
 
         .service-title {
-            font-size: 1.2rem;
-            font-weight: 600;
+            font-size: 1.3rem;
+            font-weight: 700;
             color: #ffc107;
             margin-bottom: 0.8rem;
+            text-align: left;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
         }
 
         .service-desc {
             font-size: 1rem;
-            color: #ccc;
-            line-height: 1.6;
+            color: #ffffff;
+            line-height: 1.5;
+            text-align: left;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
         }
 
         /* About Section Improvements */
@@ -992,13 +1024,20 @@
             }
             
             .service-card {
-                padding: 2rem 1.5rem;
+                height: 250px; /* Slightly shorter on mobile */
                 margin: 0; /* Remove side margins */
             }
             
-            .service-image {
-                width: 100px;
-                height: 100px;
+            .service-content {
+                padding: 1.5rem; /* Reduced padding on mobile */
+            }
+            
+            .service-title {
+                font-size: 1.2rem;
+            }
+            
+            .service-desc {
+                font-size: 0.9rem;
             }
             
             /* About section - wider */
@@ -1139,6 +1178,14 @@
                 font-size: 1.1rem;
             }
             
+            .service-card {
+                height: 220px; /* Even shorter on very small screens */
+            }
+            
+            .service-content {
+                padding: 1.2rem;
+            }
+            
             .newsletter-bubble {
                 max-width: calc(100vw - 20px); /* Almost full width */
                 margin: 0 5px;
@@ -1219,40 +1266,46 @@
         </h2>
         
         <div class="services-grid">
-            <div class="service-card" onclick="openChatbot('Odontología Estética')">
-                <img src="https://placehold.co/120x120/ffc107/ffffff" alt="Odontología Estética" class="service-image">
-                <h3 class="service-title">Odontología Estética</h3>
-                <p class="service-desc">Diseño de sonrisa, carillas y blanqueamientos para una sonrisa perfecta</p>
+            <div class="service-card" style="background-image: url('https://placehold.co/400x280/ffc107/ffffff?text=EJEMPLO')" onclick="openChatbot('Odontología Estética')">
+                <div class="service-content">
+                    <h3 class="service-title">Odontología Estética</h3>
+                    <p class="service-desc">Diseño de sonrisa, carillas y blanqueamientos para una sonrisa perfecta</p>
+                </div>
             </div>
             
-            <div class="service-card" onclick="openChatbot('Odontología Biomimética')">
-                <img src="https://placehold.co/120x120/ffb300/ffffff" alt="Biomimética" class="service-image">
-                <h3 class="service-title">Biomimética</h3>
-                <p class="service-desc">Restauraciones que imitan la naturaleza del diente original</p>
+            <div class="service-card" style="background-image: url('https://placehold.co/400x280/ffb300/ffffff?text=EJEMPLO')" onclick="openChatbot('Odontología Biomimética')">
+                <div class="service-content">
+                    <h3 class="service-title">Biomimética</h3>
+                    <p class="service-desc">Restauraciones que imitan la naturaleza del diente original</p>
+                </div>
             </div>
             
-            <div class="service-card" onclick="openChatbot('Odontología Biológica')">
-                <img src="https://placehold.co/120x120/ffa000/ffffff" alt="Odontología Biológica" class="service-image">
-                <h3 class="service-title">Odontología Biológica</h3>
-                <p class="service-desc">Tratamientos holísticos respetando la salud integral del paciente</p>
+            <div class="service-card" style="background-image: url('https://placehold.co/400x280/ffa000/ffffff?text=EJEMPLO')" onclick="openChatbot('Odontología Biológica')">
+                <div class="service-content">
+                    <h3 class="service-title">Odontología Biológica</h3>
+                    <p class="service-desc">Tratamientos holísticos respetando la salud integral del paciente</p>
+                </div>
             </div>
             
-            <div class="service-card" onclick="openChatbot('Implantes Dentales')">
-                <img src="https://placehold.co/120x120/ff8f00/ffffff" alt="Implantes Dentales" class="service-image">
-                <h3 class="service-title">Implantes Dentales</h3>
-                <p class="service-desc">Reemplazo de dientes perdidos con tecnología de última generación</p>
+            <div class="service-card" style="background-image: url('https://placehold.co/400x280/ff8f00/ffffff?text=EJEMPLO')" onclick="openChatbot('Implantes Dentales')">
+                <div class="service-content">
+                    <h3 class="service-title">Implantes Dentales</h3>
+                    <p class="service-desc">Reemplazo de dientes perdidos con tecnología de última generación</p>
+                </div>
             </div>
             
-            <div class="service-card" onclick="openChatbot('Ortodoncia')">
-                <img src="https://placehold.co/120x120/ff6f00/ffffff" alt="Ortodoncia" class="service-image">
-                <h3 class="service-title">Ortodoncia</h3>
-                <p class="service-desc">Alineación dental invisible y tradicional para todas las edades</p>
+            <div class="service-card" style="background-image: url('https://placehold.co/400x280/ff6f00/ffffff?text=EJEMPLO')" onclick="openChatbot('Ortodoncia')">
+                <div class="service-content">
+                    <h3 class="service-title">Ortodoncia</h3>
+                    <p class="service-desc">Alineación dental invisible y tradicional para todas las edades</p>
+                </div>
             </div>
             
-            <div class="service-card" onclick="openChatbot('Endodoncia')">
-                <img src="https://placehold.co/120x120/e65100/ffffff" alt="Endodoncia" class="service-image">
-                <h3 class="service-title">Endodoncia</h3>
-                <p class="service-desc">Tratamientos de conducto con técnicas modernas y sin dolor</p>
+            <div class="service-card" style="background-image: url('https://placehold.co/400x280/e65100/ffffff?text=EJEMPLO')" onclick="openChatbot('Endodoncia')">
+                <div class="service-content">
+                    <h3 class="service-title">Endodoncia</h3>
+                    <p class="service-desc">Tratamientos de conducto con técnicas modernas y sin dolor</p>
+                </div>
             </div>
         </div>
 
