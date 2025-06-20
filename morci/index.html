@@ -417,6 +417,11 @@
             flex-grow: 1;
         }
 
+        /* Remove line under "Agenda tu Cita" section */
+        .section-title.no-line::after {
+            display: none;
+        }
+
         /* Card Styles */
         .card {
             background: rgba(255, 193, 7, 0.1);
@@ -816,36 +821,6 @@
     background: linear-gradient(-90deg, #000 0%, rgba(0,0,0,0.8) 60%, transparent 100%);
 }
 
-/* Mobile Responsive */
-@media (max-width: 768px) {
-    .section-title {
-        font-size: 2rem;
-        margin-bottom: 2rem;
-    }
-    
-    .review-card {
-        width: 300px;
-        min-width: 300px;
-        height: 200px;
-        padding: 1.5rem;
-    }
-    
-    .reviewer-avatar {
-        width: 45px;
-        height: 45px;
-        font-size: 1rem;
-    }
-    
-    .reviews-carousel::before,
-    .reviews-carousel::after {
-        width: 80px;
-    }
-    
-    .reviews-track {
-        gap: 1.5rem;
-    }
-}
-
         /* Chatbot Modal */
         .chatbot-modal {
             display: none;
@@ -976,58 +951,83 @@
             }
         }
 
+        /* MOBILE RESPONSIVE STYLES - WIDER CONTENT */
         @media (max-width: 768px) {
+            /* Reduce side padding to make content wider */
+            body {
+                padding: 15px 10px; /* Reduced from 20px to 10px on sides */
+            }
+            
+            /* Reduce container padding for wider content */
+            .container {
+                padding: 0 5px; /* Reduced from default padding */
+            }
+            
+            /* Header adjustments */
+            .header {
+                padding: 2.5rem 1.5rem;
+                margin-bottom: 2.5rem;
+                border-radius: 25px;
+            }
+            
             .doctor-name {
                 font-size: 2.2rem;
             }
             
+            .tagline {
+                font-size: 1.2rem;
+                padding: 0 5px; /* Reduced padding */
+            }
+            
+            .profile-img {
+                width: 160px;
+                height: 160px;
+            }
+            
+            /* Services grid - single column with wider cards */
             .services-grid {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
+                margin: 0; /* Remove side margins */
             }
             
-            .chatbot-content {
-                width: 95%;
-                padding: 1.5rem;
+            .service-card {
+                padding: 2rem 1.5rem;
+                margin: 0; /* Remove side margins */
             }
             
-            .header {
-                padding: 2rem 1.5rem;
-            }
-
-            .newsletter-bubble {
-                bottom: 10px;
-                left: 50%;
-                transform: translateX(-50%);
-                max-width: 320px;
-                font-size: 0.85rem;
-                padding: 1rem 1.2rem;
-            }
-
-            .newsletter-content {
-                padding: 2rem 1.5rem;
-            }
-
-            .newsletter-title {
-                font-size: 1.5rem;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .about-highlights {
-                grid-template-columns: 1fr;
-            }
-
             .service-image {
                 width: 100px;
                 height: 100px;
             }
+            
+            /* About section - wider */
+            .about-card {
+                padding: 2rem 1.5rem;
+                margin: 0 0 1.5rem 0; /* Remove side margins */
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 1rem;
+            }
 
-            .contact-options {
+            .about-highlights {
                 grid-template-columns: 1fr;
                 gap: 1rem;
+                margin-top: 1.5rem;
+            }
+            
+            /* Contact section - stack vertically, wider */
+            .contact-options {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                margin: 0; /* Remove side margins */
+            }
+            
+            .contact-card {
+                padding: 2rem 1.5rem;
             }
 
             .contact-card.primary .contact-icon {
@@ -1035,29 +1035,126 @@
                 height: 70px;
                 font-size: 28px;
             }
+            
+            /* Newsletter bubble - wider */
+            .newsletter-bubble {
+                bottom: 15px;
+                left: 50%;
+                transform: translateX(-50%);
+                max-width: calc(100vw - 30px); /* Much wider */
+                margin: 0 5px;
+                font-size: 0.85rem;
+                padding: 1rem 1.2rem;
+            }
 
+            .newsletter-content {
+                padding: 2rem 1.8rem;
+                width: calc(100vw - 30px); /* Much wider */
+                margin: 0 15px;
+            }
+
+            .newsletter-title {
+                font-size: 1.6rem;
+            }
+            
+            /* Chatbot modal - wider */
+            .chatbot-content {
+                width: calc(100vw - 30px); /* Much wider */
+                padding: 2rem 1.5rem;
+                margin: 0 15px;
+            }
+            
+            /* Reviews section mobile improvements */
+            .reviews-section {
+                padding: 3rem 0;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+                margin-bottom: 2rem;
+                padding: 0 5px; /* Reduced padding */
+            }
+            
             .review-card {
+                width: 280px;
                 min-width: 280px;
-                max-width: 280px;
-                height: 180px;
+                height: 200px;
+                padding: 1.5rem;
             }
 
-            .reviews-marquee {
-                animation-duration: 25s;
+            .reviewer-avatar {
+                width: 45px;
+                height: 45px;
+                font-size: 1rem;
             }
 
-            .reviews-wrapper::before,
-            .reviews-wrapper::after {
-                width: 80px;
+            .reviews-carousel::before,
+            .reviews-carousel::after {
+                width: 30px; /* Reduced fade overlay width */
             }
 
-            .reviews-container {
-                gap: 1rem;
-                padding-left: 1rem;
+            .reviews-track {
+                gap: 1.5rem;
+                padding: 0 1rem; /* Reduced padding */
+            }
+            
+            /* Section titles - wider */
+            .section-title {
+                margin: 2.5rem 0 1.5rem 0;
+                padding: 0 5px; /* Reduced padding */
+            }
+            
+            /* Review CTA button */
+            .review-cta {
+                margin: 2rem 0;
+                padding: 1rem 1.5rem;
+                font-size: 0.9rem;
+            }
+            
+            /* Footer - wider */
+            .footer {
+                padding: 2rem 0.5rem; /* Reduced side padding */
+            }
+        }
+
+        /* Extra small devices - even wider content */
+        @media (max-width: 480px) {
+            body {
+                padding: 10px 5px; /* Even less side padding */
+            }
+            
+            .container {
+                padding: 0; /* No container padding */
+            }
+            
+            .header {
+                padding: 2rem 1rem; /* Reduced header padding */
+            }
+            
+            .doctor-name {
+                font-size: 2rem;
+            }
+            
+            .tagline {
+                font-size: 1.1rem;
+            }
+            
+            .newsletter-bubble {
+                max-width: calc(100vw - 20px); /* Almost full width */
+                margin: 0 5px;
+                padding: 0.9rem 1rem;
+            }
+            
+            .newsletter-content,
+            .chatbot-content {
+                width: calc(100vw - 20px); /* Almost full width */
+                margin: 0 10px;
+                padding: 1.5rem 1rem; /* Reduced padding */
             }
 
-            .reviews-container:first-child {
-                padding-left: 0;
+            .reviews-carousel::before,
+            .reviews-carousel::after {
+                width: 20px; /* Even smaller fade overlay */
             }
         }
     </style>
@@ -1199,8 +1296,8 @@
             </div>
         </div>
 
-        <!-- Contact Section - Updated -->
-        <h2 class="section-title">
+        <!-- Contact Section - Updated with no line -->
+        <h2 class="section-title no-line">
             <i class="fas fa-calendar-check"></i>
             Agenda tu Cita
         </h2>
