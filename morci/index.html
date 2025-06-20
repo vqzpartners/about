@@ -851,8 +851,8 @@
     background: linear-gradient(-90deg, #000 0%, rgba(0,0,0,0.8) 60%, transparent 100%);
 }
 
-        /* Chatbot Modal */
-        .chatbot-modal {
+        /* Modal Styles - Shared between Chatbot and Email */
+        .modal {
             display: none;
             position: fixed;
             top: 0;
@@ -864,7 +864,7 @@
             backdrop-filter: blur(5px);
         }
 
-        .chatbot-content {
+        .modal-content {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -878,7 +878,7 @@
             overflow-y: auto;
         }
 
-        .chatbot-header {
+        .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -981,21 +981,21 @@
             }
         }
 
-        /* MOBILE RESPONSIVE STYLES - WIDER CONTENT */
+        /* MOBILE RESPONSIVE STYLES - MUCH WIDER CONTENT */
         @media (max-width: 768px) {
-            /* Reduce side padding to make content wider */
+            /* Significantly reduce side padding to make content much wider */
             body {
-                padding: 15px 10px; /* Reduced from 20px to 10px on sides */
+                padding: 15px 5px; /* Reduced from 20px to 5px on sides */
             }
             
-            /* Reduce container padding for wider content */
+            /* Minimal container padding for maximum width */
             .container {
-                padding: 0 5px; /* Reduced from default padding */
+                padding: 0 2px; /* Minimal padding */
             }
             
             /* Header adjustments */
             .header {
-                padding: 2.5rem 1.5rem;
+                padding: 2.5rem 1rem; /* Reduced side padding */
                 margin-bottom: 2.5rem;
                 border-radius: 25px;
             }
@@ -1006,7 +1006,7 @@
             
             .tagline {
                 font-size: 1.2rem;
-                padding: 0 5px; /* Reduced padding */
+                padding: 0 2px; /* Minimal padding */
             }
             
             .profile-img {
@@ -1014,20 +1014,21 @@
                 height: 160px;
             }
             
-            /* Services grid - single column with wider cards */
+            /* Services grid - single column with much wider cards */
             .services-grid {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
-                margin: 0; /* Remove side margins */
+                margin: 0 -2px; /* Negative margin to extend beyond container */
             }
             
             .service-card {
-                height: 250px; /* Slightly shorter on mobile */
-                margin: 0; /* Remove side margins */
+                height: 250px;
+                margin: 0; /* Remove all margins */
+                width: calc(100% + 4px); /* Extend slightly beyond container */
             }
             
             .service-content {
-                padding: 1.5rem; /* Reduced padding on mobile */
+                padding: 1.5rem;
             }
             
             .service-title {
@@ -1038,10 +1039,10 @@
                 font-size: 0.9rem;
             }
             
-            /* About section - wider */
+            /* About section - much wider */
             .about-card {
-                padding: 2rem 1.5rem;
-                margin: 0 0 1.5rem 0; /* Remove side margins */
+                padding: 2rem 1rem; /* Reduced side padding */
+                margin: 0 -2px 1.5rem -2px; /* Extend beyond container */
             }
             
             .about-content {
@@ -1056,15 +1057,15 @@
                 margin-top: 1.5rem;
             }
             
-            /* Contact section - stack vertically, wider */
+            /* Contact section - stack vertically, much wider */
             .contact-options {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
-                margin: 0; /* Remove side margins */
+                margin: 0 -2px; /* Extend beyond container */
             }
             
             .contact-card {
-                padding: 2rem 1.5rem;
+                padding: 2rem 1rem; /* Reduced side padding */
             }
 
             .contact-card.primary .contact-icon {
@@ -1073,32 +1074,32 @@
                 font-size: 28px;
             }
             
-            /* Newsletter bubble - wider */
+            /* Newsletter bubble - much wider, almost full screen */
             .newsletter-bubble {
                 bottom: 15px;
                 left: 50%;
                 transform: translateX(-50%);
-                max-width: calc(100vw - 30px); /* Much wider */
-                margin: 0 5px;
+                max-width: calc(100vw - 15px); /* Almost full screen width */
+                margin: 0 2px;
                 font-size: 0.85rem;
                 padding: 1rem 1.2rem;
             }
 
             .newsletter-content {
-                padding: 2rem 1.8rem;
-                width: calc(100vw - 30px); /* Much wider */
-                margin: 0 15px;
+                padding: 2rem 1.2rem; /* Reduced side padding */
+                width: calc(100vw - 15px); /* Almost full screen width */
+                margin: 0 7px;
             }
 
             .newsletter-title {
                 font-size: 1.6rem;
             }
             
-            /* Chatbot modal - wider */
-            .chatbot-content {
-                width: calc(100vw - 30px); /* Much wider */
-                padding: 2rem 1.5rem;
-                margin: 0 15px;
+            /* Modal content - much wider */
+            .modal-content {
+                width: calc(100vw - 15px); /* Almost full screen width */
+                padding: 2rem 1.2rem; /* Reduced side padding */
+                margin: 0 7px;
             }
             
             /* Reviews section mobile improvements */
@@ -1109,7 +1110,7 @@
             .section-title {
                 font-size: 1.8rem;
                 margin-bottom: 2rem;
-                padding: 0 5px; /* Reduced padding */
+                padding: 0 2px; /* Minimal padding */
             }
             
             .review-card {
@@ -1127,18 +1128,18 @@
 
             .reviews-carousel::before,
             .reviews-carousel::after {
-                width: 30px; /* Reduced fade overlay width */
+                width: 15px; /* Much smaller fade overlay width */
             }
 
             .reviews-track {
                 gap: 1.5rem;
-                padding: 0 1rem; /* Reduced padding */
+                padding: 0 0.5rem; /* Minimal padding */
             }
             
             /* Section titles - wider */
             .section-title {
                 margin: 2.5rem 0 1.5rem 0;
-                padding: 0 5px; /* Reduced padding */
+                padding: 0 2px; /* Minimal padding */
             }
             
             /* Review CTA button */
@@ -1150,22 +1151,22 @@
             
             /* Footer - wider */
             .footer {
-                padding: 2rem 0.5rem; /* Reduced side padding */
+                padding: 2rem 0.2rem; /* Minimal side padding */
             }
         }
 
-        /* Extra small devices - even wider content */
+        /* Extra small devices - maximum width usage */
         @media (max-width: 480px) {
             body {
-                padding: 10px 5px; /* Even less side padding */
+                padding: 10px 2px; /* Absolute minimal side padding */
             }
             
             .container {
-                padding: 0; /* No container padding */
+                padding: 0; /* No container padding at all */
             }
             
             .header {
-                padding: 2rem 1rem; /* Reduced header padding */
+                padding: 2rem 0.8rem; /* Minimal header padding */
             }
             
             .doctor-name {
@@ -1177,7 +1178,9 @@
             }
             
             .service-card {
-                height: 220px; /* Even shorter on very small screens */
+                height: 220px;
+                width: calc(100% + 2px); /* Extend beyond container */
+                margin: 0 -1px; /* Center the extension */
             }
             
             .service-content {
@@ -1185,21 +1188,35 @@
             }
             
             .newsletter-bubble {
-                max-width: calc(100vw - 20px); /* Almost full width */
-                margin: 0 5px;
+                max-width: calc(100vw - 8px); /* Almost complete screen width */
+                margin: 0 1px;
                 padding: 0.9rem 1rem;
             }
             
             .newsletter-content,
-            .chatbot-content {
-                width: calc(100vw - 20px); /* Almost full width */
-                margin: 0 10px;
-                padding: 1.5rem 1rem; /* Reduced padding */
+            .modal-content {
+                width: calc(100vw - 8px); /* Almost complete screen width */
+                margin: 0 4px;
+                padding: 1.5rem 0.8rem; /* Minimal padding */
             }
 
             .reviews-carousel::before,
             .reviews-carousel::after {
-                width: 20px; /* Even smaller fade overlay */
+                width: 10px; /* Minimal fade overlay */
+            }
+
+            /* Make about and contact cards extend to edges */
+            .about-card {
+                margin: 0 -1px 1.5rem -1px;
+                padding: 2rem 0.8rem;
+            }
+
+            .contact-options {
+                margin: 0 -1px;
+            }
+
+            .contact-card {
+                padding: 2rem 0.8rem;
             }
         }
     </style>
@@ -1267,42 +1284,42 @@
             <div class="service-card" style="background-image: url('https://placehold.co/400x280/ffc107/ffffff?text=EJEMPLO')" onclick="openChatbot('Odontología Estética')">
                 <div class="service-content">
                     <h3 class="service-title">Odontología Estética</h3>
-                    <p class="service-desc">Diseño de sonrisa, carillas y blanqueamientos para una sonrisa perfecta</p>
+                    <p class="service-desc">Consulta para diseño de sonrisa, carillas y blanqueamientos</p>
                 </div>
             </div>
             
             <div class="service-card" style="background-image: url('https://placehold.co/400x280/ffb300/ffffff?text=EJEMPLO')" onclick="openChatbot('Odontología Biomimética')">
                 <div class="service-content">
                     <h3 class="service-title">Biomimética</h3>
-                    <p class="service-desc">Restauraciones que imitan la naturaleza del diente original</p>
+                    <p class="service-desc">Consulta para restauraciones que imitan la naturaleza del diente</p>
                 </div>
             </div>
             
             <div class="service-card" style="background-image: url('https://placehold.co/400x280/ffa000/ffffff?text=EJEMPLO')" onclick="openChatbot('Odontología Biológica')">
                 <div class="service-content">
                     <h3 class="service-title">Odontología Biológica</h3>
-                    <p class="service-desc">Tratamientos holísticos respetando la salud integral del paciente</p>
+                    <p class="service-desc">Consulta para tratamientos holísticos y salud integral</p>
                 </div>
             </div>
             
             <div class="service-card" style="background-image: url('https://placehold.co/400x280/ff8f00/ffffff?text=EJEMPLO')" onclick="openChatbot('Implantes Dentales')">
                 <div class="service-content">
                     <h3 class="service-title">Implantes Dentales</h3>
-                    <p class="service-desc">Reemplazo de dientes perdidos con tecnología de última generación</p>
+                    <p class="service-desc">Consulta para evaluación de reemplazo de dientes perdidos</p>
                 </div>
             </div>
             
             <div class="service-card" style="background-image: url('https://placehold.co/400x280/ff6f00/ffffff?text=EJEMPLO')" onclick="openChatbot('Ortodoncia')">
                 <div class="service-content">
                     <h3 class="service-title">Ortodoncia</h3>
-                    <p class="service-desc">Alineación dental invisible y tradicional para todas las edades</p>
+                    <p class="service-desc">Consulta para evaluación de alineación dental</p>
                 </div>
             </div>
             
             <div class="service-card" style="background-image: url('https://placehold.co/400x280/e65100/ffffff?text=EJEMPLO')" onclick="openChatbot('Endodoncia')">
                 <div class="service-content">
                     <h3 class="service-title">Endodoncia</h3>
-                    <p class="service-desc">Tratamientos de conducto con técnicas modernas y sin dolor</p>
+                    <p class="service-desc">Consulta para evaluación de tratamientos de conducto</p>
                 </div>
             </div>
         </div>
@@ -1359,7 +1376,7 @@
                     <i class="fas fa-comments"></i>
                 </div>
                 <h3>Chat Directo</h3>
-                <p>Agenda tu cita por chat</p>
+                <p>Agenda tu consulta por chat</p>
             </div>
             
             <a href="tel:+50767272029" class="contact-card">
@@ -1370,13 +1387,13 @@
                 <p>+507 6727-2029</p>
             </a>
 
-            <a href="mailto:doctor@drmorci.com" class="contact-card">
+            <div class="contact-card" onclick="openEmailModal()">
                 <div class="contact-icon">
                     <i class="fas fa-envelope"></i>
                 </div>
                 <h3>Email</h3>
                 <p>Contacto directo</p>
-            </a>
+            </div>
         </div>
     </div>
 
@@ -1591,12 +1608,12 @@
     </div>
 
     <!-- Chatbot Modal -->
-    <div id="chatbotModal" class="chatbot-modal">
-        <div class="chatbot-content">
-            <div class="chatbot-header">
+    <div id="chatbotModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
                 <div>
-                    <h3 style="color: #2d3748; margin-bottom: 0.5rem;">Agenda tu Cita</h3>
-                    <p style="color: #718096; font-size: 0.9rem;">Completa el formulario y te contactaremos</p>
+                    <h3 style="color: #2d3748; margin-bottom: 0.5rem;">Agenda tu Consulta</h3>
+                    <p style="color: #718096; font-size: 0.9rem;">Completa el formulario y te contactaremos por WhatsApp</p>
                 </div>
                 <button class="close-btn" onclick="closeChatbot()">
                     <i class="fas fa-times"></i>
@@ -1613,18 +1630,59 @@
                     <label for="service">Servicio de Interés *</label>
                     <select id="service" name="service" required>
                         <option value="">Selecciona un servicio</option>
-                        <option value="Odontología Estética">Odontología Estética</option>
-                        <option value="Odontología Biomimética">Odontología Biomimética</option>
-                        <option value="Odontología Biológica">Odontología Biológica</option>
-                        <option value="Implantes Dentales">Implantes Dentales</option>
-                        <option value="Ortodoncia">Ortodoncia</option>
-                        <option value="Endodoncia">Endodoncia</option>
+                        <option value="Odontología Estética">Consulta - Odontología Estética</option>
+                        <option value="Odontología Biomimética">Consulta - Odontología Biomimética</option>
+                        <option value="Odontología Biológica">Consulta - Odontología Biológica</option>
+                        <option value="Implantes Dentales">Consulta - Implantes Dentales</option>
+                        <option value="Ortodoncia">Consulta - Ortodoncia</option>
+                        <option value="Endodoncia">Consulta - Endodoncia</option>
                         <option value="Consulta General">Consulta General</option>
                     </select>
                 </div>
                 
                 <button type="submit" class="submit-btn">
                     <i class="fas fa-comments" style="margin-right: 0.5rem;"></i>
+                    Enviar Consulta por WhatsApp
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Email Modal -->
+    <div id="emailModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <h3 style="color: #2d3748; margin-bottom: 0.5rem;">Contacto por Email</h3>
+                    <p style="color: #718096; font-size: 0.9rem;">Completa el formulario para generar tu email personalizado</p>
+                </div>
+                <button class="close-btn" onclick="closeEmailModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <form id="emailForm">
+                <div class="form-group">
+                    <label for="emailName">Nombre Completo *</label>
+                    <input type="text" id="emailName" name="emailName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="emailService">Servicio de Interés *</label>
+                    <select id="emailService" name="emailService" required>
+                        <option value="">Selecciona un servicio</option>
+                        <option value="Odontología Estética">Consulta - Odontología Estética</option>
+                        <option value="Odontología Biomimética">Consulta - Odontología Biomimética</option>
+                        <option value="Odontología Biológica">Consulta - Odontología Biológica</option>
+                        <option value="Implantes Dentales">Consulta - Implantes Dentales</option>
+                        <option value="Ortodoncia">Consulta - Ortodoncia</option>
+                        <option value="Endodoncia">Consulta - Endodoncia</option>
+                        <option value="Consulta General">Consulta General</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-envelope" style="margin-right: 0.5rem;"></i>
                     Enviar Consulta
                 </button>
             </form>
@@ -1636,6 +1694,17 @@
         let currentFormData = {
             name: '',
             service: ''
+        };
+
+        // Service descriptions for email
+        const serviceDescriptions = {
+            'Odontología Estética': 'Me interesa agendar una consulta para evaluar opciones de odontología estética como diseño de sonrisa, carillas dentales y blanqueamientos. Me gustaría conocer más sobre los tratamientos disponibles y recibir una evaluación personalizada.',
+            'Odontología Biomimética': 'Quisiera agendar una consulta para conocer sobre odontología biomimética y restauraciones que imiten la naturaleza del diente. Me interesa saber cómo estos tratamientos pueden ayudar a mantener la estructura natural de mis dientes.',
+            'Odontología Biológica': 'Me gustaría programar una consulta para explorar opciones de odontología biológica y tratamientos holísticos que respeten mi salud integral. Busco un enfoque más natural para el cuidado dental.',
+            'Implantes Dentales': 'Necesito una consulta para evaluar la posibilidad de implantes dentales. Me gustaría conocer las opciones disponibles para reemplazar dientes perdidos con tecnología moderna.',
+            'Ortodoncia': 'Quisiera agendar una consulta para evaluación ortodóntica. Me interesa conocer las opciones de alineación dental, tanto invisibles como tradicionales.',
+            'Endodoncia': 'Necesito una consulta para evaluar si requiero tratamiento de endodoncia. Me gustaría conocer las opciones modernas y sin dolor para tratamientos de conducto.',
+            'Consulta General': 'Me interesa agendar una consulta general para evaluación dental completa y conocer los servicios disponibles en la clínica.'
         };
 
         // Newsletter Bubble Auto-show and Auto-hide
@@ -1823,21 +1892,109 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Close modal when clicking outside
+        // Email Modal functionality
+        function openEmailModal(service = '') {
+            document.getElementById('emailModal').style.display = 'block';
+            if (service) {
+                document.getElementById('emailService').value = service;
+            }
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeEmailModal() {
+            document.getElementById('emailModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modals when clicking outside
         document.getElementById('chatbotModal').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeChatbot();
             }
         });
 
-        // Form submission
+        document.getElementById('emailModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeEmailModal();
+            }
+        });
+
+        // Email form submission
+        document.getElementById('emailForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Validate required fields
+            if (!data.emailName || !data.emailService) {
+                alert('Por favor completa todos los campos obligatorios');
+                return;
+            }
+            
+            // Store form data globally
+            currentFormData = {
+                name: data.emailName,
+                service: data.emailService
+            };
+            
+            // Send data to webhook
+            sendToWebhook({
+                name: data.emailName,
+                service: data.emailService,
+                contactMethod: 'email'
+            });
+            
+            // Generate email with premade template
+            generateEmail(data.emailName, data.emailService);
+            
+            // Close modal and reset form
+            closeEmailModal();
+            this.reset();
+        });
+
+        // Generate email function with premade text based on service
+        function generateEmail(name, service) {
+            // Get service description
+            const serviceDescription = serviceDescriptions[service] || serviceDescriptions['Consulta General'];
+            
+            // Create email subject and body
+            const subject = `Solicitud de Consulta - ${service}`;
+            const body = `Estimado Dr. Morci,
+
+${serviceDescription}
+
+Nombre: ${name}
+Servicio de interés: ${service}
+
+Quedo atento a su respuesta para coordinar una cita.
+
+Saludos cordiales,
+${name}
+
+---
+Enviado desde drmorci.com`;
+
+            // Create mailto link
+            const mailtoLink = `mailto:doctor@drmorci.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            
+            // Open email client
+            window.location.href = mailtoLink;
+            
+            // Show success message
+            setTimeout(() => {
+                alert('¡Perfecto! Se ha generado tu email personalizado y se abrirá tu cliente de correo.');
+            }, 500);
+        }
+
+        // WhatsApp form submission
         document.getElementById('appointmentForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
             const formData = new FormData(this);
             const data = Object.fromEntries(formData);
             
-            // Store form data globally for email function
+            // Store form data globally
             currentFormData = {
                 name: data.name || '',
                 service: data.service || ''
@@ -1850,13 +2007,36 @@
             }
             
             // Send all data to webhook
-            sendToWebhook(data);
+            sendToWebhook({
+                name: data.name,
+                service: data.service,
+                contactMethod: 'whatsapp'
+            });
             
-            // Create WhatsApp message with simplified fields
-            let whatsappMessage = `*Nueva Consulta - Dr. Morci*\n\n`;
-            whatsappMessage += `*Nombre:* ${data.name}\n`;
-            whatsappMessage += `*Servicio:* ${data.service}\n`;
-            whatsappMessage += `\n_Enviado desde drmorci.com_`;
+            // Create more human WhatsApp message in Spanish
+            let whatsappMessage = `¡Hola Dr. Morci! 👋\n\n`;
+            whatsappMessage += `Espero se encuentre muy bien. Mi nombre es *${data.name}* y me puse en contacto porque me interesa agendar una consulta.\n\n`;
+            
+            // Add service-specific message
+            if (data.service.includes('Estética')) {
+                whatsappMessage += `Me gustaría que me ayude con una consulta sobre *odontología estética*. He visto su trabajo y me encantaría conocer qué opciones tengo para mejorar mi sonrisa. 😊\n\n`;
+            } else if (data.service.includes('Biomimética')) {
+                whatsappMessage += `Quisiera agendar una consulta sobre *odontología biomimética*. Me interesa mucho este enfoque natural y me gustaría saber cómo puede ayudarme. 🦷\n\n`;
+            } else if (data.service.includes('Biológica')) {
+                whatsappMessage += `Me interesa mucho la *odontología biológica* y me gustaría agendar una consulta para conocer más sobre este enfoque holístico. 🌿\n\n`;
+            } else if (data.service.includes('Implantes')) {
+                whatsappMessage += `Necesito una consulta para evaluar la posibilidad de *implantes dentales*. Me gustaría conocer mis opciones y el proceso. 🦷\n\n`;
+            } else if (data.service.includes('Ortodoncia')) {
+                whatsappMessage += `Quisiera agendar una consulta para evaluación de *ortodoncia*. Me interesa conocer las opciones disponibles para alinear mis dientes. 😁\n\n`;
+            } else if (data.service.includes('Endodoncia')) {
+                whatsappMessage += `Necesito una consulta para evaluar si requiero *endodoncia*. Me gustaría conocer las opciones modernas que maneja. 🦷\n\n`;
+            } else {
+                whatsappMessage += `Me gustaría agendar una *consulta general* para evaluación dental y conocer los servicios que ofrece. 😊\n\n`;
+            }
+            
+            whatsappMessage += `¿Cuándo tendría disponibilidad para una cita? Puedo adaptarme a su horario.\n\n`;
+            whatsappMessage += `¡Muchas gracias por su tiempo! 🙏\n\n`;
+            whatsappMessage += `_Mensaje enviado desde drmorci.com_`;
             
             // WhatsApp phone number
             const whatsappNumber = '50767272029';
@@ -1871,7 +2051,7 @@
             
             // Show success message
             setTimeout(() => {
-                alert('¡Perfecto! Te estamos redirigiendo a WhatsApp para completar tu cita.');
+                alert('¡Perfecto! Te estamos redirigiendo a WhatsApp para completar tu solicitud de consulta.');
             }, 500);
         });
 
@@ -1888,6 +2068,7 @@
                     body: JSON.stringify({
                         name: data.name,
                         service: data.service,
+                        contactMethod: data.contactMethod || 'unknown',
                         timestamp: new Date().toISOString(),
                         source: 'drmorci.com'
                     })
