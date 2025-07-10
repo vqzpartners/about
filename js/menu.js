@@ -9,7 +9,7 @@ function createNavigationMenu() {
     { href: '/', icon: '⌂', text: 'Home' },
     { href: '/founder', icon: '👤', text: 'Founder' },
     { href: '/business', icon: '💎', text: 'Partners' },
-    { href: '/global', icon: '💬', text: 'Contact' },
+    { href: '/go', icon: '💬', text: 'Contact' },
   ];
   
   // Create and append each menu item
