@@ -299,28 +299,25 @@
 
     /* Scene Transition Button */
     .scene-transition {
-      position: fixed;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
       background: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.3);
       color: white;
       padding: 0.8rem 1.5rem;
       border-radius: 25px;
       cursor: pointer;
-      z-index: 1001;
       transition: all 0.3s ease;
       opacity: 0;
       animation: fadeInUp 1s ease forwards 2.5s;
       white-space: nowrap;
       text-align: center;
       min-width: 200px;
+      margin: 2rem auto 0 auto;
+      display: block;
     }
 
     .scene-transition:hover {
       background: rgba(255, 255, 255, 0.2);
-      transform: translateX(-50%) translateY(-3px);
+      transform: translateY(-3px);
     }
 
     /* Loading indicator */
@@ -338,20 +335,51 @@
     @media (max-width: 768px) {
       .tagline {
         font-size: 2.5rem;
+        text-align: left;
       }
       
       .description {
         font-size: 1rem;
+        text-align: left;
+      }
+      
+      .text-content {
+        text-align: left;
+        max-width: 100%;
+        padding: 0 1rem;
       }
       
       .cta-buttons {
-        flex-direction: column;
-        align-items: center;
+        justify-content: flex-start;
+        flex-direction: row;
+        gap: 1rem;
+      }
+      
+      .btn {
+        flex: 1;
+        max-width: 150px;
+        text-align: center;
+        padding: 0.8rem 1rem;
       }
       
       .modal-3d {
         width: 90vw;
         padding: 1.5rem;
+      }
+      
+      /* Mobile Scene 2 - Hide title and description */
+      .scene-2.active .tagline,
+      .scene-2.active .description {
+        display: none;
+      }
+      
+      .scene-2.active .text-content {
+        position: fixed;
+        top: auto;
+        bottom: 2rem;
+        left: 1rem;
+        right: 1rem;
+        z-index: 300;
       }
     }
 
@@ -362,6 +390,11 @@
       
       body {
         padding: 15px;
+      }
+      
+      .btn {
+        font-size: 0.9rem;
+        padding: 0.7rem 0.8rem;
       }
     }
   </style>
@@ -444,10 +477,10 @@
 
     // Cube data with positions and image URLs
     const cubeData = [
-      { type: 'ai', position: [-4, 2, 0], image: 'https://vqzpartners.com/get/images/robot.jpg', label: 'AI & Automation' },
-      { type: 'finance', position: [4, 2, 0], image: 'https://vqzpartners.com/get/images/finance.jpg', label: 'Finance' },
-      { type: 'education', position: [-4, -2, 0], image: 'https://vqzpartners.com/get/images/veritas.jpg', label: 'Education' },
-      { type: 'intelligence', position: [4, -2, 0], image: 'https://vqzpartners.com/get/images/intelligence.jpg', label: 'Intelligence' }
+      { type: 'ai', position: [-4, 2, 0], mobilePosition: [-2, 1, 0], image: 'https://vqzpartners.com/get/images/robot.jpg', label: 'AI & Automation' },
+      { type: 'finance', position: [4, 2, 0], mobilePosition: [2, 1, 0], image: 'https://vqzpartners.com/get/images/finance.jpg', label: 'Finance' },
+      { type: 'education', position: [-4, -2, 0], mobilePosition: [-2, -1, 0], image: 'https://vqzpartners.com/get/images/veritas.jpg', label: 'Education' },
+      { type: 'intelligence', position: [4, -2, 0], mobilePosition: [2, -1, 0], image: 'https://vqzpartners.com/get/images/intelligence.jpg', label: 'Intelligence' }
     ];
 
     // Initialize Three.js
@@ -467,14 +500,21 @@
       // Camera position
       camera.position.z = 8;
 
-      // Lighting
-      const ambientLight = new THREE.AmbientLight(0x404040, 0.4);
+      // Improved lighting
+      const ambientLight = new THREE.AmbientLight(0x404040, 0.6);
       scene.add(ambientLight);
 
-      const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+      const directionalLight = new THREE.DirectionalLight(0xffffff, 1.2);
       directionalLight.position.set(10, 10, 5);
       directionalLight.castShadow = true;
+      directionalLight.shadow.mapSize.width = 2048;
+      directionalLight.shadow.mapSize.height = 2048;
       scene.add(directionalLight);
+
+      // Add fill light
+      const fillLight = new THREE.DirectionalLight(0x4444ff, 0.3);
+      fillLight.position.set(-5, -5, 3);
+      scene.add(fillLight);
 
       // Create floating cubes
       createCubes();
@@ -489,9 +529,10 @@
       document.getElementById('loading').style.display = 'none';
     }
 
-    // Create 3D cubes
+    // Create 3D cubes with sector tags
     function createCubes() {
       const textureLoader = new THREE.TextureLoader();
+      const fontLoader = new THREE.FontLoader();
       
       cubeData.forEach((data, index) => {
         // Cube geometry
@@ -506,24 +547,32 @@
               map: texture,
               transparent: true,
               opacity: 0.9,
-              shininess: 50
+              shininess: 80
             });
             
             const cube = new THREE.Mesh(geometry, material);
             cube.position.set(...data.position);
             cube.castShadow = true;
             cube.receiveShadow = true;
-            cube.userData = { type: data.type, originalY: data.position[1], time: index * 0.5 };
+            cube.userData = { 
+              type: data.type, 
+              originalPosition: [...data.position], 
+              time: index * 0.5,
+              isHovered: false
+            };
             
             // Add subtle wireframe
             const wireframe = new THREE.WireframeGeometry(geometry);
             const wireframeMaterial = new THREE.LineBasicMaterial({ 
               color: 0xffffff, 
               transparent: true, 
-              opacity: 0.2 
+              opacity: 0.1 
             });
             const wireframeMesh = new THREE.LineSegments(wireframe, wireframeMaterial);
             cube.add(wireframeMesh);
+            
+            // Create text label
+            createTextLabel(cube, data.label);
             
             scene.add(cube);
             cubes.push(cube);
@@ -543,13 +592,52 @@
             cube.position.set(...data.position);
             cube.castShadow = true;
             cube.receiveShadow = true;
-            cube.userData = { type: data.type, originalY: data.position[1], time: index * 0.5 };
+            cube.userData = { 
+              type: data.type, 
+              originalPosition: [...data.position], 
+              time: index * 0.5,
+              isHovered: false
+            };
             
+            createTextLabel(cube, data.label);
             scene.add(cube);
             cubes.push(cube);
           }
         );
       });
+    }
+
+    // Create text labels for cubes
+    function createTextLabel(cube, labelText) {
+      // Create a canvas for the text texture
+      const canvas = document.createElement('canvas');
+      const context = canvas.getContext('2d');
+      canvas.width = 256;
+      canvas.height = 64;
+      
+      // Draw text on canvas
+      context.fillStyle = 'rgba(0, 0, 0, 0.8)';
+      context.fillRect(0, 0, canvas.width, canvas.height);
+      context.fillStyle = 'white';
+      context.font = '16px Arial';
+      context.textAlign = 'center';
+      context.fillText(labelText, canvas.width / 2, canvas.height / 2 + 6);
+      
+      // Create texture from canvas
+      const texture = new THREE.CanvasTexture(canvas);
+      const labelMaterial = new THREE.MeshBasicMaterial({ 
+        map: texture, 
+        transparent: true,
+        opacity: 0.9
+      });
+      
+      // Create plane for text
+      const labelGeometry = new THREE.PlaneGeometry(2, 0.5);
+      const labelMesh = new THREE.Mesh(labelGeometry, labelMaterial);
+      labelMesh.position.set(0, -1, 0);
+      labelMesh.userData.isLabel = true;
+      
+      cube.add(labelMesh);
     }
 
     // Mouse interaction setup
@@ -589,17 +677,15 @@
         raycaster.setFromCamera(mouse, camera);
         const intersects = raycaster.intersectObjects(cubes);
 
-        // Reset all cubes
+        // Reset all cubes hover state
         cubes.forEach(cube => {
-          cube.scale.set(1, 1, 1);
-          cube.material.opacity = 0.8;
+          cube.userData.isHovered = false;
         });
 
-        // Highlight hovered cube
+        // Set hover state for intersected cube
         if (intersects.length > 0) {
           const cube = intersects[0].object;
-          cube.scale.set(1.1, 1.1, 1.1);
-          cube.material.opacity = 1.0;
+          cube.userData.isHovered = true;
           canvas.style.cursor = 'pointer';
         } else {
           canvas.style.cursor = 'default';
@@ -615,12 +701,22 @@
         const time = Date.now() * 0.001;
         
         cubes.forEach((cube, index) => {
-          // Floating animation
-          cube.position.y = cube.userData.originalY + Math.sin(time + cube.userData.time) * 0.3;
+          // Gentle floating animation
+          const originalY = cube.userData.originalPosition[1];
+          cube.position.y = originalY + Math.sin(time + cube.userData.time) * 0.2;
           
-          // Rotation
-          cube.rotation.x += 0.005;
-          cube.rotation.y += 0.005;
+          // Hover effect - move closer to camera
+          if (cube.userData.isHovered) {
+            // Smoothly move towards camera
+            cube.position.z = THREE.MathUtils.lerp(cube.position.z, 2, 0.1);
+            cube.scale.setScalar(THREE.MathUtils.lerp(cube.scale.x, 1.1, 0.1));
+            cube.material.opacity = THREE.MathUtils.lerp(cube.material.opacity, 1.0, 0.1);
+          } else {
+            // Smoothly return to original position
+            cube.position.z = THREE.MathUtils.lerp(cube.position.z, 0, 0.1);
+            cube.scale.setScalar(THREE.MathUtils.lerp(cube.scale.x, 1.0, 0.1));
+            cube.material.opacity = THREE.MathUtils.lerp(cube.material.opacity, 0.9, 0.1);
+          }
           
           // Visibility based on scene
           cube.visible = currentScene === 2;
@@ -630,10 +726,10 @@
       renderer.render(scene, camera);
     }
 
-    // Automatic glitch effect - subtle version
+    // Very minimal glitch effect - barely noticeable
     function initGlitchEffect() {
       const glitchElements = document.querySelectorAll('.glitch-text');
-      const glitchChars = '!@#$%^&*()[]{}|;:,.<>?';
+      const glitchChars = '!@#$%^&*';
 
       glitchElements.forEach(element => {
         const originalText = element.textContent;
@@ -647,41 +743,41 @@
 
         const chars = element.querySelectorAll('.glitch-char');
 
-        function subtleGlitch() {
+        function verySubtleGlitch() {
           if (glitchActive) return;
           glitchActive = true;
 
-          // Select only 1 random character to glitch (much more subtle)
+          // Select only 1 random character to glitch very rarely
           const nonSpaceChars = Array.from(chars).filter(char => char.textContent !== ' ');
           if (nonSpaceChars.length === 0) return;
           
           const randomChar = nonSpaceChars[Math.floor(Math.random() * nonSpaceChars.length)];
           const originalCharText = randomChar.textContent;
           
-          // Quick glitch effect
+          // Very quick glitch effect
           const glitchChar = glitchChars[Math.floor(Math.random() * glitchChars.length)];
           randomChar.textContent = glitchChar;
           randomChar.classList.add('glitching');
 
-          // Restore original character quickly
+          // Restore original character very quickly
           setTimeout(() => {
             randomChar.textContent = originalCharText;
             randomChar.classList.remove('glitching');
             glitchActive = false;
-          }, 150); // Much shorter duration
+          }, 80); // Even shorter duration
         }
 
-        // Start very subtle random glitching
+        // Start very rare glitching
         function scheduleNextGlitch() {
-          const delay = Math.random() * 8000 + 5000; // 5-13 seconds (much longer intervals)
+          const delay = Math.random() * 15000 + 10000; // 10-25 seconds (very long intervals)
           setTimeout(() => {
-            subtleGlitch();
+            verySubtleGlitch();
             scheduleNextGlitch();
           }, delay);
         }
 
-        // Start glitching after initial load with longer delay
-        setTimeout(scheduleNextGlitch, Math.random() * 5000 + 3000);
+        // Start glitching after much longer delay
+        setTimeout(scheduleNextGlitch, Math.random() * 10000 + 8000);
       });
     }
 
@@ -691,11 +787,21 @@
       const scene2 = document.getElementById('scene2');
       const canvas = document.getElementById('threejs-canvas');
       const button = document.querySelector('.scene-transition');
+      const isMobile = window.innerWidth <= 768;
       
       if (currentScene === 1) {
         scene1.style.opacity = '0';
         scene1.style.transform = 'scale(0.8)';
         canvas.classList.add('interactive');
+        
+        // Position cubes for mobile if needed
+        if (isMobile) {
+          cubes.forEach((cube, index) => {
+            const data = cubeData[index];
+            cube.userData.originalPosition = [...data.mobilePosition];
+            cube.position.set(...data.mobilePosition);
+          });
+        }
         
         setTimeout(() => {
           scene1.style.display = 'none';
@@ -707,6 +813,13 @@
       } else {
         scene2.classList.remove('active');
         canvas.classList.remove('interactive');
+        
+        // Reset cubes to original positions
+        cubes.forEach((cube, index) => {
+          const data = cubeData[index];
+          cube.userData.originalPosition = [...data.position];
+          cube.position.set(...data.position);
+        });
         
         setTimeout(() => {
           scene1.style.display = 'flex';
