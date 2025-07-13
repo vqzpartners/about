@@ -89,6 +89,7 @@
 
     #threejs-canvas.interactive {
       pointer-events: all;
+      z-index: 150;
     }
 
     /* Scene Management */
@@ -419,6 +420,7 @@
           <a href="/go" class="btn">Contact Us</a>
           <a href="/founder" class="btn">About us</a>
         </div>
+        <button class="scene-transition" onclick="toggleScene()">Explore Our Markets</button>
       </div>
     </div>
 
@@ -431,11 +433,9 @@
           <a href="/go" class="btn">Contact Us</a>
           <a href="/founder" class="btn">About us</a>
         </div>
+        <button class="scene-transition" onclick="toggleScene()">Back to Overview</button>
       </div>
     </div>
-
-    <!-- Scene Transition Button -->
-    <button class="scene-transition" onclick="toggleScene()">Explore Our Markets</button>
 
     <!-- 3D Modal -->
     <div class="modal-backdrop" id="modalBackdrop"></div>
@@ -532,7 +532,6 @@
     // Create 3D cubes with sector tags
     function createCubes() {
       const textureLoader = new THREE.TextureLoader();
-      const fontLoader = new THREE.FontLoader();
       
       cubeData.forEach((data, index) => {
         // Cube geometry
@@ -576,13 +575,16 @@
             
             scene.add(cube);
             cubes.push(cube);
+            
+            console.log('Cube created:', data.type, 'Total cubes:', cubes.length);
           },
           undefined,
           (error) => {
-            console.log('Error loading texture:', error);
+            console.log('Error loading texture for', data.type, ':', error);
             // Fallback to colored cube if image fails to load
+            const colors = { ai: 0x00ffff, finance: 0xffff00, education: 0xff00ff, intelligence: 0x00ff00 };
             const fallbackMaterial = new THREE.MeshPhongMaterial({ 
-              color: 0x333333,
+              color: colors[data.type] || 0x333333,
               transparent: true,
               opacity: 0.8,
               shininess: 100
@@ -602,6 +604,8 @@
             createTextLabel(cube, data.label);
             scene.add(cube);
             cubes.push(cube);
+            
+            console.log('Fallback cube created:', data.type, 'Total cubes:', cubes.length);
           }
         );
       });
@@ -647,20 +651,25 @@
       const mouse = new THREE.Vector2();
 
       canvas.addEventListener('click', (event) => {
-        if (currentScene !== 2) return;
+        console.log('Canvas clicked, current scene:', currentScene, 'cubes:', cubes.length);
+        if (currentScene !== 2 || cubes.length === 0) return;
 
-        mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-        mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+        // Calculate mouse position in normalized device coordinates
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+        mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
 
         raycaster.setFromCamera(mouse, camera);
         const intersects = raycaster.intersectObjects(cubes);
 
+        console.log('Intersects found:', intersects.length);
         if (intersects.length > 0) {
           const cube = intersects[0].object;
+          console.log('Cube clicked:', cube.userData.type);
           openModal(cube.userData.type);
           
           // Cube click animation
-          cube.scale.set(1.2, 1.2, 1.2);
+          cube.scale.set(1.3, 1.3, 1.3);
           setTimeout(() => {
             cube.scale.set(1, 1, 1);
           }, 200);
@@ -669,10 +678,11 @@
 
       // Hover effects
       canvas.addEventListener('mousemove', (event) => {
-        if (currentScene !== 2) return;
+        if (currentScene !== 2 || cubes.length === 0) return;
 
-        mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-        mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+        mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
 
         raycaster.setFromCamera(mouse, camera);
         const intersects = raycaster.intersectObjects(cubes);
@@ -726,7 +736,7 @@
       renderer.render(scene, camera);
     }
 
-    // Very minimal glitch effect - barely noticeable
+    // Very minimal glitch effect - preserves text structure
     function initGlitchEffect() {
       const glitchElements = document.querySelectorAll('.glitch-text');
       const glitchChars = '!@#$%^&*';
@@ -747,11 +757,15 @@
           if (glitchActive) return;
           glitchActive = true;
 
-          // Select only 1 random character to glitch very rarely
-          const nonSpaceChars = Array.from(chars).filter(char => char.textContent !== ' ');
-          if (nonSpaceChars.length === 0) return;
+          // Select only 1 random LETTER (not spaces, punctuation, etc.)
+          const letterChars = Array.from(chars).filter(char => {
+            const text = char.textContent;
+            return /[a-zA-Z]/.test(text); // Only letters
+          });
           
-          const randomChar = nonSpaceChars[Math.floor(Math.random() * nonSpaceChars.length)];
+          if (letterChars.length === 0) return;
+          
+          const randomChar = letterChars[Math.floor(Math.random() * letterChars.length)];
           const originalCharText = randomChar.textContent;
           
           // Very quick glitch effect
@@ -764,38 +778,41 @@
             randomChar.textContent = originalCharText;
             randomChar.classList.remove('glitching');
             glitchActive = false;
-          }, 80); // Even shorter duration
+          }, 100);
         }
 
         // Start very rare glitching
         function scheduleNextGlitch() {
-          const delay = Math.random() * 15000 + 10000; // 10-25 seconds (very long intervals)
+          const delay = Math.random() * 15000 + 10000; // 10-25 seconds
           setTimeout(() => {
             verySubtleGlitch();
             scheduleNextGlitch();
           }, delay);
         }
 
-        // Start glitching after much longer delay
+        // Start glitching after delay
         setTimeout(scheduleNextGlitch, Math.random() * 10000 + 8000);
       });
     }
 
     // Scene transition
     function toggleScene() {
+      console.log('toggleScene called, current scene:', currentScene);
       const scene1 = document.getElementById('scene1');
       const scene2 = document.getElementById('scene2');
       const canvas = document.getElementById('threejs-canvas');
-      const button = document.querySelector('.scene-transition');
       const isMobile = window.innerWidth <= 768;
       
       if (currentScene === 1) {
+        console.log('Transitioning to Scene 2');
+        // Transition to Scene 2
         scene1.style.opacity = '0';
         scene1.style.transform = 'scale(0.8)';
         canvas.classList.add('interactive');
         
         // Position cubes for mobile if needed
-        if (isMobile) {
+        if (isMobile && cubes.length > 0) {
+          console.log('Positioning cubes for mobile');
           cubes.forEach((cube, index) => {
             const data = cubeData[index];
             cube.userData.originalPosition = [...data.mobilePosition];
@@ -806,47 +823,60 @@
         setTimeout(() => {
           scene1.style.display = 'none';
           scene2.classList.add('active');
+          console.log('Scene 2 is now active');
         }, 500);
         
-        button.textContent = 'Back to Overview';
         currentScene = 2;
       } else {
+        console.log('Transitioning to Scene 1');
+        // Transition to Scene 1
         scene2.classList.remove('active');
         canvas.classList.remove('interactive');
         
         // Reset cubes to original positions
-        cubes.forEach((cube, index) => {
-          const data = cubeData[index];
-          cube.userData.originalPosition = [...data.position];
-          cube.position.set(...data.position);
-        });
+        if (cubes.length > 0) {
+          console.log('Resetting cubes to original positions');
+          cubes.forEach((cube, index) => {
+            const data = cubeData[index];
+            cube.userData.originalPosition = [...data.position];
+            cube.position.set(...data.position);
+          });
+        }
         
         setTimeout(() => {
           scene1.style.display = 'flex';
           scene1.style.opacity = '1';
           scene1.style.transform = 'scale(1)';
+          console.log('Scene 1 is now active');
         }, 500);
         
-        button.textContent = 'Explore Our Markets';
         currentScene = 1;
       }
     }
 
     // Modal functions
     function openModal(type) {
+      console.log('Opening modal for type:', type);
       const modal = document.getElementById('modal3d');
       const backdrop = document.getElementById('modalBackdrop');
       const header = document.getElementById('modalHeader');
       const content = document.getElementById('modalContent');
       
-      header.textContent = modalData[type].title;
-      content.textContent = modalData[type].content;
-      
-      backdrop.classList.add('active');
-      modal.classList.add('active');
+      if (modalData[type]) {
+        header.textContent = modalData[type].title;
+        content.textContent = modalData[type].content;
+        
+        backdrop.classList.add('active');
+        modal.classList.add('active');
+        
+        console.log('Modal opened successfully');
+      } else {
+        console.error('Modal data not found for type:', type);
+      }
     }
 
     function closeModal() {
+      console.log('Closing modal');
       const modal = document.getElementById('modal3d');
       const backdrop = document.getElementById('modalBackdrop');
       
@@ -868,7 +898,7 @@
       // Initialize Three.js
       initThreeJS();
       
-      // Initialize glitch effects
+      // Initialize glitch effects after a delay
       setTimeout(initGlitchEffect, 2000);
 
       // Modal interactions
@@ -880,11 +910,17 @@
 
       // Window resize
       window.addEventListener('resize', onWindowResize);
+      
+      // Debug: Add click listener to document to test
+      document.addEventListener('click', (e) => {
+        console.log('Click detected:', e.target);
+      });
     });
 
     // Auto-transition after 8 seconds
     setTimeout(() => {
       if (currentScene === 1 && isThreeJSReady) {
+        console.log('Auto-transitioning to scene 2');
         toggleScene();
       }
     }, 8000);
