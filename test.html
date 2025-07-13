@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VQZ & Partners</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Roboto+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="https://vqzpartners.com/get/images/favicon.png">
+
+  <meta name="description" content="Learn more about VQZ and our verified business partnerships.">
+  <meta name="keywords" content="VQZ Partners, verified partners, business, partnership">
+  <meta name="robots" content="index, follow">
+
+  <meta property="og:title" content="VQZ & Partners">
+  <meta property="og:description" content="we build, accelerate and educate">
+  <meta property="og:image" content="https://vqzpartners.com/get/images/social-banner.jpg">
+
+  <meta name="twitter:title" content="VQZ & Partners">
+  <meta name="twitter:description" content="we build, accelerate and educate">
+  <meta name="twitter:image" content="https://vqzpartners.com/get/images/social-banner.jpg">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto Mono', monospace;
+    }
+
+    body {
+      background-color: #000000;
+      color: white;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      overflow-y: hidden;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* Header Styles */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      position: absolute;
+      top: 1rem;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      opacity: 0;
+      transform: translateY(-20px);
+      animation: fadeInDown 1s ease forwards 0.5s;
+    }
+
+    .logo {
+      height: 50px;
+    }
+
+    @keyframes fadeInDown {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Scene Management */
+    .scene {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .scene-1 {
+      z-index: 100;
+      opacity: 1;
+    }
+
+    .scene-2 {
+      z-index: 50;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .scene-2.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    /* Text Content Styles */
+    .text-content {
+      text-align: center;
+      max-width: 800px;
+      z-index: 200;
+    }
+
+    .tagline {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      line-height: 1.2;
+      font-family: 'Montserrat', sans-serif;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1.2s ease forwards 1s;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .description {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1.2s ease forwards 1.5s;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Glitch Effect */
+    .glitch {
+      position: relative;
+    }
+
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .glitch.active::before {
+      animation: glitch1 0.3s ease;
+      color: #ff0000;
+      z-index: -1;
+    }
+
+    .glitch.active::after {
+      animation: glitch2 0.3s ease;
+      color: #00ff00;
+      z-index: -2;
+    }
+
+    .glitch.active {
+      animation: glitchText 0.3s ease;
+    }
+
+    @keyframes glitch1 {
+      0%, 100% { opacity: 0; transform: translate(0); }
+      20% { opacity: 1; transform: translate(-2px, 2px); }
+      40% { opacity: 1; transform: translate(-2px, -2px); }
+      60% { opacity: 1; transform: translate(2px, 2px); }
+      80% { opacity: 1; transform: translate(2px, -2px); }
+    }
+
+    @keyframes glitch2 {
+      0%, 100% { opacity: 0; transform: translate(0); }
+      20% { opacity: 1; transform: translate(2px, 2px); }
+      40% { opacity: 1; transform: translate(2px, -2px); }
+      60% { opacity: 1; transform: translate(-2px, 2px); }
+      80% { opacity: 1; transform: translate(-2px, -2px); }
+    }
+
+    @keyframes glitchText {
+      0%, 100% { transform: translate(0); }
+      20% { transform: translate(-1px, 1px); }
+      40% { transform: translate(-1px, -1px); }
+      60% { transform: translate(1px, 1px); }
+      80% { transform: translate(1px, -1px); }
+    }
+
+    /* CTA Buttons */
+    .cta-buttons {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1.2s ease forwards 2s;
+    }
+
+    .btn {
+      padding: 1rem 2rem;
+      background-color: transparent;
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .btn:hover::after {
+      left: 100%;
+    }
+
+    .btn:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.5);
+      transform: translateY(-2px);
+    }
+
+    /* Floating Cubes */
+    .floating-cube {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transform-style: preserve-3d;
+      opacity: 0;
+      animation: floatIn 1s ease forwards;
+      backdrop-filter: blur(10px);
+    }
+
+    .floating-cube:nth-child(1) {
+      top: 10%;
+      left: 10%;
+      animation-delay: 3s;
+    }
+
+    .floating-cube:nth-child(2) {
+      top: 10%;
+      right: 10%;
+      animation-delay: 3.5s;
+    }
+
+    .floating-cube:nth-child(3) {
+      bottom: 20%;
+      left: 10%;
+      animation-delay: 4s;
+    }
+
+    .floating-cube:nth-child(4) {
+      bottom: 20%;
+      right: 10%;
+      animation-delay: 4.5s;
+    }
+
+    @keyframes floatIn {
+      0% {
+        opacity: 0;
+        transform: translateY(100px) rotateX(90deg);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) rotateX(0deg);
+      }
+    }
+
+    .floating-cube::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--cube-bg);
+      background-size: cover;
+      background-position: center;
+      border-radius: 8px;
+      opacity: 0.7;
+      transition: opacity 0.3s ease;
+    }
+
+    .floating-cube:hover::after {
+      opacity: 1;
+    }
+
+    .cube-ai { --cube-bg: url('https://vqzpartners.com/get/images/robot.jpg'); }
+    .cube-finance { --cube-bg: url('https://vqzpartners.com/get/images/finance.jpg'); }
+    .cube-education { --cube-bg: url('https://vqzpartners.com/get/images/veritas.jpg'); }
+    .cube-intelligence { --cube-bg: url('https://vqzpartners.com/get/images/intelligence.jpg'); }
+
+    .floating-cube:hover {
+      transform: translateY(-20px) scale(1.1) rotateX(10deg) rotateY(10deg);
+      border-color: rgba(255, 255, 255, 0.5);
+      box-shadow: 0 20px 40px rgba(255, 255, 255, 0.1);
+    }
+
+    .cube-label {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-align: center;
+      z-index: 10;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    }
+
+    /* 3D Modal */
+    .modal-3d {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0) rotateY(90deg);
+      width: 400px;
+      max-width: 90vw;
+      background: rgba(0, 0, 0, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      padding: 2rem;
+      z-index: 1000;
+      opacity: 0;
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      backdrop-filter: blur(20px);
+      transform-style: preserve-3d;
+    }
+
+    .modal-3d.active {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1) rotateY(0deg);
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-backdrop.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal-header {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .modal-content {
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .modal-close:hover {
+      color: #ff6b6b;
+    }
+
+    /* Floating Animation */
+    .floating-cube {
+      animation: floatIn 1s ease forwards, continuousFloat 6s infinite ease-in-out;
+    }
+
+    @keyframes continuousFloat {
+      0%, 100% { transform: translateY(0) rotateZ(0deg); }
+      25% { transform: translateY(-10px) rotateZ(1deg); }
+      50% { transform: translateY(-5px) rotateZ(0deg); }
+      75% { transform: translateY(-15px) rotateZ(-1deg); }
+    }
+
+    /* Scene Transition Button */
+    .scene-transition {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      cursor: pointer;
+      z-index: 1001;
+      transition: all 0.3s ease;
+      opacity: 0;
+      animation: fadeInUp 1s ease forwards 2.5s;
+    }
+
+    .scene-transition:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateX(-50%) translateY(-3px);
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .tagline {
+        font-size: 2.5rem;
+      }
+      
+      .description {
+        font-size: 1rem;
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .floating-cube {
+        width: 80px;
+        height: 80px;
+      }
+      
+      .floating-cube:nth-child(1) { top: 5%; left: 5%; }
+      .floating-cube:nth-child(2) { top: 5%; right: 5%; }
+      .floating-cube:nth-child(3) { bottom: 15%; left: 5%; }
+      .floating-cube:nth-child(4) { bottom: 15%; right: 5%; }
+    }
+
+    @media (max-width: 480px) {
+      .tagline {
+        font-size: 2rem;
+      }
+      
+      body {
+        padding: 15px;
+      }
+      
+      .floating-cube {
+        width: 60px;
+        height: 60px;
+      }
+      
+      .cube-label {
+        font-size: 0.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img src="get/images/white-web-logo.svg" alt="VQZ & Partners Logo" class="logo">
+    </header>
+
+    <!-- Scene 1: Text Focus -->
+    <div class="scene scene-1" id="scene1">
+      <div class="text-content">
+        <h1 class="tagline glitch" data-text="we build, accelerate and educate.">we build, accelerate and educate.</h1>
+        <p class="description glitch" data-text="From intelligence to automation, we drive innovation freely, partnering with visionary businesses to create impactful solutions">From intelligence to automation, we drive innovation freely, partnering with visionary businesses to create impactful solutions</p>
+        <div class="cta-buttons">
+          <a href="/go" class="btn">Contact Us</a>
+          <a href="/founder" class="btn">About us</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scene 2: Floating Cubes -->
+    <div class="scene scene-2" id="scene2">
+      <div class="text-content">
+        <h1 class="tagline glitch" data-text="we build, accelerate and educate.">we build, accelerate and educate.</h1>
+        <p class="description glitch" data-text="From intelligence to automation, we drive innovation freely, partnering with visionary businesses to create impactful solutions">From intelligence to automation, we drive innovation freely, partnering with visionary businesses to create impactful solutions</p>
+        <div class="cta-buttons">
+          <a href="/go" class="btn">Contact Us</a>
+          <a href="/founder" class="btn">About us</a>
+        </div>
+      </div>
+      
+      <!-- Floating Cubes -->
+      <div class="floating-cube cube-ai" data-modal="ai">
+        <div class="cube-label">AI & Automation</div>
+      </div>
+      <div class="floating-cube cube-finance" data-modal="finance">
+        <div class="cube-label">Finance</div>
+      </div>
+      <div class="floating-cube cube-education" data-modal="education">
+        <div class="cube-label">Education</div>
+      </div>
+      <div class="floating-cube cube-intelligence" data-modal="intelligence">
+        <div class="cube-label">Intelligence</div>
+      </div>
+    </div>
+
+    <!-- Scene Transition Button -->
+    <button class="scene-transition" onclick="toggleScene()">Explore Our Markets</button>
+
+    <!-- 3D Modal -->
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-3d" id="modal3d">
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+      <div class="modal-header" id="modalHeader"></div>
+      <div class="modal-content" id="modalContent"></div>
+    </div>
+  </div>
+
+  <script>
+    let currentScene = 1;
+    let glitchTimeout;
+
+    // Modal content data
+    const modalData = {
+      ai: {
+        title: "AI & Automation",
+        content: "Revolutionizing industries through intelligent automation and machine learning solutions. We develop cutting-edge AI systems that enhance productivity, reduce costs, and unlock new possibilities for businesses across various sectors."
+      },
+      finance: {
+        title: "Finance",
+        content: "Transforming financial services with innovative technology solutions. From blockchain implementations to robo-advisors, we create secure, efficient, and user-friendly financial platforms that drive the future of fintech."
+      },
+      education: {
+        title: "Education",
+        content: "Empowering learning through technology-driven educational solutions. We build interactive platforms, personalized learning systems, and immersive educational experiences that make knowledge accessible to everyone."
+      },
+      intelligence: {
+        title: "Intelligence",
+        content: "Harnessing the power of data and analytics to drive informed decision-making. Our intelligence solutions provide deep insights, predictive analytics, and strategic guidance for businesses in the digital age."
+      }
+    };
+
+    // Scene transition
+    function toggleScene() {
+      const scene1 = document.getElementById('scene1');
+      const scene2 = document.getElementById('scene2');
+      const button = document.querySelector('.scene-transition');
+      
+      if (currentScene === 1) {
+        scene1.style.opacity = '0';
+        scene1.style.transform = 'scale(0.8)';
+        setTimeout(() => {
+          scene1.style.display = 'none';
+          scene2.classList.add('active');
+        }, 500);
+        button.textContent = 'Back to Overview';
+        currentScene = 2;
+      } else {
+        scene2.classList.remove('active');
+        setTimeout(() => {
+          scene1.style.display = 'flex';
+          scene1.style.opacity = '1';
+          scene1.style.transform = 'scale(1)';
+        }, 500);
+        button.textContent = 'Explore Our Markets';
+        currentScene = 1;
+      }
+    }
+
+    // Glitch effect
+    function triggerGlitch(element) {
+      clearTimeout(glitchTimeout);
+      
+      const originalText = element.textContent;
+      const glitchChars = '!@#$%^&*()[]{}|;:,.<>?';
+      
+      // Create glitch text
+      let glitchText = '';
+      for (let i = 0; i < originalText.length; i++) {
+        if (originalText[i] === ' ') {
+          glitchText += ' ';
+        } else {
+          glitchText += glitchChars[Math.floor(Math.random() * glitchChars.length)];
+        }
+      }
+      
+      element.classList.add('active');
+      element.textContent = glitchText;
+      
+      glitchTimeout = setTimeout(() => {
+        element.textContent = originalText;
+        element.classList.remove('active');
+      }, 300);
+    }
+
+    // Modal functions
+    function openModal(type) {
+      const modal = document.getElementById('modal3d');
+      const backdrop = document.getElementById('modalBackdrop');
+      const header = document.getElementById('modalHeader');
+      const content = document.getElementById('modalContent');
+      
+      header.textContent = modalData[type].title;
+      content.textContent = modalData[type].content;
+      
+      backdrop.classList.add('active');
+      modal.classList.add('active');
+      
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('modal3d');
+      const backdrop = document.getElementById('modalBackdrop');
+      
+      backdrop.classList.remove('active');
+      modal.classList.remove('active');
+      
+      document.body.style.overflow = 'visible';
+    }
+
+    // Event listeners
+    document.addEventListener('DOMContentLoaded', () => {
+      // Glitch effect on hover
+      document.querySelectorAll('.glitch').forEach(element => {
+        element.addEventListener('mouseenter', () => {
+          triggerGlitch(element);
+        });
+      });
+
+      // Floating cube interactions
+      document.querySelectorAll('.floating-cube').forEach(cube => {
+        cube.addEventListener('click', () => {
+          const modalType = cube.getAttribute('data-modal');
+          openModal(modalType);
+        });
+      });
+
+      // Close modal on backdrop click
+      document.getElementById('modalBackdrop').addEventListener('click', closeModal);
+
+      // Escape key to close modal
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeModal();
+        }
+      });
+    });
+
+    // Auto-transition to scene 2 after 8 seconds
+    setTimeout(() => {
+      if (currentScene === 1) {
+        toggleScene();
+      }
+    }, 8000);
+  </script>
+</body>
+</html>
