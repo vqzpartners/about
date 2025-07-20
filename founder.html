@@ -23,6 +23,7 @@
       display: flex;
       flex-direction: column;
       position: relative;
+      padding-bottom: 120px; /* Extra space for navigation menu */
     }
 
     .container {
@@ -79,6 +80,7 @@
     .profile-container {
       position: relative;
       margin-bottom: 2rem;
+      padding: 4px;
     }
 
     .founder-image {
@@ -86,65 +88,57 @@
       height: 200px;
       border-radius: 12%;
       object-fit: cover;
-      border: 2px solid rgba(255, 255, 255, 0.3);
       position: relative;
+      z-index: 2;
+      display: block;
+    }
+
+    .image-border {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 12%;
+      padding: 2px;
+      background: linear-gradient(45deg, 
+        rgba(255, 255, 255, 0.1), 
+        rgba(255, 255, 255, 0.3), 
+        rgba(255, 255, 255, 0.6), 
+        rgba(255, 255, 255, 0.8), 
+        rgba(255, 255, 255, 0.6), 
+        rgba(255, 255, 255, 0.3), 
+        rgba(255, 255, 255, 0.1)
+      );
+      background-size: 300% 300%;
+      animation: gradientRotate 4s ease-in-out infinite;
       z-index: 1;
     }
 
-.image-border {
-  position: absolute;
-  width: calc(100% + 8px);
-  height: calc(100% + 8px);
-  top: -4px;
-  left: -4px;
-  border-radius: 12%;
-  overflow: hidden;
-  z-index: 0;
-}
+    .image-border::before {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      right: 2px;
+      bottom: 2px;
+      background: #000000;
+      border-radius: 12%;
+      z-index: 1;
+    }
 
-.image-border {
-  position: absolute;
-  width: calc(100% + 8px);
-  height: calc(100% + 8px);
-  top: -4px;
-  left: -4px;
-  border-radius: 12%;
-  overflow: hidden;
-  z-index: 0;
-}
+    @keyframes gradientRotate {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
 
-.image-border::after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: transparent;
-  border-radius: 12%;
-  box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.7);
-  opacity: 0;
-  animation: borderLight 3s linear infinite;
-}
-
-@keyframes borderLight {
-  0%, 100% {
-    opacity: 0;
-    background: linear-gradient(90deg, transparent, transparent, transparent, rgba(255, 255, 255, 0.8), transparent);
-    background-size: 200% 100%;
-    background-position: 200% 0;
-  }
-  25% {
-    opacity: 1;
-    background-position: 100% 0;
-  }
-  50% {
-    opacity: 1;
-    background-position: 0% 0;
-  }
-  75% {
-    opacity: 0;
-    background-position: -100% 0;
-  }
-}
     .founder-message {
       font-size: 1.1rem;
       line-height: 1.6;
@@ -186,14 +180,23 @@
       cursor: pointer;
       transition: all 0.3s ease;
       text-decoration: none;
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
       margin-top: 2rem;
+      margin-bottom: 2rem;
     }
 
     .btn:hover {
       background-color: rgba(255, 255, 255, 0.1);
       border-color: rgba(255, 255, 255, 0.5);
       transform: translateY(-2px);
+    }
+
+    .cta-container {
+      text-align: center;
+      margin-top: 2rem;
+      margin-bottom: 3rem;
     }
 
     /* Responsive Styles */
@@ -233,9 +236,12 @@
       .logo {
         height: 40px;
       }
+
+      body {
+        padding-bottom: 140px; /* Extra space for mobile */
+      }
     }
   </style>
-  <link rel="stylesheet" href="css/menu.css">
 </head>
 <body>
   <div class="container">
@@ -253,24 +259,28 @@
       <h1 class="founder-title">about the founder</h1>
       
       <div class="founder-message">
-        Brandon is a Panamanian entrepreneur seeking connection with people who share his values of <strong>integrity and providing practical tools for decentralized freedom</strong>. VQZ was founded out of necessity after his father passed away, but it was fueled by his ambition to create something meaningful <strong>and break free from past constraints, building a legacy of stability and positive impact.</strong>
+        <strong>Brandon is a Panamanian entrepreneur focused on building systems and tools that support decentralized freedom, transparency, and independent decision-making. His company, VQZ, was founded in response to a personal turning point and is driven by a clear objective: to develop solutions that create stability, efficiency, and long-term value.</strong>
         <br><br>
-        Driven yet never consumed by greed, Brandon is committed to solving complex problems through VQZ's <strong>ventures focused on enabling independent action and informed choices</strong>. He concentrates on tackling systemic inefficiency, exemplified by his FinTech platform <strong>Lulo</strong>, which <strong>equips people with clarity</strong> for personal loan advice in Panama. He champions <strong>practical, accessible education</strong> over outdated models, <strong>such as through his program 'Sovereigns,' which equips individuals to build advanced, efficient systems using low-code technology so they can achieve more by working smarter in a couple of weeks.</strong>
+        With a pragmatic approach and a strong ethical foundation, Brandon leads ventures that address structural inefficiencies across sectors. One example is <strong>Lulo</strong>, a FinTech platform offering transparent, data-driven loan advice for individuals in Panama—helping users make informed financial decisions.
         <br><br>
-        Beyond his work, Brandon finds clarity and refuels his vision through <strong>solitude</strong>, often writing his thoughts in his black notebooks. This personal time is crucial for pursuing his goal of <strong>strategic freedom</strong>—operating globally, building independence, and curating a life of purpose and tranquility. <strong>Yet, this need for introspection doesn't isolate him;</strong> he readily adapts and connects effectively in social settings when needed, navigating diverse environments with ease.
+        Brandon also prioritizes practical education through programs like <strong>Sovereigns</strong>, which enables individuals to design and implement advanced, low-code systems. The goal is to empower people to work smarter and build scalable tools in weeks—not months—without relying on outdated models or rigid systems.
         <br><br>
-        <strong>Strategic Freedom</strong>, Loyalty, respect, and <strong>unwavering transparency</strong> are at his core, guiding his personal relationships and business ethics. If you ever need help from someone committed to <strong>integrity-based impact</strong>, don't hesitate to reach out.
+        His strategic thinking is often shaped during time spent in focused solitude, where he refines ideas and documents insights in his notebooks. This habit supports his broader pursuit of what he calls <strong>"strategic freedom"</strong>: the ability to operate globally, build independently, and maintain a lifestyle centered on purpose, clarity, and adaptability.
+        <br><br>
+        While he values independence, Brandon is highly adaptable in collaborative settings and maintains strong interpersonal awareness across diverse environments.
+        <br><br>
+        <strong>Integrity, transparency, respect, and loyalty</strong> define his approach—both personally and professionally. If you're looking to collaborate with someone who leads with intention and delivers with consistency, connect with him on Instagram.
       </div>
       
-      <div class="quote-container">
-        <div class="founder-quote">
-          "In the conflict of the mind is where life belongs"
-        </div>
-        <div class="quote-attribution">Founder & CEO</div>
+      <div class="cta-container">
+        <a href="https://brandon.launch.ink/m26vxl9" target="_blank" class="btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+          Connect with Brandon
+        </a>
       </div>
-      
     </div>
   </div>
-  <script src="js/menu.js"></script>
 </body>
 </html>
