@@ -38,44 +38,113 @@
       overflow-x: hidden;
     }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  width: 100%;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  position: relative; /* Add this */
-}
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* Banner Styles */
+    .banner {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 0.8rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 1000;
+      transform: translateY(-100%);
+      transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      color: white;
+    }
+
+    .banner.visible {
+      transform: translateY(0);
+    }
+
+    .banner-content {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex: 1;
+      cursor: pointer;
+    }
+
+    .banner-badge {
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 20px;
+      padding: 0.3rem 0.8rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .banner-text {
+      font-size: 0.9rem;
+      font-weight: 400;
+      flex: 1;
+    }
+
+    .banner-close {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+      opacity: 0.7;
+    }
+
+    .banner-close:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      opacity: 1;
+    }
+
+    /* Adjust body padding when banner is visible */
+    body.banner-visible {
+      padding-top: 80px;
+    }
 
     /* Header Styles */
     header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 0;
-  margin-bottom: 0; /* Remove margin */
-  position: absolute; /* Position absolutely */
-  top: 1rem; /* Add some space from top */
-  left: 0;
-  right: 0;
-  z-index: 10; /* Keep above other content */
-}
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      margin-bottom: 0;
+      position: absolute;
+      top: 1rem;
+      left: 0;
+      right: 0;
+      z-index: 10;
+    }
 
     .logo {
       height: 50px;
     }
 
     /* Main Content Layout */
-.main-content {
-  display: flex;
-  flex: 1;
-  gap: 4rem;
-  margin-top: 0; /* Remove margin-top */
-  height: 100vh; /* Full viewport height */
-  align-items: center;
-  padding-top: 80px; /* Add padding to account for header height */
-}
+    .main-content {
+      display: flex;
+      flex: 1;
+      gap: 4rem;
+      margin-top: 0;
+      height: 100vh;
+      align-items: center;
+      padding-top: 80px;
+    }
 
     /* Left Column - Text Content */
     .text-content {
@@ -90,7 +159,7 @@
       font-weight: 700;
       margin-bottom: 2rem;
       line-height: 1.2;
-      font-family: 'Montserrat', sans-serif; /* Changed to Montserrat */
+      font-family: 'Montserrat', sans-serif;
     }
 
     .description {
@@ -158,27 +227,27 @@
     }
 
     .market-card:hover img {
-  opacity: 1;
-  filter: grayscale(0%);
-  transform: scale(1.1); /* Increase from 1.05 to 1.1 to ensure full coverage */
-  object-position: center; /* Ensure image stays centered when scaling */
-}
+      opacity: 1;
+      filter: grayscale(0%);
+      transform: scale(1.1);
+      object-position: center;
+    }
 
-.market-label {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 1.2rem 1rem;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0));
-  font-size: 1rem;
-  font-weight: 500;
-  transition: transform 0.3s ease;
-}
+    .market-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1.2rem 1rem;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0));
+      font-size: 1rem;
+      font-weight: 500;
+      transition: transform 0.3s ease;
+    }
 
-.market-card:hover .market-label {
-  transform: translateY(0); /* Change from -5px to 0 to keep it fixed at bottom */
-}
+    .market-card:hover .market-label {
+      transform: translateY(0);
+    }
 
     .market-icon {
       position: absolute;
@@ -201,7 +270,6 @@
       transform: translateY(0);
     }
 
-    /* Glow effect on hover - Fixed to not show gaps */
     .market-card::after {
       content: '';
       position: absolute;
@@ -209,7 +277,7 @@
       left: -5px;
       right: -5px;
       bottom: -5px;
-      border-radius: 12px; /* Slightly larger than the card's border-radius */
+      border-radius: 12px;
       box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
       opacity: 0;
       transition: opacity 0.5s ease;
@@ -329,8 +397,21 @@
       
       .image-grid {
         grid-template-columns: repeat(2, 1fr);
-        max-width: 90%; /* Make grid smaller on mobile */
+        max-width: 90%;
         margin: 0 auto;
+      }
+
+      .banner {
+        padding: 0.6rem 1rem;
+      }
+
+      .banner-text {
+        font-size: 0.8rem;
+      }
+
+      .banner-badge {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.6rem;
       }
     }
 
@@ -340,9 +421,9 @@
       }
       
       .image-grid {
-        grid-template-columns: repeat(2, 1fr); /* Keep 2 columns on small mobile */
+        grid-template-columns: repeat(2, 1fr);
         max-width: 100%;
-        grid-gap: 1rem; /* Smaller gap on mobile */
+        grid-gap: 1rem;
       }
       
       .logo {
@@ -354,17 +435,32 @@
       }
 
       body {
-        padding: 15px; /* Reduce padding on very small screens */
+        padding: 15px;
       }
 
       .market-card:nth-child(odd), 
       .market-card:nth-child(even) {
         animation: floatAnimation 8s infinite ease-in-out;
       }
+
+      .banner-content {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- Banner -->
+  <div id="banner" class="banner">
+    <div class="banner-content" onclick="handleBannerClick()">
+      <div id="banner-badge" class="banner-badge"></div>
+      <div id="banner-text" class="banner-text"></div>
+    </div>
+    <button class="banner-close" onclick="closeBanner()">&times;</button>
+  </div>
+
   <div class="container">
     <header>
       <img src="get/images/white-web-logo.svg" alt="VQZ & Partners Logo" class="logo">
@@ -407,7 +503,92 @@
       </div>
     </div>
   </div>
+
+  <script src="banner-data.js"></script>
   <script>
+    // Banner functionality
+    let currentBannerIndex = 0;
+    let bannerInterval;
+
+    function showBanner(banner) {
+      const bannerElement = document.getElementById('banner');
+      const badgeElement = document.getElementById('banner-badge');
+      const textElement = document.getElementById('banner-text');
+      
+      badgeElement.textContent = formatTime(banner.time);
+      textElement.textContent = banner.title;
+      
+      bannerElement.classList.add('visible');
+      document.body.classList.add('banner-visible');
+      
+      // Store current banner URL for click handling
+      bannerElement.dataset.url = banner.url;
+    }
+
+    function hideBanner() {
+      const bannerElement = document.getElementById('banner');
+      bannerElement.classList.remove('visible');
+      document.body.classList.remove('banner-visible');
+    }
+
+    function closeBanner() {
+      hideBanner();
+      // Remember user closed banner to not show it again this session
+      sessionStorage.setItem('bannerClosed', 'true');
+      clearInterval(bannerInterval);
+    }
+
+    function handleBannerClick() {
+      const bannerElement = document.getElementById('banner');
+      const url = bannerElement.dataset.url;
+      if (url && url !== '#') {
+        window.open(url, '_blank');
+      }
+    }
+
+    function formatTime(timeStr) {
+      // Format time string for badge display
+      const timeMap = {
+        'new': 'NEW',
+        'live': 'LIVE',
+        'update': 'UPDATE',
+        'breaking': 'BREAKING',
+        'soon': 'SOON',
+        'now': 'NOW',
+        'alert': 'ALERT'
+      };
+      
+      return timeMap[timeStr.toLowerCase()] || timeStr.toUpperCase();
+    }
+
+    function cycleBanners() {
+      if (!bannerData || bannerData.length === 0) return;
+      
+      const banner = bannerData[currentBannerIndex];
+      showBanner(banner);
+      
+      currentBannerIndex = (currentBannerIndex + 1) % bannerData.length;
+    }
+
+    function initBanner() {
+      // Check if user already closed banner this session
+      if (sessionStorage.getItem('bannerClosed') === 'true') {
+        return;
+      }
+      
+      if (bannerData && bannerData.length > 0) {
+        // Show first banner after a delay
+        setTimeout(() => {
+          cycleBanners();
+          
+          // If multiple banners, cycle through them
+          if (bannerData.length > 1) {
+            bannerInterval = setInterval(cycleBanners, 8000); // Change banner every 8 seconds
+          }
+        }, 2000); // Initial delay
+      }
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
       const animatedElements = document.querySelectorAll('.animated-text');
       
@@ -432,6 +613,9 @@
       // Show animation on every visit
       animateElements();
       
+      // Initialize banner system
+      initBanner();
+      
       // 3D tilt effect for image grid
       const imageGrid = document.querySelector('.image-grid');
       const imageGridContainer = document.querySelector('.image-grid-container');
@@ -442,8 +626,8 @@
           const x = e.clientX - rect.left; 
           const y = e.clientY - rect.top;
           
-          const xRot = ((y / rect.height) - 0.5) * 10; // -5 to 5 degrees
-          const yRot = ((x / rect.width) - 0.5) * -10; // -5 to 5 degrees
+          const xRot = ((y / rect.height) - 0.5) * 10;
+          const yRot = ((x / rect.width) - 0.5) * -10;
           
           imageGrid.style.transform = `rotateX(${xRot}deg) rotateY(${yRot}deg)`;
         });
@@ -454,5 +638,6 @@
       }
     });
   </script>
-  <script src="analytics.js"></script></body>
+  <script src="analytics.js"></script>
+</body>
 </html>
