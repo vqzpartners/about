@@ -32,21 +32,15 @@
     body {
       background-color: #000000;
       color: white;
-      padding: 20px;
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
       overflow-x: hidden;
+      line-height: 1.6;
     }
 
     .container {
-      max-width: 1200px;
+      max-width: 1400px;
       margin: 0 auto;
       width: 100%;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      position: relative;
     }
 
     /* Header Styles */
@@ -54,10 +48,10 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 0;
-      margin-bottom: 4rem;
+      padding: 2rem 3rem;
       position: relative;
       z-index: 10;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .logo {
@@ -69,9 +63,10 @@
       text-decoration: none;
       font-size: 0.9rem;
       transition: all 0.3s ease;
-      padding: 0.5rem 1rem;
+      padding: 0.75rem 1.5rem;
       border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 4px;
+      border-radius: 6px;
+      font-weight: 400;
     }
 
     .back-link:hover {
@@ -80,232 +75,309 @@
       background-color: rgba(255, 255, 255, 0.05);
     }
 
-    /* Main Content Layout */
-    .main-content {
-      display: flex;
-      flex-direction: column;
-      gap: 6rem;
-    }
-
     /* Hero Section */
     .hero-section {
       text-align: center;
-      padding: 2rem 0;
+      padding: 6rem 3rem 4rem;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, transparent 100%);
+      position: relative;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 100px;
+      background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.3), transparent);
     }
 
     .hero-title {
-      font-size: 2.8rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      line-height: 1.1;
+      font-size: 3.5rem;
+      font-weight: 300;
+      margin-bottom: 1.5rem;
       font-family: 'Montserrat', sans-serif;
-      background: linear-gradient(135deg, #ffffff, #cccccc);
+      background: linear-gradient(135deg, #ffffff, #999999);
       background-clip: text;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      letter-spacing: -0.02em;
     }
 
     .hero-subtitle {
-      font-size: 1.1rem;
-      color: rgba(255, 255, 255, 0.8);
-      max-width: 700px;
-      margin: 0 auto 2rem;
-      line-height: 1.4;
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.7);
+      max-width: 800px;
+      margin: 0 auto;
+      font-weight: 300;
+      line-height: 1.7;
     }
 
-    /* Stats Section */
-    .stats-grid {
+    /* Two Column Layout */
+    .two-column-section {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1.5rem;
-      margin: 2rem 0;
+      grid-template-columns: 1fr 1fr;
+      gap: 8rem;
+      padding: 8rem 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
-    .stat-card {
+    .column-content h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 400;
+      margin-bottom: 2rem;
+      color: #ffffff;
+      letter-spacing: -0.01em;
+    }
+
+    .column-content p {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 2rem;
+      line-height: 1.8;
+    }
+
+    .expertise-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .expertise-item {
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.9);
+      transition: all 0.3s ease;
       text-align: center;
-      padding: 1.5rem 1rem;
-      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .expertise-item:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    /* Values Section */
+    .values-section {
+      padding: 8rem 3rem;
+      background: rgba(255, 255, 255, 0.01);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .values-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .values-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 300;
+      margin-bottom: 3rem;
+      color: #ffffff;
+      letter-spacing: -0.01em;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+      margin-top: 4rem;
+    }
+
+    .value-card {
+      text-align: center;
+      padding: 3rem 2rem;
+      background: rgba(255, 255, 255, 0.02);
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 8px;
-      transition: all 0.3s ease;
-    }
-
-    .stat-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(255, 255, 255, 0.3);
-      background: rgba(255, 255, 255, 0.05);
-    }
-
-    .stat-number {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: #ffffff;
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-
-    .stat-label {
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.7);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    /* Content Sections */
-    .content-section {
-      text-align: center;
-      margin: 3rem 0;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .content-text {
-      padding: 1rem 0;
-    }
-    .section-title {
-      font-size: 1.8rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-      font-family: 'Montserrat', sans-serif;
-      color: #ffffff;
-    }
-
-    .section-description {
-      font-size: 1rem;
-      line-height: 1.5;
-      color: rgba(255, 255, 255, 0.85);
-      margin-bottom: 1.5rem;
-    }
-
-    .feature-list {
-      list-style: none;
-      padding: 0;
-      text-align: left;
-      max-width: 500px;
-      margin: 0 auto;
-      display: grid;
-      gap: 0.5rem;
-    }
-
-    .feature-list li {
-      padding: 0.6rem 0 0.6rem 2rem;
-      font-size: 0.95rem;
-      color: rgba(255, 255, 255, 0.8);
-      position: relative;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 6px;
-      transition: all 0.3s ease;
-    }
-
-    .feature-list li:hover {
-      background: rgba(255, 255, 255, 0.05);
-      border-color: rgba(255, 255, 255, 0.15);
-      transform: translateX(5px);
-    }
-
-    .feature-list li::before {
-      content: '→';
-      position: absolute;
-      left: 0.8rem;
-      color: rgba(255, 255, 255, 0.6);
-      font-weight: bold;
-      transition: all 0.3s ease;
-    }
-
-    .feature-list li:hover::before {
-      color: #ffffff;
-      transform: translateX(3px);
-      }
-
-    /* Mission Statement */
-    .mission-section {
-      text-align: center;
-      padding: 4rem 2rem;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 16px;
-      margin: 4rem 0;
+      transition: all 0.4s ease;
       position: relative;
       overflow: hidden;
     }
 
-    .mission-section::before {
+    .value-card::before {
       content: '';
       position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.03), transparent);
-      animation: rotate 20s linear infinite;
-      z-index: 0;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.5), transparent);
+      transition: left 0.6s ease;
     }
 
-    .mission-content {
+    .value-card:hover::before {
+      left: 100%;
+    }
+
+    .value-card:hover {
+      transform: translateY(-8px);
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .value-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      display: block;
+      opacity: 0.8;
+    }
+
+    .value-card h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      color: #ffffff;
+    }
+
+    .value-card p {
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.6;
+    }
+
+    /* Mission Statement */
+    .mission-section {
+      padding: 8rem 3rem;
+      text-align: center;
+    }
+
+    .mission-container {
+      max-width: 900px;
+      margin: 0 auto;
       position: relative;
-      z-index: 1;
-    }
-
-    @keyframes rotate {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
     }
 
     .mission-quote {
-      font-size: 1.8rem;
+      font-size: 2rem;
       line-height: 1.4;
       font-style: italic;
       color: #ffffff;
-      max-width: 800px;
-      margin: 0 auto 2rem;
       font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+      margin-bottom: 2rem;
+      position: relative;
+      padding: 0 2rem;
+    }
+
+    .mission-quote::before,
+    .mission-quote::after {
+      content: '"';
+      font-size: 4rem;
+      color: rgba(255, 255, 255, 0.3);
+      position: absolute;
+      font-family: serif;
+    }
+
+    .mission-quote::before {
+      top: -1rem;
+      left: -1rem;
+    }
+
+    .mission-quote::after {
+      bottom: -2rem;
+      right: -1rem;
     }
 
     .mission-attribution {
       font-size: 1rem;
-      color: rgba(255, 255, 255, 0.6);
+      color: rgba(255, 255, 255, 0.5);
       font-weight: 300;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    /* Stats Section */
+    .stats-section {
+      padding: 6rem 3rem;
+      background: rgba(255, 255, 255, 0.01);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .stats-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: #ffffff;
+      display: block;
+      margin-bottom: 0.5rem;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.6);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 400;
     }
 
     /* CTA Section */
     .cta-section {
+      padding: 8rem 3rem;
       text-align: center;
-      padding: 3rem 0;
+      background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.02) 100%);
     }
 
     .cta-title {
-      font-size: 2rem;
-      margin-bottom: 1rem;
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
       font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+      color: #ffffff;
     }
 
     .cta-description {
       font-size: 1.1rem;
-      color: rgba(255, 255, 255, 0.8);
-      margin-bottom: 2rem;
-    }
-
-    .cta-buttons {
-      display: flex;
-      gap: 1.5rem;
-      justify-content: center;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 3rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .btn {
-      padding: 1rem 2rem;
+      padding: 1.2rem 3rem;
       background-color: transparent;
       color: white;
       border: 1px solid rgba(255, 255, 255, 0.3);
       border-radius: 4px;
       font-size: 1rem;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: all 0.4s ease;
       text-decoration: none;
       display: inline-block;
       position: relative;
       overflow: hidden;
+      font-weight: 400;
+      letter-spacing: 0.5px;
     }
 
     .btn::after {
@@ -316,7 +388,7 @@
       width: 100%;
       height: 100%;
       background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
-      transition: left 0.5s ease;
+      transition: left 0.6s ease;
     }
 
     .btn:hover::after {
@@ -324,70 +396,86 @@
     }
 
     .btn:hover {
-      background-color: rgba(255, 255, 255, 0.1);
+      background-color: rgba(255, 255, 255, 0.08);
       border-color: rgba(255, 255, 255, 0.5);
-      transform: translateY(-2px);
+      transform: translateY(-3px);
     }
 
-    .btn-primary {
-      background-color: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.4);
-    }
-
-    /* Text animation */
-    .animated-text {
+    /* Animation */
+    .fade-in {
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(40px);
       transition: opacity 0.8s ease, transform 0.8s ease;
     }
 
-    .animated-text.visible {
+    .fade-in.visible {
       opacity: 1;
       transform: translateY(0);
     }
 
-    /* Responsive Styles */
-    @media (max-width: 992px) {
-      .hero-title {
-        font-size: 3rem;
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .two-column-section {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+        padding: 6rem 2rem;
       }
-      
+
+      .values-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
       .stats-grid {
         grid-template-columns: repeat(2, 1fr);
       }
     }
 
     @media (max-width: 768px) {
+      header {
+        padding: 1.5rem 2rem;
+      }
+
+      .hero-section {
+        padding: 4rem 2rem 3rem;
+      }
+
       .hero-title {
         font-size: 2.5rem;
       }
-      
+
       .hero-subtitle {
         font-size: 1.1rem;
       }
-      
-      .section-title {
+
+      .two-column-section,
+      .values-section,
+      .mission-section,
+      .stats-section,
+      .cta-section {
+        padding-left: 2rem;
+        padding-right: 2rem;
+      }
+
+      .column-content h2 {
         font-size: 1.8rem;
       }
-      
-      .stats-grid {
+
+      .values-title {
+        font-size: 2rem;
+      }
+
+      .mission-quote {
+        font-size: 1.5rem;
+        padding: 0 1rem;
+      }
+
+      .expertise-grid {
         grid-template-columns: 1fr;
       }
-      
-      .cta-buttons {
-        justify-content: center;
-      }
-      
-      .mission-quote {
-        font-size: 1.4rem;
-      }
-      
-      body {
-        padding: 15px;
-      }
-      
-      header {
-        margin-bottom: 2rem;
+
+      .stats-grid {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -395,17 +483,17 @@
       .hero-title {
         font-size: 2rem;
       }
-      
+
       .logo {
         height: 40px;
       }
-      
-      .main-content {
-        gap: 3rem;
+
+      .value-card {
+        padding: 2rem 1.5rem;
       }
-      
-      .mission-section {
-        padding: 2rem 1rem;
+
+      .mission-quote {
+        font-size: 1.3rem;
       }
     }
   </style>
@@ -417,118 +505,123 @@
       <!-- Menu will be injected by menu.js -->
     </header>
 
-    <div class="main-content">
-      <!-- Hero Section -->
-      <section class="hero-section animated-text">
-        <h1 class="hero-title">Reducing Inefficiency Worldwide</h1>
-        <p class="hero-subtitle">
-          VQZ Partners is a global business partnership firm that collaborates with visionary companies to implement cutting-edge solutions in automation, artificial intelligence, and cybersecurity.
-        </p>
-      </section>
+    <!-- Hero Section -->
+    <section class="hero-section fade-in">
+      <h1 class="hero-title">Reducing Inefficiency Worldwide</h1>
+      <p class="hero-subtitle">
+        VQZ Partners is a global business partnership firm that collaborates with visionary companies to implement cutting-edge solutions in automation, artificial intelligence, and cybersecurity.
+      </p>
+    </section>
 
-      <!-- Stats Section -->
-      <div class="stats-grid animated-text">
-        <div class="stat-card">
-          <span class="stat-number">∞</span>
-          <span class="stat-label">Global Reach</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-number">AI</span>
-          <span class="stat-label">Automation Focus</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-number">24/7</span>
-          <span class="stat-label">Security Protection</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-number">100%</span>
-          <span class="stat-label">Quality Standard</span>
+    <!-- Two Column Content -->
+    <section class="two-column-section">
+      <div class="column-content fade-in">
+        <h2>Our Expertise</h2>
+        <p>
+          We specialize in transforming businesses through intelligent automation and advanced technology solutions. Our comprehensive approach ensures that every partnership delivers measurable results and sustainable growth.
+        </p>
+        <div class="expertise-grid">
+          <div class="expertise-item">AI & Automation</div>
+          <div class="expertise-item">Cybersecurity</div>
+          <div class="expertise-item">Process Optimization</div>
+          <div class="expertise-item">Digital Transformation</div>
         </div>
       </div>
+      
+      <div class="column-content fade-in">
+        <h2>Our Approach</h2>
+        <p>
+          We believe in human-centered leadership and genuine partnerships. Every solution is tailored to your specific needs, ensuring that technology serves your business objectives rather than dictating them.
+        </p>
+        <p>
+          Our commitment to quality and efficiency drives everything we do. We don't just implement solutions—we create lasting partnerships that evolve with your business.
+        </p>
+      </div>
+    </section>
 
-      <!-- What We Do Section -->
-      <section class="content-section animated-text">
-        <div class="content-text">
-          <h2 class="section-title">What We Do</h2>
-          <p class="section-description">
-            We partner with businesses globally to transform their operations through intelligent solutions. Our expertise spans across multiple domains, ensuring comprehensive digital transformation.
-          </p>
-          <ul class="feature-list">
-            <li>AI & Automation Implementation</li>
-            <li>Cybersecurity & Threat Protection</li>
-            <li>Process Optimization & Efficiency</li>
-            <li>Cost Reduction Strategies</li>
-            <li>Digital Transformation Consulting</li>
-          </ul>
+    <!-- Values Section -->
+    <section class="values-section">
+      <div class="values-container">
+        <h2 class="values-title fade-in">What Sets Us Apart</h2>
+        
+        <div class="values-grid">
+          <div class="value-card fade-in">
+            <span class="value-icon">⚡</span>
+            <h3>Quality Standards</h3>
+            <p>We maintain the highest quality standards in every project, ensuring excellence in implementation and ongoing support.</p>
+          </div>
+          
+          <div class="value-card fade-in">
+            <span class="value-icon">🤝</span>
+            <h3>Human-Centered Leadership</h3>
+            <p>Our leadership approach prioritizes clear communication and genuine relationships over corporate bureaucracy.</p>
+          </div>
+          
+          <div class="value-card fade-in">
+            <span class="value-icon">🎯</span>
+            <h3>Passion for Efficiency</h3>
+            <p>We have a genuine desire to eliminate inefficiency and help businesses operate at their full potential.</p>
+          </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- How We're Different Section -->
-      <section class="content-section animated-text">
-        <div class="content-text">
-          <h2 class="section-title">How We're Different</h2>
-          <p class="section-description">
-            VQZ Partners stands out through our unwavering commitment to quality, human-centered leadership approach, and genuine passion for eliminating inefficiency across all industries.
-          </p>
-          <ul class="feature-list">
-            <li>Highest Quality Standards</li>
-            <li>Human-Centered Communication</li>
-            <li>Real Passion for Efficiency</li>
-            <li>Tailored Partnership Approach</li>
-            <li>Long-term Relationship Focus</li>
-          </ul>
+    <!-- Mission Statement -->
+    <section class="mission-section">
+      <div class="mission-container fade-in">
+        <blockquote class="mission-quote">
+          VQZ stands out for its high quality standards, the human communication of its leaders, and a genuine desire to reduce inefficiency in the world.
+        </blockquote>
+        <p class="mission-attribution">Our Core Mission</p>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+      <div class="stats-container fade-in">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <span class="stat-number">∞</span>
+            <span class="stat-label">Global Reach</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">AI</span>
+            <span class="stat-label">Automation Focus</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">24/7</span>
+            <span class="stat-label">Security Protection</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">100%</span>
+            <span class="stat-label">Quality Standard</span>
+          </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- Our Impact Section -->
-      <section class="content-section animated-text">
-        <div class="content-text">
-          <h2 class="section-title">Our Impact</h2>
-          <p class="section-description">
-            Through strategic partnerships and innovative solutions, we help businesses save time, reduce costs, enhance security, and improve their internal processes for sustainable growth.
-          </p>
-          <ul class="feature-list">
-            <li>Streamlined Operations</li>
-            <li>Enhanced Security Posture</li>
-            <li>Reduced Operational Costs</li>
-            <li>Improved Time Management</li>
-            <li>Scalable Growth Solutions</li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- Mission Statement -->
-      <section class="mission-section animated-text">
-        <div class="mission-content">
-          <blockquote class="mission-quote">
-            "VQZ stands out for its high quality standards, the human communication of its leaders, and a genuine desire to reduce inefficiency in the world."
-          </blockquote>
-          <p class="mission-attribution">— Our Core Mission</p>
-        </div>
-      </section>
-
-      <!-- CTA Section -->
-      <section class="cta-section animated-text">
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="fade-in">
         <h2 class="cta-title">Ready to Partner with Us?</h2>
         <p class="cta-description">
           Let's work together to transform your business and reduce inefficiency through innovative solutions.
         </p>
-        <div class="cta-buttons">
-          <a href="/go" class="btn btn-primary">Work with Us</a>
-        </div>
-      </section>
-    </div>
+        <a href="/go" class="btn">Work with Us</a>
+      </div>
+    </section>
   </div>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const animatedElements = document.querySelectorAll('.animated-text');
+      const fadeElements = document.querySelectorAll('.fade-in');
       
-      // Create intersection observer for scroll animations
       const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+        entries.forEach((entry, index) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
+            setTimeout(() => {
+              entry.target.classList.add('visible');
+            }, index * 100);
           }
         });
       }, {
@@ -536,18 +629,9 @@
         rootMargin: '0px 0px -50px 0px'
       });
       
-      // Observe all animated elements
-      animatedElements.forEach(element => {
+      fadeElements.forEach(element => {
         observer.observe(element);
       });
-      
-      // Add some initial animation delay for hero section
-      setTimeout(() => {
-        const heroSection = document.querySelector('.hero-section');
-        if (heroSection) {
-          heroSection.classList.add('visible');
-        }
-      }, 300);
     });
   </script>
   <script src="js/menu.js"></script>
