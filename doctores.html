@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VQZ & Partners - Sitios Web Médicos Profesionales</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="https://vqzpartners.com/get/images/favicon.png">
+
+  <meta name="description" content="VQZ & Partners crea sitios web médicos profesionales. Un solo pago de $497, sin mensualidades. Tu nombre.com indexado en Google y ChatGPT.">
+  <meta name="keywords" content="VQZ Partners, sitios web médicos, marca personal doctores, marketing médico">
+  <meta name="robots" content="index, follow">
+
+  <meta property="og:title" content="VQZ & Partners - Sitios Web Médicos Profesionales">
+  <meta property="og:description" content="Crea tu marca personal médica con VQZ & Partners. Un solo pago de $497, sin mensualidades. Atrae más pacientes desde Google y redes sociales.">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto Mono', monospace;
+    }
+
+    body {
+      background-color: #000000;
+      color: white;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* MODAL STYLES */
+    .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.98);
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(10px);
+        transition: opacity 0.5s ease;
+    }
+    .modal-overlay.hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+    .modal-content {
+        background: #111;
+        padding: 2.5rem 3rem;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        text-align: center;
+        max-width: 500px;
+        width: 90%;
+    }
+    .modal-content h2 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+    .modal-content p {
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 2rem;
+    }
+    .doctor-title-group {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        justify-content: center;
+    }
+    .doctor-title-group label {
+        display: block;
+        padding: 0.8rem 1.5rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    .doctor-title-group input[type="radio"] {
+        display: none;
+    }
+    .doctor-title-group input[type="radio"]:checked + label {
+        background-color: white;
+        color: black;
+        border-color: white;
+    }
+    .modal-input {
+        width: 100%;
+        padding: 1rem;
+        font-size: 1.1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 6px;
+        color: white;
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+    .modal-button {
+        width: 100%;
+        padding: 1rem;
+        font-size: 1.1rem;
+        font-weight: bold;
+        background: white;
+        color: black;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+    }
+    .modal-button:hover {
+        transform: scale(1.03);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .banner {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 0.8rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      transform: translateY(-100%);
+      transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      color: white;
+      text-align: center;
+      font-weight: 500;
+      animation: slideDown 1s ease 2s forwards;
+    }
+
+    @keyframes slideDown {
+      to { transform: translateY(0); }
+    }
+
+    .banner-close {
+      position: absolute;
+      right: 2rem;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      opacity: 0.7;
+    }
+
+    body.banner-visible {
+      padding-top: 80px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem 0 1rem 0;
+      margin-bottom: 0;
+      position: relative;
+      z-index: 10;
+    }
+
+    .logo {
+      height: 50px;
+      filter: brightness(0) invert(1);
+    }
+
+    .main-content {
+      display: flex;
+      flex: 1;
+      gap: 4rem;
+      padding-top: 4rem;
+      align-items: center;
+    }
+
+    .text-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .tagline {
+      font-size: 3.1rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .description {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      max-width: 480px;
+    }
+
+    .examples-container {
+      flex: 1;
+      position: relative;
+      perspective: 1000px;
+    }
+
+    .examples-grid {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform-style: preserve-3d;
+      transition: transform 1s ease;
+    }
+
+    .website-card {
+      background: #1a1a1a;
+      border: 3px solid #333;
+      border-radius: 25px;
+      overflow: hidden;
+      position: relative;
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transform: translateZ(0);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      cursor: pointer;
+      width: 320px;
+      height: 580px;
+      padding: 15px;
+    }
+
+    .website-card:hover {
+      transform: translateY(-10px) scale(1.03);
+      border-color: #666;
+    }
+
+    .website-preview-img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      border-radius: 15px;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .btn {
+      padding: 1rem 2rem;
+      background-color: transparent;
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 4px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .btn:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.5);
+      transform: translateY(-2px);
+    }
+    .brandon-avatar {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .features {
+      margin-top: 6rem;
+      padding: 3rem 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .features-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.8rem;
+        font-weight: 700;
+        text-align: center;
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+    }
+
+    .features-subtitle {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.2rem;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.8);
+        max-width: 450px;
+        margin: 0 auto;
+        line-height: 1.6;
+    }
+
+    .pricing {
+      margin-top: 4rem;
+      padding: 4rem 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+    }
+
+    .pricing-card {
+        background: radial-gradient(circle, #1a1a1a 0%, #111 100%);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 16px;
+        padding: 3rem 2rem;
+        max-width: 500px;
+        margin: 2rem auto;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 0 40px rgba(255, 255, 255, 0.05);
+    }
+    .pricing-card::before {
+        content: 'Plan Exclusivo';
+        position: absolute;
+        top: 20px;
+        right: -30px;
+        background: white;
+        color: black;
+        padding: 5px 30px;
+        transform: rotate(45deg);
+        font-size: 0.8rem;
+        font-weight: bold;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .pricing-amount {
+        font-size: 4rem;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 0.5rem;
+        font-family: 'Montserrat', sans-serif;
+        transition: color 0.3s ease;
+    }
+    .pricing-currency {
+        font-size: 1.5rem;
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 1rem;
+    }
+    .pricing-description {
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 2.5rem;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .pricing-details {
+        list-style: none;
+        padding: 0;
+        margin: 2rem 0;
+        text-align: left;
+    }
+    .pricing-details li {
+        padding: 0.8rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    .pricing-details li:last-child {
+        border-bottom: none;
+    }
+    .pricing-details .icon-check {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: white;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9rem;
+    }
+    
+    .pricing-addon {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        padding: 1rem;
+        margin: 1.5rem 0;
+        text-align: left;
+    }
+    .pricing-addon input[type="checkbox"] {
+        display: none;
+    }
+    .pricing-addon label {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        cursor: pointer;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .pricing-addon label::before {
+        content: '';
+        width: 22px;
+        height: 22px;
+        border: 2px solid rgba(255, 255, 255, 0.5);
+        border-radius: 4px;
+        transition: all 0.2s ease;
+        flex-shrink: 0;
+    }
+    .pricing-addon input:checked + label::before {
+        background-color: white;
+        border-color: white;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
+        background-size: 18px;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    .addon-text .title {
+        font-weight: bold;
+        display: block;
+    }
+    .addon-text .price {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.7);
+    }
+    
+    .pricing-note {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.6);
+        margin-top: 1.5rem;
+    }
+
+    .features-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-top: 3rem;
+      align-items: center;
+    }
+
+    .feature-card {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 2.5rem 2rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      max-width: 600px;
+      width: 100%;
+    }
+    .feature-icon {
+      font-size: 2.5rem;
+      width: 60px;
+      height: 60px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+    .feature-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: white;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .feature-description {
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.6;
+    }
+    
+    .footer {
+      margin-top: 4rem;
+      padding: 2rem 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    @media (max-width: 992px) {
+      .main-content {
+        flex-direction: column;
+        gap: 3rem;
+      }
+      .text-content {
+        align-items: center;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header { justify-content: center; }
+      .main-content { padding-top: 2rem; }
+      .tagline { font-size: 2.5rem; }
+      .cta-buttons { flex-direction: column; width: 100%; max-width: 320px; }
+      .btn { width: 100%; }
+      .features-title { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="modal-overlay" id="name-modal">
+    <div class="modal-content">
+      <h2>Bienvenido/a</h2>
+      <p>Para personalizar su futuro sitio web, por favor ingrese su nombre y título.</p>
+      <form id="doctor-form">
+        <div class="doctor-title-group">
+          <input type="radio" id="title-dr" name="doctor-title" value="Dr." checked>
+          <label for="title-dr">Dr.</label>
+          <input type="radio" id="title-dra" name="doctor-title" value="Dra.">
+          <label for="title-dra">Dra.</label>
+        </div>
+        <input type="text" id="doctor-name" class="modal-input" placeholder="Su Nombre (Ej: María)" required>
+        <button type="submit" class="modal-button">Ver mi plan exclusivo</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="page-content" style="visibility: hidden;">
+      <div class="banner">
+        <span>Solo 5 cupos disponibles este mes</span>
+        <button class="banner-close" onclick="this.parentElement.style.display='none'">×</button>
+      </div>
+
+      <div class="container">
+        <header>
+          <img src="get/images/white-web-logo.svg" alt="VQZ & Partners Logo" class="logo">
+        </header>
+
+        <div class="main-content">
+          <div class="text-content">
+            <!-- MODIFIED: Tagline is now static and doesn't require dynamic updates -->
+            <h1 class="tagline">El servicio exclusivo para Doctores de clase mundial</h1>
+            <p class="description" data-dynamic-text="description">Únete a la elite médica digital. Mientras otros esperan referencias, tú atraes pacientes selectos que valoran la excelencia profesional.</p>
+            <div class="cta-buttons">
+              <a href="#" class="btn" onclick="sendInstagramMessage()">
+                <img src="get/images/b.jpg" alt="Brandon" class="brandon-avatar">
+                <span>Hablar con un especialista</span>
+              </a>
+            </div>
+          </div>
+          <div class="examples-container">
+            <div class="examples-grid">
+              <div class="website-card" onclick="window.open('https://drmorci.com', '_blank')">
+                <img src="get/images/drmorci-preview.png" alt="Ejemplo de sitio web para Dr. Morci" class="website-preview-img">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <section class="features" id="features">
+            <h2 class="features-title">
+                ¿Por qué los<br>
+                mejores doctores<br>
+                necesitan<br>
+                presencia digital<br>
+                exclusiva?
+            </h2>
+            <p class="features-subtitle">
+                Tu reputación profesional merece una plataforma digital que refleje tu nivel de excelencia.
+            </p>
+          <div class="features-grid">
+            <div class="feature-card">
+              <div class="feature-icon">👑</div>
+              <h3 class="feature-title">Status profesional elevado</h3>
+              <p class="feature-description">Tu propio dominio premium te posiciona como líder en tu especialidad. Los colegas y pacientes reconocen inmediatamente tu estatus profesional.</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">🎯</div>
+              <h3 class="feature-title">Atrae pacientes selectos</h3>
+              <p class="feature-description">Pacientes que valoran la calidad te encontrarán primero. Filtras automáticamente a quienes buscan profesionales de primer nivel.</p>
+            </div>
+             <div class="feature-card">
+              <div class="feature-icon">⚡</div>
+              <h3 class="feature-title">Conveniencia total</h3>
+              <p class="feature-description">Los pacientes te contactan directamente sin intermediarios. Agenda consultas privadas mientras mantienes control total de tu práctica.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="pricing" id="pricing">
+          <h2 style="font-family: 'Montserrat', sans-serif; font-size: 2.5rem;">Inversión</h2>
+          <div class="pricing-card">
+            <div class="pricing-amount" id="pricing-amount">$497</div>
+            <div class="pricing-currency">USD</div>
+            <!-- MODIFIED: New description for the plan -->
+            <div class="pricing-description">Un solo pago. Tu propia bóveda digital.</div>
+            <ul class="pricing-details">
+              <li><span class="icon-check">✓</span> <span data-dynamic-text="domain">Tu dominio tunombre.com</span></li>
+              <li><span class="icon-check">✓</span> <span>Marca personal médica profesional</span></li>
+              <li><span class="icon-check">✓</span> <span>Pacientes te encuentran en Google</span></li>
+              <li><span class="icon-check">✓</span> <span>Tu perfil en asistentes de IA (ChatGPT, etc.)</span></li>
+              <li><span class="icon-check">✓</span> <span>Atrae clientes desde la web 24/7</span></li>
+              <li><span class="icon-check">✓</span> <span>Tuyo para siempre</span></li>
+            </ul>
+            
+            <div class="pricing-addon">
+                <input type="checkbox" id="content-addon">
+                <label for="content-addon">
+                    <span class="addon-text">
+                        <span class="title">Generación de Contenido SEO</span>
+                        <span class="price">Posiciona tu web para atraer más pacientes (+ $228 USD)</span>
+                    </span>
+                </label>
+            </div>
+            
+            <a href="#" class="btn modal-button" onclick="sendInstagramMessage()" style="max-width: 300px; margin: 1rem auto 0;">Quiero mi sitio web</a>
+             <div class="pricing-note">
+              * Única renovación anual: <span data-dynamic-text="domain-renewal">tudominio.com</span> $10 USD
+            </div>
+          </div>
+        </section>
+
+        <footer class="footer">
+          <p>© 2025 VQZ & Partners. Todos los derechos reservados.</p>
+        </footer>
+      </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('doctor-form');
+        const addonCheckbox = document.getElementById('content-addon');
+        const priceElement = document.getElementById('pricing-amount');
+
+        const basePrice = 497;
+        const addonPrice = 228;
+        const totalWithAddon = basePrice + addonPrice;
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const title = document.querySelector('input[name="doctor-title"]:checked').value;
+            const name = document.getElementById('doctor-name').value.trim();
+            if (!name) {
+                alert('Por favor, ingrese su nombre.');
+                return;
+            }
+            personalizePage(title, name);
+            document.getElementById('name-modal').classList.add('hidden');
+            document.getElementById('page-content').style.visibility = 'visible';
+        });
+
+        addonCheckbox.addEventListener('change', function() {
+            if (this.checked) {
+                priceElement.textContent = `$${totalWithAddon}`;
+            } else {
+                priceElement.textContent = `$${basePrice}`;
+            }
+        });
+    });
+
+    function personalizePage(title, name) {
+        const professional = title === 'Dra.' ? 'una profesional de excelencia' : 'un profesional de excelencia';
+        const domainName = `${title.toLowerCase().replace('.', '')}${name.toLowerCase().replace(/\s+/g, '')}.com`;
+        
+        // MODIFIED: The tagline is static, so its dynamic update is removed. The description is still personalized.
+        document.querySelector('[data-dynamic-text="description"]').innerHTML = `Hola ${title} ${name}. Mientras otros doctores esperan referencias, usted atraerá pacientes selectos que buscan ${professional}.`;
+        document.querySelector('[data-dynamic-text="domain"]').textContent = `Tu dominio ${domainName}`;
+        document.querySelector('[data-dynamic-text="domain-renewal"]').textContent = domainName;
+    }
+
+    function sendInstagramMessage() {
+      const title = document.querySelector('input[name="doctor-title"]:checked').value;
+      const name = document.getElementById('doctor-name').value.trim();
+      const addonChecked = document.getElementById('content-addon').checked;
+      const finalPrice = addonChecked ? 725 : 497;
+      const planDetails = addonChecked ? `el plan completo con Generación de Contenido SEO por $${finalPrice} USD` : `el plan exclusivo por $${finalPrice} USD`;
+
+      const message = encodeURIComponent(`¡Hola! Soy ${title} ${name}.
+
+Vengo desde su página y estoy interesado/a en crear mi sitio web médico profesional con ${planDetails}.
+
+¡Gracias!`);
+      
+      window.open(`https://instagram.com/brandonvasp?text=${message}`, '_blank');
+    }
+  </script>
+</body>
+</html>
