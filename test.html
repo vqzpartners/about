@@ -188,7 +188,7 @@
       display: flex;
       flex: 1;
       gap: 4rem;
-      padding-top: 4rem; /* MODIFIED: Increased top padding for more breathing room */
+      padding-top: 4rem;
       align-items: center;
     }
 
@@ -365,6 +365,7 @@
         font-size: 1.2rem;
         color: rgba(255, 255, 255, 0.9);
         margin-bottom: 2.5rem;
+        font-family: 'Montserrat', sans-serif;
     }
     .pricing-details {
         list-style: none;
@@ -526,7 +527,7 @@
           <label for="title-dra">Dra.</label>
         </div>
         <input type="text" id="doctor-name" class="modal-input" placeholder="Su Nombre (Ej: María)" required>
-        <button type="submit" class="modal-button">Crear mi sitio web</button>
+        <button type="submit" class="modal-button">Ver mi plan exclusivo</button>
       </form>
     </div>
   </div>
@@ -544,7 +545,8 @@
 
         <div class="main-content">
           <div class="text-content">
-            <h1 class="tagline" data-dynamic-text="tagline">El sitio web exclusivo que distingue a los mejores doctores</h1>
+            <!-- MODIFIED: Tagline is now static and doesn't require dynamic updates -->
+            <h1 class="tagline">El servicio exclusivo para Doctores de clase mundial</h1>
             <p class="description" data-dynamic-text="description">Únete a la elite médica digital. Mientras otros esperan referencias, tú atraes pacientes selectos que valoran la excelencia profesional.</p>
             <div class="cta-buttons">
               <a href="#" class="btn" onclick="sendInstagramMessage()">
@@ -573,7 +575,6 @@
             <p class="features-subtitle">
                 Tu reputación profesional merece una plataforma digital que refleje tu nivel de excelencia.
             </p>
-          <!-- MODIFIED: Feature cards section restored -->
           <div class="features-grid">
             <div class="feature-card">
               <div class="feature-icon">👑</div>
@@ -598,7 +599,8 @@
           <div class="pricing-card">
             <div class="pricing-amount" id="pricing-amount">$497</div>
             <div class="pricing-currency">USD</div>
-            <div class="pricing-description">Un solo pago. Sitio web completo.</div>
+            <!-- MODIFIED: New description for the plan -->
+            <div class="pricing-description">Un solo pago. Tu propia bóveda digital.</div>
             <ul class="pricing-details">
               <li><span class="icon-check">✓</span> <span data-dynamic-text="domain">Tu dominio tunombre.com</span></li>
               <li><span class="icon-check">✓</span> <span>Marca personal médica profesional</span></li>
@@ -620,7 +622,6 @@
             
             <a href="#" class="btn modal-button" onclick="sendInstagramMessage()" style="max-width: 300px; margin: 1rem auto 0;">Quiero mi sitio web</a>
              <div class="pricing-note">
-              <!-- MODIFIED: Text now has a span for dynamic update -->
               * Única renovación anual: <span data-dynamic-text="domain-renewal">tudominio.com</span> $10 USD
             </div>
           </div>
@@ -665,14 +666,12 @@
     });
 
     function personalizePage(title, name) {
-        const pronoun = title === 'Dra.' ? 'la' : 'el';
         const professional = title === 'Dra.' ? 'una profesional de excelencia' : 'un profesional de excelencia';
         const domainName = `${title.toLowerCase().replace('.', '')}${name.toLowerCase().replace(/\s+/g, '')}.com`;
         
-        document.querySelector('[data-dynamic-text="tagline"]').innerHTML = `El sitio web exclusivo que distingue a ${pronoun} ${title} ${name}`;
-        document.querySelector('[data-dynamic-text="description"]').innerHTML = `Mientras otros doctores esperan referencias, usted atraerá pacientes selectos que buscan ${professional}.`;
+        // MODIFIED: The tagline is static, so its dynamic update is removed. The description is still personalized.
+        document.querySelector('[data-dynamic-text="description"]').innerHTML = `Hola ${title} ${name}. Mientras otros doctores esperan referencias, usted atraerá pacientes selectos que buscan ${professional}.`;
         document.querySelector('[data-dynamic-text="domain"]').textContent = `Tu dominio ${domainName}`;
-        // MODIFIED: Dynamic update for the renewal note
         document.querySelector('[data-dynamic-text="domain-renewal"]').textContent = domainName;
     }
 
