@@ -6,6 +6,7 @@
   <title>VQZ & Partners - Sitios Web Médicos Profesionales</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Roboto+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="https://vqzpartners.com/get/images/favicon.png">
 
   <meta name="description" content="VQZ & Partners crea sitios web médicos profesionales. Un solo pago de $497, sin mensualidades. Tu nombre.com indexado en Google y ChatGPT.">
   <meta name="keywords" content="VQZ Partners, sitios web médicos, marca personal doctores, marketing médico">
@@ -173,15 +174,44 @@
     }
 
     .website-card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
+      background: #1a1a1a;
+      border: 3px solid #333;
+      border-radius: 25px;
       overflow: hidden;
       position: relative;
       transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       transform: translateZ(0);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
       cursor: pointer;
+      width: 280px;
+      height: 560px;
+      margin: 0 auto;
+      padding: 15px;
+    }
+
+    .website-card::before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: #555;
+      border-radius: 2px;
+      z-index: 10;
+    }
+
+    .website-card::after {
+      content: '';
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 140px;
+      height: 4px;
+      background: #555;
+      border-radius: 2px;
     }
 
     .website-card:nth-child(odd) {
@@ -194,7 +224,7 @@
 
     .website-card:hover {
       transform: translateY(-10px) scale(1.03);
-      border-color: rgba(255, 255, 255, 0.5);
+      border-color: #666;
       box-shadow: 0 20px 40px rgba(255, 255, 255, 0.1);
       z-index: 10;
     }
@@ -206,10 +236,12 @@
 
     .website-preview {
       width: 100%;
-      height: 300px;
+      height: 480px;
       border: none;
       display: block;
       transition: all 0.5s ease;
+      border-radius: 15px;
+      margin-top: 20px;
     }
 
     .website-card:hover .website-preview {
@@ -217,12 +249,13 @@
     }
 
     .website-info {
-      padding: 1.5rem;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7));
+      padding: 1rem;
+      background: transparent;
       position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
+      bottom: 15px;
+      left: 15px;
+      right: 15px;
+      text-align: center;
     }
 
     .website-title {
@@ -292,6 +325,80 @@
       margin-top: 4rem;
       padding: 3rem 0;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Pricing Section */
+    .pricing {
+      margin-top: 4rem;
+      padding: 4rem 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+    }
+
+    .pricing-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 3rem 2rem;
+      max-width: 500px;
+      margin: 2rem auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pricing-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.3), rgba(255,255,255,0.1));
+    }
+
+    .pricing-amount {
+      font-size: 4rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 0.5rem;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .pricing-currency {
+      font-size: 1.5rem;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 1rem;
+    }
+
+    .pricing-description {
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 2rem;
+    }
+
+    .pricing-details {
+      list-style: none;
+      padding: 0;
+      margin: 2rem 0;
+    }
+
+    .pricing-details li {
+      padding: 0.8rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .pricing-details li:last-child {
+      border-bottom: none;
+    }
+
+    .pricing-note {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.6);
+      margin-top: 1.5rem;
+      font-style: italic;
     }
 
     .features-grid {
@@ -418,9 +525,12 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 300px;
+      height: 480px;
       color: white;
       font-size: 1.1rem;
+      margin-top: 20px;
+      border-radius: 15px;
+      background: #2a2a2a;
     }
 
     .spinner {
@@ -442,16 +552,13 @@
 <body>
   <!-- Banner -->
   <div id="banner" class="banner">
-    <span>🚀 ¡Oferta Limitada! Solo $497 - Sin mensualidades, sin sorpresas 🚀</span>
+    <span>Un solo pago de $497 • Sin mensualidades</span>
     <button class="banner-close" onclick="closeBanner()">&times;</button>
   </div>
 
   <div class="container">
     <header>
-      <svg class="logo" viewBox="0 0 200 50" xmlns="http://www.w3.org/2000/svg">
-        <text x="10" y="35" font-family="Montserrat, sans-serif" font-size="28" font-weight="700" fill="white">VQZ</text>
-        <text x="85" y="35" font-family="Montserrat, sans-serif" font-size="20" font-weight="400" fill="white">& Partners</text>
-      </svg>
+      <img src="get/images/white-web-logo.svg" alt="VQZ & Partners Logo" class="logo">
     </header>
 
     <div class="main-content">
@@ -459,14 +566,9 @@
         <h1 class="tagline animated-text">Tu marca personal médica que atrae pacientes 24/7</h1>
         <p class="description animated-text">Crea presencia digital profesional con tu propio sitio web. Aparece en Google, ChatGPT y todas las búsquedas. Más pacientes, más ingresos, más prestigio.</p>
         
-        <div class="price-highlight animated-text">
-          💰 Un solo pago de $497 USD<br>
-          <small style="font-size: 1rem; color: rgba(255, 255, 255, 0.8);">No mensualidades • No mantenimiento • Tuyo para siempre</small>
-        </div>
-        
         <div class="cta-buttons animated-text">
-          <a href="#" class="btn btn-primary" onclick="sendInstagramMessage()">¡Quiero Mi Sitio Web!</a>
-          <a href="#features" class="btn">Ver Beneficios</a>
+          <a href="#" class="btn btn-primary" onclick="sendInstagramMessage()">Contactar</a>
+          <a href="#pricing" class="btn">Ver Precios</a>
         </div>
       </div>
       
@@ -538,17 +640,67 @@
         
         <div class="feature-card animated-text">
           <span class="feature-icon">💎</span>
-          <h3 class="feature-title">Un Solo Pago</h3>
-          <p class="feature-description">$497 USD y es tuyo para siempre. Sin sorpresas, sin cuotas mensuales, sin tarifas ocultas.</p>
+          <h3 class="feature-title">Pago Único</h3>
+          <p class="feature-description">Sin sorpresas, sin cuotas mensuales, sin tarifas ocultas. El sitio es tuyo para siempre.</p>
         </div>
       </div>
 
       <div style="text-align: center; margin-top: 3rem;" class="animated-text">
         <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">¿Listo para dominar tu mercado digital?</h3>
         <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 2rem; font-size: 1.1rem;">Únete a los doctores que ya están atrayendo más pacientes con su presencia online</p>
-        <a href="#" class="btn btn-primary" onclick="sendInstagramMessage()" style="font-size: 1.2rem; padding: 1.2rem 2.5rem;">¡Empezar Ahora - Solo $497!</a>
+        <a href="#" class="btn btn-primary" onclick="sendInstagramMessage()" style="font-size: 1.2rem; padding: 1.2rem 2.5rem;">Contactar Ahora</a>
       </div>
     </section>
+
+    <section class="pricing" id="pricing">
+      <div class="animated-text">
+        <h2 style="font-size: 2.5rem; margin-bottom: 1rem; font-family: 'Montserrat', sans-serif;">Inversión</h2>
+        <p style="color: rgba(255, 255, 255, 0.8); font-size: 1.2rem; max-width: 600px; margin: 0 auto;">Transparencia total. Sin letra pequeña.</p>
+      </div>
+      
+      <div class="pricing-card animated-text">
+        <div class="pricing-amount">$497</div>
+        <div class="pricing-currency">USD</div>
+        <div class="pricing-description">Un solo pago. Sitio web completo.</div>
+        
+        <ul class="pricing-details">
+          <li>
+            <span>Tu dominio tunombre.com</span>
+            <span>✓</span>
+          </li>
+          <li>
+            <span>Marca personal médica profesional</span>
+            <span>✓</span>
+          </li>
+          <li>
+            <span>Pacientes te encuentran en Google</span>
+            <span>✓</span>
+          </li>
+          <li>
+            <span>Indexado en ChatGPT y otros modelos IA</span>
+            <span>✓</span>
+          </li>
+          <li>
+            <span>Atrae clientes desde la web 24/7</span>
+            <span>✓</span>
+          </li>
+          <li>
+            <span>Tuyo para siempre</span>
+            <span>✓</span>
+          </li>
+        </ul>
+
+        <div class="pricing-note">
+          * Única renovación anual: dominio $10 USD
+        </div>
+
+        <div style="margin-top: 2rem;">
+          <a href="#" class="btn btn-primary" onclick="sendInstagramMessage()" style="font-size: 1.2rem; padding: 1.2rem 2.5rem;">Empezar Proyecto</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="features" id="features">
   </div>
 
   <script>
@@ -567,7 +719,7 @@ Vengo desde la página de VQZ & Partners y estoy interesado(a) en crear mi sitio
 Me interesa:
 ✅ Sitio web con mi nombre de dominio
 ✅ Posicionamiento en Google y ChatGPT  
-✅ Un solo pago de $497 (sin mensualidades)
+✅ Pago único de $497 USD
 ✅ Diseño profesional y responsive
 
 ¿Podrías contarme más sobre el proceso?
