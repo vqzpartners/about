@@ -410,10 +410,23 @@
 
     .feature-card {
       background: rgba(255, 255, 255, 0.03);
-      padding: 2rem;
+      padding: 2.5rem 2rem;
       border-radius: 12px;
       border: 1px solid rgba(255, 255, 255, 0.1);
-      text-align: center;
+      text-align: left;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
       transition: all 0.3s ease;
     }
 
@@ -423,22 +436,36 @@
       border-color: rgba(255, 255, 255, 0.3);
     }
 
+    .feature-card:hover::before {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.3));
+    }
+
     .feature-icon {
-      font-size: 3rem;
-      margin-bottom: 1rem;
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
       display: block;
+      width: 60px;
+      height: 60px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
     }
 
     .feature-title {
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       font-weight: 600;
       margin-bottom: 1rem;
       color: white;
+      font-family: 'Montserrat', sans-serif;
     }
 
     .feature-description {
       color: rgba(255, 255, 255, 0.8);
-      line-height: 1.5;
+      line-height: 1.6;
+      font-size: 1rem;
     }
 
     /* Text animation */
@@ -582,19 +609,7 @@
             <iframe src="https://drmorci.com" class="website-preview" id="preview1" style="display: none;" onload="showPreview('preview1', 'loading1')"></iframe>
             <div class="website-info">
               <div class="website-title">drmorci.com</div>
-              <div class="website-description">Sitio web profesional con citas online y presencia digital completa</div>
-            </div>
-          </div>
-          
-          <div class="website-card" onclick="window.open('https://odontoestetica.com.pa', '_blank')">
-            <div class="loading" id="loading2">
-              <div class="spinner"></div>
-              Cargando ejemplo...
-            </div>
-            <iframe src="https://odontoestetica.com.pa" class="website-preview" id="preview2" style="display: none;" onload="showPreview('preview2', 'loading2')"></iframe>
-            <div class="website-info">
-              <div class="website-title">odontoestetica.com.pa</div>
-              <div class="website-description">Clínica dental moderna con sistema de reservas integrado</div>
+              <div class="website-description">Especialista médico con presencia digital profesional</div>
             </div>
           </div>
         </div>
@@ -609,46 +624,50 @@
       
       <div class="features-grid">
         <div class="feature-card animated-text">
-          <span class="feature-icon">🔍</span>
-          <h3 class="feature-title">Aparece en Google</h3>
-          <p class="feature-description">Tu sitio será indexado en Google, Bing y otros buscadores. Los pacientes te encontrarán cuando busquen tu especialidad.</p>
+          <div class="feature-icon">🔍</div>
+          <h3 class="feature-title">Sin sitio web = invisible</h3>
+          <p class="feature-description">El 85% de los pacientes buscan doctores en Google antes de agendar una cita. Si no apareces, van con la competencia.</p>
         </div>
         
         <div class="feature-card animated-text">
-          <span class="feature-icon">🤖</span>
-          <h3 class="feature-title">Visible en ChatGPT</h3>
-          <p class="feature-description">Los modelos de IA conocerán tu práctica y te recomendarán cuando pacientes pregunten por especialistas.</p>
+          <div class="feature-icon">👨‍⚕️</div>
+          <h3 class="feature-title">Credibilidad profesional</h3>
+          <p class="feature-description">Un sitio web profesional genera confianza inmediata. Los pacientes perciben mayor competencia médica.</p>
         </div>
         
         <div class="feature-card animated-text">
-          <span class="feature-icon">👨‍⚕️</span>
-          <h3 class="feature-title">tunombre.com</h3>
-          <p class="feature-description">Tu propio dominio profesional que construye confianza y credibilidad con pacientes y colegas.</p>
+          <div class="feature-icon">📱</div>
+          <h3 class="feature-title">Pacientes buscan 24/7</h3>
+          <p class="feature-description">Los pacientes investigan doctores a cualquier hora. Tu sitio web trabaja para ti mientras duermes.</p>
         </div>
         
         <div class="feature-card animated-text">
-          <span class="feature-icon">📱</span>
-          <h3 class="feature-title">Totalmente Responsive</h3>
-          <p class="feature-description">Tu sitio se ve perfecto en móvil, tablet y desktop. Los pacientes pueden contactarte desde cualquier dispositivo.</p>
+          <div class="feature-icon">🤖</div>
+          <h3 class="feature-title">IA te recomienda</h3>
+          <p class="feature-description">ChatGPT y otros modelos conocerán tu práctica y te recomendarán cuando pacientes pregunten por especialistas.</p>
         </div>
         
         <div class="feature-card animated-text">
-          <span class="feature-icon">⚡</span>
-          <h3 class="feature-title">Carga Súper Rápida</h3>
-          <p class="feature-description">Sitios optimizados para velocidad. Google premia los sitios rápidos con mejor posicionamiento.</p>
+          <div class="feature-icon">⚡</div>
+          <h3 class="feature-title">Diferenciación inmediata</h3>
+          <p class="feature-description">Mientras otros doctores siguen esperando referencias, tú atraes pacientes constantemente desde internet.</p>
         </div>
         
         <div class="feature-card animated-text">
-          <span class="feature-icon">💎</span>
-          <h3 class="feature-title">Pago Único</h3>
-          <p class="feature-description">Sin sorpresas, sin cuotas mensuales, sin tarifas ocultas. El sitio es tuyo para siempre.</p>
+          <div class="feature-icon">💎</div>
+          <h3 class="feature-title">Inversión única</h3>
+          <p class="feature-description">Una inversión que genera retorno durante años. Sin cuotas mensuales que drenan tu presupuesto.</p>
         </div>
       </div>
 
       <div style="text-align: center; margin-top: 3rem;" class="animated-text">
-        <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">¿Listo para dominar tu mercado digital?</h3>
-        <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 2rem; font-size: 1.1rem;">Únete a los doctores que ya están atrayendo más pacientes con su presencia online</p>
-        <a href="#" class="btn btn-primary" onclick="sendInstagramMessage()" style="font-size: 1.2rem; padding: 1.2rem 2.5rem;">Contactar Ahora</a>
+        <div style="background: rgba(255, 255, 255, 0.05); padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+          <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem; color: rgba(255, 255, 255, 0.9);">⚠️ Disponibilidad Limitada</h3>
+          <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 0; font-size: 1rem;">Solo trabajamos con 5 casos por país para garantizar calidad y exclusividad.</p>
+        </div>
+        <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">¿Tu competencia ya tiene sitio web?</h3>
+        <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 2rem; font-size: 1.1rem;">Mientras ellos esperan, tú puedes adelantarte y dominar tu mercado digital</p>
+        <a href="#" class="btn btn-primary" onclick="sendInstagramMessage()" style="font-size: 1.2rem; padding: 1.2rem 2.5rem;">Solicitar Mi Cupo</a>
       </div>
     </section>
 
