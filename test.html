@@ -97,7 +97,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 2rem 0 4rem 0; /* Increased padding for logo spacing */
+      padding: 2rem 0 2rem 0; /* MODIFIED: Reduced bottom padding from 4rem to 2rem */
       margin-bottom: 0;
       position: relative;
       z-index: 10;
@@ -180,8 +180,8 @@
       transform: translateZ(0);
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
       cursor: pointer;
-      width: 280px;
-      height: 560px;
+      width: 320px; /* MODIFIED: Increased width */
+      height: 580px; /* MODIFIED: Adjusted height for new width */
       padding: 15px;
     }
 
@@ -232,40 +232,19 @@
 
     .website-preview {
       width: 100%;
-      height: 480px;
+      height: 100%; /* MODIFIED: Adjusted height */
       border: none;
       display: block;
       transition: all 0.5s ease;
       border-radius: 15px;
-      margin-top: 20px;
+      margin-top: 10px; /* MODIFIED: Adjusted margin */
     }
 
     .website-card:hover .website-preview {
-      transform: scale(1.05);
+      transform: scale(1.02); /* MODIFIED: Adjusted scale */
     }
-
-    .website-info {
-      padding: 1rem;
-      background: transparent;
-      position: absolute;
-      bottom: 15px;
-      left: 15px;
-      right: 15px;
-      text-align: center;
-    }
-
-    .website-title {
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      color: white;
-    }
-
-    .website-description {
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.8);
-      line-height: 1.4;
-    }
+    
+    /* MODIFIED: The .website-info class is no longer needed in the HTML, so its styles are irrelevant */
 
     /* Action Buttons */
     .cta-buttons {
@@ -585,10 +564,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 480px;
+      height: 100%; /* MODIFIED: Adjusted height */
       color: white;
       font-size: 1.1rem;
-      margin-top: 20px;
+      margin-top: 10px; /* MODIFIED: Adjusted margin */
       border-radius: 15px;
       background: #2a2a2a;
     }
@@ -643,10 +622,7 @@
               Cargando ejemplo...
             </div>
             <iframe src="https://drmorci.com" class="website-preview" id="preview1" style="display: none;" onload="showPreview('preview1', 'loading1')"></iframe>
-            <div class="website-info">
-              <div class="website-title">drmorci.com</div>
-              <div class="website-description">Especialista médico con presencia digital profesional</div>
-            </div>
+            <!-- MODIFIED: Removed the confusing text block that was here -->
           </div>
         </div>
       </div>
@@ -654,7 +630,8 @@
 
     <section class="features" id="features">
       <div class="animated-text">
-        <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem; font-family: 'Montserrat', sans-serif;">¿Por qué los mejores doctores necesitan presencia digital exclusiva?</h2>
+        <!-- MODIFIED: Added max-width and margin auto to prevent the title from stretching too wide -->
+        <h2 style="text-align: center; font-size: 2.5rem; margin: 0 auto 1.5rem auto; font-family: 'Montserrat', sans-serif; max-width: 650px;">¿Por qué los mejores doctores necesitan presencia digital exclusiva?</h2>
         <p style="text-align: center; color: rgba(255, 255, 255, 0.8); font-size: 1.2rem; max-width: 700px; margin: 0 auto;">Tu reputación profesional merece una plataforma digital que refleje tu nivel de excelencia.</p>
       </div>
       
@@ -689,11 +666,7 @@
           <p class="feature-description">Controla tu narrativa profesional. Tu sitio web privado presenta tu práctica exactamente como deseas, sin depender de directorios públicos.</p>
         </div>
         
-        <div class="feature-card animated-text">
-          <div class="feature-icon">💎</div>
-          <h3 class="feature-title">Inversión de élite</h3>
-          <p class="feature-description">Una inversión única que refleja tu posición profesional. Sin cuotas recurrentes que diluyan el valor de tu práctica médica.</p>
-        </div>
+        <!-- MODIFIED: The "Inversión de élite" card was removed -->
       </div>
     </section>
 
@@ -749,9 +722,8 @@
     </section>
 
     <footer class="footer">
-      <p>VQZ & Partners - Sitios web médicos profesionales<br>
-      Creando presencia digital exclusiva para doctores de élite desde 2020<br>
-      Desarrollado con excelencia para profesionales que valoran la calidad</p>
+      <!-- MODIFIED: Simplified footer -->
+      <p>© 2025 VQZ & Partners. Todos los derechos reservados.</p>
     </footer>
   </div>
 
