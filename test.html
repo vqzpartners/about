@@ -97,7 +97,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 2rem 0 2rem 0; /* MODIFIED: Reduced bottom padding from 4rem to 2rem */
+      padding: 2rem 0 2rem 0;
       margin-bottom: 0;
       position: relative;
       z-index: 10;
@@ -142,18 +142,6 @@
       max-width: 480px;
     }
 
-    .price-highlight {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: white;
-      margin-bottom: 2rem;
-      padding: 1rem 0;
-      border-left: 4px solid white;
-      padding-left: 1rem;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 0 8px 8px 0;
-    }
-
     /* Right Column - Website Examples */
     .examples-container {
       flex: 1;
@@ -180,8 +168,8 @@
       transform: translateZ(0);
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
       cursor: pointer;
-      width: 320px; /* MODIFIED: Increased width */
-      height: 580px; /* MODIFIED: Adjusted height for new width */
+      width: 320px;
+      height: 580px;
       padding: 15px;
     }
 
@@ -230,21 +218,15 @@
       50% { transform: translateY(-10px) rotate(0.5deg); }
     }
 
-    .website-preview {
+    /* MODIFIED: Style for the static image preview */
+    .website-preview-img {
       width: 100%;
-      height: 100%; /* MODIFIED: Adjusted height */
-      border: none;
+      height: 100%;
       display: block;
-      transition: all 0.5s ease;
       border-radius: 15px;
-      margin-top: 10px; /* MODIFIED: Adjusted margin */
+      object-fit: cover;
+      object-position: top center;
     }
-
-    .website-card:hover .website-preview {
-      transform: scale(1.02); /* MODIFIED: Adjusted scale */
-    }
-    
-    /* MODIFIED: The .website-info class is no longer needed in the HTML, so its styles are irrelevant */
 
     /* Action Buttons */
     .cta-buttons {
@@ -495,7 +477,7 @@
         text-align: center;
       }
       
-      .description, .price-highlight {
+      .description {
         margin-left: auto;
         margin-right: auto;
       }
@@ -553,38 +535,6 @@
       body {
         padding: 15px;
       }
-
-      .price-highlight {
-        font-size: 1.2rem;
-      }
-    }
-
-    /* Loading animation for iframes */
-    .loading {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100%; /* MODIFIED: Adjusted height */
-      color: white;
-      font-size: 1.1rem;
-      margin-top: 10px; /* MODIFIED: Adjusted margin */
-      border-radius: 15px;
-      background: #2a2a2a;
-    }
-
-    .spinner {
-      width: 40px;
-      height: 40px;
-      border: 4px solid rgba(255, 255, 255, 0.3);
-      border-left: 4px solid white;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin-right: 1rem;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
     }
   </style>
 </head>
@@ -616,13 +566,10 @@
       
       <div class="examples-container animated-text">
         <div class="examples-grid">
+          <!-- MODIFIED: The whole card is now a single link. The iframe and loader are replaced by a static image -->
           <div class="website-card" onclick="window.open('https://drmorci.com', '_blank')">
-            <div class="loading" id="loading1">
-              <div class="spinner"></div>
-              Cargando ejemplo...
-            </div>
-            <iframe src="https://drmorci.com" class="website-preview" id="preview1" style="display: none;" onload="showPreview('preview1', 'loading1')"></iframe>
-            <!-- MODIFIED: Removed the confusing text block that was here -->
+             <!-- IMPORTANTE: Reemplaza 'get/images/drmorci-preview.png' con la ruta a tu pantallazo -->
+            <img src="get/images/drmorci-preview.png" alt="Ejemplo de sitio web para Dr. Morci" class="website-preview-img">
           </div>
         </div>
       </div>
@@ -630,7 +577,6 @@
 
     <section class="features" id="features">
       <div class="animated-text">
-        <!-- MODIFIED: Added max-width and margin auto to prevent the title from stretching too wide -->
         <h2 style="text-align: center; font-size: 2.5rem; margin: 0 auto 1.5rem auto; font-family: 'Montserrat', sans-serif; max-width: 650px;">¿Por qué los mejores doctores necesitan presencia digital exclusiva?</h2>
         <p style="text-align: center; color: rgba(255, 255, 255, 0.8); font-size: 1.2rem; max-width: 700px; margin: 0 auto;">Tu reputación profesional merece una plataforma digital que refleje tu nivel de excelencia.</p>
       </div>
@@ -665,8 +611,6 @@
           <h3 class="feature-title">Privacidad profesional</h3>
           <p class="feature-description">Controla tu narrativa profesional. Tu sitio web privado presenta tu práctica exactamente como deseas, sin depender de directorios públicos.</p>
         </div>
-        
-        <!-- MODIFIED: The "Inversión de élite" card was removed -->
       </div>
     </section>
 
@@ -722,7 +666,6 @@
     </section>
 
     <footer class="footer">
-      <!-- MODIFIED: Simplified footer -->
       <p>© 2025 VQZ & Partners. Todos los derechos reservados.</p>
     </footer>
   </div>
@@ -753,12 +696,7 @@ Me interesa:
       window.open(`https://instagram.com/brandonvasp?text=${message}`, '_blank');
     }
 
-    function showPreview(previewId, loadingId) {
-      setTimeout(() => {
-        document.getElementById(loadingId).style.display = 'none';
-        document.getElementById(previewId).style.display = 'block';
-      }, 2000);
-    }
+    // MODIFIED: The showPreview function is no longer needed and has been removed.
 
     document.addEventListener('DOMContentLoaded', () => {
       // Show banner if not closed before
@@ -768,11 +706,9 @@ Me interesa:
 
       const animatedElements = document.querySelectorAll('.animated-text');
       
-      // Animation timing
       const initialDelay = 500;
       const staggerDelay = 200;
       
-      // Function to animate elements with staggered timing
       const animateElements = async () => {
         await new Promise(resolve => setTimeout(resolve, initialDelay));
         
@@ -784,7 +720,6 @@ Me interesa:
       
       animateElements();
 
-      // Intersection Observer for scroll-triggered animations
       const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
@@ -798,13 +733,11 @@ Me interesa:
         });
       }, observerOptions);
 
-      // Observe feature cards separately
       const featureCards = document.querySelectorAll('.feature-card');
       featureCards.forEach(card => {
         observer.observe(card);
       });
 
-      // 3D tilt effect for examples container
       const examplesContainer = document.querySelector('.examples-container');
       
       if (window.innerWidth > 768) {
@@ -826,7 +759,6 @@ Me interesa:
         });
       }
 
-      // Add smooth scrolling for anchor links
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
           e.preventDefault();
