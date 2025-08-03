@@ -189,7 +189,7 @@
       display: flex;
       flex: 1;
       gap: 4rem;
-      padding-top: 2rem; /* MODIFIED: Reduced top padding */
+      padding-top: 2rem;
       align-items: center;
     }
 
@@ -325,7 +325,6 @@
       text-align: center;
     }
 
-    /* MODIFIED: Redesigned pricing card */
     .pricing-card {
         background: radial-gradient(circle, #1a1a1a 0%, #111 100%);
         border: 1px solid rgba(255, 255, 255, 0.15);
@@ -356,6 +355,7 @@
         color: white;
         margin-bottom: 0.5rem;
         font-family: 'Montserrat', sans-serif;
+        transition: color 0.3s ease;
     }
     .pricing-currency {
         font-size: 1.5rem;
@@ -394,6 +394,52 @@
         justify-content: center;
         font-size: 0.9rem;
     }
+    
+    /* MODIFIED: Styles for the addon option */
+    .pricing-addon {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        padding: 1rem;
+        margin: 1.5rem 0;
+        text-align: left;
+    }
+    .pricing-addon input[type="checkbox"] {
+        display: none;
+    }
+    .pricing-addon label {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        cursor: pointer;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .pricing-addon label::before {
+        content: '';
+        width: 22px;
+        height: 22px;
+        border: 2px solid rgba(255, 255, 255, 0.5);
+        border-radius: 4px;
+        transition: all 0.2s ease;
+        flex-shrink: 0;
+    }
+    .pricing-addon input:checked + label::before {
+        background-color: white;
+        border-color: white;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
+        background-size: 18px;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    .addon-text .title {
+        font-weight: bold;
+        display: block;
+    }
+    .addon-text .price {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.7);
+    }
+    
     .pricing-note {
         font-size: 0.9rem;
         color: rgba(255, 255, 255, 0.6);
@@ -438,18 +484,16 @@
 
     @media (max-width: 768px) {
       header { justify-content: center; }
-      .main-content { padding-top: 2rem; } /* MODIFIED: Set mobile padding */
+      .main-content { padding-top: 2rem; }
       .tagline { font-size: 2.5rem; }
       .cta-buttons { flex-direction: column; width: 100%; max-width: 320px; }
       .btn { width: 100%; }
       .features-title { font-size: 2.2rem; }
     }
-
   </style>
 </head>
 <body>
 
-  <!-- MODAL -->
   <div class="modal-overlay" id="name-modal">
     <div class="modal-content">
       <h2>Bienvenido/a</h2>
@@ -461,7 +505,7 @@
           <input type="radio" id="title-dra" name="doctor-title" value="Dra.">
           <label for="title-dra">Dra.</label>
         </div>
-        <input type="text" id="doctor-name" class="modal-input" placeholder="Su Apellido (Ej: Pérez)" required>
+        <input type="text" id="doctor-name" class="modal-input" placeholder="Su Nombre (Ej: María)" required>
         <button type="submit" class="modal-button">Crear mi sitio web</button>
       </form>
     </div>
@@ -485,9 +529,8 @@
             <div class="cta-buttons">
               <a href="#" class="btn" onclick="sendInstagramMessage()">
                 <img src="get/images/b.jpg" alt="Brandon" class="brandon-avatar">
-                <span data-dynamic-text="cta-button">Hablar con un especialista</span>
+                <span>Hablar con un especialista</span>
               </a>
-              <a href="#pricing" class="btn">Ver Inversión</a>
             </div>
           </div>
           <div class="examples-container">
@@ -511,24 +554,37 @@
                 Tu reputación profesional merece una plataforma digital que refleje tu nivel de excelencia.
             </p>
           <div class="features-grid">
-            <!-- Feature cards remain the same -->
+            <!-- Feature cards could be added here if needed -->
           </div>
         </section>
 
         <section class="pricing" id="pricing">
           <h2 style="font-family: 'Montserrat', sans-serif; font-size: 2.5rem;">Inversión</h2>
           <div class="pricing-card">
-            <div class="pricing-amount">$497</div>
+            <div class="pricing-amount" id="pricing-amount">$497</div>
             <div class="pricing-currency">USD</div>
             <div class="pricing-description">Un solo pago. Sitio web completo.</div>
             <ul class="pricing-details">
               <li><span class="icon-check">✓</span> <span data-dynamic-text="domain">Tu dominio tunombre.com</span></li>
               <li><span class="icon-check">✓</span> <span>Marca personal médica profesional</span></li>
               <li><span class="icon-check">✓</span> <span>Pacientes te encuentran en Google</span></li>
-              <li><span class="icon-check">✓</span> <span>Indexado en ChatGPT y otros modelos IA</span></li>
+              <!-- MODIFIED: "Indexado" rephrased -->
+              <li><span class="icon-check">✓</span> <span>Tu perfil en asistentes de IA (ChatGPT, etc.)</span></li>
               <li><span class="icon-check">✓</span> <span>Atrae clientes desde la web 24/7</span></li>
               <li><span class="icon-check">✓</span> <span>Tuyo para siempre</span></li>
             </ul>
+            
+            <!-- MODIFIED: New addon section -->
+            <div class="pricing-addon">
+                <input type="checkbox" id="content-addon">
+                <label for="content-addon">
+                    <span class="addon-text">
+                        <span class="title">Generación de Contenido SEO</span>
+                        <span class="price">Posiciona tu web para atraer más pacientes (+ $228 USD)</span>
+                    </span>
+                </label>
+            </div>
+            
             <a href="#" class="btn modal-button" onclick="sendInstagramMessage()" style="max-width: 300px; margin: 1rem auto 0;">Quiero mi sitio web</a>
              <div class="pricing-note">
               * Única renovación anual: dominio $10 USD
@@ -543,48 +599,58 @@
   </div>
 
   <script>
-    document.getElementById('doctor-form').addEventListener('submit', function(e) {
-        e.preventDefault();
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('doctor-form');
+        const addonCheckbox = document.getElementById('content-addon');
+        const priceElement = document.getElementById('pricing-amount');
 
-        const title = document.querySelector('input[name="doctor-title"]:checked').value;
-        const name = document.getElementById('doctor-name').value.trim();
+        const basePrice = 497;
+        const addonPrice = 228;
+        const totalWithAddon = basePrice + addonPrice;
 
-        if (!name) {
-            alert('Por favor, ingrese su apellido.');
-            return;
-        }
-        
-        personalizePage(title, name);
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const title = document.querySelector('input[name="doctor-title"]:checked').value;
+            const name = document.getElementById('doctor-name').value.trim();
+            if (!name) {
+                alert('Por favor, ingrese su nombre.');
+                return;
+            }
+            personalizePage(title, name);
+            document.getElementById('name-modal').classList.add('hidden');
+            document.getElementById('page-content').style.visibility = 'visible';
+        });
 
-        document.getElementById('name-modal').classList.add('hidden');
-        document.getElementById('page-content').style.visibility = 'visible';
+        // MODIFIED: Event listener for the price change
+        addonCheckbox.addEventListener('change', function() {
+            if (this.checked) {
+                priceElement.textContent = `$${totalWithAddon}`;
+            } else {
+                priceElement.textContent = `$${basePrice}`;
+            }
+        });
     });
 
     function personalizePage(title, name) {
         const pronoun = title === 'Dra.' ? 'la' : 'el';
         const professional = title === 'Dra.' ? 'una profesional de excelencia' : 'un profesional de excelencia';
-        const domainName = `${title.toLowerCase()}${name.toLowerCase().replace(/\s+/g, '')}.com`;
-
-        // Update Tagline
-        const taglineEl = document.querySelector('[data-dynamic-text="tagline"]');
-        taglineEl.innerHTML = `El sitio web exclusivo que distingue a ${pronoun} ${title} ${name}`;
-
-        // Update Description
-        const descriptionEl = document.querySelector('[data-dynamic-text="description"]');
-        descriptionEl.innerHTML = `Mientras otros doctores esperan referencias, usted atraerá pacientes selectos que buscan ${professional}.`;
-
-        // Update Domain example in pricing
-        const domainEl = document.querySelector('[data-dynamic-text="domain"]');
-        domainEl.textContent = `Tu dominio ${domainName}`;
+        const domainName = `${title.toLowerCase().replace('.', '')}${name.toLowerCase().replace(/\s+/g, '')}.com`;
+        
+        document.querySelector('[data-dynamic-text="tagline"]').innerHTML = `El sitio web exclusivo que distingue a ${pronoun} ${title} ${name}`;
+        document.querySelector('[data-dynamic-text="description"]').innerHTML = `Mientras otros doctores esperan referencias, usted atraerá pacientes selectos que buscan ${professional}.`;
+        document.querySelector('[data-dynamic-text="domain"]').textContent = `Tu dominio ${domainName}`;
     }
 
     function sendInstagramMessage() {
       const title = document.querySelector('input[name="doctor-title"]:checked').value;
       const name = document.getElementById('doctor-name').value.trim();
-      
+      const addonChecked = document.getElementById('content-addon').checked;
+      const finalPrice = addonChecked ? 725 : 497;
+      const planDetails = addonChecked ? `el plan completo con Generación de Contenido SEO por $${finalPrice} USD` : `el plan exclusivo por $${finalPrice} USD`;
+
       const message = encodeURIComponent(`¡Hola! Soy ${title} ${name}.
 
-Vengo desde su página y estoy interesado/a en crear mi sitio web médico profesional con el plan exclusivo de $497 USD.
+Vengo desde su página y estoy interesado/a en crear mi sitio web médico profesional con ${planDetails}.
 
 ¡Gracias!`);
       
