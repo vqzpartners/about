@@ -119,7 +119,6 @@
         transform: scale(1.03);
     }
 
-
     .container {
       max-width: 1200px;
       margin: 0 auto;
@@ -189,7 +188,7 @@
       display: flex;
       flex: 1;
       gap: 4rem;
-      padding-top: 2rem;
+      padding-top: 4rem; /* MODIFIED: Increased top padding for more breathing room */
       align-items: center;
     }
 
@@ -395,7 +394,6 @@
         font-size: 0.9rem;
     }
     
-    /* MODIFIED: Styles for the addon option */
     .pricing-addon {
         background: rgba(255, 255, 255, 0.05);
         border: 1px solid rgba(255, 255, 255, 0.1);
@@ -461,6 +459,28 @@
       border: 1px solid rgba(255, 255, 255, 0.1);
       max-width: 600px;
       width: 100%;
+    }
+    .feature-icon {
+      font-size: 2.5rem;
+      width: 60px;
+      height: 60px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+    .feature-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: white;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .feature-description {
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.6;
     }
     
     .footer {
@@ -553,8 +573,23 @@
             <p class="features-subtitle">
                 Tu reputación profesional merece una plataforma digital que refleje tu nivel de excelencia.
             </p>
+          <!-- MODIFIED: Feature cards section restored -->
           <div class="features-grid">
-            <!-- Feature cards could be added here if needed -->
+            <div class="feature-card">
+              <div class="feature-icon">👑</div>
+              <h3 class="feature-title">Status profesional elevado</h3>
+              <p class="feature-description">Tu propio dominio premium te posiciona como líder en tu especialidad. Los colegas y pacientes reconocen inmediatamente tu estatus profesional.</p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">🎯</div>
+              <h3 class="feature-title">Atrae pacientes selectos</h3>
+              <p class="feature-description">Pacientes que valoran la calidad te encontrarán primero. Filtras automáticamente a quienes buscan profesionales de primer nivel.</p>
+            </div>
+             <div class="feature-card">
+              <div class="feature-icon">⚡</div>
+              <h3 class="feature-title">Conveniencia total</h3>
+              <p class="feature-description">Los pacientes te contactan directamente sin intermediarios. Agenda consultas privadas mientras mantienes control total de tu práctica.</p>
+            </div>
           </div>
         </section>
 
@@ -568,13 +603,11 @@
               <li><span class="icon-check">✓</span> <span data-dynamic-text="domain">Tu dominio tunombre.com</span></li>
               <li><span class="icon-check">✓</span> <span>Marca personal médica profesional</span></li>
               <li><span class="icon-check">✓</span> <span>Pacientes te encuentran en Google</span></li>
-              <!-- MODIFIED: "Indexado" rephrased -->
               <li><span class="icon-check">✓</span> <span>Tu perfil en asistentes de IA (ChatGPT, etc.)</span></li>
               <li><span class="icon-check">✓</span> <span>Atrae clientes desde la web 24/7</span></li>
               <li><span class="icon-check">✓</span> <span>Tuyo para siempre</span></li>
             </ul>
             
-            <!-- MODIFIED: New addon section -->
             <div class="pricing-addon">
                 <input type="checkbox" id="content-addon">
                 <label for="content-addon">
@@ -587,7 +620,8 @@
             
             <a href="#" class="btn modal-button" onclick="sendInstagramMessage()" style="max-width: 300px; margin: 1rem auto 0;">Quiero mi sitio web</a>
              <div class="pricing-note">
-              * Única renovación anual: dominio $10 USD
+              <!-- MODIFIED: Text now has a span for dynamic update -->
+              * Única renovación anual: <span data-dynamic-text="domain-renewal">tudominio.com</span> $10 USD
             </div>
           </div>
         </section>
@@ -621,7 +655,6 @@
             document.getElementById('page-content').style.visibility = 'visible';
         });
 
-        // MODIFIED: Event listener for the price change
         addonCheckbox.addEventListener('change', function() {
             if (this.checked) {
                 priceElement.textContent = `$${totalWithAddon}`;
@@ -639,6 +672,8 @@
         document.querySelector('[data-dynamic-text="tagline"]').innerHTML = `El sitio web exclusivo que distingue a ${pronoun} ${title} ${name}`;
         document.querySelector('[data-dynamic-text="description"]').innerHTML = `Mientras otros doctores esperan referencias, usted atraerá pacientes selectos que buscan ${professional}.`;
         document.querySelector('[data-dynamic-text="domain"]').textContent = `Tu dominio ${domainName}`;
+        // MODIFIED: Dynamic update for the renewal note
+        document.querySelector('[data-dynamic-text="domain-renewal"]').textContent = domainName;
     }
 
     function sendInstagramMessage() {
