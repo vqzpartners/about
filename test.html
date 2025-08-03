@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VQZ & Partners - Sitios Web Médicos Profesionales</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Roboto+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="icon" href="https://vqzpartners.com/get/images/favicon.png">
 
   <meta name="description" content="VQZ & Partners crea sitios web médicos profesionales. Un solo pago de $497, sin mensualidades. Tu nombre.com indexado en Google y ChatGPT.">
@@ -97,7 +97,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 2rem 0 2rem 0;
+      padding: 2rem 0 1rem 0; /* MODIFIED: Reduced bottom padding */
       margin-bottom: 0;
       position: relative;
       z-index: 10;
@@ -128,7 +128,7 @@
     }
 
     .tagline {
-      font-size: 3.5rem;
+      font-size: 3.1rem; /* MODIFIED: Slightly smaller font size */
       font-weight: 700;
       margin-bottom: 1.5rem;
       line-height: 1.1;
@@ -218,7 +218,6 @@
       50% { transform: translateY(-10px) rotate(0.5deg); }
     }
 
-    /* MODIFIED: Style for the static image preview */
     .website-preview-img {
       width: 100%;
       height: 100%;
@@ -293,6 +292,26 @@
       margin-top: 4rem;
       padding: 3rem 0;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    /* MODIFIED: New styles for the redesigned features title */
+    .features-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.8rem;
+        font-weight: 700;
+        text-align: center;
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+    }
+
+    .features-subtitle {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.2rem;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.8);
+        max-width: 450px;
+        margin: 0 auto;
+        line-height: 1.6;
     }
 
     /* Pricing Section */
@@ -373,7 +392,7 @@
       display: flex;
       flex-direction: column;
       gap: 2rem;
-      margin-top: 2rem;
+      margin-top: 3rem; /* Increased margin-top */
       align-items: center;
     }
 
@@ -488,11 +507,16 @@
 
       .features-grid {
         max-width: 800px;
-        margin: 2rem auto 0;
+        margin: 3rem auto 0;
       }
     }
 
     @media (max-width: 768px) {
+      /* MODIFIED: Center the logo on mobile */
+      header {
+        justify-content: center;
+      }
+      
       .tagline {
         font-size: 2.5rem;
         padding-top: 4rem;
@@ -525,6 +549,10 @@
       .feature-card {
         max-width: 100%;
       }
+
+      .features-title {
+        font-size: 2.2rem;
+      }
     }
 
     @media (max-width: 480px) {
@@ -535,13 +563,18 @@
       body {
         padding: 15px;
       }
+
+      .features-title {
+        font-size: 2rem;
+      }
     }
   </style>
 </head>
 <body>
   <!-- Banner -->
   <div id="banner" class="banner">
-    <span>Solo 5 doctores por país • Membresía exclusiva disponible</span>
+    <!-- MODIFIED: Banner text updated -->
+    <span>Solo 5 cupos disponibles este mes</span>
     <button class="banner-close" onclick="closeBanner()">×</button>
   </div>
 
@@ -566,9 +599,7 @@
       
       <div class="examples-container animated-text">
         <div class="examples-grid">
-          <!-- MODIFIED: The whole card is now a single link. The iframe and loader are replaced by a static image -->
           <div class="website-card" onclick="window.open('https://drmorci.com', '_blank')">
-             <!-- IMPORTANTE: Reemplaza 'get/images/drmorci-preview.png' con la ruta a tu pantallazo -->
             <img src="get/images/drmorci-preview.png" alt="Ejemplo de sitio web para Dr. Morci" class="website-preview-img">
           </div>
         </div>
@@ -576,10 +607,17 @@
     </div>
 
     <section class="features" id="features">
-      <div class="animated-text">
-        <h2 style="text-align: center; font-size: 2.5rem; margin: 0 auto 1.5rem auto; font-family: 'Montserrat', sans-serif; max-width: 650px;">¿Por qué los mejores doctores necesitan presencia digital exclusiva?</h2>
-        <p style="text-align: center; color: rgba(255, 255, 255, 0.8); font-size: 1.2rem; max-width: 700px; margin: 0 auto;">Tu reputación profesional merece una plataforma digital que refleje tu nivel de excelencia.</p>
-      </div>
+        <!-- MODIFIED: Redesigned title to match the reference image -->
+        <h2 class="features-title animated-text">
+            ¿Por qué los<br>
+            mejores doctores<br>
+            necesitan<br>
+            presencia digital<br>
+            exclusiva?
+        </h2>
+        <p class="features-subtitle animated-text">
+            Tu reputación profesional merece una plataforma digital que refleje tu nivel de excelencia.
+        </p>
       
       <div class="features-grid">
         <div class="feature-card animated-text">
@@ -696,22 +734,17 @@ Me interesa:
       window.open(`https://instagram.com/brandonvasp?text=${message}`, '_blank');
     }
 
-    // MODIFIED: The showPreview function is no longer needed and has been removed.
-
     document.addEventListener('DOMContentLoaded', () => {
-      // Show banner if not closed before
       if (sessionStorage.getItem('bannerClosed') !== 'true') {
         document.body.classList.add('banner-visible');
       }
 
       const animatedElements = document.querySelectorAll('.animated-text');
-      
       const initialDelay = 500;
       const staggerDelay = 200;
       
       const animateElements = async () => {
         await new Promise(resolve => setTimeout(resolve, initialDelay));
-        
         for (let i = 0; i < animatedElements.length; i++) {
           animatedElements[i].classList.add('visible');
           await new Promise(resolve => setTimeout(resolve, staggerDelay));
@@ -739,16 +772,13 @@ Me interesa:
       });
 
       const examplesContainer = document.querySelector('.examples-container');
-      
       if (window.innerWidth > 768) {
         examplesContainer.addEventListener('mousemove', (e) => {
           const rect = examplesContainer.getBoundingClientRect();
           const x = e.clientX - rect.left; 
           const y = e.clientY - rect.top;
-          
           const xRot = ((y / rect.height) - 0.5) * 5;
           const yRot = ((x / rect.width) - 0.5) * -5;
-          
           const examplesGrid = document.querySelector('.examples-grid');
           examplesGrid.style.transform = `rotateX(${xRot}deg) rotateY(${yRot}deg)`;
         });
@@ -762,7 +792,6 @@ Me interesa:
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
           e.preventDefault();
-
           document.querySelector(this.getAttribute('href')).scrollIntoView({
             behavior: 'smooth'
           });
