@@ -218,7 +218,7 @@
     }
 
     .tagline {
-      font-size: 1.5rem;
+      font-size: 3.5rem;
       font-weight: 700;
       margin-bottom: 2rem;
       line-height: 1.2;
@@ -438,9 +438,17 @@
     }
 
     @media (max-width: 768px) {
+      /* Center logo on mobile */
+      header {
+        justify-content: center;
+      }
+      
       .tagline {
-        font-size: 2.2rem;
+        font-size: 2.8rem;
         padding-top: 4rem;
+        line-height: 1.1;
+        max-width: 100%;
+        word-spacing: 0.1em;
       }
       
       .description {
@@ -480,7 +488,9 @@
 
     @media (max-width: 480px) {
       .tagline {
-        font-size: 2.8rem;
+        font-size: 2.2rem;
+        line-height: 1.15;
+        letter-spacing: -0.02em;
       }
       
       .image-grid {
@@ -495,6 +505,7 @@
       
       header {
         margin-bottom: 1rem;
+        justify-content: center;
       }
 
       body {
@@ -510,6 +521,15 @@
         flex-direction: column;
         gap: 0.5rem;
         align-items: flex-start;
+      }
+    }
+
+    /* Extra small screens - better title wrapping */
+    @media (max-width: 375px) {
+      .tagline {
+        font-size: 2rem;
+        line-height: 1.2;
+        word-spacing: 0.05em;
       }
     }
   </style>
@@ -567,8 +587,16 @@
     </div>
   </div>
 
-  <script src="banner-data.js"></script>
   <script>
+    // Mock banner data for demonstration
+    const bannerData = [
+      {
+        time: 'NEW',
+        title: 'We are launching our new AI automation platform',
+        url: '#'
+      }
+    ];
+
     // Banner functionality
     let currentBannerIndex = 0;
     let bannerInterval;
@@ -714,6 +742,5 @@
       }
     });
   </script>
-  <script src="analytics.js"></script>
 </body>
 </html>
