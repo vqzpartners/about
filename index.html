@@ -48,142 +48,6 @@
       position: relative;
     }
 
-    /* Banner Styles */
-    .banner {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 0.8rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      z-index: 1000;
-      transform: translateY(-100%);
-      transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      color: white;
-    }
-
-    .banner.visible {
-      transform: translateY(0);
-    }
-
-    .banner-content {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      flex: 1;
-      cursor: pointer;
-    }
-
-    .banner-badge {
-      border-radius: 20px;
-      padding: 0.3rem 0.8rem;
-      font-size: 0.8rem;
-      font-weight: 500;
-      white-space: nowrap;
-      color: white;
-      transition: all 0.3s ease;
-    }
-
-    /* Badge Color Variations */
-    .banner-badge.new {
-      background: linear-gradient(135deg, rgba(34, 197, 94, 0.8), rgba(34, 197, 94, 0.6));
-      border: 1px solid rgba(34, 197, 94, 0.9);
-      box-shadow: 0 0 10px rgba(34, 197, 94, 0.3);
-    }
-
-    .banner-badge.live {
-      background: linear-gradient(135deg, rgba(239, 68, 68, 0.8), rgba(239, 68, 68, 0.6));
-      border: 1px solid rgba(239, 68, 68, 0.9);
-      box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
-      animation: pulse 2s infinite;
-    }
-
-    .banner-badge.update {
-      background: linear-gradient(135deg, rgba(59, 130, 246, 0.8), rgba(59, 130, 246, 0.6));
-      border: 1px solid rgba(59, 130, 246, 0.9);
-      box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
-    }
-
-    .banner-badge.breaking {
-      background: linear-gradient(135deg, rgba(245, 101, 101, 0.8), rgba(245, 101, 101, 0.6));
-      border: 1px solid rgba(245, 101, 101, 0.9);
-      box-shadow: 0 0 10px rgba(245, 101, 101, 0.3);
-      animation: pulse 1.5s infinite;
-    }
-
-    .banner-badge.soon {
-      background: linear-gradient(135deg, rgba(168, 85, 247, 0.8), rgba(168, 85, 247, 0.6));
-      border: 1px solid rgba(168, 85, 247, 0.9);
-      box-shadow: 0 0 10px rgba(168, 85, 247, 0.3);
-    }
-
-    .banner-badge.now {
-      background: linear-gradient(135deg, rgba(251, 191, 36, 0.8), rgba(251, 191, 36, 0.6));
-      border: 1px solid rgba(251, 191, 36, 0.9);
-      box-shadow: 0 0 10px rgba(251, 191, 36, 0.3);
-      color: #000000;
-    }
-
-    .banner-badge.alert {
-      background: linear-gradient(135deg, rgba(249, 115, 22, 0.8), rgba(249, 115, 22, 0.6));
-      border: 1px solid rgba(249, 115, 22, 0.9);
-      box-shadow: 0 0 10px rgba(249, 115, 22, 0.3);
-      animation: pulse 2s infinite;
-    }
-
-    .banner-badge.default {
-      background: rgba(255, 255, 255, 0.2);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-    }
-
-    @keyframes pulse {
-      0%, 100% {
-        opacity: 1;
-        transform: scale(1);
-      }
-      50% {
-        opacity: 0.8;
-        transform: scale(1.05);
-      }
-    }
-
-    .banner-text {
-      font-size: 0.9rem;
-      font-weight: 400;
-      flex: 1;
-    }
-
-    .banner-close {
-      background: none;
-      border: none;
-      color: white;
-      font-size: 1.2rem;
-      cursor: pointer;
-      padding: 0.2rem 0.5rem;
-      border-radius: 4px;
-      transition: background-color 0.3s ease;
-      opacity: 0.7;
-    }
-
-    .banner-close:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-      opacity: 1;
-    }
-
-    /* Adjust body padding when banner is visible */
-    body.banner-visible {
-      padding-top: 80px;
-    }
-
-    body.banner-visible .main-content {
-      padding-top: 60px;
-    }
-
     /* Header Styles */
     header {
       display: flex;
@@ -447,10 +311,6 @@
         justify-content: center;
       }
       
-      body.banner-visible .main-content {
-        padding-top: 100px;
-      }
-      
       .tagline {
         font-size: 1.6rem;
         padding-top: 2rem;
@@ -479,26 +339,9 @@
         max-width: 90%;
         margin: 0 auto;
       }
-
-      .banner {
-        padding: 0.6rem 1rem;
-      }
-
-      .banner-text {
-        font-size: 0.8rem;
-      }
-
-      .banner-badge {
-        font-size: 0.7rem;
-        padding: 0.2rem 0.6rem;
-      }
     }
 
     @media (max-width: 480px) {
-      body.banner-visible .main-content {
-        padding-top: 120px;
-      }
-      
       .tagline {
         font-size: 2rem;
         line-height: 1.2;
@@ -529,12 +372,6 @@
       .market-card:nth-child(even) {
         animation: floatAnimation 8s infinite ease-in-out;
       }
-
-      .banner-content {
-        flex-direction: column;
-        gap: 0.5rem;
-        align-items: flex-start;
-      }
     }
 
     /* Extra small screens - better title wrapping */
@@ -544,23 +381,10 @@
         line-height: 1.25;
         word-spacing: 0.05em;
       }
-      
-      body.banner-visible .main-content {
-        padding-top: 140px;
-      }
     }
   </style>
 </head>
 <body>
-  <!-- Banner -->
-  <div id="banner" class="banner">
-    <div class="banner-content" onclick="handleBannerClick()">
-      <div id="banner-badge" class="banner-badge"></div>
-      <div id="banner-text" class="banner-text"></div>
-    </div>
-    <button class="banner-close" onclick="closeBanner()">&times;</button>
-  </div>
-
   <div class="container">
     <header>
       <img src="get/images/white-web-logo.svg" alt="VQZ & Partners Logo" class="logo">
@@ -605,111 +429,6 @@
   </div>
 
   <script>
-    // Mock banner data for demonstration
-    const bannerData = [
-      {
-        time: 'NEW',
-        title: 'We are launching our new AI automation platform',
-        url: '#'
-      }
-    ];
-
-    // Banner functionality
-    let currentBannerIndex = 0;
-    let bannerInterval;
-
-    function showBanner(banner) {
-      const bannerElement = document.getElementById('banner');
-      const badgeElement = document.getElementById('banner-badge');
-      const textElement = document.getElementById('banner-text');
-      
-      // Clear existing badge classes
-      badgeElement.className = 'banner-badge';
-      
-      // Add color class based on badge type
-      const badgeType = banner.time.toLowerCase();
-      const validTypes = ['new', 'live', 'update', 'breaking', 'soon', 'now', 'alert'];
-      
-      if (validTypes.includes(badgeType)) {
-        badgeElement.classList.add(badgeType);
-      } else {
-        badgeElement.classList.add('default');
-      }
-      
-      badgeElement.textContent = formatTime(banner.time);
-      textElement.textContent = banner.title;
-      
-      bannerElement.classList.add('visible');
-      document.body.classList.add('banner-visible');
-      
-      // Store current banner URL for click handling
-      bannerElement.dataset.url = banner.url;
-    }
-
-    function hideBanner() {
-      const bannerElement = document.getElementById('banner');
-      bannerElement.classList.remove('visible');
-      document.body.classList.remove('banner-visible');
-    }
-
-    function closeBanner() {
-      hideBanner();
-      // Remember user closed banner to not show it again this session
-      sessionStorage.setItem('bannerClosed', 'true');
-      clearInterval(bannerInterval);
-    }
-
-    function handleBannerClick() {
-      const bannerElement = document.getElementById('banner');
-      const url = bannerElement.dataset.url;
-      if (url && url !== '#') {
-        window.open(url, '_blank');
-      }
-    }
-
-    function formatTime(timeStr) {
-      // Format time string for badge display
-      const timeMap = {
-        'new': 'NEW',
-        'live': 'LIVE',
-        'update': 'UPDATE',
-        'breaking': 'BREAKING',
-        'soon': 'SOON',
-        'now': 'NOW',
-        'alert': 'ALERT'
-      };
-      
-      return timeMap[timeStr.toLowerCase()] || timeStr.toUpperCase();
-    }
-
-    function cycleBanners() {
-      if (!bannerData || bannerData.length === 0) return;
-      
-      const banner = bannerData[currentBannerIndex];
-      showBanner(banner);
-      
-      currentBannerIndex = (currentBannerIndex + 1) % bannerData.length;
-    }
-
-    function initBanner() {
-      // Check if user already closed banner this session
-      if (sessionStorage.getItem('bannerClosed') === 'true') {
-        return;
-      }
-      
-      if (bannerData && bannerData.length > 0) {
-        // Show first banner after a delay
-        setTimeout(() => {
-          cycleBanners();
-          
-          // If multiple banners, cycle through them
-          if (bannerData.length > 1) {
-            bannerInterval = setInterval(cycleBanners, 8000); // Change banner every 8 seconds
-          }
-        }, 2000); // Initial delay
-      }
-    }
-
     document.addEventListener('DOMContentLoaded', () => {
       const animatedElements = document.querySelectorAll('.animated-text');
       
@@ -733,9 +452,6 @@
       
       // Show animation on every visit
       animateElements();
-      
-      // Initialize banner system
-      initBanner();
       
       // 3D tilt effect for image grid
       const imageGrid = document.querySelector('.image-grid');
