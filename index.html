@@ -180,6 +180,10 @@
       padding-top: 80px;
     }
 
+    body.banner-visible .main-content {
+      padding-top: 60px;
+    }
+
     /* Header Styles */
     header {
       display: flex;
@@ -218,10 +222,10 @@
     }
 
     .tagline {
-      font-size: 3.5rem;
+      font-size: 3.2rem;
       font-weight: 700;
       margin-bottom: 2rem;
-      line-height: 1.2;
+      line-height: 1.1;
       font-family: 'Montserrat', sans-serif;
     }
 
@@ -443,10 +447,14 @@
         justify-content: center;
       }
       
+      body.banner-visible .main-content {
+        padding-top: 100px;
+      }
+      
       .tagline {
-        font-size: 2.8rem;
-        padding-top: 4rem;
-        line-height: 1.1;
+        font-size: 2.4rem;
+        padding-top: 2rem;
+        line-height: 1.15;
         max-width: 100%;
         word-spacing: 0.1em;
       }
@@ -487,10 +495,15 @@
     }
 
     @media (max-width: 480px) {
+      body.banner-visible .main-content {
+        padding-top: 120px;
+      }
+      
       .tagline {
-        font-size: 2.2rem;
-        line-height: 1.15;
-        letter-spacing: -0.02em;
+        font-size: 2rem;
+        line-height: 1.2;
+        letter-spacing: -0.01em;
+        padding-top: 1rem;
       }
       
       .image-grid {
@@ -527,9 +540,13 @@
     /* Extra small screens - better title wrapping */
     @media (max-width: 375px) {
       .tagline {
-        font-size: 2rem;
-        line-height: 1.2;
+        font-size: 1.8rem;
+        line-height: 1.25;
         word-spacing: 0.05em;
+      }
+      
+      body.banner-visible .main-content {
+        padding-top: 140px;
       }
     }
   </style>
@@ -552,7 +569,7 @@
 
     <div class="main-content">
       <div class="text-content">
-        <h1 class="tagline animated-text">we build, accelerate and educate.</h1>
+        <h1 class="tagline animated-text">the business behind<br>your favorite business</h1>
         <p class="description animated-text">From intelligence to automation, we drive innovation freely, partnering with visionary businesses to create impactful solutions</p>
         <div class="cta-buttons animated-text">
            <a href="/go" class="btn">Contact Us</a>
