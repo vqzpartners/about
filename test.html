@@ -33,6 +33,93 @@
       overflow-x: hidden;
     }
 
+    /* MODAL STYLES */
+    .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.98);
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(10px);
+        transition: opacity 0.5s ease;
+    }
+    .modal-overlay.hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+    .modal-content {
+        background: #111;
+        padding: 2.5rem 3rem;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        text-align: center;
+        max-width: 500px;
+        width: 90%;
+    }
+    .modal-content h2 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+    .modal-content p {
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 2rem;
+    }
+    .doctor-title-group {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        justify-content: center;
+    }
+    .doctor-title-group label {
+        display: block;
+        padding: 0.8rem 1.5rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    .doctor-title-group input[type="radio"] {
+        display: none;
+    }
+    .doctor-title-group input[type="radio"]:checked + label {
+        background-color: white;
+        color: black;
+        border-color: white;
+    }
+    .modal-input {
+        width: 100%;
+        padding: 1rem;
+        font-size: 1.1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 6px;
+        color: white;
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+    .modal-button {
+        width: 100%;
+        padding: 1rem;
+        font-size: 1.1rem;
+        font-weight: bold;
+        background: white;
+        color: black;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+    }
+    .modal-button:hover {
+        transform: scale(1.03);
+    }
+
+
     .container {
       max-width: 1200px;
       margin: 0 auto;
@@ -43,7 +130,6 @@
       position: relative;
     }
 
-    /* Banner Styles */
     .banner {
       position: fixed;
       top: 0;
@@ -77,27 +163,18 @@
       color: white;
       font-size: 1.2rem;
       cursor: pointer;
-      padding: 0.2rem 0.5rem;
-      border-radius: 4px;
-      transition: background-color 0.3s ease;
       opacity: 0.7;
-    }
-
-    .banner-close:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-      opacity: 1;
     }
 
     body.banner-visible {
       padding-top: 80px;
     }
 
-    /* Header Styles */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 2rem 0 1rem 0; /* MODIFIED: Reduced bottom padding */
+      padding: 2rem 0 1rem 0;
       margin-bottom: 0;
       position: relative;
       z-index: 10;
@@ -108,18 +185,14 @@
       filter: brightness(0) invert(1);
     }
 
-    /* Main Content Layout */
     .main-content {
       display: flex;
       flex: 1;
       gap: 4rem;
-      margin-top: 0;
-      min-height: 80vh;
+      padding-top: 2rem; /* MODIFIED: Reduced top padding */
       align-items: center;
-      padding-top: 0px;
     }
 
-    /* Left Column - Text Content */
     .text-content {
       flex: 1;
       display: flex;
@@ -128,10 +201,10 @@
     }
 
     .tagline {
-      font-size: 3.1rem; /* MODIFIED: Slightly smaller font size */
+      font-size: 3.1rem;
       font-weight: 700;
       margin-bottom: 1.5rem;
-      line-height: 1.1;
+      line-height: 1.2;
       font-family: 'Montserrat', sans-serif;
     }
 
@@ -142,7 +215,6 @@
       max-width: 480px;
     }
 
-    /* Right Column - Website Examples */
     .examples-container {
       flex: 1;
       position: relative;
@@ -151,9 +223,8 @@
 
     .examples-grid {
       display: flex;
-      flex-direction: column;
-      gap: 2rem;
       align-items: center;
+      justify-content: center;
       transform-style: preserve-3d;
       transition: transform 1s ease;
     }
@@ -173,49 +244,9 @@
       padding: 15px;
     }
 
-    .website-card::before {
-      content: '';
-      position: absolute;
-      top: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 4px;
-      background: #555;
-      border-radius: 2px;
-      z-index: 10;
-    }
-
-    .website-card::after {
-      content: '';
-      position: absolute;
-      bottom: 8px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 140px;
-      height: 4px;
-      background: #555;
-      border-radius: 2px;
-    }
-
-    .website-card:nth-child(odd) {
-      animation: floatAnimation 6s infinite ease-in-out;
-    }
-
-    .website-card:nth-child(even) {
-      animation: floatAnimation 8s infinite ease-in-out reverse;
-    }
-
     .website-card:hover {
       transform: translateY(-10px) scale(1.03);
       border-color: #666;
-      box-shadow: 0 20px 40px rgba(255, 255, 255, 0.1);
-      z-index: 10;
-    }
-
-    @keyframes floatAnimation {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-10px) rotate(0.5deg); }
     }
 
     .website-preview-img {
@@ -227,7 +258,6 @@
       object-position: top center;
     }
 
-    /* Action Buttons */
     .cta-buttons {
       display: flex;
       gap: 1.5rem;
@@ -249,36 +279,12 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
-      position: relative;
-      overflow: hidden;
     }
-
-    .btn::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
-      transition: left 0.5s ease;
-    }
-
-    .btn:hover::after {
-      left: 100%;
-    }
-
     .btn:hover {
       background-color: rgba(255, 255, 255, 0.1);
       border-color: rgba(255, 255, 255, 0.5);
       transform: translateY(-2px);
     }
-
-    .btn-primary {
-      background-color: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.4);
-    }
-
     .brandon-avatar {
       width: 24px;
       height: 24px;
@@ -287,14 +293,12 @@
       border: 2px solid rgba(255, 255, 255, 0.3);
     }
 
-    /* Features Section */
     .features {
-      margin-top: 4rem;
+      margin-top: 6rem;
       padding: 3rem 0;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
     
-    /* MODIFIED: New styles for the redesigned features title */
     .features-title {
         font-family: 'Montserrat', sans-serif;
         font-size: 2.8rem;
@@ -314,7 +318,6 @@
         line-height: 1.6;
     }
 
-    /* Pricing Section */
     .pricing {
       margin-top: 4rem;
       padding: 4rem 0;
@@ -322,77 +325,86 @@
       text-align: center;
     }
 
+    /* MODIFIED: Redesigned pricing card */
     .pricing-card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      padding: 3rem 2rem;
-      max-width: 500px;
-      margin: 2rem auto;
-      position: relative;
-      overflow: hidden;
+        background: radial-gradient(circle, #1a1a1a 0%, #111 100%);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 16px;
+        padding: 3rem 2rem;
+        max-width: 500px;
+        margin: 2rem auto;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 0 40px rgba(255, 255, 255, 0.05);
     }
-
     .pricing-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, rgba(255,255,255,0.3), rgba(255,255,255,0.1));
+        content: 'Plan Exclusivo';
+        position: absolute;
+        top: 20px;
+        right: -30px;
+        background: white;
+        color: black;
+        padding: 5px 30px;
+        transform: rotate(45deg);
+        font-size: 0.8rem;
+        font-weight: bold;
+        font-family: 'Montserrat', sans-serif;
     }
-
     .pricing-amount {
-      font-size: 4rem;
-      font-weight: 700;
-      color: white;
-      margin-bottom: 0.5rem;
-      font-family: 'Montserrat', sans-serif;
+        font-size: 4rem;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 0.5rem;
+        font-family: 'Montserrat', sans-serif;
     }
-
     .pricing-currency {
-      font-size: 1.5rem;
-      color: rgba(255, 255, 255, 0.8);
-      margin-bottom: 1rem;
+        font-size: 1.5rem;
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 1rem;
     }
-
     .pricing-description {
-      font-size: 1.2rem;
-      color: rgba(255, 255, 255, 0.9);
-      margin-bottom: 2rem;
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 2.5rem;
     }
-
     .pricing-details {
-      list-style: none;
-      padding: 0;
-      margin: 2rem 0;
+        list-style: none;
+        padding: 0;
+        margin: 2rem 0;
+        text-align: left;
     }
-
     .pricing-details li {
-      padding: 0.8rem 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+        padding: 0.8rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        gap: 15px;
     }
-
     .pricing-details li:last-child {
-      border-bottom: none;
+        border-bottom: none;
     }
-
+    .pricing-details .icon-check {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: white;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9rem;
+    }
     .pricing-note {
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.6);
-      margin-top: 1.5rem;
-      font-style: italic;
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.6);
+        margin-top: 1.5rem;
     }
 
     .features-grid {
       display: flex;
       flex-direction: column;
       gap: 2rem;
-      margin-top: 3rem; /* Increased margin-top */
+      margin-top: 3rem;
       align-items: center;
     }
 
@@ -401,64 +413,10 @@
       padding: 2.5rem 2rem;
       border-radius: 12px;
       border: 1px solid rgba(255, 255, 255, 0.1);
-      text-align: left;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
       max-width: 600px;
       width: 100%;
     }
-
-    .feature-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 4px;
-      height: 100%;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
-      transition: all 0.3s ease;
-    }
-
-    .feature-card:hover {
-      background: rgba(255, 255, 255, 0.05);
-      transform: translateY(-5px);
-      border-color: rgba(255, 255, 255, 0.3);
-    }
-
-    .feature-card:hover::before {
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.3));
-    }
-
-    .feature-icon {
-      font-size: 2.5rem;
-      margin-bottom: 1.5rem;
-      display: block;
-      width: 60px;
-      height: 60px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1.5rem;
-    }
-
-    .feature-title {
-      font-size: 1.4rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-      color: white;
-      font-family: 'Montserrat', sans-serif;
-    }
-
-    .feature-description {
-      color: rgba(255, 255, 255, 0.8);
-      line-height: 1.6;
-      font-size: 1rem;
-    }
-
-    /* Footer */
+    
     .footer {
       margin-top: 4rem;
       padding: 2rem 0;
@@ -467,337 +425,171 @@
       color: rgba(255, 255, 255, 0.6);
     }
 
-    .footer p {
-      font-size: 0.9rem;
-      line-height: 1.6;
-    }
-
-    /* Text animation */
-    .animated-text {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-
-    .animated-text.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Responsive Styles */
     @media (max-width: 992px) {
       .main-content {
         flex-direction: column;
         gap: 3rem;
       }
-      
       .text-content {
         align-items: center;
         text-align: center;
       }
-      
-      .description {
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .tagline {
-        font-size: 3rem;
-      }
-
-      .features-grid {
-        max-width: 800px;
-        margin: 3rem auto 0;
-      }
     }
 
     @media (max-width: 768px) {
-      /* MODIFIED: Center the logo on mobile */
-      header {
-        justify-content: center;
-      }
-      
-      .tagline {
-        font-size: 2.5rem;
-        padding-top: 4rem;
-      }
-      
-      .description {
-        font-size: 1.1rem;
-      }
-      
-      .cta-buttons {
-        flex-direction: column;
-        width: 100%;
-        max-width: 320px;
-      }
-      
-      .btn {
-        width: 100%;
-        text-align: center;
-      }
-
-      .banner {
-        padding: 0.6rem 1rem;
-        font-size: 0.9rem;
-      }
-
-      .features-grid {
-        max-width: 100%;
-      }
-
-      .feature-card {
-        max-width: 100%;
-      }
-
-      .features-title {
-        font-size: 2.2rem;
-      }
+      header { justify-content: center; }
+      .main-content { padding-top: 2rem; } /* MODIFIED: Set mobile padding */
+      .tagline { font-size: 2.5rem; }
+      .cta-buttons { flex-direction: column; width: 100%; max-width: 320px; }
+      .btn { width: 100%; }
+      .features-title { font-size: 2.2rem; }
     }
 
-    @media (max-width: 480px) {
-      .tagline {
-        font-size: 2.2rem;
-      }
-      
-      body {
-        padding: 15px;
-      }
-
-      .features-title {
-        font-size: 2rem;
-      }
-    }
   </style>
 </head>
 <body>
-  <!-- Banner -->
-  <div id="banner" class="banner">
-    <!-- MODIFIED: Banner text updated -->
-    <span>Solo 5 cupos disponibles este mes</span>
-    <button class="banner-close" onclick="closeBanner()">×</button>
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="name-modal">
+    <div class="modal-content">
+      <h2>Bienvenido/a</h2>
+      <p>Para personalizar su futuro sitio web, por favor ingrese su nombre y título.</p>
+      <form id="doctor-form">
+        <div class="doctor-title-group">
+          <input type="radio" id="title-dr" name="doctor-title" value="Dr." checked>
+          <label for="title-dr">Dr.</label>
+          <input type="radio" id="title-dra" name="doctor-title" value="Dra.">
+          <label for="title-dra">Dra.</label>
+        </div>
+        <input type="text" id="doctor-name" class="modal-input" placeholder="Su Apellido (Ej: Pérez)" required>
+        <button type="submit" class="modal-button">Crear mi sitio web</button>
+      </form>
+    </div>
   </div>
 
-  <div class="container">
-    <header>
-      <img src="get/images/white-web-logo.svg" alt="VQZ & Partners Logo" class="logo">
-    </header>
-
-    <div class="main-content">
-      <div class="text-content">
-        <h1 class="tagline animated-text">El sitio web exclusivo que distingue a los mejores doctores</h1>
-        <p class="description animated-text">Únete a la elite médica digital. Mientras otros esperan referencias, tú atraes pacientes selectos que valoran la excelencia profesional.</p>
-        
-        <div class="cta-buttons animated-text">
-          <a href="#" class="btn btn-primary" onclick="sendInstagramMessage()">
-            <img src="get/images/b.jpg" alt="Brandon" class="brandon-avatar">
-            Hablar con Brandon
-          </a>
-          <a href="#pricing" class="btn">Ver Inversión</a>
-        </div>
+  <div id="page-content" style="visibility: hidden;">
+      <div class="banner">
+        <span>Solo 5 cupos disponibles este mes</span>
+        <button class="banner-close" onclick="this.parentElement.style.display='none'">×</button>
       </div>
-      
-      <div class="examples-container animated-text">
-        <div class="examples-grid">
-          <div class="website-card" onclick="window.open('https://drmorci.com', '_blank')">
-            <img src="get/images/drmorci-preview.png" alt="Ejemplo de sitio web para Dr. Morci" class="website-preview-img">
+
+      <div class="container">
+        <header>
+          <img src="get/images/white-web-logo.svg" alt="VQZ & Partners Logo" class="logo">
+        </header>
+
+        <div class="main-content">
+          <div class="text-content">
+            <h1 class="tagline" data-dynamic-text="tagline">El sitio web exclusivo que distingue a los mejores doctores</h1>
+            <p class="description" data-dynamic-text="description">Únete a la elite médica digital. Mientras otros esperan referencias, tú atraes pacientes selectos que valoran la excelencia profesional.</p>
+            <div class="cta-buttons">
+              <a href="#" class="btn" onclick="sendInstagramMessage()">
+                <img src="get/images/b.jpg" alt="Brandon" class="brandon-avatar">
+                <span data-dynamic-text="cta-button">Hablar con un especialista</span>
+              </a>
+              <a href="#pricing" class="btn">Ver Inversión</a>
+            </div>
+          </div>
+          <div class="examples-container">
+            <div class="examples-grid">
+              <div class="website-card" onclick="window.open('https://drmorci.com', '_blank')">
+                <img src="get/images/drmorci-preview.png" alt="Ejemplo de sitio web para Dr. Morci" class="website-preview-img">
+              </div>
+            </div>
           </div>
         </div>
+
+        <section class="features" id="features">
+            <h2 class="features-title">
+                ¿Por qué los<br>
+                mejores doctores<br>
+                necesitan<br>
+                presencia digital<br>
+                exclusiva?
+            </h2>
+            <p class="features-subtitle">
+                Tu reputación profesional merece una plataforma digital que refleje tu nivel de excelencia.
+            </p>
+          <div class="features-grid">
+            <!-- Feature cards remain the same -->
+          </div>
+        </section>
+
+        <section class="pricing" id="pricing">
+          <h2 style="font-family: 'Montserrat', sans-serif; font-size: 2.5rem;">Inversión</h2>
+          <div class="pricing-card">
+            <div class="pricing-amount">$497</div>
+            <div class="pricing-currency">USD</div>
+            <div class="pricing-description">Un solo pago. Sitio web completo.</div>
+            <ul class="pricing-details">
+              <li><span class="icon-check">✓</span> <span data-dynamic-text="domain">Tu dominio tunombre.com</span></li>
+              <li><span class="icon-check">✓</span> <span>Marca personal médica profesional</span></li>
+              <li><span class="icon-check">✓</span> <span>Pacientes te encuentran en Google</span></li>
+              <li><span class="icon-check">✓</span> <span>Indexado en ChatGPT y otros modelos IA</span></li>
+              <li><span class="icon-check">✓</span> <span>Atrae clientes desde la web 24/7</span></li>
+              <li><span class="icon-check">✓</span> <span>Tuyo para siempre</span></li>
+            </ul>
+            <a href="#" class="btn modal-button" onclick="sendInstagramMessage()" style="max-width: 300px; margin: 1rem auto 0;">Quiero mi sitio web</a>
+             <div class="pricing-note">
+              * Única renovación anual: dominio $10 USD
+            </div>
+          </div>
+        </section>
+
+        <footer class="footer">
+          <p>© 2025 VQZ & Partners. Todos los derechos reservados.</p>
+        </footer>
       </div>
-    </div>
-
-    <section class="features" id="features">
-        <!-- MODIFIED: Redesigned title to match the reference image -->
-        <h2 class="features-title animated-text">
-            ¿Por qué los<br>
-            mejores doctores<br>
-            necesitan<br>
-            presencia digital<br>
-            exclusiva?
-        </h2>
-        <p class="features-subtitle animated-text">
-            Tu reputación profesional merece una plataforma digital que refleje tu nivel de excelencia.
-        </p>
-      
-      <div class="features-grid">
-        <div class="feature-card animated-text">
-          <div class="feature-icon">👑</div>
-          <h3 class="feature-title">Status profesional elevado</h3>
-          <p class="feature-description">Tu propio dominio premium tunombre.com te posiciona como líder en tu especialidad. Los colegas y pacientes reconocen inmediatamente tu estatus profesional.</p>
-        </div>
-        
-        <div class="feature-card animated-text">
-          <div class="feature-icon">🎯</div>
-          <h3 class="feature-title">Atrae pacientes selectos</h3>
-          <p class="feature-description">Pacientes que valoran la calidad te encontrarán primero. Filtras automáticamente a quienes buscan profesionales de primer nivel.</p>
-        </div>
-        
-        <div class="feature-card animated-text">
-          <div class="feature-icon">🔐</div>
-          <h3 class="feature-title">Membresía médica exclusiva</h3>
-          <p class="feature-description">Solo 5 doctores por país. Tu competencia no tendrá acceso a este nivel de presencia digital. Exclusividad garantizada en tu mercado.</p>
-        </div>
-        
-        <div class="feature-card animated-text">
-          <div class="feature-icon">⚡</div>
-          <h3 class="feature-title">Conveniencia total</h3>
-          <p class="feature-description">Los pacientes te contactan directamente sin intermediarios. Agenda consultas privadas mientras mantienes control total de tu práctica.</p>
-        </div>
-        
-        <div class="feature-card animated-text">
-          <div class="feature-icon">🛡️</div>
-          <h3 class="feature-title">Privacidad profesional</h3>
-          <p class="feature-description">Controla tu narrativa profesional. Tu sitio web privado presenta tu práctica exactamente como deseas, sin depender de directorios públicos.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="pricing" id="pricing">
-      <div class="animated-text">
-        <h2 style="font-size: 2.5rem; margin-bottom: 1rem; font-family: 'Montserrat', sans-serif;">Inversión</h2>
-        <p style="color: rgba(255, 255, 255, 0.8); font-size: 1.2rem; max-width: 600px; margin: 0 auto;">Transparencia total. Sin letra pequeña.</p>
-      </div>
-      
-      <div class="pricing-card animated-text">
-        <div class="pricing-amount">$497</div>
-        <div class="pricing-currency">USD</div>
-        <div class="pricing-description">Un solo pago. Sitio web completo.</div>
-        
-        <ul class="pricing-details">
-          <li>
-            <span>Tu dominio tunombre.com</span>
-            <span>✓</span>
-          </li>
-          <li>
-            <span>Marca personal médica profesional</span>
-            <span>✓</span>
-          </li>
-          <li>
-            <span>Pacientes te encuentran en Google</span>
-            <span>✓</span>
-          </li>
-          <li>
-            <span>Indexado en ChatGPT y otros modelos IA</span>
-            <span>✓</span>
-          </li>
-          <li>
-            <span>Atrae clientes desde la web 24/7</span>
-            <span>✓</span>
-          </li>
-          <li>
-            <span>Tuyo para siempre</span>
-            <span>✓</span>
-          </li>
-        </ul>
-
-        <div class="pricing-note">
-          * Única renovación anual: dominio $10 USD
-        </div>
-
-        <div style="margin-top: 2rem;">
-          <a href="#" class="btn btn-primary" onclick="sendInstagramMessage()">
-            <img src="get/images/b.jpg" alt="Brandon" class="brandon-avatar">
-            Hablar con Brandon
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <footer class="footer">
-      <p>© 2025 VQZ & Partners. Todos los derechos reservados.</p>
-    </footer>
   </div>
 
   <script>
-    function closeBanner() {
-      const banner = document.getElementById('banner');
-      banner.style.transform = 'translateY(-100%)';
-      document.body.classList.remove('banner-visible');
-      sessionStorage.setItem('bannerClosed', 'true');
+    document.getElementById('doctor-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const title = document.querySelector('input[name="doctor-title"]:checked').value;
+        const name = document.getElementById('doctor-name').value.trim();
+
+        if (!name) {
+            alert('Por favor, ingrese su apellido.');
+            return;
+        }
+        
+        personalizePage(title, name);
+
+        document.getElementById('name-modal').classList.add('hidden');
+        document.getElementById('page-content').style.visibility = 'visible';
+    });
+
+    function personalizePage(title, name) {
+        const pronoun = title === 'Dra.' ? 'la' : 'el';
+        const professional = title === 'Dra.' ? 'una profesional de excelencia' : 'un profesional de excelencia';
+        const domainName = `${title.toLowerCase()}${name.toLowerCase().replace(/\s+/g, '')}.com`;
+
+        // Update Tagline
+        const taglineEl = document.querySelector('[data-dynamic-text="tagline"]');
+        taglineEl.innerHTML = `El sitio web exclusivo que distingue a ${pronoun} ${title} ${name}`;
+
+        // Update Description
+        const descriptionEl = document.querySelector('[data-dynamic-text="description"]');
+        descriptionEl.innerHTML = `Mientras otros doctores esperan referencias, usted atraerá pacientes selectos que buscan ${professional}.`;
+
+        // Update Domain example in pricing
+        const domainEl = document.querySelector('[data-dynamic-text="domain"]');
+        domainEl.textContent = `Tu dominio ${domainName}`;
     }
 
     function sendInstagramMessage() {
-      const message = encodeURIComponent(`¡Hola Brandon! 👋
+      const title = document.querySelector('input[name="doctor-title"]:checked').value;
+      const name = document.getElementById('doctor-name').value.trim();
+      
+      const message = encodeURIComponent(`¡Hola! Soy ${title} ${name}.
 
-Vengo desde la página de VQZ & Partners y estoy interesado(a) en crear mi sitio web médico profesional.
+Vengo desde su página y estoy interesado/a en crear mi sitio web médico profesional con el plan exclusivo de $497 USD.
 
-Me interesa:
-✅ Sitio web con mi nombre de dominio
-✅ Posicionamiento en Google y ChatGPT  
-✅ Pago único de $497 USD
-✅ Diseño profesional y responsive
-
-¿Podrías contarme más sobre el proceso?
-
-¡Gracias! 🚀`);
+¡Gracias!`);
       
       window.open(`https://instagram.com/brandonvasp?text=${message}`, '_blank');
     }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      if (sessionStorage.getItem('bannerClosed') !== 'true') {
-        document.body.classList.add('banner-visible');
-      }
-
-      const animatedElements = document.querySelectorAll('.animated-text');
-      const initialDelay = 500;
-      const staggerDelay = 200;
-      
-      const animateElements = async () => {
-        await new Promise(resolve => setTimeout(resolve, initialDelay));
-        for (let i = 0; i < animatedElements.length; i++) {
-          animatedElements[i].classList.add('visible');
-          await new Promise(resolve => setTimeout(resolve, staggerDelay));
-        }
-      };
-      
-      animateElements();
-
-      const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-      };
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      }, observerOptions);
-
-      const featureCards = document.querySelectorAll('.feature-card');
-      featureCards.forEach(card => {
-        observer.observe(card);
-      });
-
-      const examplesContainer = document.querySelector('.examples-container');
-      if (window.innerWidth > 768) {
-        examplesContainer.addEventListener('mousemove', (e) => {
-          const rect = examplesContainer.getBoundingClientRect();
-          const x = e.clientX - rect.left; 
-          const y = e.clientY - rect.top;
-          const xRot = ((y / rect.height) - 0.5) * 5;
-          const yRot = ((x / rect.width) - 0.5) * -5;
-          const examplesGrid = document.querySelector('.examples-grid');
-          examplesGrid.style.transform = `rotateX(${xRot}deg) rotateY(${yRot}deg)`;
-        });
-        
-        examplesContainer.addEventListener('mouseleave', () => {
-          const examplesGrid = document.querySelector('.examples-grid');
-          examplesGrid.style.transform = 'rotateX(0) rotateY(0)';
-        });
-      }
-
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-          e.preventDefault();
-          document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-          });
-        });
-      });
-    });
   </script>
 </body>
 </html>
