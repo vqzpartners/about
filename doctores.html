@@ -284,12 +284,17 @@
       border-color: rgba(255, 255, 255, 0.5);
       transform: translateY(-2px);
     }
-    .brandon-avatar {
+    .whatsapp-icon {
       width: 24px;
       height: 24px;
+      background-color: #25D366;
       border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid rgba(255, 255, 255, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 14px;
+      font-weight: bold;
     }
 
     .features {
@@ -549,8 +554,8 @@
             <h1 class="tagline">El servicio exclusivo para Doctores de clase mundial</h1>
             <p class="description" data-dynamic-text="description">Únete a la elite médica digital. Mientras otros esperan referencias, tú atraes pacientes selectos que valoran la excelencia profesional.</p>
             <div class="cta-buttons">
-              <a href="#" class="btn" onclick="sendInstagramMessage()">
-                <img src="get/images/b.jpg" alt="Brandon" class="brandon-avatar">
+              <a href="#" class="btn" onclick="sendWhatsAppMessage()">
+                <div class="whatsapp-icon">📱</div>
                 <span>Hablar con un especialista</span>
               </a>
             </div>
@@ -620,7 +625,7 @@
                 </label>
             </div>
             
-            <a href="#" class="btn modal-button" onclick="sendInstagramMessage()" style="max-width: 300px; margin: 1rem auto 0;">Quiero mi sitio web</a>
+            <a href="#" class="btn modal-button" onclick="sendWhatsAppMessage()" style="max-width: 300px; margin: 1rem auto 0;">Crear mi bóveda profesional</a>
              <div class="pricing-note">
               * Única renovación anual: <span data-dynamic-text="domain-renewal">tudominio.com</span> $10 USD
             </div>
@@ -675,7 +680,7 @@
         document.querySelector('[data-dynamic-text="domain-renewal"]').textContent = domainName;
     }
 
-    function sendInstagramMessage() {
+    function sendWhatsAppMessage() {
       const title = document.querySelector('input[name="doctor-title"]:checked').value;
       const name = document.getElementById('doctor-name').value.trim();
       const addonChecked = document.getElementById('content-addon').checked;
@@ -684,11 +689,11 @@
 
       const message = encodeURIComponent(`¡Hola! Soy ${title} ${name}.
 
-Vengo desde su página y estoy interesado/a en crear mi sitio web médico profesional con ${planDetails}.
+Vengo desde su página y estoy interesado/a en crear mi bóveda profesional digital con ${planDetails}.
 
 ¡Gracias!`);
       
-      window.open(`https://instagram.com/brandonvasp?text=${message}`, '_blank');
+      window.open(`https://wa.me/50765702288?text=${message}`, '_blank');
     }
   </script>
 </body>
