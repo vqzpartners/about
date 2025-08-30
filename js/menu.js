@@ -12,7 +12,6 @@ function createNavigationMenu() {
     { href: '/go', icon: '💬', text: 'Contact' },
   ];
   
-  // Create and append each menu item
   menuItems.forEach(item => {
     const link = document.createElement('a');
     link.href = item.href;
