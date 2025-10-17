@@ -146,6 +146,80 @@
             font-weight: 300;
         }
         
+        .title-selection {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .title-option {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 2rem 3rem;
+            color: white;
+            font-size: 2rem;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            min-width: 150px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .title-option::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .title-option:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .title-option:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-5px);
+        }
+        
+        .title-option.selected {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.6);
+            transform: scale(1.05);
+        }
+        
+        .continue-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            padding: 1rem 3rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+            font-family: 'Montserrat', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+        }
+        
+        .continue-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+        
         .profile-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
@@ -957,13 +1031,14 @@
             }
             
             .title-selection {
-                gap: 2rem;
+                gap: 1rem;
                 max-width: 400px;
             }
             
             .title-option {
                 padding: 1.5rem 2rem;
                 min-width: 120px;
+                font-size: 1.5rem;
             }
             
             .hero {
@@ -1009,14 +1084,17 @@
             }
             
             .title-selection {
-                gap: 1.5rem;
-                flex-direction: column;
-                max-width: 250px;
+                gap: 1rem;
+                flex-direction: row;
+                max-width: 100%;
             }
             
             .title-option {
-                padding: 1.2rem 2rem;
-                width: 100%;
+                padding: 1.2rem 1.5rem;
+                width: auto;
+                flex: 1;
+                min-width: 100px;
+                font-size: 1.3rem;
             }
             
             .hero {
@@ -1052,12 +1130,12 @@
                 <h2 class="selection-title">¿Eres doctor o doctora?</h2>
                 
                 <div class="title-selection">
-                    <div class="title-option" onclick="selectTitle('dr')" id="drOption">
+                    <button class="title-option" onclick="selectTitle('dr')" id="drOption">
                         Dr.
-                    </div>
-                    <div class="title-option" onclick="selectTitle('dra')" id="draOption">
+                    </button>
+                    <button class="title-option" onclick="selectTitle('dra')" id="draOption">
                         Dra.
-                    </div>
+                    </button>
                 </div>
             </div>
         </div>
