@@ -29,7 +29,7 @@
         :root {
             --accent-green: #0047FF;
             --accent-blue: #0047FF;
-            --accent-purple: #ebebeb;
+            --accent-purple: #FFFFFF;
             --dark-bg: #0a0a0a;
             --card-bg: rgba(255, 255, 255, 0.03);
             --border-color: rgba(255, 255, 255, 0.1);
@@ -54,9 +54,9 @@
             top: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(90deg, rgba(0, 255, 136, 0.1), rgba(0, 180, 216, 0.1));
+            background: rgba(0, 71, 255, 0.1);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--accent-green);
+            border-bottom: 1px solid var(--accent-blue);
             padding: 0.8rem 0;
             z-index: 200;
             text-align: center;
@@ -84,7 +84,7 @@
             align-items: center;
             justify-content: center;
             padding: 2rem 0;
-            background: radial-gradient(circle at 50% 50%, rgba(114, 9, 183, 0.1) 0%, transparent 50%);
+            background: radial-gradient(circle at 50% 50%, rgba(0, 71, 255, 0.1) 0%, transparent 50%);
         }
         
         .selection-content {
@@ -136,9 +136,9 @@
         
         .form-input:focus, .form-select:focus {
             outline: none;
-            background: rgba(0, 255, 136, 0.03);
-            border-color: var(--accent-green);
-            box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.1);
+            background: rgba(0, 71, 255, 0.03);
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(0, 71, 255, 0.1);
         }
         
         @keyframes fadeInUp {
@@ -191,7 +191,7 @@
             width: 0;
             height: 0;
             border-radius: 50%;
-            background: linear-gradient(135deg, rgba(0, 255, 136, 0.2), rgba(0, 180, 216, 0.2));
+            background: rgba(0, 71, 255, 0.2);
             transform: translate(-50%, -50%);
             transition: width 0.6s, height 0.6s;
         }
@@ -202,13 +202,13 @@
         }
         
         .title-option:hover {
-            border-color: var(--accent-green);
+            border-color: var(--accent-blue);
             transform: translateY(-5px);
         }
         
         .title-option.selected {
-            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 180, 216, 0.1));
-            border-color: var(--accent-green);
+            background: rgba(0, 71, 255, 0.1);
+            border-color: var(--accent-blue);
             transform: scale(1.05);
         }
         
@@ -228,7 +228,7 @@
         
         .continue-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 71, 255, 0.3);
         }
         
         .profile-cards {
@@ -259,7 +259,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to right, transparent, rgba(0, 255, 136, 0.1), transparent);
+            background: linear-gradient(to right, transparent, rgba(0, 71, 255, 0.1), transparent);
             transition: left 0.5s ease;
         }
         
@@ -269,8 +269,8 @@
         
         .profile-card:hover {
             transform: translateY(-10px);
-            border-color: var(--accent-green);
-            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.2);
+            border-color: var(--accent-blue);
+            box-shadow: 0 20px 40px rgba(0, 71, 255, 0.2);
         }
         
         .card-header {
@@ -338,10 +338,9 @@
         /* Hero */
         .hero {
             padding: 3rem 0 clamp(4rem, 10vw, 6rem);
-            min-height: calc(90vh - 100px);
             display: flex;
             align-items: center;
-            background: radial-gradient(circle at 50% 0%, rgba(0, 255, 136, 0.05) 0%, transparent 50%);
+            background: radial-gradient(circle at 50% 0%, rgba(0, 71, 255, 0.05) 0%, transparent 50%);
         }
         
         .hero-content {
@@ -368,7 +367,7 @@
             margin-bottom: 1.5rem;
             font-family: 'Montserrat', sans-serif;
             line-height: 1.1;
-            background: linear-gradient(135deg, #ffffff, rgba(0, 255, 136, 0.9));
+            background: linear-gradient(135deg, #ffffff, #0047FF);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -400,7 +399,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             display: inline-block;
-            margin-bottom: 3rem;
+            margin-bottom: 1rem;
             position: relative;
             overflow: hidden;
             font-family: 'Montserrat', sans-serif;
@@ -408,14 +407,18 @@
         
         .hero-cta:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(0, 255, 136, 0.3);
+            box-shadow: 0 15px 30px rgba(0, 71, 255, 0.3);
         }
         
+        .stats-section {
+            padding-bottom: clamp(4rem, 10vw, 6rem);
+        }
+
         .hero-stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
-            max-width: 600px;
+            max-width: 900px;
             margin: 0 auto;
         }
         
@@ -442,7 +445,7 @@
         
         .stat-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.15);
+            box-shadow: 0 10px 30px rgba(0, 71, 255, 0.15);
         }
         
         .stat-number {
@@ -450,7 +453,7 @@
             font-weight: 700;
             margin-bottom: 0.5rem;
             font-family: 'Montserrat', sans-serif;
-            color: var(--accent-green);
+            color: var(--accent-blue);
         }
         
         .stat-label {
@@ -465,9 +468,9 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(90deg, rgba(114, 9, 183, 0.1), rgba(0, 180, 216, 0.1));
+            background: rgba(0, 71, 255, 0.1);
             backdrop-filter: blur(20px);
-            border-top: 1px solid var(--accent-purple);
+            border-top: 1px solid var(--accent-blue);
             padding: 1rem;
             z-index: 150;
         }
@@ -511,16 +514,16 @@
         }
         
         .timer-unit {
-            background: rgba(114, 9, 183, 0.2);
+            background: rgba(0, 71, 255, 0.2);
             padding: 0.5rem 0.8rem;
             border-radius: 6px;
-            border: 1px solid var(--accent-purple);
+            border: 1px solid var(--accent-blue);
             min-width: 60px;
             text-align: center;
         }
         
         .banner-cta {
-            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+            background: var(--accent-blue);
             color: white;
             border: none;
             border-radius: 6px;
@@ -533,7 +536,7 @@
         
         .banner-cta:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(114, 9, 183, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 71, 255, 0.3);
         }
 
         /* Sections */
@@ -548,7 +551,7 @@
             margin-bottom: 3rem;
             font-family: 'Montserrat', sans-serif;
             text-align: center;
-            background: linear-gradient(135deg, #ffffff, rgba(0, 255, 136, 0.9));
+            background: linear-gradient(135deg, #ffffff, #0047FF);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -561,13 +564,6 @@
             max-width: 700px;
             margin: -1rem auto 3rem;
             line-height: 1.6;
-        }
-        
-        /* Why Section */
-        .why-section {
-            background: linear-gradient(180deg, rgba(0, 255, 136, 0.02), transparent);
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
         }
         
         /* Benefits */
@@ -606,7 +602,7 @@
         
         .benefit-card:hover {
             transform: translateY(-10px);
-            border-color: var(--accent-green);
+            border-color: var(--accent-blue);
         }
         
         .benefit-icon {
@@ -620,7 +616,7 @@
             font-weight: 700;
             margin-bottom: 1rem;
             font-family: 'Montserrat', sans-serif;
-            color: var(--accent-green);
+            color: var(--accent-blue);
         }
         
         .benefit-description {
@@ -648,12 +644,12 @@
         
         .showcase-item:hover {
             transform: translateY(-10px);
-            border-color: var(--accent-green);
-            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.15);
+            border-color: var(--accent-blue);
+            box-shadow: 0 20px 40px rgba(0, 71, 255, 0.15);
         }
         
         .showcase-browser-bar {
-            background: rgba(0, 255, 136, 0.05);
+            background: rgba(0, 71, 255, 0.05);
             padding: 0.8rem;
             display: flex;
             gap: 0.4rem;
@@ -663,7 +659,7 @@
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            background: var(--accent-green);
+            background: var(--accent-blue);
             opacity: 0.3;
         }
         
@@ -693,7 +689,7 @@
         }
         
         .showcase-link {
-            color: var(--accent-green);
+            color: var(--accent-blue);
             text-decoration: none;
             font-weight: 500;
             transition: opacity 0.3s ease;
@@ -728,19 +724,19 @@
         }
 
         .payment-toggle.active {
-            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 180, 216, 0.1));
-            border-color: var(--accent-green);
+            background: rgba(0, 71, 255, 0.1);
+            border-color: var(--accent-blue);
         }
 
         .payment-toggle:hover:not(.active) {
-            border-color: rgba(0, 255, 136, 0.5);
+            border-color: rgba(0, 71, 255, 0.5);
         }
         
         .pricing-card {
             max-width: 500px;
             margin: 0 auto;
-            background: linear-gradient(135deg, rgba(0, 255, 136, 0.05), rgba(0, 180, 216, 0.05));
-            border: 2px solid var(--accent-green);
+            background: rgba(0, 71, 255, 0.05);
+            border: 2px solid var(--accent-blue);
             padding: 3rem 2rem;
             border-radius: 16px;
             text-align: center;
@@ -755,7 +751,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(0, 255, 136, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(0, 71, 255, 0.1) 0%, transparent 70%);
             animation: rotate 20s linear infinite;
         }
         
@@ -785,20 +781,10 @@
             z-index: 1;
         }
         
-        .pricing-benefits-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            font-family: 'Montserrat', sans-serif;
-            color: var(--accent-green);
-            position: relative;
-            z-index: 1;
-        }
-        
         .pricing-benefits-list {
             list-style: none;
             text-align: left;
-            margin-bottom: 2rem;
+            margin: 2rem auto;
             position: relative;
             z-index: 1;
         }
@@ -806,7 +792,7 @@
         .pricing-benefits-list li {
             padding: 0.8rem 0;
             opacity: 0.8;
-            border-bottom: 1px solid rgba(0, 255, 136, 0.2);
+            border-bottom: 1px solid rgba(0, 71, 255, 0.2);
         }
         
         .pricing-note {
@@ -815,13 +801,13 @@
             border-radius: 8px;
             font-size: 0.9rem;
             margin: 1.5rem 0;
-            border: 1px solid rgba(0, 255, 136, 0.3);
+            border: 1px solid rgba(0, 71, 255, 0.3);
             position: relative;
             z-index: 1;
         }
         
         .pricing-note a {
-            color: var(--accent-green);
+            color: var(--accent-blue);
             text-decoration: underline;
         }
         
@@ -843,7 +829,7 @@
         
         .pricing-cta-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(0, 255, 136, 0.3);
+            box-shadow: 0 15px 30px rgba(0, 71, 255, 0.3);
         }
 
         /* FAQ */
@@ -862,7 +848,7 @@
         }
         
         .faq-item:hover {
-            border-color: rgba(0, 255, 136, 0.3);
+            border-color: rgba(0, 71, 255, 0.3);
         }
         
         .faq-question {
@@ -878,7 +864,7 @@
             font-size: 1.5rem;
             transition: transform 0.3s ease;
             font-weight: 300;
-            color: var(--accent-green);
+            color: var(--accent-blue);
         }
         
         .faq-question.active .faq-arrow {
@@ -919,8 +905,8 @@
         
         .team-member:hover {
             transform: translateY(-5px);
-            border-color: var(--accent-green);
-            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.15);
+            border-color: var(--accent-blue);
+            box-shadow: 0 10px 30px rgba(0, 71, 255, 0.15);
         }
         
         .team-photo {
@@ -929,7 +915,7 @@
             border-radius: 50%;
             margin: 0 auto 1rem;
             object-fit: cover;
-            border: 3px solid var(--accent-green);
+            border: 3px solid var(--accent-blue);
             filter: grayscale(30%);
             transition: filter 0.3s ease;
         }
@@ -943,7 +929,7 @@
             font-weight: 700;
             margin-bottom: 0.3rem;
             font-family: 'Montserrat', sans-serif;
-            color: var(--accent-green);
+            color: var(--accent-blue);
         }
         
         .team-role {
@@ -960,7 +946,7 @@
             border-radius: 12px;
             width: 100%;
             min-height: 500px;
-            border: 2px solid var(--accent-green);
+            border: 2px solid var(--accent-blue);
         }
 
         /* Footer */
@@ -968,7 +954,7 @@
             padding: 3rem 0 2rem;
             border-top: 1px solid var(--border-color);
             text-align: center;
-            background: linear-gradient(180deg, transparent, rgba(114, 9, 183, 0.02));
+            background: linear-gradient(180deg, transparent, rgba(0, 71, 255, 0.02));
         }
         
         .footer-logo {
@@ -992,7 +978,7 @@
         }
         
         .footer-links a:hover {
-            color: var(--accent-green);
+            color: var(--accent-blue);
         }
 
         /* Modal */
@@ -1022,7 +1008,7 @@
 
         .modal-content {
             background: #111;
-            border: 2px solid var(--accent-green);
+            border: 2px solid var(--accent-blue);
             padding: 2rem;
             border-radius: 12px;
             max-width: 500px;
@@ -1042,7 +1028,7 @@
             font-size: 1.3rem;
             font-weight: 700;
             font-family: 'Montserrat', sans-serif;
-            color: var(--accent-green);
+            color: var(--accent-blue);
         }
 
         .modal-close {
@@ -1055,14 +1041,14 @@
         }
 
         .modal-close:hover {
-            color: var(--accent-green);
+            color: var(--accent-blue);
         }
 
         .modal-body h4 {
             font-weight: 700;
             margin: 1.5rem 0 0.5rem;
             font-family: 'Montserrat', sans-serif;
-            color: var(--accent-green);
+            color: var(--accent-blue);
         }
 
         .modal-body ul {
@@ -1091,6 +1077,7 @@
         @media (max-width: 768px) {
             .header {
                 padding: 3rem 0 1rem;
+                margin-top: 40px;
             }
             
             .top-banner {
@@ -1179,6 +1166,10 @@
             
             .hero {
                 padding: 1rem 0 2rem;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -1282,30 +1273,27 @@
                     <h1 class="hero-title" id="heroTitle">Obtén clientes sin<br>bailar en TikTok</h1>
                     <p class="hero-subtitle" id="heroSubtitle"></p>
                     <button class="hero-cta" onclick="scrollToForm()">QUIERO MÁS PACIENTES</button>
-                    
-                    <div class="hero-stats">
-                        <div class="stat-item">
-                            <div class="stat-number">98.9%</div>
-                            <div class="stat-label">Tasa de éxito</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">30 días</div>
-                            <div class="stat-label">Primeros resultados</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">90 días</div>
-                            <div class="stat-label">Garantía completa</div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Why Section -->
-        <section class="section why-section">
+        <!-- Stats Section -->
+        <section class="stats-section">
             <div class="container">
-                <h2 class="section-title scroll-fade">¿Por qué los mejores doctores necesitan presencia digital exclusiva?</h2>
-                <p class="section-subtitle scroll-fade">Tu reputación profesional merece una plataforma digital que refleje tu nivel de excelencia.</p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">98.9%</div>
+                        <div class="stat-label">Tasa de éxito</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">30 días</div>
+                        <div class="stat-label">Primeros resultados</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">90 días</div>
+                        <div class="stat-label">Garantía completa</div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -1404,8 +1392,8 @@
                     <div class="price-subtitle" id="priceSubtitle">Pago único</div>
                     
                     <div class="pricing-benefits">
-                        <h4 class="pricing-benefits-title" id="domainTitle">Tu dominio dramaria.com</h4>
                         <ul class="pricing-benefits-list">
+                            <li id="domainTitle"></li>
                             <li>✓ Marca personal médica profesional</li>
                             <li>✓ Pacientes te encuentran en Google</li>
                             <li>✓ Tu perfil en asistentes de IA (ChatGPT, etc.)</li>
@@ -1576,7 +1564,7 @@
                     5: "Facilitas que los pacientes reserven contigo y reduces el riesgo de que se pierdan en el proceso.",
                     6: "Tienes respaldo constante para mantener tu presencia digital activa y funcionando sin interrupciones."
                 },
-                ctaTitle: "Empieza a construir tu marca personal como doctor hoy"
+                ctaTitle: "Empieza a construir tu marca<br>personal como doctor hoy"
             },
             owner: {
                 title: "Obtén clientes sin<br>bailar en TikTok",
@@ -1713,7 +1701,7 @@
             
             document.getElementById('heroTitle').innerHTML = profileContent.title;
             document.getElementById('heroSubtitle').textContent = profileContent.subtitle;
-            document.getElementById('ctaTitle').textContent = profileContent.ctaTitle;
+            document.getElementById('ctaTitle').innerHTML = profileContent.ctaTitle;
             
             for (let i = 1; i <= 6; i++) {
                 document.getElementById(`benefit${i}`).textContent = profileContent.benefits[i];
@@ -1721,12 +1709,12 @@
             
             // Update domain in pricing
             const domainName = generateDomainName(doctorData.name);
+            const domainTitleElement = document.getElementById('domainTitle');
             
             if (currentProfile === 'owner') {
-                document.getElementById('domainTitle').textContent = `Tu dominio ${domainName}.com`;
+                domainTitleElement.textContent = `✓ Tu dominio ${domainName}.com`;
             } else {
-                const fullTitle = doctorData.title === 'dr' ? 'Dr.' : 'Dra.';
-                document.getElementById('domainTitle').textContent = `Tu dominio ${doctorData.title}${domainName}.com`;
+                domainTitleElement.textContent = `✓ Tu dominio ${doctorData.title}${domainName}.com`;
             }
         }
 
