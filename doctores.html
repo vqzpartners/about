@@ -26,6 +26,15 @@
     <meta name="twitter:image" content="https://cdn.doctores.club/SOCIAL-BANNER.jpg">
     
     <style>
+        :root {
+            --accent-green: #0047FF;
+            --accent-blue: #0047FF;
+            --accent-purple: #ebebeb;
+            --dark-bg: #0a0a0a;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+        
         * {
             margin: 0;
             padding: 0;
@@ -34,13 +43,9 @@
         }
         
         body {
-            background-color: #000000;
+            background-color: var(--dark-bg);
             color: white;
             overflow-x: hidden;
-        }
-        
-        body.main-active {
-            padding-top: 50px;
         }
         
         /* Top Banner */
@@ -49,9 +54,9 @@
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(255, 255, 255, 0.05);
+            background: linear-gradient(90deg, rgba(0, 255, 136, 0.1), rgba(0, 180, 216, 0.1));
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid var(--accent-green);
             padding: 0.8rem 0;
             z-index: 200;
             text-align: center;
@@ -79,6 +84,7 @@
             align-items: center;
             justify-content: center;
             padding: 2rem 0;
+            background: radial-gradient(circle at 50% 50%, rgba(114, 9, 183, 0.1) 0%, transparent 50%);
         }
         
         .selection-content {
@@ -86,6 +92,17 @@
             color: white;
             animation: fadeInUp 1s ease-out;
             width: 100%;
+        }
+        
+        .selection-title {
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, var(--accent-green), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .selection-form {
@@ -108,9 +125,9 @@
         .form-input, .form-select {
             width: 100%;
             padding: 0.8rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 4px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
             color: white;
             font-size: 1rem;
             font-family: 'Roboto Mono', monospace;
@@ -119,13 +136,9 @@
         
         .form-input:focus, .form-select:focus {
             outline: none;
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.4);
-        }
-        
-        .form-select option {
-            background: #000;
-            color: white;
+            background: rgba(0, 255, 136, 0.03);
+            border-color: var(--accent-green);
+            box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.1);
         }
         
         @keyframes fadeInUp {
@@ -155,9 +168,9 @@
         }
         
         .title-option {
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
             padding: 2rem 3rem;
             color: white;
             font-size: 2rem;
@@ -178,7 +191,7 @@
             width: 0;
             height: 0;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.2), rgba(0, 180, 216, 0.2));
             transform: translate(-50%, -50%);
             transition: width 0.6s, height 0.6s;
         }
@@ -189,21 +202,20 @@
         }
         
         .title-option:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.4);
+            border-color: var(--accent-green);
             transform: translateY(-5px);
         }
         
         .title-option.selected {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.6);
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 180, 216, 0.1));
+            border-color: var(--accent-green);
             transform: scale(1.05);
         }
         
         .continue-btn {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: linear-gradient(135deg, var(--accent-green), var(--accent-blue));
+            color: var(--dark-bg);
+            border: none;
             border-radius: 8px;
             padding: 1rem 3rem;
             font-weight: 600;
@@ -215,9 +227,8 @@
         }
         
         .continue-btn:hover {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.5);
             transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
         }
         
         .profile-cards {
@@ -231,9 +242,9 @@
         }
         
         .profile-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
             padding: 2.5rem;
             cursor: pointer;
             transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -248,7 +259,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.05), transparent);
+            background: linear-gradient(to right, transparent, rgba(0, 255, 136, 0.1), transparent);
             transition: left 0.5s ease;
         }
         
@@ -258,8 +269,8 @@
         
         .profile-card:hover {
             transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(255, 255, 255, 0.3);
+            border-color: var(--accent-green);
+            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.2);
         }
         
         .card-header {
@@ -270,8 +281,8 @@
         }
         
         .card-number {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
+            background: linear-gradient(135deg, var(--accent-green), var(--accent-blue));
+            color: var(--dark-bg);
             width: 50px;
             height: 50px;
             border-radius: 8px;
@@ -280,7 +291,6 @@
             justify-content: center;
             font-weight: 700;
             font-size: 1.2rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
         .profile-title {
@@ -310,7 +320,7 @@
         
         /* Header */
         .header {
-            padding: 1rem 0;
+            padding: 4rem 0 1rem;
             position: relative;
             z-index: 100;
         }
@@ -327,10 +337,11 @@
         
         /* Hero */
         .hero {
-            padding: clamp(4rem, 10vw, 6rem) 0;
-            min-height: calc(100vh - 100px);
+            padding: 3rem 0 clamp(4rem, 10vw, 6rem);
+            min-height: calc(90vh - 100px);
             display: flex;
             align-items: center;
+            background: radial-gradient(circle at 50% 0%, rgba(0, 255, 136, 0.05) 0%, transparent 50%);
         }
         
         .hero-content {
@@ -357,6 +368,10 @@
             margin-bottom: 1.5rem;
             font-family: 'Montserrat', sans-serif;
             line-height: 1.1;
+            background: linear-gradient(135deg, #ffffff, rgba(0, 255, 136, 0.9));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .hero-title br {
@@ -375,40 +390,25 @@
         }
         
         .hero-cta {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 4px;
-            padding: 1rem 2rem;
-            font-weight: 500;
-            font-size: 1rem;
+            background: linear-gradient(135deg, var(--accent-green), var(--accent-blue));
+            color: var(--dark-bg);
+            border: none;
+            border-radius: 8px;
+            padding: 1.2rem 2.5rem;
+            font-weight: 600;
+            font-size: 1.1rem;
             cursor: pointer;
             transition: all 0.3s ease;
             display: inline-block;
             margin-bottom: 3rem;
             position: relative;
             overflow: hidden;
-        }
-        
-        .hero-cta::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: left 0.5s ease;
-        }
-        
-        .hero-cta:hover::after {
-            left: 100%;
+            font-family: 'Montserrat', sans-serif;
         }
         
         .hero-cta:hover {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.5);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 255, 136, 0.3);
         }
         
         .hero-stats {
@@ -422,15 +422,27 @@
         .stat-item {
             text-align: center;
             padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
             transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .stat-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-green), var(--accent-blue));
+            border-radius: 12px 12px 0 0;
         }
         
         .stat-item:hover {
-            background: rgba(255, 255, 255, 0.05);
             transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.15);
         }
         
         .stat-number {
@@ -438,6 +450,7 @@
             font-weight: 700;
             margin-bottom: 0.5rem;
             font-family: 'Montserrat', sans-serif;
+            color: var(--accent-green);
         }
         
         .stat-label {
@@ -452,9 +465,9 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: rgba(255, 255, 255, 0.05);
+            background: linear-gradient(90deg, rgba(114, 9, 183, 0.1), rgba(0, 180, 216, 0.1));
             backdrop-filter: blur(20px);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid var(--accent-purple);
             padding: 1rem;
             z-index: 150;
         }
@@ -498,19 +511,19 @@
         }
         
         .timer-unit {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(114, 9, 183, 0.2);
             padding: 0.5rem 0.8rem;
-            border-radius: 4px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            min-width: 50px;
+            border-radius: 6px;
+            border: 1px solid var(--accent-purple);
+            min-width: 60px;
             text-align: center;
         }
         
         .banner-cta {
-            background: rgba(255, 255, 255, 0.1);
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
             color: white;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 4px;
+            border: none;
+            border-radius: 6px;
             padding: 0.6rem 1.2rem;
             font-weight: 500;
             font-size: 0.9rem;
@@ -519,14 +532,14 @@
         }
         
         .banner-cta:hover {
-            background: rgba(255, 255, 255, 0.15);
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(114, 9, 183, 0.3);
         }
 
         /* Sections */
         .section {
             padding: clamp(4rem, 10vw, 6rem) 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid var(--border-color);
         }
         
         .section-title {
@@ -535,6 +548,10 @@
             margin-bottom: 3rem;
             font-family: 'Montserrat', sans-serif;
             text-align: center;
+            background: linear-gradient(135deg, #ffffff, rgba(0, 255, 136, 0.9));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .section-subtitle {
@@ -548,9 +565,9 @@
         
         /* Why Section */
         .why-section {
-            background: rgba(255, 255, 255, 0.02);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: linear-gradient(180deg, rgba(0, 255, 136, 0.02), transparent);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
         }
         
         /* Benefits */
@@ -561,17 +578,35 @@
         }
         
         .benefit-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
             padding: 2rem;
-            border-radius: 8px;
+            border-radius: 12px;
             transition: all 0.5s ease;
+            position: relative;
+        }
+        
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            background: linear-gradient(135deg, var(--accent-green), var(--accent-blue));
+            border-radius: 12px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+        
+        .benefit-card:hover::before {
+            opacity: 0.1;
         }
         
         .benefit-card:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(255, 255, 255, 0.3);
             transform: translateY(-10px);
+            border-color: var(--accent-green);
         }
         
         .benefit-icon {
@@ -585,6 +620,7 @@
             font-weight: 700;
             margin-bottom: 1rem;
             font-family: 'Montserrat', sans-serif;
+            color: var(--accent-green);
         }
         
         .benefit-description {
@@ -603,20 +639,21 @@
         }
         
         .showcase-item {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
             overflow: hidden;
             transition: all 0.5s ease;
         }
         
         .showcase-item:hover {
             transform: translateY(-10px);
-            border-color: rgba(255, 255, 255, 0.3);
+            border-color: var(--accent-green);
+            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.15);
         }
         
         .showcase-browser-bar {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(0, 255, 136, 0.05);
             padding: 0.8rem;
             display: flex;
             gap: 0.4rem;
@@ -626,7 +663,8 @@
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
+            background: var(--accent-green);
+            opacity: 0.3;
         }
         
         .showcase-image-wrapper {
@@ -655,7 +693,7 @@
         }
         
         .showcase-link {
-            color: white;
+            color: var(--accent-green);
             text-decoration: none;
             font-weight: 500;
             transition: opacity 0.3s ease;
@@ -677,9 +715,9 @@
         }
 
         .payment-toggle {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 4px;
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
             padding: 0.8rem 1.5rem;
             color: white;
             font-weight: 500;
@@ -690,22 +728,40 @@
         }
 
         .payment-toggle.active {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.5);
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 180, 216, 0.1));
+            border-color: var(--accent-green);
         }
 
         .payment-toggle:hover:not(.active) {
-            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(0, 255, 136, 0.5);
         }
         
         .pricing-card {
             max-width: 500px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.05), rgba(0, 180, 216, 0.05));
+            border: 2px solid var(--accent-green);
             padding: 3rem 2rem;
-            border-radius: 8px;
+            border-radius: 16px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 255, 136, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
         
         .price {
@@ -713,12 +769,20 @@
             font-weight: 900;
             margin-bottom: 0.5rem;
             font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, var(--accent-green), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            z-index: 1;
         }
         
         .price-subtitle {
             font-size: 1.1rem;
             margin-bottom: 2rem;
             opacity: 0.7;
+            position: relative;
+            z-index: 1;
         }
         
         .pricing-benefits-title {
@@ -726,50 +790,60 @@
             font-weight: 700;
             margin-bottom: 1rem;
             font-family: 'Montserrat', sans-serif;
+            color: var(--accent-green);
+            position: relative;
+            z-index: 1;
         }
         
         .pricing-benefits-list {
             list-style: none;
             text-align: left;
             margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
         }
         
         .pricing-benefits-list li {
             padding: 0.8rem 0;
             opacity: 0.8;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(0, 255, 136, 0.2);
         }
         
         .pricing-note {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.3);
             padding: 1rem;
-            border-radius: 4px;
+            border-radius: 8px;
             font-size: 0.9rem;
             margin: 1.5rem 0;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            position: relative;
+            z-index: 1;
         }
         
         .pricing-note a {
-            color: white;
+            color: var(--accent-green);
             text-decoration: underline;
         }
         
         .pricing-cta-btn {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 4px;
-            padding: 1rem 2rem;
-            font-weight: 500;
+            background: linear-gradient(135deg, var(--accent-green), var(--accent-blue));
+            color: var(--dark-bg);
+            border: none;
+            border-radius: 8px;
+            padding: 1.2rem 2rem;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             width: 100%;
             max-width: 300px;
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+            z-index: 1;
         }
         
         .pricing-cta-btn:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 255, 136, 0.3);
         }
 
         /* FAQ */
@@ -779,16 +853,16 @@
         }
         
         .faq-item {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
             margin-bottom: 1rem;
             overflow: hidden;
             transition: all 0.3s ease;
         }
         
         .faq-item:hover {
-            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(0, 255, 136, 0.3);
         }
         
         .faq-question {
@@ -804,6 +878,7 @@
             font-size: 1.5rem;
             transition: transform 0.3s ease;
             font-weight: 300;
+            color: var(--accent-green);
         }
         
         .faq-question.active .faq-arrow {
@@ -835,16 +910,17 @@
         
         .team-member {
             text-align: center;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
             padding: 2rem;
-            border-radius: 8px;
+            border-radius: 12px;
             transition: all 0.3s ease;
         }
         
         .team-member:hover {
-            background: rgba(255, 255, 255, 0.05);
             transform: translateY(-5px);
+            border-color: var(--accent-green);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.15);
         }
         
         .team-photo {
@@ -853,7 +929,7 @@
             border-radius: 50%;
             margin: 0 auto 1rem;
             object-fit: cover;
-            border: 2px solid rgba(255, 255, 255, 0.2);
+            border: 3px solid var(--accent-green);
             filter: grayscale(30%);
             transition: filter 0.3s ease;
         }
@@ -867,6 +943,7 @@
             font-weight: 700;
             margin-bottom: 0.3rem;
             font-family: 'Montserrat', sans-serif;
+            color: var(--accent-green);
         }
         
         .team-role {
@@ -880,17 +957,18 @@
         }
         
         .form-container iframe {
-            border-radius: 8px;
+            border-radius: 12px;
             width: 100%;
             min-height: 500px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 2px solid var(--accent-green);
         }
 
         /* Footer */
         .footer {
             padding: 3rem 0 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid var(--border-color);
             text-align: center;
+            background: linear-gradient(180deg, transparent, rgba(114, 9, 183, 0.02));
         }
         
         .footer-logo {
@@ -914,7 +992,7 @@
         }
         
         .footer-links a:hover {
-            color: white;
+            color: var(--accent-green);
         }
 
         /* Modal */
@@ -926,7 +1004,7 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(10px);
         }
 
@@ -944,9 +1022,9 @@
 
         .modal-content {
             background: #111;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 2px solid var(--accent-green);
             padding: 2rem;
-            border-radius: 8px;
+            border-radius: 12px;
             max-width: 500px;
             width: 90%;
             max-height: 80vh;
@@ -964,6 +1042,7 @@
             font-size: 1.3rem;
             font-weight: 700;
             font-family: 'Montserrat', sans-serif;
+            color: var(--accent-green);
         }
 
         .modal-close {
@@ -976,13 +1055,14 @@
         }
 
         .modal-close:hover {
-            opacity: 0.7;
+            color: var(--accent-green);
         }
 
         .modal-body h4 {
             font-weight: 700;
             margin: 1.5rem 0 0.5rem;
             font-family: 'Montserrat', sans-serif;
+            color: var(--accent-green);
         }
 
         .modal-body ul {
@@ -1009,8 +1089,8 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            body.main-active {
-                padding-top: 45px;
+            .header {
+                padding: 3rem 0 1rem;
             }
             
             .top-banner {
@@ -1043,7 +1123,7 @@
             
             .hero {
                 min-height: auto;
-                padding: 3rem 0;
+                padding: 2rem 0 3rem;
             }
             
             .hero-stats {
@@ -1066,8 +1146,8 @@
         }
         
         @media (max-width: 480px) {
-            body.main-active {
-                padding-top: 40px;
+            .header {
+                padding: 2rem 0 1rem;
             }
             
             .top-banner {
@@ -1098,7 +1178,7 @@
             }
             
             .hero {
-                padding: 2rem 0;
+                padding: 1rem 0 2rem;
             }
         }
     </style>
@@ -1114,17 +1194,44 @@
         <div class="timer-content">
             <span class="timer-text">⚡ OFERTA DE LANZAMIENTO TERMINA EN:</span>
             <div class="timer-display" id="timerDisplay">
-                <div class="timer-unit" id="days">25D</div>
-                <div class="timer-unit" id="hours">00H</div>
-                <div class="timer-unit" id="minutes">00M</div>
-                <div class="timer-unit" id="seconds">00S</div>
+                <div class="timer-unit" id="days">25</div>
+                <div class="timer-unit" id="hours">00</div>
+                <div class="timer-unit" id="minutes">00</div>
+                <div class="timer-unit" id="seconds">00</div>
             </div>
             <button class="banner-cta" onclick="scrollToForm()">ASEGURAR PRECIO DE POR VIDA</button>
         </div>
     </div>
 
+    <!-- Profile Selection Screen -->
+    <div id="profileScreen" class="selection-screen">
+        <div class="container">
+            <div class="selection-content">
+                <h2 class="selection-title">¿Cuál es tu perfil?</h2>
+                
+                <div class="profile-cards">
+                    <div class="profile-card" onclick="selectProfile('employee')">
+                        <div class="card-header">
+                            <div class="card-number">01</div>
+                        </div>
+                        <h3 class="profile-title">Trabajo en una clínica</h3>
+                        <p class="profile-description">Soy doctor especialista y busco que los pacientes me encuentren por mi nombre y especialidad</p>
+                    </div>
+                    
+                    <div class="profile-card" onclick="selectProfile('owner')">
+                        <div class="card-header">
+                            <div class="card-number">02</div>
+                        </div>
+                        <h3 class="profile-title">Tengo mi propia clínica</h3>
+                        <p class="profile-description">Necesito generar más flujo de pacientes y posicionar mi clínica por encima de la competencia</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Title Selection Screen -->
-    <div id="titleScreen" class="selection-screen">
+    <div id="titleScreen" class="selection-screen" style="display: none;">
         <div class="container">
             <div class="selection-content">
                 <h2 class="selection-title">¿Eres doctor o doctora?</h2>
@@ -1145,41 +1252,14 @@
     <div id="nameScreen" class="selection-screen" style="display: none;">
         <div class="container">
             <div class="selection-content">
-                <h2 class="selection-title">¿Cuál es tu nombre?</h2>
+                <h2 class="selection-title" id="nameTitle">¿Cuál es tu nombre profesional?</h2>
                 
                 <div class="form-group">
                     <input type="text" class="form-input" id="doctorName" placeholder="" autofocus>
                     <p class="selection-subtitle" id="nameExample" style="margin-top: 1rem; margin-bottom: 0;">Ej: Juan Pérez</p>
                 </div>
                 
-                <button class="continue-btn" onclick="goToProfileSelection()">Continuar</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Profile Selection Screen -->
-    <div id="profileScreen" class="selection-screen" style="display: none;">
-        <div class="container">
-            <div class="selection-content">
-                <h2 class="selection-title">Selecciona tu perfil</h2>
-                
-                <div class="profile-cards">
-                    <div class="profile-card" onclick="selectProfile('employee')">
-                        <div class="card-header">
-                            <div class="card-number">01</div>
-                        </div>
-                        <h3 class="profile-title">Doctor especialista en clínica</h3>
-                        <p class="profile-description">Busco que los pacientes me encuentren por mi nombre y especialidad, no solo por la clínica donde trabajo</p>
-                    </div>
-                    
-                    <div class="profile-card" onclick="selectProfile('owner')">
-                        <div class="card-header">
-                            <div class="card-number">02</div>
-                        </div>
-                        <h3 class="profile-title">Propietario de clínica</h3>
-                        <p class="profile-description">Necesito generar más flujo de pacientes y posicionar mi clínica por encima de la competencia local</p>
-                    </div>
-                </div>
+                <button class="continue-btn" onclick="goToMainPage()">Continuar</button>
             </div>
         </div>
     </div>
@@ -1476,8 +1556,7 @@
                 </ul>
 
                 <h4>Paquete de Gestión Opcional</h4>
-                <p><strong>¿Quieres agregar el paquete de gestión? ($475 / mes)</strong></p>
-                <p>Nuestro equipo se encargará de crear contenido para mantener tu posición y podrás solicitar modificaciones ilimitadas.</p>
+                <p><strong>¿Quieres agregar el paquete de gestión? ($350 / mes)</strong></p>
                 
                 <p><strong>Nota:</strong> Los cambios estructurales se cotizarán por separado según la complejidad del trabajo requerido.</p>
             </div>
@@ -1520,6 +1599,43 @@
             name: ''
         };
 
+        function selectProfile(profile) {
+            currentProfile = profile;
+            
+            // Update name screen title based on profile
+            const nameTitle = document.getElementById('nameTitle');
+            const nameExample = document.getElementById('nameExample');
+            
+            if (profile === 'owner') {
+                nameTitle.textContent = '¿Cuál es el nombre de tu clínica?';
+                nameExample.textContent = 'Ej: Clínica Dental García';
+            } else {
+                nameTitle.textContent = '¿Cuál es tu nombre profesional?';
+                nameExample.textContent = 'Ej: Juan Pérez';
+            }
+            
+            // Show title screen for employees or name screen for owners
+            document.getElementById('profileScreen').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('profileScreen').style.display = 'none';
+                if (profile === 'employee') {
+                    document.getElementById('titleScreen').style.display = 'flex';
+                    document.getElementById('titleScreen').style.opacity = '0';
+                    setTimeout(() => {
+                        document.getElementById('titleScreen').style.opacity = '1';
+                    }, 50);
+                } else {
+                    // For clinic owners, skip title selection
+                    doctorData.title = '';
+                    document.getElementById('nameScreen').style.display = 'flex';
+                    document.getElementById('nameScreen').style.opacity = '0';
+                    setTimeout(() => {
+                        document.getElementById('nameScreen').style.opacity = '1';
+                    }, 50);
+                }
+            }, 500);
+        }
+
         function selectTitle(title) {
             doctorData.title = title;
             
@@ -1550,36 +1666,20 @@
             }, 300);
         }
 
-        function goToProfileSelection() {
+        function goToMainPage() {
             const nameInput = document.getElementById('doctorName');
             
             if (!nameInput.value.trim()) {
-                alert('Por favor ingresa tu nombre');
+                alert('Por favor ingresa ' + (currentProfile === 'owner' ? 'el nombre de tu clínica' : 'tu nombre'));
                 nameInput.focus();
                 return;
             }
             
             doctorData.name = nameInput.value.trim();
-            
-            // Show profile screen
-            document.getElementById('nameScreen').style.opacity = '0';
-            setTimeout(() => {
-                document.getElementById('nameScreen').style.display = 'none';
-                document.getElementById('profileScreen').style.display = 'flex';
-                document.getElementById('profileScreen').style.opacity = '0';
-                setTimeout(() => {
-                    document.getElementById('profileScreen').style.opacity = '1';
-                }, 50);
-            }, 500);
-        }
-
-        function selectProfile(profile) {
-            currentProfile = profile;
             updateContent();
             
             // Show top banner
             const topBanner = document.getElementById('topBanner');
-            document.body.classList.add('main-active');
             topBanner.classList.add('show');
             
             // Show timer banner
@@ -1588,10 +1688,10 @@
                 timerBanner.classList.add('show');
             }
             
-            // Hide profile screen and show main page
-            document.getElementById('profileScreen').style.opacity = '0';
+            // Hide name screen and show main page
+            document.getElementById('nameScreen').style.opacity = '0';
             setTimeout(() => {
-                document.getElementById('profileScreen').classList.add('hide');
+                document.getElementById('nameScreen').style.display = 'none';
                 const mainPage = document.getElementById('mainPage');
                 mainPage.classList.add('active');
                 handleScrollAnimations();
@@ -1621,8 +1721,13 @@
             
             // Update domain in pricing
             const domainName = generateDomainName(doctorData.name);
-            const fullTitle = doctorData.title === 'dr' ? 'Dr.' : 'Dra.';
-            document.getElementById('domainTitle').textContent = `Tu dominio ${doctorData.title}${domainName}.com`;
+            
+            if (currentProfile === 'owner') {
+                document.getElementById('domainTitle').textContent = `Tu dominio ${domainName}.com`;
+            } else {
+                const fullTitle = doctorData.title === 'dr' ? 'Dr.' : 'Dra.';
+                document.getElementById('domainTitle').textContent = `Tu dominio ${doctorData.title}${domainName}.com`;
+            }
         }
 
         function selectPaymentOption(option) {
@@ -1669,10 +1774,10 @@
                 const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
                 
-                document.getElementById('days').textContent = days + 'D';
-                document.getElementById('hours').textContent = hours.toString().padStart(2, '0') + 'H';
-                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0') + 'M';
-                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0') + 'S';
+                document.getElementById('days').textContent = days.toString().padStart(2, '0');
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
             } else {
                 document.getElementById('timerBanner').style.display = 'none';
             }
