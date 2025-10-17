@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Completado - Doctores.club</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&family=Roboto+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://vqzpartners.com/get/images/favicon.png" type="image/x-icon">
+    
+    <meta name="title" content="Doctores.club: Servicios digitales para doctores">
+    <meta name="description" content="Posicionamiento digital para doctores en Latinoamérica. Aseguramos tu lugar en Google para que los pacientes te encuentren a ti, no a tu competencia. ¡Resultados garantizados en 90 días!">
+    <meta name="keywords" content="website, seo, posicionamiento, agenda, doctores, servicios">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="canonical" href="https://vqzpartners.com">
+    
+    <meta property="og:type" content="profile">
+    <meta property="og:title" content="Doctores club: Servicios digitales para doctores">
+    <meta property="og:description" content="Posicionamiento digital para doctores en Latinoamérica. Aseguramos tu lugar en Google para que los pacientes te encuentren a ti, no a tu competencia. ¡Resultados garantizados en 90 días!">
+    <meta property="og:image" content="https://cdn.doctores.club/SOCIAL-BANNER.jpg">
+    <meta property="og:url" content="https://https://vqzpartners.com">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Doctores club: Servicios digitales para doctores">
+    <meta name="twitter:description" content="Posicionamiento digital para doctores en Latinoamérica. Aseguramos tu lugar en Google para que los pacientes te encuentren a ti, no a tu competencia. ¡Resultados garantizados en 90 días!">
+    <meta name="twitter:image" content="https://cdn.doctores.club/SOCIAL-BANNER.jpg">
+
+    <style>
+        :root {
+            --accent-blue: #0047FF;
+            --dark-bg: #0a0a0a;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Roboto Mono', monospace;
+            line-height: 1.6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--dark-bg);
+            text-align: center;
+            color: white;
+            padding: 2rem;
+        }
+
+        .content-container {
+            z-index: 10;
+            position: relative;
+            animation: fadeIn 1s ease-out;
+            background-color: var(--card-bg);
+            padding: 3rem;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            max-width: 90%;
+            width: 600px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .logo-image {
+            max-width: 200px;
+            height: auto;
+            margin-bottom: 2.5rem;
+        }
+        
+        .main-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--accent-blue);
+        }
+
+        .sub-text {
+            font-size: 1.2rem;
+            opacity: 0.7;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 1.8rem;
+            }
+            .sub-text {
+                font-size: 1rem;
+            }
+             .logo-image {
+                max-width: 150px;
+            }
+            .content-container {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="content-container">
+        <img src="https://vqzpartners.com/get/images/white-web-logo.svg" alt="Logo Doctores.club" class="logo-image">
+        <h1 class="main-title" id="main-title">Cargando...</h1>
+        <p class="sub-text" id="sub-text">Por favor, espera.</p>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const leadData = urlParams.get('lead');
+            
+            let name = 'Cliente';
+
+            if (leadData) {
+                const dataParts = leadData.split('+');
+                // Decode the name in case it has URL-encoded characters
+                const decodedName = decodeURIComponent(dataParts[0] || name);
+                name = decodedName;
+            }
+
+            const mainTitleElement = document.getElementById('main-title');
+            const subTextElement = document.getElementById('sub-text');
+
+            mainTitleElement.textContent = `Todo listo, ${name}`;
+            subTextElement.textContent = `Nuestro equipo te contactará muy pronto por WhatsApp.`;
+        });
+    </script>
+
+</body>
+</html>
