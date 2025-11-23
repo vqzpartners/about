@@ -21,8 +21,8 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      /* CAMBIO: Aumentado el espacio al final de la página para el menú flotante */
-      padding-bottom: 200px; 
+      /* CAMBIO: Aumentado el espacio al final de la página para asegurar scroll */
+      padding-bottom: 300px; 
     }
 
     .container {
@@ -202,8 +202,8 @@
       padding-top: 20px;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
       
-      /* CAMBIO: Espacio extra específico para este elemento */
-      padding-bottom: 120px; 
+      /* CAMBIO PRINCIPAL: Aumentado de 120px a 250px para evitar que el menú lo tape */
+      padding-bottom: 250px; 
       display: block;
     }
 
@@ -235,9 +235,9 @@
         margin: 0.3rem;
       }
       
-      /* CAMBIO: Aún más espacio en móviles donde el menú suele ser más grande */
+      /* CAMBIO: Aseguramos suficiente espacio también en móvil */
       body {
-        padding-bottom: 220px;
+        padding-bottom: 320px;
       }
     }
 
