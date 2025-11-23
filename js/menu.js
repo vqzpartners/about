@@ -7,9 +7,9 @@ function createNavigationMenu() {
   // Define the menu items
   const menuItems = [
     { href: '/', icon: '🏚️', text: 'Home' },
-    { href: '/nosotros', icon: '👽', text: 'About' },
+    { href: '/nosotros', icon: '👽', text: 'Nosotros' },
     { href: '/negocios', icon: '💎', text: 'Partners' },
-    { href: '/contacto', icon: '💬', text: 'Contact' },
+    { href: '/contacto', icon: '💬', text: 'Contacto' },
   ];
   
   menuItems.forEach(item => {
