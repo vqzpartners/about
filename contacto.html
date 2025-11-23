@@ -40,34 +40,47 @@
     <link rel="icon" href="https://vqzpartners.com/get/images/favicon.png">
     
     <style type="text/css">
-        html { 
-            margin: 0; 
-            height: 100%; 
-            overflow: hidden; 
-        }
-        body {
+        html, body {
             margin: 0;
             padding: 0;
-            height: 100vh;
+            min-height: 100vh; /* Ensures full height */
             font-family: 'Roboto Mono', monospace;
-            /* Si usas fondo transparente en el iframe, aquí puedes definir el color de fondo de la página */
-            background-color: #ffffff; 
+            background-color: #000000; /* Black Background */
+            color: #ffffff;
         }
-        iframe { 
-            position: absolute; 
-            top: 0; 
-            right: 0; 
-            bottom: 0; 
-            left: 0; 
-            border: 0; 
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Container to constrain width */
+        .form-container {
+            width: 100%;
+            max-width: 500px; /* This stops it from being fullscreen wide */
+            padding: 20px;
+            box-sizing: border-box;
         }
     </style>
 </head>
 <body>
-    <!-- Nuevo código del formulario integrado con estilo Full Screen -->
-    <iframe data-tally-src="https://tally.so/embed/31LvJL?alignLeft=1&hideTitle=1&transparentBackground=1" loading="lazy" width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0" title="VQZ PARTNERS"></iframe>
     
-    <!-- Nuevo Script de Tally proporcionado -->
+    <!-- Container limiting width -->
+    <div class="form-container">
+        <iframe 
+            data-tally-src="https://tally.so/embed/31LvJL?hideTitle=1&transparentBackground=1&dynamicHeight=1" 
+            loading="lazy" 
+            width="100%" 
+            height="300" 
+            frameborder="0" 
+            marginheight="0" 
+            marginwidth="0" 
+            title="VQZ PARTNERS">
+        </iframe>
+    </div>
+    
     <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
 </body>
 </html>
