@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Partners</title>
+  <title>Nuestros Aliados</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="icon" href="get/images/favicon.png">
   <style>
@@ -189,13 +189,22 @@
       display: none;
     }
 
+    /* DISCLAIMER STYLE */
+    .privacy-disclaimer {
+      margin-top: 40px;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.5); /* Greyish text */
+      font-size: 0.85rem;
+      font-style: italic;
+      width: 100%;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
 
     /* Make sure the body has enough padding at the bottom */
     body {
-      padding-bottom: 80px; /* Adjust based on your navigation height */
+      padding-bottom: 80px; 
     }
-
-
 
     /* Responsive Styles */
     @media (max-width: 1024px) {
@@ -260,7 +269,7 @@
     </header>
 
     <div class="partners-section">
-      <h1 class="partners-title">Our Partners</h1>
+      <h1 class="partners-title">Nuestros Aliados</h1>
       
       <div class="filter-controls">
         <!-- Filter buttons will be dynamically generated -->
@@ -271,57 +280,45 @@
       </div>
       
       <div class="no-results">
-        No partners match the selected filter.
+        No hay aliados en la categoría seleccionada.
       </div>
+
+      <!-- SPANISH DISCLAIMER HERE -->
+      <p class="privacy-disclaimer">
+        * Algunos socios no se muestran por razones de privacidad.
+      </p>
+
     </div>
   </div>
   <script>
-    // Category colors configuration
+    // Category colors configuration (Translated Keys)
     const categoryColors = {
-      education: { bg: "rgba(64, 115, 255, 0.2)", text: "rgb(110, 165, 255)" },
-      technology: { bg: "rgba(99, 102, 241, 0.2)", text: "rgb(165, 180, 252)" },
-      finance: { bg: "rgba(0, 179, 126, 0.2)", text: "rgb(52, 211, 153)" },
-      healthcare: { bg: "rgba(248, 113, 113, 0.2)", text: "rgb(252, 165, 165)" },
-      media: { bg: "rgba(245, 158, 11, 0.2)", text: "rgb(252, 211, 77)" },
+      educación: { bg: "rgba(64, 115, 255, 0.2)", text: "rgb(110, 165, 255)" },
+      tecnología: { bg: "rgba(99, 102, 241, 0.2)", text: "rgb(165, 180, 252)" },
+      finanzas: { bg: "rgba(0, 179, 126, 0.2)", text: "rgb(52, 211, 153)" },
+      salud: { bg: "rgba(248, 113, 113, 0.2)", text: "rgb(252, 165, 165)" },
+      medios: { bg: "rgba(245, 158, 11, 0.2)", text: "rgb(252, 211, 77)" },
       retail: { bg: "rgba(236, 72, 153, 0.2)", text: "rgb(249, 168, 212)" },
-      nonprofit: { bg: "rgba(139, 92, 246, 0.2)", text: "rgb(196, 181, 253)" },
+      ong: { bg: "rgba(139, 92, 246, 0.2)", text: "rgb(196, 181, 253)" },
       gaming: { bg: "rgba(16, 185, 129, 0.2)", text: "rgb(110, 231, 183)" },
-      food: { bg: "rgba(220, 38, 38, 0.2)", text: "rgb(254, 202, 202)" }
-      // Add more categories and colors as needed
+      comida: { bg: "rgba(220, 38, 38, 0.2)", text: "rgb(254, 202, 202)" }
     };
 
-    // Partner data
-    // =========================================================================
-    // TEMPLATE TO ADD MORE PARTNERS:
-    // {
-    //   name: "Partner Name",
-    //   logo: "get/images/partners/logo.jpg",
-    //   category: "category", // must match one of the categories in categoryColors
-    //   description: "Description of partner and their services.",
-    //   website: "https://example.com/partner"
-    // },
-    // =========================================================================
+    // Partner data (Translated)
     const partners = [
       {
         name: "OdontoEstética",
-        logo: "get/images/odonto-logo.png",
-        category: "healthcare",
-        description: "Is the leading clinic in Panama, offering Aesthetic, Biomimetic and Biological Dentistry services",
-        website: "https://vqzpartners.launch.ink/gjvriln"
-      },
-      {
-        name: "Launch.Ink",
-        logo: "get/images/launch.png",
-        category: "technology",
-        description: "The all-in-one platform for all your biz links and tools",
-        website: "https://vqzpartners.launch.ink/wso50hb"
+        logo: "https://cdn.vqzpartners.com/odonto-logo.png",
+        category: "salud", // Updated from healthcare
+        description: "Es la clínica líder en Panamá, ofreciendo servicios de Odontología Estética, Biomimética y Biológica.",
+        website: "https://odontoestetica.com.pa"
       },
       {
         name: "Lulo Panamá",
-        logo: "get/images/luloo-logo.png",
-        category: "finance",
-        description: "revolutionizing personal loan advisory in Panamá for a fast, dynamic and secure process",
-        website: "https://vqzpartners.launch.ink/nik10v4"
+        logo: "https://cdn.vqzpartners.com/lulo.png",
+        category: "finanzas", // Updated from finance
+        description: "Revolucionando la asesoría de préstamos personales en Panamá con un proceso rápido, dinámico y seguro.",
+        website: "https://lulopanama.com"
       }
     ];
 
@@ -336,6 +333,7 @@
       let styleRules = "";
       
       Object.entries(categoryColors).forEach(([category, colors]) => {
+        // Ensure category name is CSS safe (though basic Spanish words are usually fine)
         styleRules += `
           .tag-${category} {
             background-color: ${colors.bg};
@@ -353,11 +351,11 @@
       // Get unique categories from partners
       const categories = [...new Set(partners.map(partner => partner.category))];
       
-      // Create "All" button
+      // Create "All" button (Spanish)
       const allButton = document.createElement('button');
       allButton.className = 'filter-btn active';
       allButton.setAttribute('data-filter', 'all');
-      allButton.textContent = 'All Partners';
+      allButton.textContent = 'Todos'; 
       filterControls.appendChild(allButton);
       
       // Create category buttons
@@ -365,6 +363,7 @@
         const button = document.createElement('button');
         button.className = 'filter-btn';
         button.setAttribute('data-filter', category);
+        // Capitalize first letter
         button.textContent = category.charAt(0).toUpperCase() + category.slice(1);
         filterControls.appendChild(button);
       });
@@ -415,7 +414,7 @@
           <h3 class="partner-name">${partner.name}</h3>
           <span class="partner-tag ${categoryClass}">${partner.category.charAt(0).toUpperCase() + partner.category.slice(1)}</span>
           <p class="partner-description">${partner.description}</p>
-          <a href="${partner.website}" target="_blank" class="visit-btn">Visit Partner</a>
+          <a href="${partner.website}" target="_blank" class="visit-btn">Ver Sitio</a>
         `;
         
         partnersGrid.appendChild(partnerCard);
