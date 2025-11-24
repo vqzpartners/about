@@ -8,7 +8,6 @@ function createNavigationMenu() {
   const menuItems = [
     { href: '/', icon: '🏚️', text: 'Home' },
     { href: '/nosotros', icon: '👽', text: 'Nosotros' },
-    { href: '/negocios', icon: '💎', text: 'Partners' },
     { href: '/contacto', icon: '💬', text: 'Contacto' },
   ];
   
