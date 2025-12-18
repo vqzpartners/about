@@ -3,109 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Completado - Doctores.club</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&family=Roboto+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="https://vqzpartners.com/get/images/favicon.png" type="image/x-icon">
     
-    <meta name="title" content="Doctores.club: Servicios digitales para doctores">
-    <meta name="description" content="Posicionamiento digital para doctores en Latinoamérica. Aseguramos tu lugar en Google para que los pacientes te encuentren a ti, no a tu competencia. ¡Resultados garantizados en 90 días!">
-    <meta name="keywords" content="website, seo, posicionamiento, agenda, doctores, servicios">
+    <!-- No Index, No Follow -->
     <meta name="robots" content="noindex, nofollow">
-    <link rel="canonical" href="https://vqzpartners.com">
     
-    <meta property="og:type" content="profile">
-    <meta property="og:title" content="Doctores club: Servicios digitales para doctores">
-    <meta property="og:description" content="Posicionamiento digital para doctores en Latinoamérica. Aseguramos tu lugar en Google para que los pacientes te encuentren a ti, no a tu competencia. ¡Resultados garantizados en 90 días!">
-    <meta property="og:image" content="https://cdn.doctores.club/SOCIAL-BANNER.jpg">
-    <meta property="og:url" content="https://https://vqzpartners.com">
+    <title>Todo listo</title>
     
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Doctores club: Servicios digitales para doctores">
-    <meta name="twitter:description" content="Posicionamiento digital para doctores en Latinoamérica. Aseguramos tu lugar en Google para que los pacientes te encuentren a ti, no a tu competencia. ¡Resultados garantizados en 90 días!">
-    <meta name="twitter:image" content="https://cdn.doctores.club/SOCIAL-BANNER.jpg">
-
+    <!-- Favicon -->
+    <link rel="icon" href="https://cdn.vqzpartners.com/favicon.png">
+    
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        :root {
-            --accent-blue: #0047FF;
-            --dark-bg: #0a0a0a;
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --border-color: rgba(255, 255, 255, 0.1);
-        }
-
+        /* Base Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        html, body {
-            height: 100%;
-        }
-
         body {
-            font-family: 'Roboto Mono', monospace;
-            line-height: 1.6;
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--dark-bg);
-            text-align: center;
-            color: white;
-            padding: 2rem;
+            align-items: center; /* Vertically centers the content block */
+            justify-content: center; /* Horizontally centers the content block */
+            min-height: 100vh;
+            padding: 24px;
+            -webkit-font-smoothing: antialiased;
         }
 
+        /* Main Card Container */
         .content-container {
-            z-index: 10;
-            position: relative;
-            animation: fadeIn 1s ease-out;
-            background-color: var(--card-bg);
-            padding: 3rem;
-            border-radius: 15px;
-            border: 1px solid var(--border-color);
-            max-width: 90%;
-            width: 600px;
+            width: 100%;
+            max-width: 600px;
+            text-align: left; /* Aligns text to the left as requested */
+            animation: fadeIn 0.8s ease-out;
         }
 
+        /* Logo */
+        .logo-image {
+            height: 32px; /* Adjustable based on logo aspect ratio */
+            width: auto;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        
+        /* Typography */
+        h1 {
+            font-weight: 700;
+            font-size: 36px;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #A1A1AA; /* Light gray for subtitle to create hierarchy */
+            font-weight: 400;
+            max-width: 480px;
+        }
+
+        /* Highlight Color for the Name */
+        .highlight {
+            color: #ffffff;
+            border-bottom: 1px solid #333;
+        }
+
+        /* Animation */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .logo-image {
-            max-width: 200px;
-            height: auto;
-            margin-bottom: 2.5rem;
-        }
-        
-        .main-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--accent-blue);
-        }
-
-        .sub-text {
-            font-size: 1.2rem;
-            opacity: 0.7;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .main-title {
-                font-size: 1.8rem;
+        /* Mobile Responsiveness */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 28px;
             }
-            .sub-text {
-                font-size: 1rem;
+            p {
+                font-size: 16px;
             }
-             .logo-image {
-                max-width: 150px;
-            }
-            .content-container {
-                padding: 2rem;
+            .logo-image {
+                margin-bottom: 30px;
             }
         }
     </style>
@@ -113,30 +99,41 @@
 <body>
 
     <main class="content-container">
-        <img src="https://vqzpartners.com/get/images/white-web-logo.svg" alt="Logo Doctores.club" class="logo-image">
-        <h1 class="main-title" id="main-title">Cargando...</h1>
-        <p class="sub-text" id="sub-text">Por favor, espera.</p>
+        <!-- Logo -->
+        <img src="https://vqzpartners.com/get/images/white-web-logo.svg" alt="Logo" class="logo-image">
+        
+        <!-- Text Content -->
+        <h1 id="main-title">Procesando...</h1>
+        <p id="sub-text">Un momento, por favor.</p>
     </main>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Get params from URL
             const urlParams = new URLSearchParams(window.location.search);
             const leadData = urlParams.get('lead');
             
-            let name = 'Cliente';
+            let name = ''; // Default empty
 
             if (leadData) {
+                // Logic to handle "Name+Email" format if present
                 const dataParts = leadData.split('+');
-                // Decode the name in case it has URL-encoded characters
-                const decodedName = decodeURIComponent(dataParts[0] || name);
+                // Decode URI to handle special characters (accents, etc.)
+                const decodedName = decodeURIComponent(dataParts[0]);
                 name = decodedName;
             }
 
             const mainTitleElement = document.getElementById('main-title');
             const subTextElement = document.getElementById('sub-text');
 
-            mainTitleElement.textContent = `Todo listo, ${name}`;
-            subTextElement.textContent = `Nuestro equipo te contactará muy pronto por WhatsApp.`;
+            // Update Text
+            if(name) {
+                mainTitleElement.innerHTML = `Todo listo, <span class="highlight">${name}</span>.`;
+            } else {
+                mainTitleElement.textContent = `Todo listo.`;
+            }
+            
+            subTextElement.textContent = `Nuestro equipo ha recibido tus datos y te contactará muy pronto por WhatsApp.`;
         });
     </script>
 
