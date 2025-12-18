@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- No Index, No Follow as requested -->
+    <!-- No Index, No Follow -->
     <meta name="robots" content="noindex, nofollow">
     
-    <title>Asegura tu lugar</title>
+    <title>Captura clientes activamente buscandote.</title>
     
     <!-- Favicon -->
     <link rel="icon" href="https://cdn.vqzpartners.com/favicon.png">
@@ -31,33 +31,36 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Container to manage width and alignment */
+        /* Main Container */
         .container {
             width: 100%;
-            max-width: 600px; /* Limits width for better readability */
+            max-width: 800px; /* Wide enough for the form, narrow enough for reading */
             padding: 60px 24px;
             display: flex;
             flex-direction: column;
-            align-items: flex-start; /* Aligns content to the left */
         }
 
         /* Typography */
         h1 {
             font-weight: 700;
-            font-size: 32px; /* Adjustable based on preference */
+            font-size: 32px;
             line-height: 1.3;
-            margin-bottom: 32px;
+            margin: 0 0 40px 0; /* Margin bottom creates space between text and form */
             text-align: left;
+        }
+
+        /* Iframe Styling */
+        iframe {
+            display: block; /* Removes any default inline spacing */
         }
 
         /* Mobile Responsiveness */
         @media (max-width: 480px) {
             h1 {
                 font-size: 24px;
-                padding-top: 20px;
             }
             .container {
-                padding: 20px 20px;
+                padding: 40px 20px;
             }
         }
     </style>
@@ -65,15 +68,17 @@
 <body>
 
     <div class="container">
-        <!-- Hero Title / Description -->
+        
+        <!-- Hero Title -->
         <h1>Estás a un solo paso de asegurar tu lugar en Google y que los pacientes te encuentren a ti, no a tu competencia.</h1>
 
-        <!-- Tally Form Embed -->
-        <iframe data-tally-src="https://tally.so/embed/81zog5?alignLeft=1&hideTitle=1&transparentBackground=1&formEventsForwarding=1" loading="lazy" width="100%" height="599" frameborder="0" marginheight="0" marginwidth="0" title="DOCTORES (AD)"></iframe>
+        <!-- Tally Form with Dynamic Height -->
+        <iframe data-tally-src="https://tally.so/embed/81zog5?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="696" frameborder="0" marginheight="0" marginwidth="0" title="DOCTORES (AD)"></iframe>
         
         <script>
             var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}
         </script>
+        
     </div>
 
 </body>
