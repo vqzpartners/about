@@ -1,0 +1,10 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+DTSTART:20260107T170000Z
+DTEND:20260107T180000Z
+SUMMARY:Resultados Sorteo @brandonvasp
+DESCRIPTION:Momento de conocer al ganador del sorteo. ¡Suerte!
+LOCATION:Instagram @brandonvasp
+END:VEVENT
+END:VCALENDAR
