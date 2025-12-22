@@ -3,17 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VQZ & Partners: La empresa detrás de tu negocio favorito</title>
+  <title>Confirmación | VQZ & Partners</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Roboto+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <link rel="icon" href="https://vqzpartners.com/get/images/favicon.png">
-
-  <meta name="description" content="Desde la inteligencia hasta la automatización, impulsamos la innovación libremente, asociándonos con negocios visionarios para crear soluciones a problemas de negocio">
-  <meta name="keywords" content="VQZ Partners, verified partners, business, partnership">
-  <meta name="robots" content="index, follow">
-
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  
   <style>
-    /* --- ESTILOS GENERALES (MANTENIDOS) --- */
+    /* --- ESTILOS BASE (ESTÉTICA VQZ) --- */
     * {
       margin: 0;
       padding: 0;
@@ -24,152 +19,156 @@
     body {
       background-color: #000000;
       color: white;
-      padding: 20px;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      overflow-x: hidden;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      width: 100%;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-    }
-
-    /* Header Styles */
-    header {
-      display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 1rem 0;
-      position: absolute;
-      top: 1rem;
-      left: 0;
-      right: 0;
-      z-index: 10;
-    }
-
-    .logo { height: 50px; }
-
-    /* Main Content Layout */
-    .main-content {
-      display: flex;
-      flex: 1;
-      gap: 4rem;
-      height: 100vh;
-      align-items: center;
-    }
-
-    /* Left Column */
-    .text-content {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
       justify-content: center;
-    }
-    
-    .tagline {
-      font-size: 3rem;
-      font-weight: 700;
-      margin-bottom: 2rem;
-      line-height: 1.1;
-      font-family: 'Montserrat', sans-serif;
+      padding: 20px;
+      overflow-x: hidden;
+      background-image: radial-gradient(circle at 50% 50%, #111 0%, #000 70%);
     }
 
-    .description {
-      font-size: 1.1rem;
-      line-height: 1.6;
-      margin-bottom: 2.5rem;
-      max-width: 480px;
-      opacity: 0.8;
-    }
-
-    /* --- NUEVA SECCIÓN: SORTEO CARD (Integrado al diseño) --- */
-    .sorteo-box {
-      margin-top: 2.5rem;
-      padding: 1.5rem;
-      background-color: rgba(255, 255, 255, 0.03); /* Glassmorphism sutil */
+    /* --- TARJETA CENTRAL (GLASSMORPHISM) --- */
+    .confirm-card {
+      background-color: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      max-width: 480px;
+      border-radius: 16px;
+      padding: 3rem 2rem;
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
       position: relative;
-      overflow: hidden;
-      transition: all 0.3s ease;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      animation: popIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
-    .sorteo-box:hover {
-      border-color: rgba(255, 255, 255, 0.3);
-      background-color: rgba(255, 255, 255, 0.05);
+    @keyframes popIn {
+      0% { opacity: 0; transform: scale(0.9) translateY(20px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
     }
 
-    .sorteo-box::before {
+    /* Efecto de borde brillante sutil */
+    .confirm-card::before {
       content: '';
       position: absolute;
-      top: 0; left: 0; width: 4px; height: 100%;
-      background: #fff; /* Línea de acento minimalista */
-      opacity: 0.5;
+      top: 0; left: 0; width: 100%; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
     }
 
-    .sorteo-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 10px;
+    /* --- ICONO Y TEXTOS --- */
+    .success-icon {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      display: inline-block;
+      text-shadow: 0 0 20px rgba(255,255,255,0.2);
     }
 
-    .sorteo-title {
+    h1 {
       font-family: 'Montserrat', sans-serif;
       font-weight: 700;
-      font-size: 0.9rem;
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(to right, #fff, #aaa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 2.5rem;
+    }
+
+    /* --- INFO DEL SORTEO --- */
+    .event-details {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .event-label {
+      font-size: 0.75rem;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      color: rgba(255, 255, 255, 0.9);
-    }
-
-    .sorteo-date {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 5px;
-      font-family: 'Montserrat', sans-serif;
-    }
-
-    .sorteo-timezone {
-      font-size: 0.8rem;
+      letter-spacing: 2px;
       color: rgba(255, 255, 255, 0.5);
-      margin-bottom: 15px;
+      margin-bottom: 8px;
       display: block;
     }
 
-    /* Botones de Calendario Directos */
+    .event-date {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .event-time {
+      font-size: 0.85rem;
+      color: #d32f2f; /* Toque rojo sutil para urgencia/importancia */
+      margin-top: 5px;
+      display: block;
+      font-weight: 500;
+    }
+
+    /* --- BOTONES DE CALENDARIO --- */
+    .calendar-section {
+      margin-top: 1rem;
+    }
+
+    .cal-label {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.4);
+      margin-bottom: 12px;
+      display: block;
+    }
+
     .calendar-actions {
       display: flex;
       gap: 10px;
+      justify-content: center;
       flex-wrap: wrap;
     }
 
     .cal-btn {
-      flex: 1;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      padding: 10px 15px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 12px 18px;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 6px;
       color: white;
       text-decoration: none;
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       font-weight: 500;
       transition: all 0.3s ease;
       cursor: pointer;
-      min-width: 100px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Efecto hover estilo VQZ */
+    .cal-btn::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%; width: 100%; height: 100%;
+      background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transition: left 0.4s ease;
+    }
+
+    .cal-btn:hover::after {
+      left: 100%;
+    }
+
+    .cal-btn:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.6);
+      transform: translateY(-2px);
     }
 
     .cal-btn svg {
@@ -178,224 +177,84 @@
       fill: currentColor;
     }
 
-    .cal-btn:hover {
-      background: rgba(255, 255, 255, 0.15);
-      border-color: rgba(255, 255, 255, 0.5);
-      transform: translateY(-2px);
-    }
-
-    /* --- FIN SECCIÓN SORTEO --- */
-
-    /* Right Column - Image Grid */
-    .image-grid-container {
-      flex: 1;
-      position: relative;
-      perspective: 1000px;
-    }
-
-    .image-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-gap: 1.5rem;
-      align-content: center;
-      transform-style: preserve-3d;
-      transition: transform 1s ease;
-    }
-
-    .market-card {
-      aspect-ratio: 1/1;
-      background-color: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 8px;
-      overflow: hidden;
-      position: relative;
-      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      transform: translateZ(0);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    }
-
-    .market-card:nth-child(odd) { animation: floatAnimation 6s infinite ease-in-out; }
-    .market-card:nth-child(even) { animation: floatAnimation 8s infinite ease-in-out reverse; }
-
-    .market-card:hover {
-      transform: translateY(-10px) scale(1.05);
-      border-color: rgba(255, 255, 255, 0.5);
-      box-shadow: 0 15px 30px rgba(255, 255, 255, 0.1);
-      z-index: 10;
-    }
-
-    @keyframes floatAnimation {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-10px) rotate(1deg); }
-    }
-
-    .market-card img {
-      width: 100%; height: 100%; object-fit: cover; opacity: 0.7;
-      transition: all 0.5s ease; filter: grayscale(20%);
-    }
-
-    .market-card:hover img {
-      opacity: 1; filter: grayscale(0%); transform: scale(1.1);
-    }
-
-    .market-label {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      padding: 1.2rem 1rem;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0));
-      font-size: 1rem; font-weight: 500;
-      transition: transform 0.3s ease;
-    }
-
-    .market-icon {
-      position: absolute; top: 1rem; right: 1rem;
-      width: 32px; height: 32px;
-      background-color: rgba(0, 0, 0, 0.5);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      opacity: 0; transform: translateY(-10px); transition: all 0.3s ease;
-    }
-
-    .market-card:hover .market-icon { opacity: 1; transform: translateY(0); }
-
-    /* Action Buttons */
-    .cta-buttons { display: flex; gap: 1.5rem; }
-
-    .btn {
-      padding: 0.8rem 1.5rem;
-      background-color: transparent;
-      color: white;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: 4px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-decoration: none;
-      display: inline-block;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .btn:hover::after { left: 100%; }
-    .btn::after {
-      content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-      background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
-      transition: left 0.5s ease;
-    }
-    .btn:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.5);
-      transform: translateY(-2px);
-    }
-
-    /* Animation */
-    .animated-text {
-      opacity: 0; transform: translateY(20px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-    .animated-text.visible { opacity: 1; transform: translateY(0); }
-
-    /* Responsive */
-    @media (max-width: 992px) {
-      .main-content { flex-direction: column; gap: 3rem; }
-      .text-content { align-items: center; text-align: center; }
-      .sorteo-box { margin-top: 3rem; text-align: left; /* Keep left alignment inside box for readability */ }
-      .sorteo-header { justify-content: center; } /* Center text on mobile if preferred */
-    }
-    @media (max-width: 768px) {
-      header { position: relative; justify-content: center; margin-bottom: 1rem; }
-      .main-content { height: auto; margin-top: 0; }
-      .tagline { font-size: 2rem; }
-      .cta-buttons { width: 100%; max-width: 320px; flex-direction: column; }
-      .btn { width: 100%; text-align: center; }
-      .sorteo-box { width: 100%; max-width: 320px; }
+    /* Responsive adjustments */
+    @media (max-width: 480px) {
+      .confirm-card { padding: 2rem 1.5rem; }
+      h1 { font-size: 1.6rem; }
       .calendar-actions { flex-direction: column; }
+      .cal-btn { width: 100%; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <img src="get/images/white-web-logo.svg" alt="VQZ & Partners Logo" class="logo">
-    </header>
 
-    <div class="main-content">
-      <div class="text-content">
-        <h1 class="tagline animated-text">La empresa detrás de<br>tu negocio favorito</h1>
-        <p class="description animated-text">Desde automatización hasta inteligencia, impulsamos la innovación libremente.</p>
-        
-        <div class="cta-buttons animated-text">
-           <a href="/contacto" class="btn">Contáctanos</a>
-          <a href="/nosotros" class="btn">Sobre Nosotros</a>
-        </div>
+  <div class="confirm-card">
+    <div class="success-icon">✨</div>
+    
+    <!-- El ID greeting se modificará con JS -->
+    <h1 id="greeting">¡Estás dentro!</h1>
+    
+    <p class="subtitle">
+      Tu registro ha sido confirmado correctamente. Ya estás participando en el sorteo de <strong>@brandonvasp</strong>.
+    </p>
 
-        <!-- AQUÍ ESTÁ LA NUEVA SECCIÓN DEL SORTEO INTEGRADA -->
-        <div class="sorteo-box animated-text">
-          <div class="sorteo-header">
-            <span style="font-size: 1.2rem;">🎁</span>
-            <span class="sorteo-title">Sorteo @brandonvasp</span>
-          </div>
-          
-          <div class="sorteo-date">7 DE ENERO DE 2026</div>
-          <span class="sorteo-timezone">Cierre: 12:00 PM EST (Hora del Este)</span>
+    <div class="event-details">
+      <span class="event-label">Resultados del sorteo</span>
+      <div class="event-date">7 DE ENERO DE 2026</div>
+      <span class="event-time">12:00 PM EST (Hora del Este)</span>
+    </div>
 
-          <div class="calendar-actions">
-            <!-- Botón Google -->
-            <a href="#" onclick="addToGoogle(); return false;" class="cal-btn" title="Añadir a Google Calendar">
-              <svg viewBox="0 0 24 24"><path d="M21.35 11.1h-9.17v2.73h6.51c-.33 3.81-3.5 5.44-6.5 5.44C8.36 19.27 5 16.25 5 12c0-4.1 3.2-7.27 7.2-7.27 3.09 0 4.9 1.97 4.9 1.97L19 4.72S16.56 2 12.1 2C6.42 2 2.03 6.8 2.03 12c0 5.05 4.13 10 10.22 10 5.35 0 9.25-3.67 9.25-9.09 0-1.15-.15-1.81-.15-1.81z"/></svg>
-              Google
-            </a>
-            <!-- Botón Outlook -->
-            <a href="#" onclick="addToOutlook(); return false;" class="cal-btn" title="Añadir a Outlook">
-              <svg viewBox="0 0 24 24"><path d="M1 17L1 7L9 5L9 19L1 17ZM23 18V6C23 4.89 22.1 4 21 4H15V20H21C22.1 20 23 19.11 23 18ZM13 20H11V4H13V20Z"/></svg>
-              Outlook
-            </a>
-            <!-- Botón Apple -->
-            <a href="#" onclick="addToApple(); return false;" class="cal-btn" title="Añadir a Apple Calendar">
-              <svg viewBox="0 0 24 24"><path d="M17.8 19.5c-.8 0-1.6-.3-2.3-.7-.7-.4-1.3-.7-2-.7-.7 0-1.4.3-2.1.8-.7.4-1.4.7-2.1.7-2.6 0-4.8-4-4.8-7.7 0-2.8 1.8-4.5 4.3-4.5.7 0 1.4.2 2 .5.6.3 1.2.5 1.7.5.5 0 1.1-.2 1.8-.5.7-.3 1.3-.5 2-.5 2.1 0 3.8 1.4 4.5 3.3-.1.1-1.1.6-1.1 2.3 0 1.9 1.5 2.6 1.6 2.6-.1.2-.2.5-.4.8-1 2-2.1 2.8-3.1 2.8zM14.9 5.2c0-1 .5-2 1-2.5.5-.5 1.3-.9 2.2-.9.1 1.1-.3 2.1-.9 2.7-.6.5-1.5.8-2.3.7z"/></svg>
-              Apple
-            </a>
-          </div>
-        </div>
-        <!-- FIN NUEVA SECCIÓN -->
-
-      </div>
+    <div class="calendar-section">
+      <span class="cal-label">Guárdalo en tu calendario para no perderte el resultado:</span>
       
-      <div class="image-grid-container animated-text">
-        <div class="image-grid">
-          <div class="market-card">
-            <img src="get/images/r.jpg" alt="AI & Automation">
-            <div class="market-label">AI y Automatización</div>
-            <div class="market-icon">⚡</div>
-          </div>
-          <div class="market-card">
-            <img src="get/images/finance.jpg" alt="Fintech">
-            <div class="market-label">Finanzas</div>
-            <div class="market-icon">💰</div>
-          </div>
-          <div class="market-card">
-            <img src="get/images/veritas.jpg" alt="Education">
-            <div class="market-label">Educación</div>
-            <div class="market-icon">🎓</div>
-          </div>
-          <div class="market-card">
-            <img src="get/images/i.jpg" alt="Innovation">
-            <div class="market-label">Inteligencia</div>
-            <div class="market-icon">💡</div>
-          </div>
-        </div>
+      <div class="calendar-actions">
+        <!-- Google -->
+        <a href="#" onclick="addToGoogle(); return false;" class="cal-btn">
+          <svg viewBox="0 0 24 24"><path d="M21.35 11.1h-9.17v2.73h6.51c-.33 3.81-3.5 5.44-6.5 5.44C8.36 19.27 5 16.25 5 12c0-4.1 3.2-7.27 7.2-7.27 3.09 0 4.9 1.97 4.9 1.97L19 4.72S16.56 2 12.1 2C6.42 2 2.03 6.8 2.03 12c0 5.05 4.13 10 10.22 10 5.35 0 9.25-3.67 9.25-9.09 0-1.15-.15-1.81-.15-1.81z"/></svg>
+          Google
+        </a>
+        
+        <!-- Outlook -->
+        <a href="#" onclick="addToOutlook(); return false;" class="cal-btn">
+          <svg viewBox="0 0 24 24"><path d="M1 17L1 7L9 5L9 19L1 17ZM23 18V6C23 4.89 22.1 4 21 4H15V20H21C22.1 20 23 19.11 23 18ZM13 20H11V4H13V20Z"/></svg>
+          Outlook
+        </a>
+        
+        <!-- Apple -->
+        <a href="#" onclick="addToApple(); return false;" class="cal-btn">
+          <svg viewBox="0 0 24 24"><path d="M17.8 19.5c-.8 0-1.6-.3-2.3-.7-.7-.4-1.3-.7-2-.7-.7 0-1.4.3-2.1.8-.7.4-1.4.7-2.1.7-2.6 0-4.8-4-4.8-7.7 0-2.8 1.8-4.5 4.3-4.5.7 0 1.4.2 2 .5.6.3 1.2.5 1.7.5.5 0 1.1-.2 1.8-.5.7-.3 1.3-.5 2-.5 2.1 0 3.8 1.4 4.5 3.3-.1.1-1.1.6-1.1 2.3 0 1.9 1.5 2.6 1.6 2.6-.1.2-.2.5-.4.8-1 2-2.1 2.8-3.1 2.8zM14.9 5.2c0-1 .5-2 1-2.5.5-.5 1.3-.9 2.2-.9.1 1.1-.3 2.1-.9 2.7-.6.5-1.5.8-2.3.7z"/></svg>
+          Apple
+        </a>
       </div>
     </div>
   </div>
 
   <script>
-    // --- LÓGICA DEL CALENDARIO ---
-    // Fecha: 7 Enero 2026, 12:00 PM EST
-    // EST es UTC-5. Por tanto 12:00 PM + 5h = 17:00 PM UTC
+    // 1. LÓGICA DE PERSONALIZACIÓN DEL MENSAJE (?lead=Name)
+    document.addEventListener("DOMContentLoaded", function() {
+      // Obtener parámetros de la URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const leadName = urlParams.get('lead');
+      const greetingElement = document.getElementById('greeting');
+
+      if (leadName && leadName.trim() !== "") {
+        // Limpiamos el nombre para evitar inyecciones simples de HTML
+        const cleanName = leadName.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        // Si el nombre es muy largo, lo cortamos para que no rompa el diseño
+        const displayName = cleanName.length > 20 ? cleanName.substring(0, 20) + '...' : cleanName;
+        
+        greetingElement.innerHTML = `¡Estás dentro, ${displayName}!`;
+      } else {
+        greetingElement.innerHTML = `¡Registro Exitoso!`;
+      }
+    });
+
+    // 2. LÓGICA DEL CALENDARIO (7 Enero 2026, 12:00 PM EST = 17:00 UTC)
     const eventConfig = {
-      title: "Cierre Sorteo @brandonvasp",
-      description: "¡Última oportunidad! Cierre oficial del sorteo de @brandonvasp. Asegúrate de haber participado antes de esta hora.",
+      title: "Resultados Sorteo @brandonvasp",
+      description: "Momento de conocer al ganador del sorteo de @brandonvasp. ¡Mucha suerte!",
       location: "Instagram @brandonvasp",
-      start: "20260107T170000Z", // UTC Z Time
+      start: "20260107T170000Z", 
       end: "20260107T180000Z"
     };
 
@@ -429,44 +288,6 @@ END:VCALENDAR`;
       link.click();
       document.body.removeChild(link);
     }
-
-    // --- ANIMACIONES EXISTENTES ---
-    document.addEventListener('DOMContentLoaded', () => {
-      const animatedElements = document.querySelectorAll('.animated-text');
-      const initialDelay = 800;
-      const staggerDelay = 300;
-      
-      const animateElements = async () => {
-        await new Promise(resolve => setTimeout(resolve, initialDelay));
-        for (let i = 0; i < animatedElements.length; i++) {
-          animatedElements[i].classList.add('visible');
-          await new Promise(resolve => setTimeout(resolve, staggerDelay));
-        }
-      };
-      
-      animateElements();
-      
-      // 3D tilt effect for image grid
-      const imageGrid = document.querySelector('.image-grid');
-      const imageGridContainer = document.querySelector('.image-grid-container');
-      
-      if (window.innerWidth > 768 && imageGridContainer) {
-        imageGridContainer.addEventListener('mousemove', (e) => {
-          const rect = imageGridContainer.getBoundingClientRect();
-          const x = e.clientX - rect.left; 
-          const y = e.clientY - rect.top;
-          
-          const xRot = ((y / rect.height) - 0.5) * 10;
-          const yRot = ((x / rect.width) - 0.5) * -10;
-          
-          imageGrid.style.transform = `rotateX(${xRot}deg) rotateY(${yRot}deg)`;
-        });
-        
-        imageGridContainer.addEventListener('mouseleave', () => {
-          imageGrid.style.transform = 'rotateX(0) rotateY(0)';
-        });
-      }
-    });
   </script>
 </body>
 </html>
