@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Confirmación | VQZ & Partners</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
   
   <style>
-    /* --- ESTILOS BASE (ESTÉTICA VQZ) --- */
+    /* --- ESTILOS BASE --- */
     * {
       margin: 0;
       padding: 0;
@@ -17,7 +17,7 @@
     }
 
     body {
-      background-color: #000000;
+      background-color: #000000; /* Fondo negro puro o con gradiente muy sutil */
       color: white;
       min-height: 100vh;
       display: flex;
@@ -25,110 +25,85 @@
       align-items: center;
       justify-content: center;
       padding: 20px;
-      overflow-x: hidden;
-      background-image: radial-gradient(circle at 50% 50%, #111 0%, #000 70%);
-    }
-
-    /* --- TARJETA CENTRAL (GLASSMORPHISM) --- */
-    .confirm-card {
-      background-color: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 16px;
-      padding: 3rem 2rem;
-      max-width: 500px;
-      width: 100%;
       text-align: center;
-      position: relative;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-      animation: popIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      background-image: radial-gradient(circle at center, #111 0%, #000 100%);
     }
 
-    @keyframes popIn {
-      0% { opacity: 0; transform: scale(0.9) translateY(20px); }
-      100% { opacity: 1; transform: scale(1) translateY(0); }
+    .container {
+      max-width: 600px;
+      width: 100%;
     }
 
-    /* Efecto de borde brillante sutil */
-    .confirm-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-    }
-
-    /* --- ICONO Y TEXTOS --- */
-    .success-icon {
-      font-size: 3.5rem;
-      margin-bottom: 1.5rem;
-      display: inline-block;
-      text-shadow: 0 0 20px rgba(255,255,255,0.2);
+    /* --- TIPOGRAFÍA Y MENSAJES --- */
+    .icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      display: block;
+      color: #fff;
     }
 
     h1 {
       font-family: 'Montserrat', sans-serif;
       font-weight: 700;
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-      background: linear-gradient(to right, #fff, #aaa);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #ffffff;
+      line-height: 1.1;
     }
 
     .subtitle {
-      color: rgba(255, 255, 255, 0.7);
-      font-size: 0.95rem;
+      color: #999;
+      font-size: 1rem;
       line-height: 1.6;
-      margin-bottom: 2.5rem;
+      margin-bottom: 3rem;
+      max-width: 450px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    /* --- INFO DEL SORTEO --- */
-    .event-details {
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 8px;
-      padding: 1.5rem;
+    /* --- BLOQUE DE FECHA --- */
+    .date-block {
       margin-bottom: 2rem;
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 20px;
+      border-top: 1px solid #333;
+      border-bottom: 1px solid #333;
     }
 
-    .event-label {
-      font-size: 0.75rem;
+    .date-label {
+      font-size: 0.8rem;
       text-transform: uppercase;
       letter-spacing: 2px;
-      color: rgba(255, 255, 255, 0.5);
-      margin-bottom: 8px;
+      color: #555;
+      margin-bottom: 10px;
       display: block;
     }
 
-    .event-date {
+    .big-date {
       font-family: 'Montserrat', sans-serif;
-      font-size: 1.4rem;
+      font-size: 1.8rem;
       font-weight: 700;
       color: #fff;
+      display: block;
     }
 
-    .event-time {
-      font-size: 0.85rem;
-      color: #d32f2f; /* Toque rojo sutil para urgencia/importancia */
+    .time-zone {
+      color: #d32f2f; /* Rojo sutil */
+      font-size: 0.9rem;
       margin-top: 5px;
       display: block;
-      font-weight: 500;
     }
 
-    /* --- BOTONES DE CALENDARIO --- */
-    .calendar-section {
-      margin-top: 1rem;
-    }
-
-    .cal-label {
-      font-size: 0.8rem;
-      color: rgba(255, 255, 255, 0.4);
-      margin-bottom: 12px;
+    /* --- BOTONES CALENDARIO --- */
+    .cal-cta-text {
+      font-size: 0.85rem;
+      color: #666;
+      margin-bottom: 15px;
       display: block;
     }
 
     .calendar-actions {
       display: flex;
-      gap: 10px;
+      gap: 15px;
       justify-content: center;
       flex-wrap: wrap;
     }
@@ -137,76 +112,57 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      padding: 12px 18px;
-      background: transparent;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 6px;
+      gap: 10px;
+      padding: 12px 24px;
+      background: #111;
+      border: 1px solid #333;
+      border-radius: 4px; /* Bordes más rectos */
       color: white;
       text-decoration: none;
-      font-size: 0.85rem;
-      font-weight: 500;
-      transition: all 0.3s ease;
+      font-size: 0.9rem;
+      transition: background 0.2s, border-color 0.2s;
       cursor: pointer;
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* Efecto hover estilo VQZ */
-    .cal-btn::after {
-      content: '';
-      position: absolute;
-      top: 0; left: -100%; width: 100%; height: 100%;
-      background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
-      transition: left 0.4s ease;
-    }
-
-    .cal-btn:hover::after {
-      left: 100%;
     }
 
     .cal-btn:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.6);
-      transform: translateY(-2px);
+      background-color: #222;
+      border-color: #555;
     }
 
     .cal-btn svg {
-      width: 16px;
-      height: 16px;
-      fill: currentColor;
+      width: 18px;
+      height: 18px;
+      fill: #fff;
     }
 
-    /* Responsive adjustments */
+    /* Responsive */
     @media (max-width: 480px) {
-      .confirm-card { padding: 2rem 1.5rem; }
-      h1 { font-size: 1.6rem; }
-      .calendar-actions { flex-direction: column; }
+      h1 { font-size: 2rem; }
+      .calendar-actions { flex-direction: column; gap: 10px; }
       .cal-btn { width: 100%; }
     }
   </style>
 </head>
 <body>
 
-  <div class="confirm-card">
-    <div class="success-icon">✨</div>
+  <div class="container">
+    <span class="icon">✨</span>
     
-    <!-- El ID greeting se modificará con JS -->
+    <!-- Se llena dinámicamente con JS -->
     <h1 id="greeting">¡Estás dentro!</h1>
     
     <p class="subtitle">
-      Tu registro ha sido confirmado correctamente. Ya estás participando en el sorteo de <strong>@brandonvasp</strong>.
+      Tu registro está confirmado. Ya estás participando en el sorteo de @brandonvasp.
     </p>
 
-    <div class="event-details">
-      <span class="event-label">Resultados del sorteo</span>
-      <div class="event-date">7 DE ENERO DE 2026</div>
-      <span class="event-time">12:00 PM EST (Hora del Este)</span>
+    <div class="date-block">
+      <span class="date-label">Fecha de Resultados</span>
+      <span class="big-date">7 DE ENERO DE 2026</span>
+      <span class="time-zone">12:00 PM EST</span>
     </div>
 
-    <div class="calendar-section">
-      <span class="cal-label">Guárdalo en tu calendario para no perderte el resultado:</span>
-      
+    <div>
+      <span class="cal-cta-text">Guárdalo en tu calendario:</span>
       <div class="calendar-actions">
         <!-- Google -->
         <a href="#" onclick="addToGoogle(); return false;" class="cal-btn">
@@ -230,31 +186,27 @@
   </div>
 
   <script>
-    // 1. LÓGICA DE PERSONALIZACIÓN DEL MENSAJE (?lead=Name)
+    // 1. OBTENER NOMBRE DEL LEAD
     document.addEventListener("DOMContentLoaded", function() {
-      // Obtener parámetros de la URL
       const urlParams = new URLSearchParams(window.location.search);
       const leadName = urlParams.get('lead');
       const greetingElement = document.getElementById('greeting');
 
       if (leadName && leadName.trim() !== "") {
-        // Limpiamos el nombre para evitar inyecciones simples de HTML
-        const cleanName = leadName.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-        // Si el nombre es muy largo, lo cortamos para que no rompa el diseño
-        const displayName = cleanName.length > 20 ? cleanName.substring(0, 20) + '...' : cleanName;
+        // Limpieza básica de seguridad y recorte
+        let cleanName = leadName.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        if(cleanName.length > 20) cleanName = cleanName.substring(0, 20) + '...';
         
-        greetingElement.innerHTML = `¡Estás dentro, ${displayName}!`;
-      } else {
-        greetingElement.innerHTML = `¡Registro Exitoso!`;
+        greetingElement.innerHTML = `¡Estás dentro, ${cleanName}!`;
       }
     });
 
-    // 2. LÓGICA DEL CALENDARIO (7 Enero 2026, 12:00 PM EST = 17:00 UTC)
+    // 2. CONFIGURACIÓN DEL EVENTO
     const eventConfig = {
       title: "Resultados Sorteo @brandonvasp",
-      description: "Momento de conocer al ganador del sorteo de @brandonvasp. ¡Mucha suerte!",
+      description: "Momento de conocer al ganador del sorteo. ¡Suerte!",
       location: "Instagram @brandonvasp",
-      start: "20260107T170000Z", 
+      start: "20260107T170000Z", // 12:00 PM EST en UTC
       end: "20260107T180000Z"
     };
 
