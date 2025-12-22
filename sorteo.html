@@ -1,13 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  /* --- ESTILOS CSS --- */
+  
+  /* Contenedor principal */
+  .sorteo-deadline-container {
+    display: flex;
+    justify-content: center;
+    padding: 50px 20px;
+    background-color: #f4f4f4;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  /* Tarjeta del aviso */
+  .deadline-card {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    text-align: center;
+    max-width: 550px;
+    width: 100%;
+    border-top: 5px solid #d32f2f; /* Borde superior rojo */
+  }
+
+  .deadline-icon {
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+    display: block;
+  }
+
+  .deadline-card h2 {
+    margin: 0 0 10px;
+    color: #1a1a1a;
+    font-size: 1.8rem;
+    font-weight: 700;
+  }
+
+  .deadline-card p {
+    color: #555;
+    margin: 5px 0;
+    line-height: 1.5;
+  }
+
+  /* Fecha resaltada */
+  .date-highlight {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #d32f2f;
+    margin: 20px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .timezone-note {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 25px;
+    display: block;
+  }
+
+  /* Estilos del Botón y Menú */
+  .calendar-dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .cal-btn {
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    color: white;
+    padding: 14px 28px;
+    font-size: 16px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+  }
+
+  .cal-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+  }
+
+  /* Opciones ocultas del menú */
+  .cal-options {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 220px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    z-index: 100;
+    border-radius: 10px;
+    overflow: hidden;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 12px;
+    border: 1px solid #eee;
+  }
+
+  .cal-options a {
+    color: #333;
+    padding: 12px 20px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+    text-align: left;
+    transition: background 0.2s;
+  }
+
+  .cal-options a:hover {
+    background-color: #f0f7ff;
+    color: #2563eb;
+  }
+
+  /* Clase para mostrar el menú */
+  .show-cal {
+    display: block;
+    animation: fadeIn 0.2s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+    to { opacity: 1; transform: translateX(-50%) translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<!-- --- HTML: SECCIÓN VISUAL --- -->
+<section class="sorteo-deadline-container">
+  <div class="deadline-card">
+    <span class="deadline-icon">🎁</span>
+    <h2>Final del Sorteo @brandonvasp</h2>
+    <p>La oportunidad de participar se termina pronto.</p>
+    
+    <div class="date-highlight">
+      7 de Enero de 2026
+    </div>
+    
+    <span class="timezone-note">Horario de cierre: 12:00 PM (Hora EST)</span>
+
+    <!-- Botón con menú desplegable -->
+    <div class="calendar-dropdown">
+      <button class="cal-btn" onclick="toggleCalendarMenu()">
+        📅 Agendar fecha en calendario
+      </button>
+      <div id="cal-options" class="cal-options">
+        <a href="#" onclick="addToGoogle(); return false;">Google Calendar</a>
+        <a href="#" onclick="addToOutlook(); return false;">Outlook / Office 365</a>
+        <a href="#" onclick="addToApple(); return false;">Apple Calendar (iCal)</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- --- JAVASCRIPT: FUNCIONALIDAD --- -->
 <script>
   // Configuración del Evento
+  // NOTA TÉCNICA: He calculado la hora en UTC (Z) para que sea correcta mundialmente.
+  // 12:00 PM EST (UTC-5) equivale a las 17:00:00 UTC.
+  
   const eventConfig = {
-    title: "Fin del Sorteo Especial",
-    description: "Fecha límite para participar en el gran sorteo. ¡Mucha suerte!",
-    location: "Online",
-    // Fechas en formato: YYYYMMDDTHHmmSSZ (UTC)
-    // 7 de Enero 2026 a las 12:00 PM (Ajustar según zona horaria si es necesario)
-    start: "20260107T120000", 
-    end: "20260107T130000"
+    title: "Final del Sorteo @brandonvasp",
+    description: "¡Es hoy! Cierre oficial del sorteo de @brandonvasp. Asegúrate de haber participado.",
+    location: "Instagram / Online",
+    // Formato UTC: 20260107T170000Z (Esto es 12:00 PM EST)
+    start: "20260107T170000Z", 
+    end: "20260107T180000Z" // Dura 1 hora en el calendario
   };
 
   // 1. Alternar menú desplegable
@@ -30,13 +197,15 @@
 
   // 2. Google Calendar Link
   function addToGoogle() {
+    // dates=YYYYMMDDTHHmmSSZ/YYYYMMDDTHHmmSSZ
     const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(eventConfig.title)}&dates=${eventConfig.start}/${eventConfig.end}&details=${encodeURIComponent(eventConfig.description)}&location=${encodeURIComponent(eventConfig.location)}`;
     window.open(url, '_blank');
   }
 
   // 3. Outlook / Office 365 Link
   function addToOutlook() {
-    const url = `https://outlook.live.com/calendar/0/deeplink/compose?path=/calendar/action/compose&rru=addevent&startdt=2026-01-07T12:00:00&enddt=2026-01-07T13:00:00&subject=${encodeURIComponent(eventConfig.title)}&body=${encodeURIComponent(eventConfig.description)}&location=${encodeURIComponent(eventConfig.location)}`;
+    // Outlook a veces prefiere formato completo con guiones para la API web, pero UTC "Z" funciona mejor globalmente
+    const url = `https://outlook.live.com/calendar/0/deeplink/compose?path=/calendar/action/compose&rru=addevent&startdt=2026-01-07T17:00:00Z&enddt=2026-01-07T18:00:00Z&subject=${encodeURIComponent(eventConfig.title)}&body=${encodeURIComponent(eventConfig.description)}&location=${encodeURIComponent(eventConfig.location)}`;
     window.open(url, '_blank');
   }
 
@@ -57,9 +226,12 @@ END:VCALENDAR`;
     const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
     const link = document.createElement('a');
     link.href = window.URL.createObjectURL(blob);
-    link.setAttribute('download', 'fin-sorteo.ics');
+    link.setAttribute('download', 'sorteo_brandonvasp.ics');
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   }
 </script>
+
+</body>
+</html>
