@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- No Index, No Follow -->
+    <meta name="robots" content="noindex, nofollow">
+    
+    <title>Todo listo</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="https://cdn.vqzpartners.com/favicon.png">
+    
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Base Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            align-items: center; /* Vertically centers the content block */
+            justify-content: center; /* Horizontally centers the content block */
+            min-height: 100vh;
+            padding: 24px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Main Card Container */
+        .content-container {
+            width: 100%;
+            max-width: 600px;
+            text-align: left; /* Aligns text to the left as requested */
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        /* Logo */
+        .logo-image {
+            height: 62px; /* Adjustable based on logo aspect ratio */
+            width: auto;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        
+        /* Typography */
+        h1 {
+            font-weight: 700;
+            font-size: 36px;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #A1A1AA; /* Light gray for subtitle to create hierarchy */
+            font-weight: 400;
+            max-width: 480px;
+        }
+
+        /* Highlight Color for the Name */
+        .highlight {
+            color: #ffffff;
+            border-bottom: 1px solid #333;
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 28px;
+            }
+            p {
+                font-size: 16px;
+            }
+            .logo-image {
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="content-container">
+        <!-- Logo -->
+        <img src="https://vqzpartners.com/get/images/white-web-logo.svg" alt="Logo" class="logo-image">
+        
+        <!-- Text Content -->
+        <h1 id="main-title">Procesando...</h1>
+        <p id="sub-text">Un momento, por favor.</p>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get params from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const leadData = urlParams.get('lead');
+            
+            let name = ''; // Default empty
+
+            if (leadData) {
+                // Logic to handle "Name+Email" format if present
+                const dataParts = leadData.split('+');
+                // Decode URI to handle special characters (accents, etc.)
+                const decodedName = decodeURIComponent(dataParts[0]);
+                name = decodedName;
+            }
+
+            const mainTitleElement = document.getElementById('main-title');
+            const subTextElement = document.getElementById('sub-text');
+
+            // Update Text
+            if(name) {
+                mainTitleElement.innerHTML = `Todo listo, <span class="highlight">${name}</span>.`;
+            } else {
+                mainTitleElement.textContent = `Todo listo.`;
+            }
+            
+            subTextElement.textContent = `Ya estás dentro del sorteo, el 7 de enero anunciarémos al ganador.`;
+        });
+    </script>
+
+</body>
+</html>
