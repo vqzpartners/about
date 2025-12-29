@@ -12,17 +12,17 @@
     <!-- Favicon -->
     <link rel="icon" href="https://cdn.vqzpartners.com/favicon.png">
     
-    <!-- Inter Font -->
+    <!-- Fonts: Inter (Cuerpo) + Lexend Exa (Título) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lexend+Exa:wght@600;700&display=swap" rel="stylesheet">
     
     <style>
         /* Base Reset and Black Theme */
         body {
             background-color: #000000;
             color: #ffffff;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', sans-serif; /* Fuente base para lectura */
             margin: 0;
             padding: 0;
             display: flex;
@@ -42,22 +42,24 @@
 
         /* Typography */
         h1 {
+            font-family: 'Lexend Exa', sans-serif; /* Fuente solicitada */
             font-weight: 700;
             font-size: 32px;
-            line-height: 1.3;
+            line-height: 1.2;
+            letter-spacing: -1.5px; /* Letter spacing reducido (tight) */
             margin: 0 0 25px 0;
             text-align: left;
         }
 
-        /* --- OFFER WRAPPER (Precio + Timer) --- */
-        .offer-wrapper {
+        /* --- PRICE & TIMER WRAPPER --- */
+        .price-timer-wrapper {
             display: flex;
             align-items: center;
             background: #111;
             border: 1px solid #333;
             border-radius: 12px;
             padding: 20px 25px;
-            gap: 30px;
+            gap: 40px; /* Separación entre grupos */
             width: fit-content;
             margin-bottom: 30px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.5);
@@ -68,21 +70,36 @@
             display: flex;
             flex-direction: column;
             border-right: 1px solid #333;
-            padding-right: 30px;
+            padding-right: 40px;
         }
 
         .price-label {
-            font-size: 12px;
+            font-size: 11px;
             color: #888;
             text-transform: uppercase;
             font-weight: 600;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
+            letter-spacing: 1px;
         }
 
-        .price-amount {
+        /* Contenedor para alinear precio viejo y nuevo */
+        .price-row {
+            display: flex;
+            align-items: baseline; /* Alinea la base del texto */
+            gap: 12px;
+        }
+
+        .price-old {
+            text-decoration: line-through;
+            color: #666; /* Gris oscuro para quitarle importancia visual */
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        .price-current {
             font-size: 36px;
             font-weight: 700;
-            color: #00ff88; /* Verde neón para resaltar el dinero */
+            color: #ffffff;
             line-height: 1;
         }
 
@@ -90,21 +107,23 @@
         .timer-group {
             display: flex;
             flex-direction: column;
+            justify-content: center;
         }
 
         .timer-label {
-            font-size: 12px;
+            font-size: 11px;
             color: #888;
             text-transform: uppercase;
             font-weight: 600;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
+            letter-spacing: 1px;
         }
 
         #countdown {
             font-family: 'Inter', monospace;
             font-size: 24px;
             font-weight: 700;
-            color: #ffffff;
+            color: #ffffff; 
             line-height: 1;
         }
 
@@ -114,7 +133,7 @@
             color: #dddddd;
             font-weight: 500;
             margin-bottom: 15px;
-            padding-left: 5px; /* Pequeño ajuste visual */
+            padding-left: 5px; 
         }
 
         iframe {
@@ -124,17 +143,17 @@
         /* Mobile Responsiveness */
         @media (max-width: 600px) {
             h1 {
-                font-size: 26px;
+                font-size: 24px; /* Ajuste para móvil */
             }
             .container {
                 padding: 40px 20px;
             }
             
             /* En móvil, apilamos precio y timer */
-            .offer-wrapper {
+            .price-timer-wrapper {
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 15px;
+                gap: 20px;
                 width: 100%;
                 box-sizing: border-box;
             }
@@ -143,7 +162,7 @@
                 border-right: none;
                 border-bottom: 1px solid #333;
                 padding-right: 0;
-                padding-bottom: 15px;
+                padding-bottom: 20px;
                 width: 100%;
             }
             
@@ -157,21 +176,24 @@
 
     <div class="container">
         
-        <!-- Hero Title -->
+        <!-- Hero Title (Lexend Exa + Tight Spacing) -->
         <h1>Asegura este precio de por vida ahora</h1>
 
-        <!-- Offer Wrapper: Conecta Precio y Timer -->
-        <div class="offer-wrapper">
+        <!-- Wrapper: Conecta Precio (Gancho) y Timer -->
+        <div class="price-timer-wrapper">
             
-            <!-- Precio -->
+            <!-- Precio con Gancho Visual ($625 -> $497) -->
             <div class="price-group">
-                <span class="price-label">Precio Oferta</span>
-                <span class="price-amount">$497 USD</span>
+                <span class="price-label">Precio Actual</span>
+                <div class="price-row">
+                    <span class="price-old">$625</span>
+                    <span class="price-current">$497 USD</span>
+                </div>
             </div>
 
             <!-- Timer -->
             <div class="timer-group">
-                <span class="timer-label">Expira en:</span>
+                <span class="timer-label">Cambio de precio en:</span>
                 <div id="countdown">Cargando...</div>
             </div>
 
@@ -216,5 +238,11 @@
             // Si la cuenta termina
             if (distance < 0) {
                 clearInterval(x);
-                document.getElementById("countdown").innerHTML = "EXPIRADO";
+                document.getElementById("countdown").innerHTML = "TIEMPO AGOTADO";
                 document.getElementById("countdown").style.color = "#ff4444";
+            }
+        }, 1000);
+    </script>
+
+</body>
+</html>
