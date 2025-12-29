@@ -45,57 +45,110 @@
             font-weight: 700;
             font-size: 32px;
             line-height: 1.3;
-            margin: 0 0 20px 0; /* Margen reducido para acercar el timer */
+            margin: 0 0 25px 0;
             text-align: left;
+        }
+
+        /* --- OFFER WRAPPER (Precio + Timer) --- */
+        .offer-wrapper {
+            display: flex;
+            align-items: center;
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 20px 25px;
+            gap: 30px;
+            width: fit-content;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        /* Sección Precio */
+        .price-group {
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #333;
+            padding-right: 30px;
+        }
+
+        .price-label {
+            font-size: 12px;
+            color: #888;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .price-amount {
+            font-size: 36px;
+            font-weight: 700;
+            color: #00ff88; /* Verde neón para resaltar el dinero */
+            line-height: 1;
+        }
+
+        /* Sección Timer */
+        .timer-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .timer-label {
+            font-size: 12px;
+            color: #888;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        #countdown {
+            font-family: 'Inter', monospace;
+            font-size: 24px;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1;
+        }
+
+        /* --- Instructional Text --- */
+        .instruction-text {
+            font-size: 18px;
+            color: #dddddd;
+            font-weight: 500;
+            margin-bottom: 15px;
+            padding-left: 5px; /* Pequeño ajuste visual */
         }
 
         iframe {
             display: block;
         }
 
-        /* --- STYLES DEL TIMER (INLINE) --- */
-        .timer-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 40px; /* Espacio antes del formulario */
-            background: #111;
-            padding: 15px;
-            border-radius: 8px;
-            border: 1px solid #333;
-            width: fit-content; /* Se ajusta al contenido */
-        }
-        
-        .timer-label {
-            font-size: 14px;
-            color: #aaa;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-
-        #countdown {
-            font-family: 'Inter', monospace;
-            font-size: 20px;
-            font-weight: 700;
-            color: #ffcc00; /* Color amarillo para resaltar */
-            min-width: 160px;
-        }
-
         /* Mobile Responsiveness */
         @media (max-width: 600px) {
             h1 {
-                font-size: 24px;
+                font-size: 26px;
             }
             .container {
                 padding: 40px 20px;
             }
             
-            .timer-container {
+            /* En móvil, apilamos precio y timer */
+            .offer-wrapper {
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 5px;
-                width: 100%; /* Full width en móvil */
+                gap: 15px;
+                width: 100%;
                 box-sizing: border-box;
+            }
+
+            .price-group {
+                border-right: none;
+                border-bottom: 1px solid #333;
+                padding-right: 0;
+                padding-bottom: 15px;
+                width: 100%;
+            }
+            
+            .instruction-text {
+                font-size: 16px;
             }
         }
     </style>
@@ -107,11 +160,25 @@
         <!-- Hero Title -->
         <h1>Asegura este precio de por vida ahora</h1>
 
-        <!-- Timer ubicado debajo del título -->
-        <div class="timer-container">
-            <span class="timer-label">La oferta termina en:</span>
-            <div id="countdown">Cargando...</div>
+        <!-- Offer Wrapper: Conecta Precio y Timer -->
+        <div class="offer-wrapper">
+            
+            <!-- Precio -->
+            <div class="price-group">
+                <span class="price-label">Precio Oferta</span>
+                <span class="price-amount">$497 USD</span>
+            </div>
+
+            <!-- Timer -->
+            <div class="timer-group">
+                <span class="timer-label">Expira en:</span>
+                <div id="countdown">Cargando...</div>
+            </div>
+
         </div>
+
+        <!-- Instructional Text -->
+        <p class="instruction-text">Primero debemos conocer más sobre ti.</p>
 
         <!-- Tally Form with Dynamic Height -->
         <iframe data-tally-src="https://tally.so/embed/81zog5?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="696" frameborder="0" marginheight="0" marginwidth="0" title="DOCTORES (AD)"></iframe>
@@ -149,11 +216,5 @@
             // Si la cuenta termina
             if (distance < 0) {
                 clearInterval(x);
-                document.getElementById("countdown").innerHTML = "OFERTA EXPIRADA";
+                document.getElementById("countdown").innerHTML = "EXPIRADO";
                 document.getElementById("countdown").style.color = "#ff4444";
-            }
-        }, 1000);
-    </script>
-
-</body>
-</html>
