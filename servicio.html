@@ -29,8 +29,8 @@
             justify-content: center;
             min-height: 100vh;
             -webkit-font-smoothing: antialiased;
-            /* Agregamos padding al final para que la barra no tape el contenido */
-            padding-bottom: 140px; 
+            /* Espacio para que el banner no tape el contenido final */
+            padding-bottom: 120px; 
         }
 
         /* Main Container */
@@ -61,7 +61,7 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            background-color: #111111; /* Un poco más claro que el fondo negro */
+            background-color: #111111;
             border-top: 1px solid #333;
             z-index: 9999;
             box-shadow: 0 -4px 20px rgba(0,0,0,0.7);
@@ -69,86 +69,53 @@
         }
 
         .banner-content {
-            max-width: 1000px;
+            max-width: 800px; /* Ancho ajustado para centrar mejor el contenido restante */
             margin: 0 auto;
             display: flex;
-            justify-content: space-between;
+            justify-content: space-between; /* Texto a la izq, Timer a la der */
             align-items: center;
-            padding: 0 20px;
+            padding: 0 24px;
             gap: 20px;
         }
 
-        /* Textos del banner */
-        .offer-details {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
+        /* Disclaimer Text */
         .disclaimer {
-            font-size: 11px;
-            color: #ffcc00; /* Color amarillo para alerta */
+            font-size: 13px; /* Un poco más grande para mejor lectura */
+            color: #ffcc00;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             font-weight: 600;
         }
 
-        .deposit-text {
-            font-size: 14px;
-            color: #fff;
-        }
-
-        .deposit-text strong {
-            color: #4ade80; /* Verde para el dinero */
-            font-size: 16px;
-        }
-
         /* Timer Styles */
         .timer-wrapper {
             text-align: center;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
         .timer-label {
-            font-size: 10px;
-            color: #888;
-            margin-bottom: 2px;
-            display: block;
+            font-size: 12px;
+            color: #aaa;
+            display: inline-block;
         }
 
         #countdown {
             font-family: 'Inter', monospace;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 700;
             color: #ffffff;
             background: #222;
-            padding: 5px 10px;
+            padding: 6px 12px;
             border-radius: 6px;
             border: 1px solid #444;
-            min-width: 180px;
-            display: inline-block;
-        }
-
-        /* Badges Styles */
-        .badges {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-
-        .badges svg {
-            height: 24px;
-            width: auto;
-            fill: #fff;
-            opacity: 0.7;
-            transition: opacity 0.3s;
-        }
-
-        .badges svg:hover {
-            opacity: 1;
+            min-width: 160px;
+            text-align: center;
         }
 
         /* Mobile Responsiveness */
-        @media (max-width: 768px) {
+        @media (max-width: 600px) {
             h1 {
                 font-size: 24px;
             }
@@ -160,19 +127,20 @@
             .banner-content {
                 flex-direction: column;
                 text-align: center;
-                gap: 12px;
+                gap: 10px;
             }
             
-            .offer-details {
-                align-items: center;
+            .timer-wrapper {
+                flex-direction: column;
+                gap: 5px;
             }
-
+            
             .sticky-banner {
-                padding: 15px 10px;
+                padding: 12px 0;
             }
 
             body {
-                padding-bottom: 220px; /* Más espacio en móvil porque el banner es más alto */
+                padding-bottom: 160px;
             }
         }
     </style>
@@ -197,29 +165,15 @@
     <div class="sticky-banner">
         <div class="banner-content">
             
-            <!-- Texto y Oferta -->
-            <div class="offer-details">
-                <span class="disclaimer">⚠️ Esta oferta solo está disponible a través de este anuncio</span>
-                <span class="deposit-text">Asegura el precio hoy con un depósito de <strong>$248.5</strong></span>
-            </div>
+            <!-- Texto Disclaimer -->
+            <span class="disclaimer">⚠️ Esta oferta solo está disponible a través de este anuncio</span>
 
             <!-- Timer -->
             <div class="timer-wrapper">
-                <span class="timer-label">La oferta termina en:</span>
+                <span class="timer-label">Termina en:</span>
                 <div id="countdown">Cargando...</div>
             </div>
 
-            <!-- Badges (SVG Icons) -->
-            <div class="badges">
-                <!-- Visa Icon -->
-                <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M18.8 32h-3L13.7 7h3.1zm10-25h-3.1c-.9 0-1.7.5-2 1.3L17 32h3.2l.6-3h3.9l.6 3h2.9l-5-25H28.8zm-4.7 19.8.9-5.4 1.5 5.4h-2.4zm16.5-19.8h-2.4c-.8 0-1.4.3-1.8 1.1l-6.1 14.7-2.1-10.7c-.3-1.3-1.2-2.3-2.6-3l5.5 20h3.3l8.6-21.1C39.6 7.3 39.7 7 40.6 7zM4.1 7h-4L6 32h4.1z"/></svg>
-                
-                <!-- Mastercard Icon -->
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10.325 15.695a6.45 6.45 0 0 1 0-7.39 7.425 7.425 0 1 0 0 7.39ZM24 12A12 12 0 1 1 12 0a12 12 0 0 1 12 12Z"/></svg>
-
-                <!-- Crypto/Bitcoin Icon -->
-                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16 32C7.163 32 0 24.837 0 16S7.163 0 16 0s16 7.163 16 16-7.163 16-16 16zm7.189-18.52c.28-1.884-1.15-2.9-3.106-3.578l.634-2.542-1.546-.385-.617 2.478c-.407-.1-.826-.195-1.246-.29l.623-2.496-1.547-.386-.636 2.548c-.338-.08-.67-.156-.994-.236l.002-.007-2.134-.533-.412 1.652s1.15.263 1.125.28c.628.156.74.57.72 1.05l-1.008 4.043c.025.006.058.015.093.033-.03-.017-.063-.034-.099-.043l-1.412 5.66c-.106.265-.377.663-.984.512.016.023-1.126-.282-1.126-.282l-.77 1.774 2.003.5c.373.093.738.192 1.1.285l-.644 2.584 1.547.385.637-2.553c.425.115.837.22 1.243.32l-.63 2.535 1.546.386.643-2.576c2.636.5 4.618.3 5.45-2.085.672-1.923-.033-3.03-1.423-3.754 1.012-.234 1.774-.9 1.968-2.275zm-3.52 4.935c-.48 1.916-3.717.88-4.766.62l.85-3.406c1.05.262 4.416.78 3.916 2.786zm.476-4.96c-.438 1.76-3.187.865-4.075.644l.772-3.093c.887.22 3.73.655 3.303 2.45z"/></svg>
-            </div>
         </div>
     </div>
 
@@ -239,7 +193,7 @@
             var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            // Formato con ceros a la izquierda (ej: 05 en vez de 5)
+            // Formato con ceros a la izquierda
             hours = hours < 10 ? "0" + hours : hours;
             minutes = minutes < 10 ? "0" + minutes : minutes;
             seconds = seconds < 10 ? "0" + seconds : seconds;
