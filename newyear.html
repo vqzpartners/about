@@ -22,7 +22,7 @@
         body {
             background-color: #000000;
             color: #ffffff;
-            font-family: 'Inter', sans-serif; /* Fuente base para lectura */
+            font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
@@ -42,11 +42,11 @@
 
         /* Typography */
         h1 {
-            font-family: 'Lexend Exa', sans-serif; /* Fuente solicitada */
+            font-family: 'Lexend Exa', sans-serif;
             font-weight: 700;
             font-size: 32px;
             line-height: 1.2;
-            letter-spacing: -1.5px; /* Letter spacing reducido (tight) */
+            letter-spacing: -1.5px;
             margin: 0 0 25px 0;
             text-align: left;
         }
@@ -59,7 +59,7 @@
             border: 1px solid #333;
             border-radius: 12px;
             padding: 20px 25px;
-            gap: 40px; /* Separación entre grupos */
+            gap: 40px;
             width: fit-content;
             margin-bottom: 30px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.5);
@@ -82,16 +82,15 @@
             letter-spacing: 1px;
         }
 
-        /* Contenedor para alinear precio viejo y nuevo */
         .price-row {
             display: flex;
-            align-items: baseline; /* Alinea la base del texto */
+            align-items: baseline;
             gap: 12px;
         }
 
         .price-old {
             text-decoration: line-through;
-            color: #666; /* Gris oscuro para quitarle importancia visual */
+            color: #666;
             font-size: 20px;
             font-weight: 500;
         }
@@ -131,16 +130,74 @@
             display: block;
         }
 
+        /* --- SOCIAL PROOF ESTILOS --- */
+        .social-proof-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 15px;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.03); /* Fondo muy sutil */
+            border: 1px solid #222;
+            border-radius: 8px;
+            width: fit-content;
+            animation: fadeIn 1.5s ease;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #22c55e; /* Verde brillante */
+            border-radius: 50%;
+            position: relative;
+        }
+
+        /* Efecto de pulso en el punto verde */
+        .live-dot::after {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            border-radius: 50%;
+            border: 1px solid #22c55e;
+            opacity: 0;
+            animation: pulse-ring 2s infinite;
+        }
+
+        .social-text {
+            font-size: 13px;
+            color: #888;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        .client-domain {
+            color: #e5e5e5; /* Blanco casi puro para destacar */
+            font-weight: 500;
+            font-family: 'Inter', monospace; /* Monospace le da toque técnico */
+        }
+
+        @keyframes pulse-ring {
+            0% { transform: scale(0.5); opacity: 1; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         /* Mobile Responsiveness */
         @media (max-width: 600px) {
             h1 {
-                font-size: 24px; /* Ajuste para móvil */
+                font-size: 24px;
             }
             .container {
                 padding: 40px 20px;
             }
             
-            /* En móvil, apilamos precio y timer */
             .price-timer-wrapper {
                 flex-direction: column;
                 align-items: flex-start;
@@ -157,8 +214,11 @@
                 width: 100%;
             }
             
-            .instruction-text {
-                font-size: 16px;
+            /* Ajuste mobile para social proof */
+            .social-proof-bar {
+                width: 100%;
+                box-sizing: border-box;
+                justify-content: flex-start;
             }
         }
     </style>
@@ -167,13 +227,11 @@
 
     <div class="container">
         
-        <!-- Hero Title (Lexend Exa + Tight Spacing) -->
+        <!-- Hero Title -->
         <h1>Asegura este precio de por vida ahora</h1>
 
-        <!-- Wrapper: Conecta Precio (Gancho) y Timer -->
+        <!-- Wrapper: Price & Timer -->
         <div class="price-timer-wrapper">
-            
-            <!-- Precio con Gancho Visual ($625 -> $497) -->
             <div class="price-group">
                 <span class="price-label">Precio Actual</span>
                 <div class="price-row">
@@ -182,48 +240,46 @@
                 </div>
             </div>
 
-            <!-- Timer -->
             <div class="timer-group">
                 <span class="timer-label">Cambio de precio en:</span>
                 <div id="countdown">Cargando...</div>
             </div>
-
         </div>
 
-        <!-- Tally Form with Dynamic Height -->
+        <!-- Tally Form -->
         <iframe data-tally-src="https://tally.so/embed/gDe1b4?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="696" frameborder="0" marginheight="0" marginwidth="0" title="DOCTORES (AD)"></iframe>
         
         <script>
             var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}
         </script>
+
+        <!-- SECCIÓN NUEVA: SOCIAL PROOF -->
+        <div class="social-proof-bar">
+            <div class="live-dot"></div>
+            <p class="social-text">
+                Último cliente: <span class="client-domain">odontoestetica.com.pa</span>, <span class="client-domain">drmorci.com</span>
+            </p>
+        </div>
         
     </div>
 
-    <!-- Script para la cuenta regresiva -->
+    <!-- Script Countdown -->
     <script>
-        // Fecha objetivo: Enero 1, 2026
         var countDownDate = new Date("Jan 1, 2026 00:00:00").getTime();
-
-        // Actualizar la cuenta cada 1 segundo
         var x = setInterval(function() {
             var now = new Date().getTime();
             var distance = countDownDate - now;
-
-            // Cálculos de tiempo
             var days = Math.floor(distance / (1000 * 60 * 60 * 24));
             var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            // Formato con ceros a la izquierda
             hours = hours < 10 ? "0" + hours : hours;
             minutes = minutes < 10 ? "0" + minutes : minutes;
             seconds = seconds < 10 ? "0" + seconds : seconds;
 
-            // Mostrar el resultado
             document.getElementById("countdown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
 
-            // Si la cuenta termina
             if (distance < 0) {
                 clearInterval(x);
                 document.getElementById("countdown").innerHTML = "TIEMPO AGOTADO";
