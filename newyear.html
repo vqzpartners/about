@@ -29,8 +29,6 @@
             justify-content: center;
             min-height: 100vh;
             -webkit-font-smoothing: antialiased;
-            /* Espacio para que el banner no tape el contenido final */
-            padding-bottom: 120px; 
         }
 
         /* Main Container */
@@ -47,7 +45,7 @@
             font-weight: 700;
             font-size: 32px;
             line-height: 1.3;
-            margin: 0 0 40px 0;
+            margin: 0 0 20px 0; /* Margen reducido para acercar el timer */
             text-align: left;
         }
 
@@ -55,63 +53,32 @@
             display: block;
         }
 
-        /* --- STYLES DEL STICKY BANNER --- */
-        .sticky-banner {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: #111111;
-            border-top: 1px solid #333;
-            z-index: 9999;
-            box-shadow: 0 -4px 20px rgba(0,0,0,0.7);
-            padding: 15px 0;
-        }
-
-        .banner-content {
-            max-width: 800px; /* Ancho ajustado para centrar mejor el contenido restante */
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between; /* Texto a la izq, Timer a la der */
-            align-items: center;
-            padding: 0 24px;
-            gap: 20px;
-        }
-
-        /* Disclaimer Text */
-        .disclaimer {
-            font-size: 13px; /* Un poco más grande para mejor lectura */
-            color: #ffcc00;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-weight: 600;
-        }
-
-        /* Timer Styles */
-        .timer-wrapper {
-            text-align: center;
+        /* --- STYLES DEL TIMER (INLINE) --- */
+        .timer-container {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
+            margin-bottom: 40px; /* Espacio antes del formulario */
+            background: #111;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #333;
+            width: fit-content; /* Se ajusta al contenido */
         }
         
         .timer-label {
-            font-size: 12px;
+            font-size: 14px;
             color: #aaa;
-            display: inline-block;
+            font-weight: 600;
+            text-transform: uppercase;
         }
 
         #countdown {
             font-family: 'Inter', monospace;
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 700;
-            color: #ffffff;
-            background: #222;
-            padding: 6px 12px;
-            border-radius: 6px;
-            border: 1px solid #444;
+            color: #ffcc00; /* Color amarillo para resaltar */
             min-width: 160px;
-            text-align: center;
         }
 
         /* Mobile Responsiveness */
@@ -122,25 +89,13 @@
             .container {
                 padding: 40px 20px;
             }
-
-            /* Banner Mobile Adjustments */
-            .banner-content {
-                flex-direction: column;
-                text-align: center;
-                gap: 10px;
-            }
             
-            .timer-wrapper {
+            .timer-container {
                 flex-direction: column;
+                align-items: flex-start;
                 gap: 5px;
-            }
-            
-            .sticky-banner {
-                padding: 12px 0;
-            }
-
-            body {
-                padding-bottom: 160px;
+                width: 100%; /* Full width en móvil */
+                box-sizing: border-box;
             }
         }
     </style>
@@ -150,7 +105,13 @@
     <div class="container">
         
         <!-- Hero Title -->
-        <h1>Estás a un solo paso de asegurar tu lugar en Google y que los pacientes te encuentren a ti, no a tu competencia.</h1>
+        <h1>Asegura este precio de por vida ahora</h1>
+
+        <!-- Timer ubicado debajo del título -->
+        <div class="timer-container">
+            <span class="timer-label">La oferta termina en:</span>
+            <div id="countdown">Cargando...</div>
+        </div>
 
         <!-- Tally Form with Dynamic Height -->
         <iframe data-tally-src="https://tally.so/embed/81zog5?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="696" frameborder="0" marginheight="0" marginwidth="0" title="DOCTORES (AD)"></iframe>
@@ -159,22 +120,6 @@
             var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}
         </script>
         
-    </div>
-
-    <!-- Sticky Banner -->
-    <div class="sticky-banner">
-        <div class="banner-content">
-            
-            <!-- Texto Disclaimer -->
-            <span class="disclaimer">⚠️ Esta oferta solo está disponible a través de este anuncio</span>
-
-            <!-- Timer -->
-            <div class="timer-wrapper">
-                <span class="timer-label">Termina en:</span>
-                <div id="countdown">Cargando...</div>
-            </div>
-
-        </div>
     </div>
 
     <!-- Script para la cuenta regresiva -->
@@ -205,6 +150,7 @@
             if (distance < 0) {
                 clearInterval(x);
                 document.getElementById("countdown").innerHTML = "OFERTA EXPIRADA";
+                document.getElementById("countdown").style.color = "#ff4444";
             }
         }, 1000);
     </script>
