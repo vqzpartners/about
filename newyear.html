@@ -61,7 +61,7 @@
             padding: 20px 25px;
             gap: 40px;
             width: fit-content;
-            margin-bottom: 30px;
+            margin-bottom: 20px; /* Reducido un poco para acercar la alerta */
             box-shadow: 0 4px 20px rgba(0,0,0,0.5);
         }
 
@@ -130,6 +130,37 @@
             display: block;
         }
 
+        /* --- SCARCITY WARNING (NUEVO) --- */
+        .scarcity-box {
+            background: rgba(220, 38, 38, 0.12); /* Rojo oscuro transparente */
+            border: 1px solid #dc2626; /* Borde rojo visible */
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 30px;
+            width: fit-content;
+            max-width: 100%;
+        }
+
+        .scarcity-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            color: #ef4444; /* Texto rojo brillante */
+            margin-bottom: 8px;
+        }
+
+        .scarcity-text {
+            font-size: 14px;
+            color: #fca5a5; /* Rojo pálido para lectura fácil */
+            line-height: 1.5;
+            margin: 0;
+            max-width: 600px;
+        }
+
         /* --- SOCIAL PROOF ESTILOS --- */
         .social-proof-bar {
             display: flex;
@@ -137,7 +168,7 @@
             gap: 12px;
             margin-top: 15px;
             padding: 12px 16px;
-            background: rgba(255, 255, 255, 0.03); /* Fondo muy sutil */
+            background: rgba(255, 255, 255, 0.03); 
             border: 1px solid #222;
             border-radius: 8px;
             width: fit-content;
@@ -147,12 +178,11 @@
         .live-dot {
             width: 8px;
             height: 8px;
-            background-color: #22c55e; /* Verde brillante */
+            background-color: #22c55e;
             border-radius: 50%;
             position: relative;
         }
 
-        /* Efecto de pulso en el punto verde */
         .live-dot::after {
             content: '';
             position: absolute;
@@ -174,9 +204,9 @@
         }
 
         .client-domain {
-            color: #e5e5e5; /* Blanco casi puro para destacar */
+            color: #e5e5e5;
             font-weight: 500;
-            font-family: 'Inter', monospace; /* Monospace le da toque técnico */
+            font-family: 'Inter', monospace;
         }
 
         @keyframes pulse-ring {
@@ -214,11 +244,9 @@
                 width: 100%;
             }
             
-            /* Ajuste mobile para social proof */
-            .social-proof-bar {
+            .scarcity-box, .social-proof-bar {
                 width: 100%;
                 box-sizing: border-box;
-                justify-content: flex-start;
             }
         }
     </style>
@@ -246,6 +274,18 @@
             </div>
         </div>
 
+        <!-- ALERTA DE PLAZAS LIMITADAS (NUEVO) -->
+        <div class="scarcity-box">
+            <div class="scarcity-header">
+                <!-- Icono de alerta SVG -->
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                Solo 5 plazas disponibles
+            </div>
+            <p class="scarcity-text">
+                Debido a la naturaleza del servicio no podemos posicionar a todos, por lo cual limitamos nuestro servicio a cinco por zona.
+            </p>
+        </div>
+
         <!-- Tally Form -->
         <iframe data-tally-src="https://tally.so/embed/gDe1b4?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="696" frameborder="0" marginheight="0" marginwidth="0" title="DOCTORES (AD)"></iframe>
         
@@ -253,7 +293,7 @@
             var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}
         </script>
 
-        <!-- SECCIÓN NUEVA: SOCIAL PROOF -->
+        <!-- Social Proof Bar -->
         <div class="social-proof-bar">
             <div class="live-dot"></div>
             <p class="social-text">
