@@ -7,15 +7,15 @@
     <!-- No Index, No Follow -->
     <meta name="robots" content="noindex, nofollow">
     
-    <title>Captura clientes activamente buscandote.</title>
+    <title>Formulario de Registro</title>
     
     <!-- Favicon -->
     <link rel="icon" href="https://cdn.vqzpartners.com/favicon.png">
     
-    <!-- Fonts: Inter (Cuerpo) + Lexend Exa (Título) -->
+    <!-- Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lexend+Exa:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     
     <style>
         /* Base Reset and Black Theme */
@@ -35,130 +35,15 @@
         .container {
             width: 100%;
             max-width: 800px;
-            padding: 60px 24px 20px 24px;
+            padding: 40px 24px;
             display: flex;
             flex-direction: column;
-        }
-
-        /* Typography */
-        h1 {
-            font-family: 'Lexend Exa', sans-serif;
-            font-weight: 700;
-            font-size: 32px;
-            line-height: 1.2;
-            letter-spacing: -1.5px;
-            margin: 0 0 25px 0;
-            text-align: left;
-        }
-
-        /* --- PRICE & TIMER WRAPPER --- */
-        .price-timer-wrapper {
-            display: flex;
-            align-items: center;
-            background: #111;
-            border: 1px solid #333;
-            border-radius: 12px;
-            padding: 20px 25px;
-            gap: 40px;
-            width: fit-content;
-            margin-bottom: 15px; /* Espacio reducido */
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-        }
-
-        /* Sección Precio */
-        .price-group {
-            display: flex;
-            flex-direction: column;
-            border-right: 1px solid #333;
-            padding-right: 40px;
-        }
-
-        .price-label {
-            font-size: 11px;
-            color: #888;
-            text-transform: uppercase;
-            font-weight: 600;
-            margin-bottom: 6px;
-            letter-spacing: 1px;
-        }
-
-        .price-row {
-            display: flex;
-            align-items: baseline;
-            gap: 12px;
-        }
-
-        .price-old {
-            text-decoration: line-through;
-            color: #666;
-            font-size: 20px;
-            font-weight: 500;
-        }
-
-        .price-current {
-            font-size: 36px;
-            font-weight: 700;
-            color: #ffffff;
-            line-height: 1;
-        }
-
-        /* Sección Timer */
-        .timer-group {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .timer-label {
-            font-size: 11px;
-            color: #888;
-            text-transform: uppercase;
-            font-weight: 600;
-            margin-bottom: 6px;
-            letter-spacing: 1px;
-        }
-
-        #countdown {
-            font-family: 'Inter', monospace;
-            font-size: 24px;
-            font-weight: 700;
-            color: #ffffff; 
-            line-height: 1;
+            align-items: center; /* Centra el contenido */
         }
 
         iframe {
             display: block;
-        }
-
-        /* --- SCARCITY WARNING (REDSEÑADO: PEQUEÑO Y SUTIL) --- */
-        .scarcity-box {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(255, 255, 255, 0.03); /* Fondo muy sutil */
-            border: 1px dashed #444; /* Borde discontinuo discreto */
-            border-radius: 6px;
-            padding: 8px 12px;
-            margin-bottom: 25px;
-            width: fit-content;
-        }
-
-        .scarcity-icon {
-            color: #fbbf24; /* Ámbar/Naranja en vez de rojo alarma */
-            flex-shrink: 0;
-        }
-
-        .scarcity-text {
-            font-size: 13px;
-            color: #aaa; /* Gris claro */
-            margin: 0;
-            line-height: 1.4;
-            font-weight: 400;
-        }
-        
-        .scarcity-highlight {
-            color: #e5e5e5;
-            font-weight: 600;
+            border-radius: 8px; /* Opcional: suaviza bordes del form si fondo no es negro total */
         }
 
         /* --- SOCIAL PROOF ESTILOS --- */
@@ -166,7 +51,7 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            margin-top: 15px;
+            margin-top: 20px;
             padding: 12px 16px;
             background: rgba(255, 255, 255, 0.03); 
             border: 1px solid #222;
@@ -221,39 +106,14 @@
 
         /* Mobile Responsiveness */
         @media (max-width: 600px) {
-            h1 {
-                font-size: 30px;
-            }
             .container {
-                padding: 40px 20px;
-            }
-            
-            .price-timer-wrapper {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 20px;
-                width: 100%;
-                box-sizing: border-box;
-            }
-
-            .price-group {
-                border-right: none;
-                border-bottom: 1px solid #333;
-                padding-right: 0;
-                padding-bottom: 20px;
-                width: 100%;
-            }
-            
-            /* Ajuste para que el aviso pequeño no se rompa feo en móviles muy pequeños */
-            .scarcity-box {
-                width: 100%;
-                box-sizing: border-box;
-                font-size: 12px;
+                padding: 20px 15px;
             }
             
             .social-proof-bar {
                 width: 100%;
                 box-sizing: border-box;
+                justify-content: center;
             }
         }
     </style>
@@ -262,33 +122,6 @@
 
     <div class="container">
         
-        <!-- Hero Title -->
-        <h1>Asegura este precio de por vida ahora</h1>
-
-        <!-- Wrapper: Price & Timer -->
-        <div class="price-timer-wrapper">
-            <div class="price-group">
-                <span class="price-label">Precio Actual</span>
-                <div class="price-row">
-                    <span class="price-current">$497 USD</span>
-                    <span class="price-old">$825 USD</span>
-                </div>
-            </div>
-
-            <div class="timer-group">
-                <span class="timer-label">Cambio de precio en:</span>
-                <div id="countdown">Cargando...</div>
-            </div>
-        </div>
-
-        <!-- ALERTA DE PLAZAS LIMITADAS (VERSIÓN COMPACTA) -->
-        <div class="scarcity-box">
-            <svg class="scarcity-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-            <p class="scarcity-text">
-                <span class="scarcity-highlight">Solo 3 plazas por región</span> debido a la naturaleza exclusiva del servicio.
-            </p>
-        </div>
-
         <!-- Tally Form -->
         <iframe data-tally-src="https://tally.so/embed/gDe1b4?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="696" frameborder="0" marginheight="0" marginwidth="0" title="DOCTORES (AD)"></iframe>
         
@@ -305,31 +138,6 @@
         </div>
         
     </div>
-
-    <!-- Script Countdown -->
-    <script>
-        var countDownDate = new Date("Jan 7, 2026 00:00:00").getTime();
-        var x = setInterval(function() {
-            var now = new Date().getTime();
-            var distance = countDownDate - now;
-            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            hours = hours < 10 ? "0" + hours : hours;
-            minutes = minutes < 10 ? "0" + minutes : minutes;
-            seconds = seconds < 10 ? "0" + seconds : seconds;
-
-            document.getElementById("countdown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
-
-            if (distance < 0) {
-                clearInterval(x);
-                document.getElementById("countdown").innerHTML = "TIEMPO AGOTADO";
-                document.getElementById("countdown").style.color = "#ff4444";
-            }
-        }, 1000);
-    </script>
 
 </body>
 </html>
