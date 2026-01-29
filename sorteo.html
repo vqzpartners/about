@@ -159,7 +159,8 @@
 
     <div class="date-block">
       <span class="date-label">Fecha de Resultados</span>
-      <span class="big-date">7 DE ENERO DE 2026</span>
+      <!-- FECHA ACTUALIZADA -->
+      <span class="big-date">1 DE FEBRERO DE 2026</span>
       <span class="time-zone">12:00 PM EST</span>
     </div>
 
@@ -208,8 +209,9 @@
       title: "Resultados Sorteo @brandonvasp",
       description: "Momento de conocer al ganador del sorteo. ¡Suerte!",
       location: "Instagram @brandonvasp",
-      start: "20260107T170000Z", // 12:00 PM EST en UTC
-      end: "20260107T180000Z"
+      // FECHAS ACTUALIZADAS (20260201 = 1 de Feb 2026)
+      start: "20260201T170000Z", // 12:00 PM EST en UTC
+      end: "20260201T180000Z"
     };
 
     function addToGoogle() {
@@ -218,7 +220,8 @@
     }
 
     function addToOutlook() {
-      const url = `https://outlook.live.com/calendar/0/deeplink/compose?path=/calendar/action/compose&rru=addevent&startdt=2026-01-07T17:00:00Z&enddt=2026-01-07T18:00:00Z&subject=${encodeURIComponent(eventConfig.title)}&body=${encodeURIComponent(eventConfig.description)}&location=${encodeURIComponent(eventConfig.location)}`;
+      // URL de Outlook actualizada manualmente al 01-02-2026
+      const url = `https://outlook.live.com/calendar/0/deeplink/compose?path=/calendar/action/compose&rru=addevent&startdt=2026-02-01T17:00:00Z&enddt=2026-02-01T18:00:00Z&subject=${encodeURIComponent(eventConfig.title)}&body=${encodeURIComponent(eventConfig.description)}&location=${encodeURIComponent(eventConfig.location)}`;
       window.open(url, '_blank');
     }
 
