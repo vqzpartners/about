@@ -5,29 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sorteo VQZPARTNERS</title>
     
-    <!-- ETIQUETA NO INDEX (Para que no aparezca en buscadores) -->
+    <!-- 1. NO INDEX -->
     <meta name="robots" content="noindex, nofollow">
+
+    <!-- 2. FAVICON -->
+    <link rel="icon" href="https://vqzpartners.com/get/images/favicon.png">
 
     <style>
         body {
             background-color: #000000; /* Fondo Negro */
             margin: 0;
-            padding: 0;
+            padding: 20px; /* Un poco de margen para móviles */
             display: flex;
-            justify-content: center;
-            align-items: center;
+            justify-content: center; /* Centrado horizontal */
+            align-items: center; /* Centrado vertical */
             min-height: 100vh;
         }
-        /* Ajuste para que el formulario ocupe el ancho correcto en móviles */
-        iframe {
-            max-width: 100%;
+
+        /* 3. MENOS WIDTH (Contenedor para estrechar el formulario) */
+        .form-wrapper {
+            width: 100%;
+            max-width: 450px; /* Aquí definimos el ancho máximo reducido */
         }
     </style>
 </head>
 <body>
 
-    <!-- CÓDIGO DEL FORMULARIO TALLY -->
-    <iframe data-tally-src="https://tally.so/embed/81zog5?alignLeft=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="424" frameborder="0" marginheight="0" marginwidth="0" title="VQZPARTNERS (SORTEO)"></iframe>
+    <div class="form-wrapper">
+        <!-- 
+           He añadido "&hideTitle=1" a la URL data-tally-src para ocultar el título
+           dentro del embed.
+        -->
+        <iframe 
+            data-tally-src="https://tally.so/embed/81zog5?alignLeft=1&transparentBackground=1&dynamicHeight=1&hideTitle=1" 
+            loading="lazy" 
+            width="100%" 
+            height="424" 
+            frameborder="0" 
+            marginheight="0" 
+            marginwidth="0" 
+            title="VQZPARTNERS (SORTEO)">
+        </iframe>
+    </div>
     
     <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
 
